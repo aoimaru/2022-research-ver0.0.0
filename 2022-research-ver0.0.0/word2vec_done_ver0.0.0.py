@@ -2,9 +2,38 @@ import argparse
 
 from libs.word2vecs import *
 from functions.functions import *
+from libs.vectors import *
+
+
+def get_test_data(args):
+    """
+
+    """
+    if args.source == "github":
+        if args.run == 1:
+            test_data = W2VFunction.get_training_github_data_filter_run()
+        else:
+            test_data = W2VFunction.get_training_github_data()
+    else:
+        if args.run == 1:
+            test_data = W2VFunction.get_training_gold_data_filter_run()
+        else:
+            test_data = W2VFunction.get_training_gold_data()
+    
+    return test_data
 
 def main(args):
+    test_data = get_test_data(args)
     model = BaseW2V.load(sg=args.sg, size=args.size, min_count=args.min_count, window=args.window, name=args.source, run=args.run)
+    test_case = [
+        ['SC-APT-GET-UPDATE'],
+        ['SC-APT-GET-INSTALL', 'SC-APT-GET-F-YES'],
+        ['SC-APT-GET-INSTALL', 'SC-APT-GET-F-NO-INSTALL-RECOMMENDS'],
+        ['SC-APT-GET-INSTALL', 'SC-APT-GET-PACKAGES', 'SC-APT-GET-PACKAGE:LIBNSS-WRAPPER']
+    ]
+    testVec = Vector(contexts=test_case, model=model, size=args.size)
+    
+    
 
 
 if __name__ == "__main__":
