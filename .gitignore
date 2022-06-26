@@ -165,4 +165,5 @@ cython_debug/
 
 # オリジナル github元のAST
 data/ast/github
+data/original/github
 

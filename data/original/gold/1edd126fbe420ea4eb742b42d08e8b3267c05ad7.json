@@ -1,0 +1,127 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "debian",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "stretch-slim",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "HAPROXY_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "1.8.20",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "HAPROXY_URL",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "https://www.haproxy.org/download/1.8/src/haproxy-1.8.20.tar.gz",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "HAPROXY_SHA256",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "3228f78d5fe1dfbaccf41bf387e36b08eeef6e16330053cafde5fa303e262b16",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -x \t\t&& savedAptMark=\"$(apt-mark showmanual)\" \t&& apt-get update && apt-get install -y --no-install-recommends \t\tca-certificates \t\tgcc \t\tlibc6-dev \t\tliblua5.3-dev \t\tlibpcre2-dev \t\tlibssl-dev \t\tmake \t\twget \t\tzlib1g-dev \t&& rm -rf /var/lib/apt/lists/* \t\t&& wget -O haproxy.tar.gz \"$HAPROXY_URL\" \t&& echo \"$HAPROXY_SHA256 *haproxy.tar.gz\" | sha256sum -c \t&& mkdir -p /usr/src/haproxy \t&& tar -xzf haproxy.tar.gz -C /usr/src/haproxy --strip-components=1 \t&& rm haproxy.tar.gz \t\t&& makeOpts=' \t\tTARGET=linux2628 \t\tUSE_LUA=1 LUA_INC=/usr/include/lua5.3 \t\tUSE_GETADDRINFO=1 \t\tUSE_OPENSSL=1 \t\tUSE_PCRE2=1 USE_PCRE2_JIT=1 \t\tUSE_ZLIB=1 \t' \t&& make -C /usr/src/haproxy -j \"$(nproc)\" all $makeOpts \t&& make -C /usr/src/haproxy install-bin $makeOpts \t\t&& mkdir -p /usr/local/etc/haproxy \t&& cp -R /usr/src/haproxy/examples/errorfiles /usr/local/etc/haproxy/errors \t&& rm -rf /usr/src/haproxy \t\t&& apt-mark auto '.*' > /dev/null \t&& { [ -z \"$savedAptMark\" ] || apt-mark manual $savedAptMark; } \t&& find /usr/local -type f -executable -exec ldd '{}' ';' \t\t| awk '/=>/ { print $(NF-1) }' \t\t| sort -u \t\t| xargs -r dpkg-query --search \t\t| cut -d: -f1 \t\t| sort -u \t\t| xargs -r apt-mark manual \t&& apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "docker-entrypoint.sh",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENTRYPOINT",
+        "children": [
+            {
+                "type": "DOCKER-ENTRYPOINT-EXECUTABLE",
+                "value": "/docker-entrypoint.sh",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-CMD",
+        "children": [
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "haproxy",
+                "children": []
+            },
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "-f",
+                "children": []
+            },
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "/usr/local/etc/haproxy/haproxy.cfg",
+                "children": []
+            }
+        ]
+    }
+]

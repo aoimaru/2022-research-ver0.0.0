@@ -1,0 +1,122 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "servercore",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-REPO",
+                "value": "mcr.microsoft.com",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "1809",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-SHELL",
+        "children": [
+            {
+                "type": "DOCKER-SHELL-EXECUTABLE",
+                "value": "powershell",
+                "children": []
+            },
+            {
+                "type": "DOCKER-SHELL-ARG",
+                "value": "-Command",
+                "children": []
+            },
+            {
+                "type": "DOCKER-SHELL-ARG",
+                "value": "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "JAVA_HOME",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "C:\\\\openjdk-8",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "$newPath = ('{0}\\bin;{1}' -f $env:JAVA_HOME, $env:PATH); \tWrite-Host ('Updating PATH: {0}' -f $newPath); \tsetx /M PATH $newPath",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "JAVA_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "8u212-b04",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "JAVA_BASE_URL",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "https://github.com/AdoptOpenJDK/openjdk8-upstream-binaries/releases/download/jdk8u212-b04/OpenJDK8U-",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "JAVA_URL_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "8u212b04",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "$url = ('{0}x64_windows_{1}.zip' -f $env:JAVA_BASE_URL, $env:JAVA_URL_VERSION); \tWrite-Host ('Downloading {0} ...' -f $url); \t[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; \tInvoke-WebRequest -Uri $url -OutFile 'openjdk.zip'; \t\tWrite-Host 'Expanding ...'; \tNew-Item -ItemType Directory -Path C:\\temp | Out-Null; \tExpand-Archive openjdk.zip -DestinationPath C:\\temp; \tMove-Item -Path C:\\temp\\* -Destination $env:JAVA_HOME; \tRemove-Item C:\\temp; \t\tWrite-Host 'Removing ...'; \tRemove-Item openjdk.zip -Force; \t\tWrite-Host 'Verifying install ...'; \tWrite-Host '  javac -version'; javac -version; \tWrite-Host '  java -version'; java -version; \t\tWrite-Host 'Complete.'",
+                "children": []
+            }
+        ]
+    }
+]

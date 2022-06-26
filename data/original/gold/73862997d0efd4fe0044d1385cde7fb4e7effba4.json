@@ -1,0 +1,387 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "alpine",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "3.8",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apk add --no-cache \t\t'su-exec>=0.2' \t\tbash \t\tprocps",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ARG",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "PGP_KEYSERVER",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "ha.pool.sks-keyservers.net",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "OPENSSL_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "1.1.1c",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "OPENSSL_SOURCE_SHA256",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"f6fb3079ad15076154eda9413fed42877d668e7069d9b87396d0804fdb3f4c90\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "OPENSSL_PGP_KEY_IDS",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"0x8657ABB260F056B1E5190839D9C4D26D0E604491 0x5B2545DAB21995F4088CEFAA36CEE4DEB00CFE33 0xED230BEC4D4F2518B9D7DF41F0DB4D21C1D35231 0xC1F33DD8CE1D4CC613AF14DA9195C48241FBF7DD 0x7953AC1FBC3DC8B3B292393ED5E9E43F7DF9EE8C 0xE5E52560DD91C556DDBDA5D02064C53641C25E5D\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "OTP_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "22.0.4",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "OTP_SOURCE_SHA256",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"71b2fe49ed5ac386ebc189dd2e5f4b95b11b4427936be0e3c5695a903ea9ffcd\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -eux; \t\tapk add --no-cache --virtual .build-deps \t\tautoconf \t\tca-certificates \t\tdpkg-dev dpkg \t\tgcc \t\tgnupg \t\tlibc-dev \t\tlinux-headers \t\tmake \t\tncurses-dev \t; \t\tOPENSSL_SOURCE_URL=\"https://www.openssl.org/source/openssl-$OPENSSL_VERSION.tar.gz\"; \tOPENSSL_PATH=\"/usr/local/src/openssl-$OPENSSL_VERSION\"; \tOPENSSL_CONFIG_DIR=/usr/local/etc/ssl; \t\tmkdir /usr/local/src; \t\twget --output-document \"$OPENSSL_PATH.tar.gz.asc\" \"$OPENSSL_SOURCE_URL.asc\"; \twget --output-document \"$OPENSSL_PATH.tar.gz\" \"$OPENSSL_SOURCE_URL\"; \texport GNUPGHOME=\"$(mktemp -d)\"; \tfor key in $OPENSSL_PGP_KEY_IDS; do \t\tgpg --batch --keyserver \"$PGP_KEYSERVER\" --recv-keys \"$key\"; \tdone; \tgpg --batch --verify \"$OPENSSL_PATH.tar.gz.asc\" \"$OPENSSL_PATH.tar.gz\"; \tgpgconf --kill all; \trm -rf \"$GNUPGHOME\"; \techo \"$OPENSSL_SOURCE_SHA256 *$OPENSSL_PATH.tar.gz\" | sha256sum -c -; \tmkdir -p \"$OPENSSL_PATH\"; \ttar --extract --file \"$OPENSSL_PATH.tar.gz\" --directory \"$OPENSSL_PATH\" --strip-components 1; \t\tcd \"$OPENSSL_PATH\"; \tMACHINE=\"$(dpkg-architecture --query DEB_BUILD_GNU_CPU)\" \tRELEASE=\"4.x.y-z\" \tSYSTEM='Linux' \tBUILD='???' \t./config --openssldir=\"$OPENSSL_CONFIG_DIR\"; \tmake -j \"$(getconf _NPROCESSORS_ONLN)\"; \tmake install_sw install_ssldirs; \tcd ..; \trm -rf \"$OPENSSL_PATH\"*; \trmdir \"$OPENSSL_CONFIG_DIR/certs\" \"$OPENSSL_CONFIG_DIR/private\"; \tln -sf /etc/ssl/certs /etc/ssl/private \"$OPENSSL_CONFIG_DIR\"; \topenssl version; \t\tOTP_SOURCE_URL=\"https://github.com/erlang/otp/archive/OTP-$OTP_VERSION.tar.gz\"; \tOTP_PATH=\"/usr/local/src/otp-$OTP_VERSION\"; \t\tmkdir -p \"$OTP_PATH\"; \twget --output-document \"$OTP_PATH.tar.gz\" \"$OTP_SOURCE_URL\"; \techo \"$OTP_SOURCE_SHA256 *$OTP_PATH.tar.gz\" | sha256sum -c -; \ttar --extract --file \"$OTP_PATH.tar.gz\" --directory \"$OTP_PATH\" --strip-components 1; \t\tcd \"$OTP_PATH\"; \texport ERL_TOP=\"$OTP_PATH\"; \t./otp_build autoconf; \tCFLAGS=\"$(dpkg-buildflags --get CFLAGS)\"; export CFLAGS; \thostArch=\"$(dpkg-architecture --query DEB_HOST_GNU_TYPE)\"; \tbuildArch=\"$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)\"; \tdpkgArch=\"$(dpkg --print-architecture)\"; dpkgArch=\"${dpkgArch##*-}\"; \t./configure \t\t--host=\"$hostArch\" \t\t--build=\"$buildArch\" \t\t--disable-dynamic-ssl-lib \t\t--disable-hipe \t\t--disable-sctp \t\t--disable-silent-rules \t\t--enable-clock-gettime \t\t--enable-hybrid-heap \t\t--enable-kernel-poll \t\t--enable-shared-zlib \t\t--enable-smp-support \t\t--enable-threads \t\t--with-microstate-accounting=extra \t\t--without-common_test \t\t--without-debugger \t\t--without-dialyzer \t\t--without-diameter \t\t--without-edoc \t\t--without-erl_docgen \t\t--without-erl_interface \t\t--without-et \t\t--without-eunit \t\t--without-ftp \t\t--without-hipe \t\t--without-jinterface \t\t--without-megaco \t\t--without-observer \t\t--without-odbc \t\t--without-reltool \t\t--without-ssh \t\t--without-tftp \t\t--without-wx \t; \tmake -j \"$(getconf _NPROCESSORS_ONLN)\" GEN_OPT_FLGS=\"-O2 -fno-strict-aliasing\"; \tmake install; \tcd ..; \trm -rf \t\t\"$OTP_PATH\"* \t\t/usr/local/lib/erlang/lib/*/examples \t\t/usr/local/lib/erlang/lib/*/src \t; \t\trunDeps=\"$( \t\tscanelf --needed --nobanner --format '%n#p' --recursive /usr/local \t\t\t| tr ',' '\\n' \t\t\t| sort -u \t\t\t| awk 'system(\"[ -e /usr/local/lib/\" $1 \" ]\") == 0 { next } { print \"so:\" $1 }' \t)\"; \tapk add --no-cache --virtual .otp-run-deps $runDeps; \tapk del --no-network .build-deps; \t\topenssl version; \terl -noshell -eval 'io:format(\"~p~n~n~p~n~n\", [crypto:supports(), ssl:versions()]), init:stop().'",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "RABBITMQ_DATA_DIR",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/var/lib/rabbitmq",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -eux; \taddgroup -g 101 -S rabbitmq; \tadduser -u 100 -S -h \"$RABBITMQ_DATA_DIR\" -G rabbitmq rabbitmq; \tmkdir -p \"$RABBITMQ_DATA_DIR\" /etc/rabbitmq /tmp/rabbitmq-ssl /var/log/rabbitmq; \tchown -fR rabbitmq:rabbitmq \"$RABBITMQ_DATA_DIR\" /etc/rabbitmq /tmp/rabbitmq-ssl /var/log/rabbitmq; \tchmod 777 \"$RABBITMQ_DATA_DIR\" /etc/rabbitmq /tmp/rabbitmq-ssl /var/log/rabbitmq; \tln -sf \"$RABBITMQ_DATA_DIR/.erlang.cookie\" /root/.erlang.cookie",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "RABBITMQ_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "3.7.16-rc.3",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "RABBITMQ_PGP_KEY_ID",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"0x0A9AF2115F4687BD29803A206B73A36E6026DFCA\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "RABBITMQ_HOME",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/opt/rabbitmq",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "PATH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "$RABBITMQ_HOME/sbin:$PATH",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "RABBITMQ_LOGS",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "-",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "RABBITMQ_SASL_LOGS",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "-",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -eux; \t\tapk add --no-cache --virtual .build-deps \t\tca-certificates \t\tgnupg \t\txz \t; \t\tRABBITMQ_SOURCE_URL=\"https://github.com/rabbitmq/rabbitmq-server/releases/download/v$RABBITMQ_VERSION/rabbitmq-server-generic-unix-$RABBITMQ_VERSION.tar.xz\"; \tRABBITMQ_PATH=\"/usr/local/src/rabbitmq-$RABBITMQ_VERSION\"; \t\twget --output-document \"$RABBITMQ_PATH.tar.xz.asc\" \"$RABBITMQ_SOURCE_URL.asc\"; \twget --output-document \"$RABBITMQ_PATH.tar.xz\" \"$RABBITMQ_SOURCE_URL\"; \t\texport GNUPGHOME=\"$(mktemp -d)\"; \tgpg --batch --keyserver \"$PGP_KEYSERVER\" --recv-keys \"$RABBITMQ_PGP_KEY_ID\"; \tgpg --batch --verify \"$RABBITMQ_PATH.tar.xz.asc\" \"$RABBITMQ_PATH.tar.xz\"; \tgpgconf --kill all; \trm -rf \"$GNUPGHOME\"; \t\tmkdir -p \"$RABBITMQ_HOME\"; \ttar --extract --file \"$RABBITMQ_PATH.tar.xz\" --directory \"$RABBITMQ_HOME\" --strip-components 1; \trm -rf \"$RABBITMQ_PATH\"*; \tgrep -qE '^SYS_PREFIX=\\$\\{RABBITMQ_HOME\\}$' \"$RABBITMQ_HOME/sbin/rabbitmq-defaults\"; \tsed -i 's/^SYS_PREFIX=.*$/SYS_PREFIX=/' \"$RABBITMQ_HOME/sbin/rabbitmq-defaults\"; \tgrep -qE '^SYS_PREFIX=$' \"$RABBITMQ_HOME/sbin/rabbitmq-defaults\"; \tchown -R rabbitmq:rabbitmq \"$RABBITMQ_HOME\"; \t\tapk del .build-deps; \t\t[ ! -e \"$RABBITMQ_DATA_DIR/.erlang.cookie\" ]; \tsu-exec rabbitmq rabbitmqctl help; \tsu-exec rabbitmq rabbitmqctl list_ciphers; \tsu-exec rabbitmq rabbitmq-plugins list; \trm \"$RABBITMQ_DATA_DIR/.erlang.cookie\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "ln -sf /opt/rabbitmq/plugins /plugins",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "HOME",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "$RABBITMQ_DATA_DIR",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-VOLUME",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "$RABBITMQ_DATA_DIR",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "LANG",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "C.UTF-8",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "LANGUAGE",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "C.UTF-8",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "LC_ALL",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "C.UTF-8",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/usr/local/bin/",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "docker-entrypoint.sh",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENTRYPOINT",
+        "children": [
+            {
+                "type": "DOCKER-ENTRYPOINT-EXECUTABLE",
+                "value": "docker-entrypoint.sh",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-EXPOSE",
+        "children": [
+            {
+                "type": "DOCKER-PORT",
+                "value": "4369",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-CMD",
+        "children": [
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "rabbitmq-server",
+                "children": []
+            }
+        ]
+    }
+]

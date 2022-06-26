@@ -1,0 +1,107 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "debian",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "%%BASE%%-slim",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "PATH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/usr/local/bin:$PATH",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "LANG",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "C.UTF-8",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apt-get update && apt-get install -y --no-install-recommends \t\tca-certificates \t\tlibexpat1 \t\tlibffi6 \t\tlibgdbm3 \t\tlibsqlite3-0 \t&& rm -rf /var/lib/apt/lists/*",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "PYPY_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "%%PYPY_VERSION%%",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "PYTHON_PIP_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "%%PIP_VERSION%%",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -ex; \t\t%%ARCH-CASE%%; \t\tsavedAptMark=\"$(apt-mark showmanual)\"; \tapt-get update; \tapt-get install -y --no-install-recommends \t\tbzip2 \t\twget \t\tlibncurses5 \t; \t\twget -O pypy.tar.bz2 \"https://bitbucket.org/pypy/pypy/downloads/%%TAR%%-v${PYPY_VERSION}-${pypyArch}.tar.bz2\" --progress=dot:giga; \techo \"$sha256 *pypy.tar.bz2\" | sha256sum -c; \ttar -xjC /usr/local --strip-components=1 -f pypy.tar.bz2; \tfind /usr/local/lib-python -depth -type d -a \\( -name test -o -name tests \\) -exec rm -rf '{}' +; \trm pypy.tar.bz2; \t\t%%CMD%% --version; \t\tif [ -f /usr/local/lib_pypy/_ssl_build.py ]; then \t\tapt-get install -y --no-install-recommends gcc libc6-dev libssl-dev; \t\tcd /usr/local/lib_pypy; \t\t%%CMD%% _ssl_build.py; \tfi; \t\twget -O get-pip.py 'https://bootstrap.pypa.io/get-pip.py'; \t\t%%CMD%% get-pip.py \t\t--disable-pip-version-check \t\t--no-cache-dir \t\t\"pip==$PYTHON_PIP_VERSION\" \t; \tpip --version; \t\trm -f get-pip.py; \t\tapt-mark auto '.*' > /dev/null; \t[ -z \"$savedAptMark\" ] || apt-mark manual $savedAptMark > /dev/null; \tfind /usr/local -type f -executable -exec ldd '{}' ';' \t\t| awk '/=>/ { print $(NF-1) }' \t\t| sort -u \t\t| xargs -r dpkg-query --search \t\t| cut -d: -f1 \t\t| sort -u \t\t| xargs -r apt-mark manual \t; \tapt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \trm -rf /var/lib/apt/lists/*; \t%%CMD%% --version; \tpip --version",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-CMD",
+        "children": [
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "%%CMD%%",
+                "children": []
+            }
+        ]
+    }
+]

@@ -1,0 +1,87 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "php",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "7.3-fpm-alpine",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -ex \t&& apk add --no-cache --virtual .build-deps \t\tcoreutils \t\tfreetype-dev \t\tlibjpeg-turbo-dev \t\tlibpng-dev \t\tlibzip-dev \t\tpostgresql-dev \t&& docker-php-ext-configure gd \t\t--with-freetype-dir=/usr/include/ \t\t--with-jpeg-dir=/usr/include/ \t\t--with-png-dir=/usr/include/ \t&& docker-php-ext-install -j \"$(nproc)\" \t\tgd \t\topcache \t\tpdo_mysql \t\tpdo_pgsql \t\tzip \t&& runDeps=\"$( \t\tscanelf --needed --nobanner --format '%n#p' --recursive /usr/local \t\t\t| tr ',' '\\n' \t\t\t| sort -u \t\t\t| awk 'system(\"[ -e /usr/local/lib/\" $1 \" ]\") == 0 { next } { print \"so:\" $1 }' \t)\" \t&& apk add --virtual .drupal-phpexts-rundeps $runDeps \t&& apk del .build-deps",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "{ \t\techo 'opcache.memory_consumption=128'; \t\techo 'opcache.interned_strings_buffer=8'; \t\techo 'opcache.max_accelerated_files=4000'; \t\techo 'opcache.revalidate_freq=60'; \t\techo 'opcache.fast_shutdown=1'; \t\techo 'opcache.enable_cli=1'; \t} > /usr/local/etc/php/conf.d/opcache-recommended.ini",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/var/www/html",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "DRUPAL_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "8.6.17",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "DRUPAL_MD5",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "9018a2d11381aeb0e269ca696fed9ac5",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "curl -fSL \"https://ftp.drupal.org/files/projects/drupal-${DRUPAL_VERSION}.tar.gz\" -o drupal.tar.gz \t&& echo \"${DRUPAL_MD5} *drupal.tar.gz\" | md5sum -c - \t&& tar -xz --strip-components=1 -f drupal.tar.gz \t&& rm drupal.tar.gz \t&& chown -R www-data:www-data sites modules themes",
+                "children": []
+            }
+        ]
+    }
+]

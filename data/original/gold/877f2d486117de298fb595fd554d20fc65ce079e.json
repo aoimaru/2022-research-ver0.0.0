@@ -1,0 +1,142 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "buildpack-deps",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "stretch",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "PATH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/usr/local/bin:$PATH",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "LANG",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "C.UTF-8",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apt-get update && apt-get install -y --no-install-recommends \t\ttk-dev \t&& rm -rf /var/lib/apt/lists/*",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "GPG_KEY",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "0D96DF4D4110E5C43FBFB17F2D347EA6AA65421D",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "PYTHON_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "3.6.8",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -ex \t\t&& wget -O python.tar.xz \"https://www.python.org/ftp/python/${PYTHON_VERSION%%[a-z]*}/Python-$PYTHON_VERSION.tar.xz\" \t&& wget -O python.tar.xz.asc \"https://www.python.org/ftp/python/${PYTHON_VERSION%%[a-z]*}/Python-$PYTHON_VERSION.tar.xz.asc\" \t&& export GNUPGHOME=\"$(mktemp -d)\" \t&& gpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys \"$GPG_KEY\" \t&& gpg --batch --verify python.tar.xz.asc python.tar.xz \t&& { command -v gpgconf > /dev/null && gpgconf --kill all || :; } \t&& rm -rf \"$GNUPGHOME\" python.tar.xz.asc \t&& mkdir -p /usr/src/python \t&& tar -xJC /usr/src/python --strip-components=1 -f python.tar.xz \t&& rm python.tar.xz \t\t&& cd /usr/src/python \t&& gnuArch=\"$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)\" \t&& ./configure \t\t--build=\"$gnuArch\" \t\t--enable-loadable-sqlite-extensions \t\t--enable-shared \t\t--with-system-expat \t\t--with-system-ffi \t\t--without-ensurepip \t&& make -j \"$(nproc)\" \t&& make install \t&& ldconfig \t\t&& find /usr/local -depth \t\t\\( \t\t\t\\( -type d -a \\( -name test -o -name tests \\) \\) \t\t\t-o \t\t\t\\( -type f -a \\( -name '*.pyc' -o -name '*.pyo' \\) \\) \t\t\\) -exec rm -rf '{}' + \t&& rm -rf /usr/src/python \t\t&& python3 --version",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "cd /usr/local/bin \t&& ln -s idle3 idle \t&& ln -s pydoc3 pydoc \t&& ln -s python3 python \t&& ln -s python3-config python-config",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "PYTHON_PIP_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "19.1.1",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -ex; \t\twget -O get-pip.py 'https://bootstrap.pypa.io/get-pip.py'; \t\tpython get-pip.py \t\t--disable-pip-version-check \t\t--no-cache-dir \t\t\"pip==$PYTHON_PIP_VERSION\" \t; \tpip --version; \t\tfind /usr/local -depth \t\t\\( \t\t\t\\( -type d -a \\( -name test -o -name tests \\) \\) \t\t\t-o \t\t\t\\( -type f -a \\( -name '*.pyc' -o -name '*.pyo' \\) \\) \t\t\\) -exec rm -rf '{}' +; \trm -f get-pip.py",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-CMD",
+        "children": [
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "python3",
+                "children": []
+            }
+        ]
+    }
+]

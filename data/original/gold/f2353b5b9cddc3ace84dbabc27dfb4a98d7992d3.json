@@ -1,0 +1,162 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "debian",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "stretch-slim",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "dpkg --add-architecture i386",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apt-get update && apt-get install -y --no-install-recommends \t\tgcc \t\tlibc6-dev \t\tmake \t\t\t\tlibc6-dev:i386 \t\tlibgcc-6-dev:i386 \t\t\t\tlibc6-dev-arm64-cross \t\tlibc6-dev-armel-cross \t\tlibc6-dev-armhf-cross \t\tlibc6-dev-ppc64el-cross \t\tlibc6-dev-s390x-cross \t\t\t\tgcc-aarch64-linux-gnu \t\tgcc-arm-linux-gnueabi \t\tgcc-arm-linux-gnueabihf \t\tgcc-powerpc64le-linux-gnu \t\tgcc-s390x-linux-gnu \t\t\t\tfile \t&& rm -rf /var/lib/apt/lists/*",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/usr/src/hello",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": ".",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": ".",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -ex; \tmake clean all test \t\tTARGET_ARCH='amd64' \t\tCC='x86_64-linux-gnu-gcc' \t\tSTRIP='x86_64-linux-gnu-strip'",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -ex; \tmake clean all \t\tTARGET_ARCH='arm32v5' \t\tCC='arm-linux-gnueabi-gcc' \t\tSTRIP='arm-linux-gnueabi-strip'",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -ex; \tmake clean all \t\tTARGET_ARCH='arm32v7' \t\tCC='arm-linux-gnueabihf-gcc' \t\tSTRIP='arm-linux-gnueabihf-strip'",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -ex; \tmake clean all \t\tTARGET_ARCH='arm64v8' \t\tCC='aarch64-linux-gnu-gcc' \t\tSTRIP='aarch64-linux-gnu-strip'",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -ex; \tmake clean all test \t\tTARGET_ARCH='i386' \t\tCC='gcc -m32 -L/usr/lib/gcc/i686-linux-gnu/6' \t\tSTRIP='x86_64-linux-gnu-strip'",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -ex; \tmake clean all \t\tTARGET_ARCH='ppc64le' \t\tCC='powerpc64le-linux-gnu-gcc' \t\tSTRIP='powerpc64le-linux-gnu-strip'",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -ex; \tmake clean all \t\tTARGET_ARCH='s390x' \t\tCC='s390x-linux-gnu-gcc' \t\tSTRIP='s390x-linux-gnu-strip'",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "find \\( -name 'hello' -or -name 'hello.txt' \\) -exec file '{}' + -exec ls -lh '{}' +",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-CMD",
+        "children": [
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "./amd64/hello-world/hello",
+                "children": []
+            }
+        ]
+    }
+]

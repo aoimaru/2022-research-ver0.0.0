@@ -1,0 +1,187 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "debian",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "stretch-slim",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apt-get update \t&& apt-get install -y --no-install-recommends \t\tbzip2 \t\tca-certificates \t\tlibffi-dev \t\tlibgdbm3 \t\tlibgmp-dev \t\tlibssl-dev \t\tlibyaml-dev \t\tprocps \t\tzlib1g-dev \t&& rm -rf /var/lib/apt/lists/*",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "mkdir -p /usr/local/etc \t&& { \t\techo 'install: --no-document'; \t\techo 'update: --no-document'; \t} >> /usr/local/etc/gemrc",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "RUBY_MAJOR",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "2.6",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "RUBY_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "2.6.3",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "RUBY_DOWNLOAD_SHA256",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "11a83f85c03d3f0fc9b8a9b6cad1b2674f26c5aaa43ba858d4b0fcc2b54171e1",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -ex \t\t&& savedAptMark=\"$(apt-mark showmanual)\" \t&& apt-get update && apt-get install -y --no-install-recommends \t\tautoconf \t\tbison \t\tdpkg-dev \t\tgcc \t\tlibbz2-dev \t\tlibgdbm-dev \t\tlibglib2.0-dev \t\tlibncurses-dev \t\tlibreadline-dev \t\tlibxml2-dev \t\tlibxslt-dev \t\tmake \t\truby \t\twget \t\txz-utils \t&& rm -rf /var/lib/apt/lists/* \t\t&& wget -O ruby.tar.xz \"https://cache.ruby-lang.org/pub/ruby/${RUBY_MAJOR%-rc}/ruby-$RUBY_VERSION.tar.xz\" \t&& echo \"$RUBY_DOWNLOAD_SHA256 *ruby.tar.xz\" | sha256sum -c - \t\t&& mkdir -p /usr/src/ruby \t&& tar -xJf ruby.tar.xz -C /usr/src/ruby --strip-components=1 \t&& rm ruby.tar.xz \t\t&& cd /usr/src/ruby \t\t&& { \t\techo '#define ENABLE_PATH_CHECK 0'; \t\techo; \t\tcat file.c; \t} > file.c.new \t&& mv file.c.new file.c \t\t&& autoconf \t&& gnuArch=\"$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)\" \t&& ./configure \t\t--build=\"$gnuArch\" \t\t--disable-install-doc \t\t--enable-shared \t&& make -j \"$(nproc)\" \t&& make install \t\t&& apt-mark auto '.*' > /dev/null \t&& apt-mark manual $savedAptMark \t&& find /usr/local -type f -executable -not \\( -name '*tkinter*' \\) -exec ldd '{}' ';' \t\t| awk '/=>/ { print $(NF-1) }' \t\t| sort -u \t\t| xargs -r dpkg-query --search \t\t| cut -d: -f1 \t\t| sort -u \t\t| xargs -r apt-mark manual \t&& apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \t\t&& cd / \t&& rm -r /usr/src/ruby \t&& ruby --version && gem --version && bundle --version",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "GEM_HOME",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/usr/local/bundle",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "BUNDLE_PATH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"$GEM_HOME\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "BUNDLE_SILENCE_ROOT_WARNING",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "1",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "BUNDLE_APP_CONFIG",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"$GEM_HOME\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "PATH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "$GEM_HOME/bin:$BUNDLE_PATH/gems/bin:$PATH",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "mkdir -p \"$GEM_HOME\" && chmod 777 \"$GEM_HOME\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-CMD",
+        "children": [
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "irb",
+                "children": []
+            }
+        ]
+    }
+]

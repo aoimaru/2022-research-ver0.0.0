@@ -1,0 +1,242 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "debian",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "stretch",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "groupadd -r mysql && useradd -r -g mysql mysql",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -ex; \tapt-get update; \tif ! which gpg; then \t\tapt-get install -y --no-install-recommends gnupg; \tfi; \tif ! gpg --version | grep -q '^gpg (GnuPG) 1\\.'; then \t\t apt-get install -y --no-install-recommends dirmngr; \tfi; \trm -rf /var/lib/apt/lists/*",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "GOSU_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "1.10",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -ex; \t\tfetchDeps=' \t\tca-certificates \t\twget \t'; \tapt-get update; \tapt-get install -y --no-install-recommends $fetchDeps; \trm -rf /var/lib/apt/lists/*; \t\tdpkgArch=\"$(dpkg --print-architecture | awk -F- '{ print $NF }')\"; \twget -O /usr/local/bin/gosu \"https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch\"; \twget -O /usr/local/bin/gosu.asc \"https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch.asc\"; \t\texport GNUPGHOME=\"$(mktemp -d)\"; \tgpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4; \tgpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu; \tcommand -v gpgconf > /dev/null && gpgconf --kill all || :; \trm -r \"$GNUPGHOME\" /usr/local/bin/gosu.asc; \t\tchmod +x /usr/local/bin/gosu; \tgosu nobody true; \t\tapt-get purge -y --auto-remove $fetchDeps",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "mkdir /docker-entrypoint-initdb.d",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apt-get update && apt-get install -y --no-install-recommends \t\tapt-transport-https ca-certificates \t\tpwgen \t&& rm -rf /var/lib/apt/lists/*",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "GPG_KEYS",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "430BDF5C56E7C94E848EE60C1C4CBDCDCD2EFD2A \t4D1BB29D63D98E422B2113B19334A25F8507EFA5",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -ex; \texport GNUPGHOME=\"$(mktemp -d)\"; \tfor key in $GPG_KEYS; do \t\tgpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys \"$key\"; \tdone; \tgpg --batch --export $GPG_KEYS > /etc/apt/trusted.gpg.d/percona.gpg; \tcommand -v gpgconf > /dev/null && gpgconf --kill all || :; \trm -r \"$GNUPGHOME\"; \tapt-key list",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "echo 'deb https://repo.percona.com/apt stretch main' > /etc/apt/sources.list.d/percona.list",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "PERCONA_MAJOR",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "5.5",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "PERCONA_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "5.5.62-rel38.14-1.stretch",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -ex; \t{ \t\tfor key in \t\t\tpercona-server-server/root_password \t\t\tpercona-server-server/root_password_again \t\t\t\"percona-server-server-$PERCONA_MAJOR/root-pass\" \t\t\t\"percona-server-server-$PERCONA_MAJOR/re-root-pass\" \t\t; do \t\t\techo \"percona-server-server-$PERCONA_MAJOR\" \"$key\" password 'unused'; \t\tdone; \t} | debconf-set-selections; \tapt-get update; \tapt-get install -y \t\tpercona-server-server-$PERCONA_MAJOR=$PERCONA_VERSION \t; \trm -rf /var/lib/apt/lists/*; \tsed -ri 's/^user\\s/#&/' /etc/mysql/my.cnf; \trm -rf /var/lib/mysql; \tmkdir -p /var/lib/mysql /var/run/mysqld; \tchown -R mysql:mysql /var/lib/mysql /var/run/mysqld; \tchmod 777 /var/run/mysqld; \tfind /etc/mysql/ -name '*.cnf' -print0 \t\t| xargs -0 grep -lZE '^(bind-address|log)' \t\t| xargs -rt -0 sed -Ei 's/^(bind-address|log)/#&/'; \techo '[mysqld]\\nskip-host-cache\\nskip-name-resolve' > /etc/mysql/conf.d/docker.cnf",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-VOLUME",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/var/lib/mysql",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-VOLUME",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/var/log/mysql",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/usr/local/bin/",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "docker-entrypoint.sh",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "ln -s usr/local/bin/docker-entrypoint.sh / # backwards compat",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENTRYPOINT",
+        "children": [
+            {
+                "type": "DOCKER-ENTRYPOINT-EXECUTABLE",
+                "value": "docker-entrypoint.sh",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-EXPOSE",
+        "children": [
+            {
+                "type": "DOCKER-PORT",
+                "value": "3306",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-CMD",
+        "children": [
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "mysqld",
+                "children": []
+            }
+        ]
+    }
+]

@@ -1,0 +1,92 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "windowsservercore",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-REPO",
+                "value": "microsoft",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "%%TAG%%",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-SHELL",
+        "children": [
+            {
+                "type": "DOCKER-SHELL-EXECUTABLE",
+                "value": "powershell",
+                "children": []
+            },
+            {
+                "type": "DOCKER-SHELL-ARG",
+                "value": "-Command",
+                "children": []
+            },
+            {
+                "type": "DOCKER-SHELL-ARG",
+                "value": "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "$newPath = ('{0}\\docker;{1}' -f $env:ProgramFiles, $env:PATH); \tWrite-Host ('Updating PATH: {0}' -f $newPath); \t[Environment]::SetEnvironmentVariable('PATH', $newPath, [EnvironmentVariableTarget]::Machine);",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "DOCKER_CHANNEL",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "%%DOCKER-CHANNEL%%",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "DOCKER_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "%%DOCKER-VERSION%%",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "$url = ('https://download.docker.com/win/static/{0}/x86_64/docker-{1}.zip' -f $env:DOCKER_CHANNEL, $env:DOCKER_VERSION); \tWrite-Host ('Downloading {0} ...' -f $url); \tInvoke-WebRequest -Uri $url -OutFile 'docker.zip'; \t\tWrite-Host 'Expanding ...'; \tExpand-Archive docker.zip -DestinationPath $env:ProgramFiles; \t\tWrite-Host 'Removing ...'; \tRemove-Item @( \t\t\t'docker.zip', \t\t\t('{0}\\docker\\dockerd.exe' -f $env:ProgramFiles) \t\t) -Force; \t\tWrite-Host 'Verifying install (\"docker --version\") ...'; \tdocker --version; \t\tWrite-Host 'Complete.';",
+                "children": []
+            }
+        ]
+    }
+]

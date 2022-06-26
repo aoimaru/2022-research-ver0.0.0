@@ -1,0 +1,132 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "placeholder",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-SHELL",
+        "children": [
+            {
+                "type": "DOCKER-SHELL-EXECUTABLE",
+                "value": "powershell",
+                "children": []
+            },
+            {
+                "type": "DOCKER-SHELL-ARG",
+                "value": "-Command",
+                "children": []
+            },
+            {
+                "type": "DOCKER-SHELL-ARG",
+                "value": "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "Write-Host 'Enabling TLS 1.2 (https://githubengineering.com/crypto-removal-notice/) ...'; \t$tls12RegBase = 'HKLM:\\\\SYSTEM\\CurrentControlSet\\Control\\SecurityProviders\\SCHANNEL\\Protocols\\TLS 1.2'; \tif (Test-Path $tls12RegBase) { throw ('\"{0}\" already exists!' -f $tls12RegBase) }; \tNew-Item -Path ('{0}/Client' -f $tls12RegBase) -Force; \tNew-Item -Path ('{0}/Server' -f $tls12RegBase) -Force; \tNew-ItemProperty -Path ('{0}/Client' -f $tls12RegBase) -Name 'DisabledByDefault' -PropertyType DWORD -Value 0 -Force; \tNew-ItemProperty -Path ('{0}/Client' -f $tls12RegBase) -Name 'Enabled' -PropertyType DWORD -Value 1 -Force; \tNew-ItemProperty -Path ('{0}/Server' -f $tls12RegBase) -Name 'DisabledByDefault' -PropertyType DWORD -Value 0 -Force; \tNew-ItemProperty -Path ('{0}/Server' -f $tls12RegBase) -Name 'Enabled' -PropertyType DWORD -Value 1 -Force",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "JAVA_HOME",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "placeholder",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "$newPath = ('{0}\\bin;{1}' -f $env:JAVA_HOME, $env:PATH); \tWrite-Host ('Updating PATH: {0}' -f $newPath); \tsetx /M PATH $newPath",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "JAVA_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "placeholder",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "JAVA_URL",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "placeholder",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "JAVA_SHA256",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "placeholder",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "Write-Host ('Downloading {0} ...' -f $env:JAVA_URL); \tInvoke-WebRequest -Uri $env:JAVA_URL -OutFile 'openjdk.zip'; \tWrite-Host ('Verifying sha256 ({0}) ...' -f $env:JAVA_SHA256); \tif ((Get-FileHash openjdk.zip -Algorithm sha256).Hash -ne $env:JAVA_SHA256) { \t\tWrite-Host 'FAILED!'; \t\texit 1; \t}; \t\tWrite-Host 'Expanding ...'; \tNew-Item -ItemType Directory -Path C:\\temp | Out-Null; \tExpand-Archive openjdk.zip -DestinationPath C:\\temp; \tMove-Item -Path C:\\temp\\* -Destination $env:JAVA_HOME; \tRemove-Item C:\\temp; \t\tWrite-Host 'Verifying install ...'; \tWrite-Host '  java --version'; java --version; \tWrite-Host '  javac --version'; javac --version; \t\tWrite-Host 'Removing ...'; \tRemove-Item openjdk.zip -Force; \t\tWrite-Host 'Complete.'",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-CMD",
+        "children": [
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "jshell",
+                "children": []
+            }
+        ]
+    }
+]

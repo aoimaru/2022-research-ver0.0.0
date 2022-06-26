@@ -1,0 +1,117 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "servercore",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-REPO",
+                "value": "mcr.microsoft.com",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "1809",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-SHELL",
+        "children": [
+            {
+                "type": "DOCKER-SHELL-EXECUTABLE",
+                "value": "powershell",
+                "children": []
+            },
+            {
+                "type": "DOCKER-SHELL-ARG",
+                "value": "-Command",
+                "children": []
+            },
+            {
+                "type": "DOCKER-SHELL-ARG",
+                "value": "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "PYTHON_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "3.8.0b1",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "PYTHON_RELEASE",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "3.8.0",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "$url = ('https://www.python.org/ftp/python/{0}/python-{1}-amd64.exe' -f $env:PYTHON_RELEASE, $env:PYTHON_VERSION); \tWrite-Host ('Downloading {0} ...' -f $url); \t[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; \tInvoke-WebRequest -Uri $url -OutFile 'python.exe'; \t\tWrite-Host 'Installing ...'; \tStart-Process python.exe -Wait \t\t-ArgumentList @( \t\t\t'/quiet', \t\t\t'InstallAllUsers=1', \t\t\t'TargetDir=C:\\Python', \t\t\t'PrependPath=1', \t\t\t'Shortcuts=0', \t\t\t'Include_doc=0', \t\t\t'Include_pip=0', \t\t\t'Include_test=0' \t\t); \t\t$env:PATH = [Environment]::GetEnvironmentVariable('PATH', [EnvironmentVariableTarget]::Machine); \t\tWrite-Host 'Verifying install ...'; \tWrite-Host '  python --version'; python --version; \t\tWrite-Host 'Removing ...'; \tRemove-Item python.exe -Force; \t\tWrite-Host 'Complete.';",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "PYTHON_PIP_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "19.1.1",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "Write-Host ('Installing pip=={0} ...' -f $env:PYTHON_PIP_VERSION); \t[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; \tInvoke-WebRequest -Uri 'https://bootstrap.pypa.io/get-pip.py' -OutFile 'get-pip.py'; \tpython get-pip.py \t\t--disable-pip-version-check \t\t--no-cache-dir \t\t('pip=={0}' -f $env:PYTHON_PIP_VERSION) \t; \tRemove-Item get-pip.py -Force; \t\tWrite-Host 'Verifying pip install ...'; \tpip --version; \t\tWrite-Host 'Complete.';",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-CMD",
+        "children": [
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "python",
+                "children": []
+            }
+        ]
+    }
+]

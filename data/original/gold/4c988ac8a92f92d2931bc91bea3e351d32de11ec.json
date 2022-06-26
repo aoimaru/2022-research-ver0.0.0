@@ -1,0 +1,72 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "debian",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "buster-slim",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -eux; \tapt-get update; \tapt-get install -y --no-install-recommends \t\tca-certificates \t\twget \t\tapt-transport-https \t\trpm \t\tyum-utils \t; \trm -rf /var/lib/apt/lists/*",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -eux; \tapkStaticDist='v3.9'; \tapkStaticVersion='2.10.3-r1'; \tapkStaticArch='x86_64'; \tapkStaticUrl=\"http://dl-cdn.alpinelinux.org/alpine/$apkStaticDist/main/$apkStaticArch/apk-tools-static-$apkStaticVersion.apk\"; \twget -O /tmp/apk-tools-static.apk \"$apkStaticUrl\"; \ttar -xzvf /tmp/apk-tools-static.apk -C /usr/local/ --wildcards '*bin/apk.static'; \tmv /usr/local/*bin/apk.static /usr/local/bin/apk; \trm /tmp/apk-tools-static.apk; \tapk --version",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/usr/local/bin/",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": ".local-scripts/*.sh",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-CMD",
+        "children": [
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "gather.sh",
+                "children": []
+            }
+        ]
+    }
+]

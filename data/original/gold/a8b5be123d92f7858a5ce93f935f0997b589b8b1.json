@@ -1,0 +1,87 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "php",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "7.3-apache",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -ex; \t\tif command -v a2enmod; then \t\ta2enmod rewrite; \tfi; \t\tsavedAptMark=\"$(apt-mark showmanual)\"; \t\tapt-get update; \tapt-get install -y --no-install-recommends \t\tlibjpeg-dev \t\tlibpng-dev \t\tlibpq-dev \t\tlibzip-dev \t; \t\tdocker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr; \tdocker-php-ext-install -j \"$(nproc)\" \t\tgd \t\topcache \t\tpdo_mysql \t\tpdo_pgsql \t\tzip \t; \t\tapt-mark auto '.*' > /dev/null; \tapt-mark manual $savedAptMark; \tldd \"$(php -r 'echo ini_get(\"extension_dir\");')\"/*.so \t\t| awk '/=>/ { print $3 }' \t\t| sort -u \t\t| xargs -r dpkg-query -S \t\t| cut -d: -f1 \t\t| sort -u \t\t| xargs -rt apt-mark manual; \t\tapt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \trm -rf /var/lib/apt/lists/*",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "{ \t\techo 'opcache.memory_consumption=128'; \t\techo 'opcache.interned_strings_buffer=8'; \t\techo 'opcache.max_accelerated_files=4000'; \t\techo 'opcache.revalidate_freq=60'; \t\techo 'opcache.fast_shutdown=1'; \t\techo 'opcache.enable_cli=1'; \t} > /usr/local/etc/php/conf.d/opcache-recommended.ini",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/var/www/html",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "DRUPAL_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "8.6.17",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "DRUPAL_MD5",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "9018a2d11381aeb0e269ca696fed9ac5",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "curl -fSL \"https://ftp.drupal.org/files/projects/drupal-${DRUPAL_VERSION}.tar.gz\" -o drupal.tar.gz \t&& echo \"${DRUPAL_MD5} *drupal.tar.gz\" | md5sum -c - \t&& tar -xz --strip-components=1 -f drupal.tar.gz \t&& rm drupal.tar.gz \t&& chown -R www-data:www-data sites modules themes",
+                "children": []
+            }
+        ]
+    }
+]

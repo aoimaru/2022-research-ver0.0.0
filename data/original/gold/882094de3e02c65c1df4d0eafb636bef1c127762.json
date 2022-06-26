@@ -1,0 +1,172 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "servercore",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-REPO",
+                "value": "mcr.microsoft.com",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "ltsc2016",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-SHELL",
+        "children": [
+            {
+                "type": "DOCKER-SHELL-EXECUTABLE",
+                "value": "powershell",
+                "children": []
+            },
+            {
+                "type": "DOCKER-SHELL-ARG",
+                "value": "-Command",
+                "children": []
+            },
+            {
+                "type": "DOCKER-SHELL-ARG",
+                "value": "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "GIT_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "2.11.1",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "GIT_TAG",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "v${GIT_VERSION}.windows.1",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "GIT_DOWNLOAD_URL",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "https://github.com/git-for-windows/git/releases/download/${GIT_TAG}/MinGit-${GIT_VERSION}-64-bit.zip",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "GIT_DOWNLOAD_SHA256",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "668d16a799dd721ed126cc91bed49eb2c072ba1b25b50048280a4e2c5ed56e59",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "Write-Host ('Downloading {0} ...' -f $env:GIT_DOWNLOAD_URL); \t[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; \tInvoke-WebRequest -Uri $env:GIT_DOWNLOAD_URL -OutFile 'git.zip'; \t\tWrite-Host ('Verifying sha256 ({0}) ...' -f $env:GIT_DOWNLOAD_SHA256); \tif ((Get-FileHash git.zip -Algorithm sha256).Hash -ne $env:GIT_DOWNLOAD_SHA256) { \t\tWrite-Host 'FAILED!'; \t\texit 1; \t}; \t\tWrite-Host 'Expanding ...'; \tExpand-Archive -Path git.zip -DestinationPath C:\\git\\.; \t\tWrite-Host 'Removing ...'; \tRemove-Item git.zip -Force; \t\tWrite-Host 'Updating PATH ...'; \t$env:PATH = 'C:\\git\\cmd;C:\\git\\mingw64\\bin;C:\\git\\usr\\bin;' + $env:PATH; \t[Environment]::SetEnvironmentVariable('PATH', $env:PATH, [EnvironmentVariableTarget]::Machine); \t\tWrite-Host 'Verifying install ...'; \tWrite-Host '  git --version'; git --version; \t\tWrite-Host 'Complete.';",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "GOPATH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "C:\\\\gopath",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "$newPath = ('{0}\\bin;C:\\go\\bin;{1}' -f $env:GOPATH, $env:PATH); \tWrite-Host ('Updating PATH: {0}' -f $newPath); \t[Environment]::SetEnvironmentVariable('PATH', $newPath, [EnvironmentVariableTarget]::Machine);",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "GOLANG_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "1.11.11",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "$url = ('https://golang.org/dl/go{0}.windows-amd64.zip' -f $env:GOLANG_VERSION); \tWrite-Host ('Downloading {0} ...' -f $url); \tInvoke-WebRequest -Uri $url -OutFile 'go.zip'; \t\t$sha256 = '38018a1a0fa341687cee2f71c0e7578f852bbf017ad48907cda6cc28d1b84140'; \tWrite-Host ('Verifying sha256 ({0}) ...' -f $sha256); \tif ((Get-FileHash go.zip -Algorithm sha256).Hash -ne $sha256) { \t\tWrite-Host 'FAILED!'; \t\texit 1; \t}; \t\tWrite-Host 'Expanding ...'; \tExpand-Archive go.zip -DestinationPath C:\\; \t\tWrite-Host 'Verifying install (\"go version\") ...'; \tgo version; \t\tWrite-Host 'Removing ...'; \tRemove-Item go.zip -Force; \t\tWrite-Host 'Complete.';",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "$GOPATH",
+                "children": []
+            }
+        ]
+    }
+]

@@ -1,0 +1,187 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "alpine",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "3.9",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apk add --no-cache \t\tgmp-dev",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "mkdir -p /usr/local/etc \t&& { \t\techo 'install: --no-document'; \t\techo 'update: --no-document'; \t} >> /usr/local/etc/gemrc",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "RUBY_MAJOR",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "2.7-rc",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "RUBY_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "2.7.0-preview1",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "RUBY_DOWNLOAD_SHA256",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "8c546df3345398b3edc9d0ab097846f033783d33762889fd0f3dc8bb465c3354",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -ex \t\t&& apk add --no-cache --virtual .ruby-builddeps \t\tautoconf \t\tbison \t\tbzip2 \t\tbzip2-dev \t\tca-certificates \t\tcoreutils \t\tdpkg-dev dpkg \t\tgcc \t\tgdbm-dev \t\tglib-dev \t\tlibc-dev \t\tlibffi-dev \t\tlibxml2-dev \t\tlibxslt-dev \t\tlinux-headers \t\tmake \t\tncurses-dev \t\topenssl \t\topenssl-dev \t\tprocps \t\treadline-dev \t\truby \t\ttar \t\txz \t\tyaml-dev \t\tzlib-dev \t\t&& wget -O ruby.tar.xz \"https://cache.ruby-lang.org/pub/ruby/${RUBY_MAJOR%-rc}/ruby-$RUBY_VERSION.tar.xz\" \t&& echo \"$RUBY_DOWNLOAD_SHA256 *ruby.tar.xz\" | sha256sum -c - \t\t&& mkdir -p /usr/src/ruby \t&& tar -xJf ruby.tar.xz -C /usr/src/ruby --strip-components=1 \t&& rm ruby.tar.xz \t\t&& cd /usr/src/ruby \t\t&& wget -O 'thread-stack-fix.patch' 'https://bugs.ruby-lang.org/attachments/download/7081/0001-thread_pthread.c-make-get_main_stack-portable-on-lin.patch' \t&& echo '3ab628a51d92fdf0d2b5835e93564857aea73e0c1de00313864a94a6255cb645 *thread-stack-fix.patch' | sha256sum -c - \t&& patch -p1 -i thread-stack-fix.patch \t&& rm thread-stack-fix.patch \t\t&& { \t\techo '#define ENABLE_PATH_CHECK 0'; \t\techo; \t\tcat file.c; \t} > file.c.new \t&& mv file.c.new file.c \t\t&& autoconf \t&& gnuArch=\"$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)\" \t&& export ac_cv_func_isnan=yes ac_cv_func_isinf=yes \t&& ./configure \t\t--build=\"$gnuArch\" \t\t--disable-install-doc \t\t--enable-shared \t&& make -j \"$(nproc)\" \t&& make install \t\t&& runDeps=\"$( \t\tscanelf --needed --nobanner --format '%n#p' --recursive /usr/local \t\t\t| tr ',' '\\n' \t\t\t| sort -u \t\t\t| awk 'system(\"[ -e /usr/local/lib/\" $1 \" ]\") == 0 { next } { print \"so:\" $1 }' \t)\" \t&& apk add --no-network --virtual .ruby-rundeps $runDeps \t\tbzip2 \t\tca-certificates \t\tlibffi-dev \t\tprocps \t\tyaml-dev \t\tzlib-dev \t&& apk del --no-network .ruby-builddeps \t&& cd / \t&& rm -r /usr/src/ruby \t&& ruby --version && gem --version && bundle --version",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "GEM_HOME",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/usr/local/bundle",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "BUNDLE_PATH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"$GEM_HOME\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "BUNDLE_SILENCE_ROOT_WARNING",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "1",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "BUNDLE_APP_CONFIG",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"$GEM_HOME\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "PATH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "$GEM_HOME/bin:$BUNDLE_PATH/gems/bin:$PATH",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "mkdir -p \"$GEM_HOME\" && chmod 777 \"$GEM_HOME\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-CMD",
+        "children": [
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "irb",
+                "children": []
+            }
+        ]
+    }
+]

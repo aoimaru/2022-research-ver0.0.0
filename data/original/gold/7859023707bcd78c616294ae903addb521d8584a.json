@@ -1,0 +1,142 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "windowsservercore",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-REPO",
+                "value": "microsoft",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "1803",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-SHELL",
+        "children": [
+            {
+                "type": "DOCKER-SHELL-EXECUTABLE",
+                "value": "powershell",
+                "children": []
+            },
+            {
+                "type": "DOCKER-SHELL-ARG",
+                "value": "-Command",
+                "children": []
+            },
+            {
+                "type": "DOCKER-SHELL-ARG",
+                "value": "$ErrorActionPreference = 'Stop';",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "MONGO_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "4.1.13",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "MONGO_DOWNLOAD_URL",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "https://downloads.mongodb.org/win32/mongodb-win32-x86_64-2012plus-4.1.13-signed.msi",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "MONGO_DOWNLOAD_SHA256",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "682c5913d551d3508cb3446fe4929ae97552b5a344469855b58c9473f4f58dd6",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "Write-Host ('Downloading {0} ...' -f $env:MONGO_DOWNLOAD_URL); \t[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; \t(New-Object System.Net.WebClient).DownloadFile($env:MONGO_DOWNLOAD_URL, 'mongo.msi'); \t\tWrite-Host ('Verifying sha256 ({0}) ...' -f $env:MONGO_DOWNLOAD_SHA256); \tif ((Get-FileHash mongo.msi -Algorithm sha256).Hash -ne $env:MONGO_DOWNLOAD_SHA256) { \t\tWrite-Host 'FAILED!'; \t\texit 1; \t}; \t\tWrite-Host 'Installing ...'; \tStart-Process msiexec -Wait \t\t-ArgumentList @( \t\t\t'/i', \t\t\t'mongo.msi', \t\t\t'/quiet', \t\t\t'/qn', \t\t\t'INSTALLLOCATION=C:\\mongodb', \t\t\t'ADDLOCAL=all' \t\t); \t$env:PATH = 'C:\\mongodb\\bin;' + $env:PATH; \t[Environment]::SetEnvironmentVariable('PATH', $env:PATH, [EnvironmentVariableTarget]::Machine); \t\tWrite-Host 'Verifying install ...'; \tWrite-Host '  mongo --version'; mongo --version; \tWrite-Host '  mongod --version'; mongod --version; \t\tWrite-Host 'Removing ...'; \tRemove-Item C:\\mongodb\\bin\\*.pdb -Force; \tRemove-Item C:\\windows\\installer\\*.msi -Force; \tRemove-Item mongo.msi -Force; \t\tWrite-Host 'Complete.';",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-VOLUME",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "C:\\\\data\\\\db",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-VOLUME",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "C:\\\\data\\\\configdb",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-EXPOSE",
+        "children": [
+            {
+                "type": "DOCKER-PORT",
+                "value": "27017",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-CMD",
+        "children": [
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "mongod",
+                "children": []
+            },
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "--bind_ip_all",
+                "children": []
+            }
+        ]
+    }
+]

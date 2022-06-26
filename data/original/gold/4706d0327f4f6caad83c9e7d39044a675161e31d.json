@@ -1,0 +1,192 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "alpine",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "3.10",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -x \t&& addgroup -g 82 -S www-data \t&& adduser -u 82 -D -S -G www-data www-data",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "HTTPD_PREFIX",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/usr/local/apache2",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "PATH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "$HTTPD_PREFIX/bin:$PATH",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "mkdir -p \"$HTTPD_PREFIX\" \t&& chown www-data:www-data \"$HTTPD_PREFIX\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "$HTTPD_PREFIX",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "HTTPD_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "2.4.39",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "HTTPD_SHA256",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "b4ca9d05773aa59b54d66cd8f4744b945289f084d3be17d7981d1783a5decfa2",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "HTTPD_PATCHES",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "APACHE_DIST_URLS",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "https://www.apache.org/dyn/closer.cgi?action=download&filename= \thttps://www-us.apache.org/dist/ \thttps://www.apache.org/dist/ \thttps://archive.apache.org/dist/",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -eux; \t\trunDeps=' \t\tapr-dev \t\tapr-util-dev \t\tapr-util-ldap \t\tperl \t'; \tapk add --no-cache --virtual .build-deps \t\t$runDeps \t\tca-certificates \t\tcoreutils \t\tdpkg-dev dpkg \t\tgcc \t\tgnupg \t\tlibc-dev \t\tcurl-dev \t\tjansson-dev \t\tlibxml2-dev \t\tlua-dev \t\tmake \t\tnghttp2-dev \t\topenssl \t\topenssl-dev \t\tpcre-dev \t\ttar \t\tzlib-dev \t; \t\tddist() { \t\tlocal f=\"$1\"; shift; \t\tlocal distFile=\"$1\"; shift; \t\tlocal success=; \t\tlocal distUrl=; \t\tfor distUrl in $APACHE_DIST_URLS; do \t\t\tif wget -O \"$f\" \"$distUrl$distFile\" && [ -s \"$f\" ]; then \t\t\t\tsuccess=1; \t\t\t\tbreak; \t\t\tfi; \t\tdone; \t\t[ -n \"$success\" ]; \t}; \t\tddist 'httpd.tar.bz2' \"httpd/httpd-$HTTPD_VERSION.tar.bz2\"; \techo \"$HTTPD_SHA256 *httpd.tar.bz2\" | sha256sum -c -; \t\tddist 'httpd.tar.bz2.asc' \"httpd/httpd-$HTTPD_VERSION.tar.bz2.asc\"; \texport GNUPGHOME=\"$(mktemp -d)\"; \tfor key in \t\tA93D62ECC3C8EA12DB220EC934EA76E6791485A8 \t\tB9E8213AEFB861AF35A41F2C995E35221AD84DFF \t; do \t\tgpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys \"$key\"; \tdone; \tgpg --batch --verify httpd.tar.bz2.asc httpd.tar.bz2; \tcommand -v gpgconf && gpgconf --kill all || :; \trm -rf \"$GNUPGHOME\" httpd.tar.bz2.asc; \t\tmkdir -p src; \ttar -xf httpd.tar.bz2 -C src --strip-components=1; \trm httpd.tar.bz2; \tcd src; \t\tpatches() { \t\twhile [ \"$#\" -gt 0 ]; do \t\t\tlocal patchFile=\"$1\"; shift; \t\t\tlocal patchSha256=\"$1\"; shift; \t\t\tddist \"$patchFile\" \"httpd/patches/apply_to_$HTTPD_VERSION/$patchFile\"; \t\t\techo \"$patchSha256 *$patchFile\" | sha256sum -c -; \t\t\tpatch -p0 < \"$patchFile\"; \t\t\trm -f \"$patchFile\"; \t\tdone; \t}; \tpatches $HTTPD_PATCHES; \t\tgnuArch=\"$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)\"; \t./configure \t\t--build=\"$gnuArch\" \t\t--prefix=\"$HTTPD_PREFIX\" \t\t--enable-mods-shared=reallyall \t\t--enable-mpms-shared=all \t; \tmake -j \"$(nproc)\"; \tmake install; \t\tcd ..; \trm -r src man manual; \t\tsed -ri \t\t-e 's!^(\\s*CustomLog)\\s+\\S+!\\1 /proc/self/fd/1!g' \t\t-e 's!^(\\s*ErrorLog)\\s+\\S+!\\1 /proc/self/fd/2!g' \t\t-e 's!^(\\s*TransferLog)\\s+\\S+!\\1 /proc/self/fd/1!g' \t\t\"$HTTPD_PREFIX/conf/httpd.conf\" \t\t\"$HTTPD_PREFIX/conf/extra/httpd-ssl.conf\" \t; \t\trunDeps=\"$runDeps $( \t\tscanelf --needed --nobanner --format '%n#p' --recursive /usr/local \t\t\t| tr ',' '\\n' \t\t\t| sort -u \t\t\t| awk 'system(\"[ -e /usr/local/lib/\" $1 \" ]\") == 0 { next } { print \"so:\" $1 }' \t)\"; \tapk add --virtual .httpd-rundeps $runDeps; \tapk del .build-deps; \t\thttpd -v",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/usr/local/bin/",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "httpd-foreground",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-EXPOSE",
+        "children": [
+            {
+                "type": "DOCKER-PORT",
+                "value": "80",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-CMD",
+        "children": [
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "httpd-foreground",
+                "children": []
+            }
+        ]
+    }
+]

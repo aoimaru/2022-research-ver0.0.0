@@ -1,0 +1,152 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "alpine",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "3.10",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "addgroup -g 11211 memcache && adduser -D -u 11211 -G memcache memcache",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apk add --no-cache cyrus-sasl-plain",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "MEMCACHED_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "1.5.16",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "MEMCACHED_SHA1",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "06a9661638cb20232d0ccea088f52ca10b959968",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -x \t\t&& apk add --no-cache --virtual .build-deps \t\tca-certificates \t\tcoreutils \t\tcyrus-sasl-dev \t\tdpkg-dev dpkg \t\tgcc \t\tlibc-dev \t\tlibevent-dev \t\tlinux-headers \t\tmake \t\topenssl \t\tperl \t\tperl-utils \t\ttar \t\twget \t\t&& wget -O memcached.tar.gz \"https://memcached.org/files/memcached-$MEMCACHED_VERSION.tar.gz\" \t&& echo \"$MEMCACHED_SHA1  memcached.tar.gz\" | sha1sum -c - \t&& mkdir -p /usr/src/memcached \t&& tar -xzf memcached.tar.gz -C /usr/src/memcached --strip-components=1 \t&& rm memcached.tar.gz \t\t&& cd /usr/src/memcached \t\t&& gnuArch=\"$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)\" \t&& enableExtstore=\"$( \t\tcase \"$gnuArch\" in \t\t\ts390x-*) ;; \t\t\t*) echo '--enable-extstore' ;; \t\tesac \t)\" \t&& ./configure \t\t--build=\"$gnuArch\" \t\t--enable-sasl \t\t--enable-sasl-pwdb \t\t$enableExtstore \t&& make -j \"$(nproc)\" \t\t&& make test \t&& make install \t\t&& cd / && rm -rf /usr/src/memcached \t\t&& runDeps=\"$( \t\tscanelf --needed --nobanner --format '%n#p' --recursive /usr/local \t\t\t| tr ',' '\\n' \t\t\t| sort -u \t\t\t| awk 'system(\"[ -e /usr/local/lib/\" $1 \" ]\") == 0 { next } { print \"so:\" $1 }' \t)\" \t&& apk add --virtual .memcached-rundeps $runDeps \t&& apk del .build-deps \t\t&& memcached -V",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/usr/local/bin/",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "docker-entrypoint.sh",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh # backwards compat",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENTRYPOINT",
+        "children": [
+            {
+                "type": "DOCKER-ENTRYPOINT-EXECUTABLE",
+                "value": "docker-entrypoint.sh",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-USER",
+        "children": [
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "memcache",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-EXPOSE",
+        "children": [
+            {
+                "type": "DOCKER-PORT",
+                "value": "11211",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-CMD",
+        "children": [
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "memcached",
+                "children": []
+            }
+        ]
+    }
+]

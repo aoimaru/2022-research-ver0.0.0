@@ -1,0 +1,22 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "kibana",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-REPO",
+                "value": "docker.elastic.co",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "dbcaccde1ddc16ab12c841b22b2de1fc5d76de5ff0ac843fc3e825ef96781f80",
+                "children": []
+            }
+        ]
+    }
+]

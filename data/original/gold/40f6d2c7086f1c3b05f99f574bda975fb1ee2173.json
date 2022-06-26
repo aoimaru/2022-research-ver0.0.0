@@ -1,0 +1,152 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "php",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "7.3-fpm-alpine",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apk add --no-cache \t\tbash \t\tsed",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -ex; \t\tapk add --no-cache --virtual .build-deps \t\t$PHPIZE_DEPS \t\timagemagick-dev \t\tlibjpeg-turbo-dev \t\tlibpng-dev \t\tlibzip-dev \t; \t\tdocker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr; \tdocker-php-ext-install \t\tbcmath \t\texif \t\tgd \t\tmysqli \t\topcache \t\tzip \t; \tpecl install imagick-3.4.4; \tdocker-php-ext-enable imagick; \t\trunDeps=\"$( \t\tscanelf --needed --nobanner --format '%n#p' --recursive /usr/local/lib/php/extensions \t\t\t| tr ',' '\\n' \t\t\t| sort -u \t\t\t| awk 'system(\"[ -e /usr/local/lib/\" $1 \" ]\") == 0 { next } { print \"so:\" $1 }' \t)\"; \tapk add --virtual .wordpress-phpexts-rundeps $runDeps; \tapk del .build-deps",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "{ \t\techo 'opcache.memory_consumption=128'; \t\techo 'opcache.interned_strings_buffer=8'; \t\techo 'opcache.max_accelerated_files=4000'; \t\techo 'opcache.revalidate_freq=2'; \t\techo 'opcache.fast_shutdown=1'; \t\techo 'opcache.enable_cli=1'; \t} > /usr/local/etc/php/conf.d/opcache-recommended.ini",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "{ \t\techo 'error_reporting = 4339'; \t\techo 'display_errors = Off'; \t\techo 'display_startup_errors = Off'; \t\techo 'log_errors = On'; \t\techo 'error_log = /dev/stderr'; \t\techo 'log_errors_max_len = 1024'; \t\techo 'ignore_repeated_errors = On'; \t\techo 'ignore_repeated_source = Off'; \t\techo 'html_errors = Off'; \t} > /usr/local/etc/php/conf.d/error-logging.ini",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-VOLUME",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/var/www/html",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "WORDPRESS_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "5.2.2",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "WORDPRESS_SHA1",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "3605bcbe9ea48d714efa59b0eb2d251657e7d5b0",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -ex; \tcurl -o wordpress.tar.gz -fSL \"https://wordpress.org/wordpress-${WORDPRESS_VERSION}.tar.gz\"; \techo \"$WORDPRESS_SHA1 *wordpress.tar.gz\" | sha1sum -c -; \ttar -xzf wordpress.tar.gz -C /usr/src/; \trm wordpress.tar.gz; \tchown -R www-data:www-data /usr/src/wordpress",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/usr/local/bin/",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "docker-entrypoint.sh",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENTRYPOINT",
+        "children": [
+            {
+                "type": "DOCKER-ENTRYPOINT-EXECUTABLE",
+                "value": "docker-entrypoint.sh",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-CMD",
+        "children": [
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "php-fpm",
+                "children": []
+            }
+        ]
+    }
+]

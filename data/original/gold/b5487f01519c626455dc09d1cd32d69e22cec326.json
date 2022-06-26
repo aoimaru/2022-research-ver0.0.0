@@ -1,0 +1,47 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "rabbitmq",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "3.7-rc-alpine",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "rabbitmq-plugins enable --offline rabbitmq_management",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -eux; \terl -noinput -eval ' \t\t{ ok, AdminBin } = zip:foldl(fun(FileInArchive, GetInfo, GetBin, Acc) -> \t\t\tcase Acc of \t\t\t\t\"\" -> \t\t\t\t\tcase lists:suffix(\"/rabbitmqadmin\", FileInArchive) of \t\t\t\t\t\ttrue -> GetBin(); \t\t\t\t\t\tfalse -> Acc \t\t\t\t\tend; \t\t\t\t_ -> Acc \t\t\tend \t\tend, \"\", init:get_plain_arguments()), \t\tio:format(\"~s\", [ AdminBin ]), \t\tinit:stop(). \t' -- /plugins/rabbitmq_management-*.ez > /usr/local/bin/rabbitmqadmin; \t[ -s /usr/local/bin/rabbitmqadmin ]; \tchmod +x /usr/local/bin/rabbitmqadmin; \tapk add --no-cache python; \trabbitmqadmin --version",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-EXPOSE",
+        "children": [
+            {
+                "type": "DOCKER-PORT",
+                "value": "15671",
+                "children": []
+            }
+        ]
+    }
+]

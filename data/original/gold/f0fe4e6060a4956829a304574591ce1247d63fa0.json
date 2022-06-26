@@ -1,0 +1,127 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "servercore",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-REPO",
+                "value": "mcr.microsoft.com",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "%%PLACEHOLDER%%",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-SHELL",
+        "children": [
+            {
+                "type": "DOCKER-SHELL-EXECUTABLE",
+                "value": "powershell",
+                "children": []
+            },
+            {
+                "type": "DOCKER-SHELL-ARG",
+                "value": "-Command",
+                "children": []
+            },
+            {
+                "type": "DOCKER-SHELL-ARG",
+                "value": "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "PYTHON_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "%%PLACEHOLDER%%",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "PYTHON_RELEASE",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "%%PLACEHOLDER%%",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "$url = ('https://www.python.org/ftp/python/{0}/python-{1}.amd64.msi' -f $env:PYTHON_RELEASE, $env:PYTHON_VERSION); \tWrite-Host ('Downloading {0} ...' -f $url); \t[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; \tInvoke-WebRequest -Uri $url -OutFile 'python.msi'; \t\tWrite-Host 'Installing ...'; \tStart-Process msiexec -Wait \t\t-ArgumentList @( \t\t\t'/i', \t\t\t'python.msi', \t\t\t'/quiet', \t\t\t'/qn', \t\t\t'TARGETDIR=C:\\Python', \t\t\t'ALLUSERS=1', \t\t\t'ADDLOCAL=DefaultFeature,Extensions,TclTk,Tools,PrependPath' \t\t); \t\t$env:PATH = [Environment]::GetEnvironmentVariable('PATH', [EnvironmentVariableTarget]::Machine); \t\tWrite-Host 'Verifying install ...'; \tWrite-Host '  python --version'; python --version; \t\tWrite-Host 'Removing ...'; \tRemove-Item python.msi -Force; \t\tWrite-Host 'Complete.';",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "PYTHON_PIP_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "%%PLACEHOLDER%%",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "Write-Host ('Installing pip=={0} ...' -f $env:PYTHON_PIP_VERSION); \t[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; \tInvoke-WebRequest -Uri 'https://bootstrap.pypa.io/get-pip.py' -OutFile 'get-pip.py'; \tpython get-pip.py \t\t--disable-pip-version-check \t\t--no-cache-dir \t\t('pip=={0}' -f $env:PYTHON_PIP_VERSION) \t; \tRemove-Item get-pip.py -Force; \t\tWrite-Host 'Verifying pip install ...'; \tpip --version; \t\tWrite-Host 'Complete.';",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "pip install --no-cache-dir virtualenv",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-CMD",
+        "children": [
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "python",
+                "children": []
+            }
+        ]
+    }
+]

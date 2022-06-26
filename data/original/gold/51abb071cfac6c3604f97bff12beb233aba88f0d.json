@@ -1,0 +1,112 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "alpine",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "3.9",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apk add --no-cache \t\tca-certificates",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "[ ! -e /etc/nsswitch.conf ] && echo 'hosts: files dns' > /etc/nsswitch.conf",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "GOLANG_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "1.12.6",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -eux; \tapk add --no-cache --virtual .build-deps \t\tbash \t\tgcc \t\tmusl-dev \t\topenssl \t\tgo \t; \texport \t\tGOROOT_BOOTSTRAP=\"$(go env GOROOT)\" \t\tGOOS=\"$(go env GOOS)\" \t\tGOARCH=\"$(go env GOARCH)\" \t\tGOHOSTOS=\"$(go env GOHOSTOS)\" \t\tGOHOSTARCH=\"$(go env GOHOSTARCH)\" \t; \tapkArch=\"$(apk --print-arch)\"; \tcase \"$apkArch\" in \t\tarmhf) export GOARM='6' ;; \t\tx86) export GO386='387' ;; \tesac; \t\twget -O go.tgz \"https://golang.org/dl/go$GOLANG_VERSION.src.tar.gz\"; \techo 'c96c5ccc7455638ae1a8b7498a030fe653731c8391c5f8e79590bce72f92b4ca *go.tgz' | sha256sum -c -; \ttar -C /usr/local -xzf go.tgz; \trm go.tgz; \t\tcd /usr/local/go/src; \t./make.bash; \t\trm -rf \t\t/usr/local/go/pkg/bootstrap \t\t/usr/local/go/pkg/obj \t; \tapk del .build-deps; \t\texport PATH=\"/usr/local/go/bin:$PATH\"; \tgo version",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "GOPATH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/go",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "PATH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "$GOPATH/bin:/usr/local/go/bin:$PATH",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "mkdir -p \"$GOPATH/src\" \"$GOPATH/bin\" && chmod -R 777 \"$GOPATH\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "$GOPATH",
+                "children": []
+            }
+        ]
+    }
+]

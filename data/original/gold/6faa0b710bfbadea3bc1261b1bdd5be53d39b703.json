@@ -1,0 +1,167 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "golang",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "1.12-alpine3.9",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apk add --no-cache \t\tfile \t\tgnupg",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/usr/src/bashbrew",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "CGO_ENABLED",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "0",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "BASHBREW_ARCHES",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "amd64 \t\tarm32v5 \t\tarm32v6 \t\tarm32v7 \t\tarm64v8 \t\tdarwin-amd64 \t\ti386 \t\tppc64le \t\ts390x \t\twindows-amd64",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/usr/local/bin/",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": ".bashbrew-arch-to-goenv.sh",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "MANIFEST_TOOL_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "1.0.0-rc",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "MANIFEST_TOOL_GPG_KEY",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "27F3EA268A97867EAF0BD05C0F386284C03A1162",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -euxo pipefail; \t\texport GNUPGHOME=\"$(mktemp -d)\"; \tgpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys \"$MANIFEST_TOOL_GPG_KEY\"; \t\tmkdir -p bin; \t\tfor bashbrewArch in $BASHBREW_ARCHES; do \t\t( \t\t\tgoEnv=\"$(.bashbrew-arch-to-goenv.sh \"$bashbrewArch\")\"; eval \"$goEnv\"; \t\t\tsrcBin=\"manifest-tool-$GOOS-$GOARCH\"; \t\t\tif [ \"$GOARCH\" = 'arm' ]; then [ -n \"$GOARM\" ]; srcBin=\"${srcBin}v$GOARM\"; fi; \t\t\t[ \"$GOOS\" = 'windows' ] && ext='.exe' || ext=; \t\t\tsrcBin=\"$srcBin$ext\"; \t\t\ttargetBin=\"bin/manifest-tool-$bashbrewArch$ext\"; \t\t\twget -O \"$targetBin.asc\" \"https://github.com/estesp/manifest-tool/releases/download/v${MANIFEST_TOOL_VERSION}/$srcBin.asc\"; \t\t\twget -O \"$targetBin\" \"https://github.com/estesp/manifest-tool/releases/download/v${MANIFEST_TOOL_VERSION}/$srcBin\"; \t\t\tgpg --batch --verify \"$targetBin.asc\" \"$targetBin\"; \t\t\tls -lAFh \"$targetBin\"*; \t\t\tfile \"$targetBin\"*; \t\t) \tdone; \t\tgpgconf --kill all; \trm -r \"$GNUPGHOME\"; \t\tls -lAFh bin/manifest-tool-*; \tfile bin/manifest-tool-*",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": ".",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "go",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -euxo pipefail; \t\tmkdir -p bin; \t\tfor bashbrewArch in $BASHBREW_ARCHES; do \t\t( \t\t\tgoEnv=\"$(.bashbrew-arch-to-goenv.sh \"$bashbrewArch\")\"; eval \"$goEnv\"; \t\t\t[ \"$GOOS\" = 'windows' ] && ext='.exe' || ext=; \t\t\t\t\t\ttargetBin=\"bin/bashbrew-$bashbrewArch$ext\"; \t\t\tgo build \t\t\t\t-a -v \t\t\t\t-ldflags '-s -w' \t\t\t\t-tags netgo -installsuffix netgo \t\t\t\t-o \"$targetBin\" \t\t\t\t-mod vendor \t\t\t\tbashbrew/src/bashbrew \t\t\t; \t\t\tls -lAFh \"$targetBin\"; \t\t\tfile \"$targetBin\"; \t\t) \tdone; \t\tls -lAFh bin/bashbrew-*; \tfile bin/bashbrew-*",
+                "children": []
+            }
+        ]
+    }
+]

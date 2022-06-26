@@ -1,0 +1,107 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "debian",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "jessie",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apt-get update && apt-get install -y --no-install-recommends \t\tfontconfig-config \t\tfonts-dejavu-core \t\tgeoip-database \t\tinit-system-helpers \t\tlibarchive-extract-perl \t\tlibexpat1 \t\tlibfontconfig1 \t\tlibfreetype6 \t\tlibgcrypt11 \t\tlibgd3 \t\tlibgdbm3 \t\tlibgeoip1 \t\tlibgpg-error0 \t\tlibjbig0 \t\tlibjpeg8 \t\tliblog-message-perl \t\tliblog-message-simple-perl \t\tlibmodule-pluggable-perl \t\tlibpng12-0 \t\tlibpod-latex-perl \t\tlibssl1.0.0 \t\tlibterm-ui-perl \t\tlibtext-soundex-perl \t\tlibtiff5 \t\tlibvpx1 \t\tlibx11-6 \t\tlibx11-data \t\tlibxau6 \t\tlibxcb1 \t\tlibxdmcp6 \t\tlibxml2 \t\tlibxpm4 \t\tlibxslt1.1 \t\tperl \t\tperl-modules \t\trename \t\tsgml-base \t\tucf \t\txml-core \t&& rm -rf /var/lib/apt/lists/*",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "gpg --keyserver pgp.mit.edu --recv-key \tA09CD539B8BB8CBE96E82BDFABD4D3B3F5806B4D \t4C2C85E705DC730833990C38A9376139A524C53E \tB0F4253373F8F6F510D42178520A9993A1C052F8 \t65506C02EFC250F1B7A3D694ECF0E90B2C172083 \t7338973069ED3F443F4D37DFA64FD5B17ADB39A8 \t6E067260B83DCF2CA93C566F518509686C7E5E82 \t573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "NGINX_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "1.7.4",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "buildDeps=\" \t\tca-certificates \t\tcurl \t\tgcc \t\tlibc-dev-bin \t\tlibc6-dev \t\tlibexpat1-dev \t\tlibfontconfig1-dev \t\tlibfreetype6-dev \t\tlibgd-dev \t\tlibgd2-dev \t\tlibgeoip-dev \t\tlibice-dev \t\tlibjbig-dev \t\tlibjpeg8-dev \t\tliblzma-dev \t\tlibpcre3-dev \t\tlibperl-dev \t\tlibpng12-dev \t\tlibpthread-stubs0-dev \t\tlibsm-dev \t\tlibssl-dev \t\tlibssl-dev \t\tlibtiff5-dev \t\tlibvpx-dev \t\tlibx11-dev \t\tlibxau-dev \t\tlibxcb1-dev \t\tlibxdmcp-dev \t\tlibxml2-dev \t\tlibxpm-dev \t\tlibxslt1-dev \t\tlibxt-dev \t\tlinux-libc-dev \t\tmake \t\tmanpages-dev \t\tx11proto-core-dev \t\tx11proto-input-dev \t\tx11proto-kb-dev \t\txtrans-dev \t\tzlib1g-dev \t\"; \tapt-get update && apt-get install -y --no-install-recommends $buildDeps && rm -rf /var/lib/apt/lists/* \t&& curl -SL \"http://nginx.org/download/nginx-$NGINX_VERSION.tar.gz\" -o nginx.tar.gz \t&& curl -SL \"http://nginx.org/download/nginx-$NGINX_VERSION.tar.gz.asc\" -o nginx.tar.gz.asc \t&& gpg --verify nginx.tar.gz.asc \t&& mkdir -p /usr/src/nginx \t&& tar -xvf nginx.tar.gz -C /usr/src/nginx --strip-components=1 \t&& rm nginx.tar.gz* \t&& cd /usr/src/nginx \t&& ./configure \t\t--user=www-data \t\t--group=www-data \t\t--prefix=/usr/local/nginx \t\t--conf-path=/etc/nginx.conf \t\t--http-log-path=/proc/self/fd/1 \t\t--error-log-path=/proc/self/fd/2 \t\t--with-http_addition_module \t\t--with-http_auth_request_module \t\t--with-http_dav_module \t\t--with-http_geoip_module \t\t--with-http_gzip_static_module \t\t--with-http_image_filter_module \t\t--with-http_perl_module \t\t--with-http_realip_module \t\t--with-http_spdy_module \t\t--with-http_ssl_module \t\t--with-http_stub_status_module \t\t--with-http_sub_module \t\t--with-http_xslt_module \t\t--with-ipv6 \t\t--with-mail \t\t--with-mail_ssl_module \t\t--with-pcre-jit \t&& make -j\"$(nproc)\" \t&& make install \t&& cd / \t&& rm -r /usr/src/nginx \t&& chown -R www-data:www-data /usr/local/nginx \t&& { \t\techo; \t\techo '# stay in the foreground so Docker has a process to track'; \t\techo 'daemon off;'; \t} >> /etc/nginx.conf \t&& apt-get purge -y --auto-remove $buildDeps",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "PATH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/usr/local/nginx/sbin:$PATH",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/usr/local/nginx/html",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-EXPOSE",
+        "children": [
+            {
+                "type": "DOCKER-PORT",
+                "value": "80",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-CMD",
+        "children": [
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "nginx",
+                "children": []
+            }
+        ]
+    }
+]
