@@ -18,7 +18,7 @@ class Vector(object):
             try:
                 vec = model.wv[token]
             except Exception as e:
-                print(e)
+                # print(e)
                 ignores.append(token)
             else:
                 vector += vec
