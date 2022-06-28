@@ -1,5 +1,9 @@
 import argparse
 
+import numpy as np
+from numpy import dot
+from numpy.linalg import norm
+
 from libs.word2vecs import *
 from functions.functions import *
 from libs.vectors import *
@@ -11,14 +15,15 @@ def get_test_data(args):
     """
     if args.source == "github":
         if args.run == 1:
-            test_data = W2VFunction.get_training_github_data_filter_run()
+            test_data = W2VFunction.get_test_github_data_filter_run()
         else:
-            test_data = W2VFunction.get_training_github_data()
+            test_data = W2VFunction.get_test_github_data()
     else:
         if args.run == 1:
-            test_data = W2VFunction.get_training_gold_data_filter_run()
+            print("OK")
+            test_data = W2VFunction.get_test_gold_data_filter_run()
         else:
-            test_data = W2VFunction.get_training_gold_data()
+            test_data = W2VFunction.get_test_gold_data()
     
     return test_data
 
@@ -31,10 +36,18 @@ def main(args):
         ['SC-APT-GET-INSTALL', 'SC-APT-GET-F-NO-INSTALL-RECOMMENDS'],
         ['SC-APT-GET-INSTALL', 'SC-APT-GET-PACKAGES', 'SC-APT-GET-PACKAGE:LIBNSS-WRAPPER']
     ]
-    testVec = Vector(contexts=test_case, model=model, size=args.size)
-    
-    
-
+    testCaseVec = Vector(contexts=test_case, model=model, size=args.size)
+    # print(testCaseVec._contexts)
+    tcVec = testCaseVec.vector
+    for test_ in test_data:
+        testDataVec = Vector(contexts=test_, model=model, size=args.size)
+        tdVec = testDataVec.vector
+        result = dot(tcVec, tdVec)/(norm(tcVec)*norm(tdVec))
+        if result > 0.8:
+            print("result:", result)
+            for context in testDataVec.contexts:
+                print(context)
+            print()
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="word2vecで学習させる際のパラメータを指定")

@@ -1,4 +1,5 @@
 import argparse
+import json
 
 from libs.word2vecs import *
 from functions.functions import *
@@ -12,6 +13,8 @@ from sklearn.cluster import KMeans
 import matplotlib.pyplot as plt
 # from matplotlib.font_manager import FontProperties
 from sklearn.decomposition import PCA
+
+from libs.configs import Config
 
 
 def clustering(args):
@@ -27,46 +30,23 @@ def clustering(args):
     cluster_to_words = defaultdict(list)
     for cluster_id, word in zip(cluster_labels, vocab):
         cluster_to_words[cluster_id].append(word)
-
-    for words in cluster_to_words.values():
-        print(words[:10])
     
-    for key, words in cluster_to_words.items():
-        print(key, words)
-
-def do_pca(args):
-    model = BaseW2V.load(sg=args.sg, size=args.size, min_count=args.min_count, window=args.window, name=args.source, run=args.run)
-    vectors = list()
-    for word in model.wv.index2word:
-        vector = model.wv[word]
-        vectors.append(vector)
-    pca = PCA(n_components=2)
-    pca.fit(vectors)
-    data_pca = pca.transform(vectors)
-    fig=plt.figure(figsize=(20,12),facecolor='w')
-
-    plt.rcParams["font.size"] = 10
-    i = 0
-    while i < len(model.wv.index2word):
-        #点プロット
-        plt.plot(data_pca[i][0], data_pca[i][1], ms=5.0, zorder=2, marker="x")
-    
-        #文字プロット
-        plt.annotate(model.wv.index2word[i], (data_pca[i][0], data_pca[i][1]), size=5)
-    
-        i += 1
-
-    # plt.show()
-    plt.savefig("ver0.0.0.png")
-
-
+    return cluster_to_words
 
 def main(args):
-    # clustering(args)
-    do_pca(args)
+    cluster_to_words = clustering(args)
 
+    file_name = "/data/clustering/{}/sg-{}.size-{}.min_count-{}.window-{}.run-{}.clustering-{}.json".format(args.source, args.sg, args.size, args.min_count, args.window, args.run, args.cluster)
+    file_path = Config.ROOT_PATH+file_name
+
+    obj = dict()
+    for key, words in cluster_to_words.items():
+        print(key, words)
+        obj[str(key)] = words
     
-    
+    with open(file_path, mode="w") as f:
+        json.dump(obj, f, ensure_ascii=False, indent=4)
+        
 
 
 if __name__ == "__main__":
