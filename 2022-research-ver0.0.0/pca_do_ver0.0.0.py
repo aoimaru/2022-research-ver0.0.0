@@ -38,7 +38,7 @@ def do_pca(args):
     
         cnt += 1
 
-    file_name = "/data/images/{}/sg-{}.size-{}.min_count-{}.window-{}.run-{}.png".format(args.source, args.sg, args.size, args.min_count, args.window, args.run)
+    file_name = "/data/pca/{}/sg-{}.size-{}.min_count-{}.window-{}.run-{}.png".format(args.source, args.sg, args.size, args.min_count, args.window, args.run)
     file_path = Config.ROOT_PATH+file_name
     plt.savefig(file_path)
 
