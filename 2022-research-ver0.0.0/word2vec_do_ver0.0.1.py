@@ -29,9 +29,9 @@ def get_parameters():
         "source": ["gold"],
         "run": [0, 1],
         "sg": [0, 1],
-        "size": [50, 100, 150, 200, 250, 300],
-        "min_count": [10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
-        "window": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        "size": [100, 200, 300],
+        "min_count": [50, 100],
+        "window": [5, 10]
     }
 
     products = [cnt for cnt in itertools.product(*params.values())]
