@@ -17,6 +17,7 @@ class File(object):
 class Ast(File):
     def __init__(self, file_sha):
         file_path = "{}{}.json".format(AST_GITHUB_PATH, file_sha)
+        print(file_path)
         try:
             with open(file_path, mode="r") as f:
                 data = json.load(f)
