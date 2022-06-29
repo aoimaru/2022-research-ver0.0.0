@@ -36,6 +36,31 @@ def main(args):
         ['SC-APT-GET-INSTALL', 'SC-APT-GET-F-NO-INSTALL-RECOMMENDS'],
         ['SC-APT-GET-INSTALL', 'SC-APT-GET-PACKAGES', 'SC-APT-GET-PACKAGE:LIBNSS-WRAPPER']
     ]
+    test_case = [
+        ['SC-GPG', 'SC-GPG-F-BATCH'],
+        ['SC-GPG', 'SC-GPG-VERIFYS', 'SC-GPG-VERIFY', 'BASH-LITERAL', 'ABS-EXTENSION-ASC'],
+        ['SC-GPG', 'SC-GPG-VERIFYS', 'SC-GPG-VERIFY', 'BASH-LITERAL', 'ABS-EXTENSION-TAR'],
+        ['SC-GPG', 'SC-GPG-VERIFYS', 'SC-GPG-VERIFY', 'BASH-LITERAL', 'ABS-EXTENSION-TAR']
+    ]
+    test_case = [
+        ['SC-TAR', 'SC-TAR-X'],
+        ['SC-TAR', 'SC-TAR-V'],
+        ['SC-TAR', 'SC-TAR-FILE', 'BASH-PATH', 'BASH-LITERAL', 'ABS-EXTENSION-TAR'],
+        ['SC-TAR', 'SC-TAR-DIRECTORY', 'BASH-PATH', 'BASH-LITERAL'],
+        ['SC-TAR', 'SC-TAR-STRIP-COMPONENTS', 'BASH-LITERAL']
+    ]
+    test_case = [
+        ['SC-LN', 'SC-LN-F-SYMBOLIC'],
+        ['SC-LN', 'SC-LN-F-FORCE'],
+        ['SC-LN', 'SC-LN-TARGET', 'BASH-LITERAL'],
+        ['SC-LN', 'SC-LN-LINK', 'BASH-LITERAL', 'ABS-MAYBE-PATH'],
+        ['SC-LN', 'SC-LN-LINK', 'BASH-LITERAL', 'ABS-PATH-ROOT-DIR'],
+        ['SC-LN', 'SC-LN-LINK', 'BASH-LITERAL', 'ABS-PATH-ABSOLUTE']
+    ]
+    test_case = [
+        ['SC-APK-ADD', 'SC-APK-PACKAGES', 'SC-APK-PACKAGE:GIT'],
+        ['SC-APK-ADD', 'SC-APK-PACKAGES', 'SC-APK-PACKAGE:OPENSSH-CLIENT']
+    ]
     testCaseVec = Vector(contexts=test_case, model=model, size=args.size)
     # print(testCaseVec._contexts)
     tcVec = testCaseVec.vector
@@ -43,7 +68,7 @@ def main(args):
         testDataVec = Vector(contexts=test_, model=model, size=args.size)
         tdVec = testDataVec.vector
         result = dot(tcVec, tdVec)/(norm(tcVec)*norm(tdVec))
-        if result > 0.8:
+        if result > args.limit:
             print("result:", result)
             for context in testDataVec.contexts:
                 print(context)
@@ -63,5 +88,7 @@ if __name__ == "__main__":
     parser.add_argument("--hs", help="学習に階層化ソフトマックスを使用するかどうか: もしネガティブサンプリングを使用する場合はhs=0を設定しなければならない", type=int, default=0)
     parser.add_argument("--negative", help="ネガティブサンプリングに用いる単語数: hsを使わない場合に設定する。word2vecに与えたコーパスの語彙の中から対象単語の周辺に出現しない単語を、類似していない単語として学習させる", type=int, default=5)
     parser.add_argument("--cbow_mean", help="単語ベクトルの平均ベクトルを使うか合計を使うか？: cbow_mean=1なら平均ベクトルcbow_mean=0なら合計", type=int, default=1)
+
+    parser.add_argument("--limit", help="コサイン類似度の閾値: デフォルトは0.8", type=float, default=0.8)
     args = parser.parse_args() 
     main(args)
