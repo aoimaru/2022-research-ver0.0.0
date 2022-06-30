@@ -23,7 +23,7 @@ from libs.clusterings import Clustering
 def main(args):
     parameters = Parameter.get("clustering_do_ver0.0.1.json", args.version)
     for parameter in parameters:
-        file_name = "{}/sg-{}.size-{}.min_count-{}.window-{}.run-{}.json".format(parameter["source"], parameter["sg"], parameter["size"], parameter["min_count"], parameter["window"], parameter["run"])
+        file_name = "{}/sg-{}.size-{}.min_count-{}.window-{}.run-{}.clustering-{}.json".format(parameter["source"], parameter["sg"], parameter["size"], parameter["min_count"], parameter["window"], parameter["run"], parameter["cluster"])
         print(parameter, ":", file_name)
         try:
             model = BaseW2V.load(sg=parameter["sg"], size=parameter["size"], min_count=parameter["min_count"], window=parameter["window"], name=parameter["source"], run=parameter["run"])
