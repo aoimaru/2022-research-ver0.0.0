@@ -12,7 +12,15 @@
         "size": [100, 200, 300],
         "min_count": [10],
         "window": [5, 10],
-        "source": ["github"],
+        "source": ["gold"],
         "run": [0, 1]
-    }  
+    },
+    "ver0.0.2": {
+        "sg": [0, 1],
+        "size": [50],
+        "min_count": [10],
+        "window": [5, 10],
+        "source": ["gold"],
+        "run": [0, 1]
+    } 
 }
