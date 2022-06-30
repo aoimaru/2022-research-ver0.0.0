@@ -5,59 +5,33 @@ from libs.word2vecs import *
 from functions.functions import *
 from libs.vectors import *
 
-from collections import defaultdict
-from gensim.models.keyedvectors import KeyedVectors
-from sklearn.cluster import KMeans
+# from collections import defaultdict
+# from gensim.models.keyedvectors import KeyedVectors
+# from sklearn.cluster import KMeans
 
 
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 # from matplotlib.font_manager import FontProperties
-from sklearn.decomposition import PCA
+# from sklearn.decomposition import PCA
 
 from libs.configs import Config
+from libs.parameters import Parameter
+from libs.clusterings import Clustering
 
-def get_parameters():
-    params = {
-        "source": ["gold"],
-        "run": [0, 1],
-        "sg": [0, 1],
-        "size": [100, 200, 300],
-        "min_count": [50, 100],
-        "window": [5, 10],
-        "cluster": [10, 20, 30, 40, 50]
-    }
-    products = [cnt for cnt in itertools.product(*params.values())]
-    parameters = [dict(zip(params.keys(), cnt)) for cnt in products]
-    return parameters
 
-def clustering(args):
-    model = BaseW2V.load(sg=args.sg, size=args.size, min_count=args.min_count, window=args.window, name=args.source, run=args.run)
-
-    vocab = list(model.wv.vocab.keys())
-    vectors = [model.wv[word] for word in vocab]
-    n_clusters = args.cluster
-    kmeans_model = KMeans(n_clusters=n_clusters, verbose=1, random_state=42, n_jobs=-1)
-    kmeans_model.fit(vectors)
-    
-    cluster_labels = kmeans_model.labels_
-    cluster_to_words = defaultdict(list)
-    for cluster_id, word in zip(cluster_labels, vocab):
-        cluster_to_words[cluster_id].append(word)
-    
-    return cluster_to_words
 
 def main(args):
-    cluster_to_words = clustering(args)
-
-    file_name = "/data/clustering/{}/sg-{}.size-{}.min_count-{}.window-{}.run-{}.clustering-{}.json".format(args.source, args.sg, args.size, args.min_count, args.window, args.run, args.cluster)
-    file_path = Config.ROOT_PATH+file_name
-
-    obj = dict()
-    for key, words in cluster_to_words.items():
-        obj[str(key)] = words
-    
-    with open(file_path, mode="w") as f:
-        json.dump(obj, f, ensure_ascii=False, indent=4)
+    parameters = Parameter.get("clustering_do_ver0.0.1.json", args.version)
+    for parameter in parameters:
+        file_name = "{}/sg-{}.size-{}.min_count-{}.window-{}.run-{}.json".format(parameter["source"], parameter["sg"], parameter["size"], parameter["min_count"], parameter["window"], parameter["run"])
+        print(parameter, ":", file_name)
+        try:
+            model = BaseW2V.load(sg=parameter["sg"], size=parameter["size"], min_count=parameter["min_count"], window=parameter["window"], name=parameter["source"], run=parameter["run"])
+        except Exception as e:
+            print(e)
+        else:
+            Clustering.do(model, file_name, parameter["cluster"])
+            
         
 
 
@@ -77,6 +51,7 @@ if __name__ == "__main__":
     parser.add_argument("--cbow_mean", help="単語ベクトルの平均ベクトルを使うか合計を使うか？: cbow_mean=1なら平均ベクトルcbow_mean=0なら合計", type=int, default=1)
 
     parser.add_argument("--cluster", help="クラスタの数を指定", type=int, default=10)
+    parser.add_argument("--version", help="パラメータのバージョンを指定", type=str, default="ver0.0.0")
 
     args = parser.parse_args() 
     main(args)
