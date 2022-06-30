@@ -20,7 +20,7 @@
         "size": [50],
         "min_count": [10],
         "window": [5, 10],
-        "source": ["gold"],
+        "source": ["github"],
         "run": [0, 1]
     } 
 }
