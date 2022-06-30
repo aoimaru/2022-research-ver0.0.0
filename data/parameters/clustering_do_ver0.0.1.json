@@ -13,7 +13,7 @@
         "size": [100, 200, 300],
         "min_count": [10],
         "window": [5, 10],
-        "source": ["github"],
+        "source": ["gold"],
         "run": [0, 1],
         "cluster": [10, 20, 30, 40, 50]
     }  
