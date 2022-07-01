@@ -1,0 +1,19 @@
+[
+    {
+        "children": [
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-NAME:citadel"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-REPO:gcr.io"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-TAG:master-20181116-09-15"
+            }
+        ],
+        "type": "DOCKER-FROM"
+    }
+]

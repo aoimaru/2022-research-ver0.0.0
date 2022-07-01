@@ -1,0 +1,19 @@
+[
+    {
+        "children": [
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-NAME:cni"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-REPO:quay.io"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-TAG:v3.6.0-0.dev-15-g2084e65"
+            }
+        ],
+        "type": "DOCKER-FROM"
+    }
+]

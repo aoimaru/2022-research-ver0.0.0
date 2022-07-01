@@ -1,0 +1,41 @@
+[
+    {
+        "children": [
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-NAME:postgres"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-REPO:circleci"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-TAG:9.6.12"
+            }
+        ],
+        "type": "DOCKER-FROM"
+    },
+    {
+        "children": [
+            {
+                "children": [],
+                "type": "DOCKER-NAME:PGDATA"
+            },
+            {
+                "children": [
+                    {
+                        "type": "ABS-MAYBE-PATH",
+                        "children": []
+                    },
+                    {
+                        "type": "ABS-PATH-ABSOLUTE",
+                        "children": []
+                    }
+                ],
+                "type": "DOCKER-LITERAL"
+            }
+        ],
+        "type": "DOCKER-ENV"
+    }
+]

@@ -1,0 +1,19 @@
+[
+    {
+        "children": [
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-NAME:proxyv2"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-REPO:gcr.io"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-TAG:collab-gcp-identity-20181013-09-15"
+            }
+        ],
+        "type": "DOCKER-FROM"
+    }
+]

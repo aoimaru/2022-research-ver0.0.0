@@ -1,0 +1,19 @@
+[
+    {
+        "children": [
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-NAME:node"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-REPO:quay.io"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-TAG:v3.0.0-2-g7ee641ea"
+            }
+        ],
+        "type": "DOCKER-FROM"
+    }
+]

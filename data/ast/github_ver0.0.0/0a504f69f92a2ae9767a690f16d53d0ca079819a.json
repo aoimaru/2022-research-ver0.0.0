@@ -1,0 +1,395 @@
+[
+    {
+        "children": [
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-NAME:postgres"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-TAG:9.4.21-alpine"
+            }
+        ],
+        "type": "DOCKER-FROM"
+    },
+    {
+        "children": [
+            {
+                "children": [],
+                "type": "DOCKER-NAME:POSTGRES_DB"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-LITERAL"
+            }
+        ],
+        "type": "DOCKER-ENV"
+    },
+    {
+        "children": [
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [
+                                                    {
+                                                        "children": [
+                                                            {
+                                                                "children": [
+                                                                    {
+                                                                        "children": [],
+                                                                        "type": "BASH-OP"
+                                                                    }
+                                                                ],
+                                                                "type": "BASH-CONDITION-OP"
+                                                            },
+                                                            {
+                                                                "children": [
+                                                                    {
+                                                                        "children": [
+                                                                            {
+                                                                                "children": [
+                                                                                    {
+                                                                                        "children": [],
+                                                                                        "type": "BASH-OP"
+                                                                                    }
+                                                                                ],
+                                                                                "type": "BASH-CONDITION-UNARY-OP"
+                                                                            },
+                                                                            {
+                                                                                "children": [
+                                                                                    {
+                                                                                        "children": [
+                                                                                            {
+                                                                                                "type": "ABS-MAYBE-PATH",
+                                                                                                "children": []
+                                                                                            },
+                                                                                            {
+                                                                                                "type": "ABS-PATH-ABSOLUTE",
+                                                                                                "children": []
+                                                                                            }
+                                                                                        ],
+                                                                                        "type": "BASH-LITERAL"
+                                                                                    }
+                                                                                ],
+                                                                                "type": "BASH-CONDITION-UNARY-EXP"
+                                                                            }
+                                                                        ],
+                                                                        "type": "BASH-CONDITION-UNARY"
+                                                                    }
+                                                                ],
+                                                                "type": "BASH-CONDITION-EXP"
+                                                            }
+                                                        ],
+                                                        "type": "BASH-CONDITION"
+                                                    }
+                                                ],
+                                                "type": "BASH-IF-CONDITION"
+                                            },
+                                            {
+                                                "children": [
+                                                    {
+                                                        "children": [
+                                                            {
+                                                                "children": [
+                                                                    {
+                                                                        "children": [],
+                                                                        "type": "BASH-VARIABLE:postgresfile"
+                                                                    }
+                                                                ],
+                                                                "type": "BASH-ASSIGN-LHS"
+                                                            },
+                                                            {
+                                                                "children": [
+                                                                    {
+                                                                        "children": [
+                                                                            {
+                                                                                "type": "ABS-MAYBE-PATH",
+                                                                                "children": []
+                                                                            },
+                                                                            {
+                                                                                "type": "ABS-PATH-ABSOLUTE",
+                                                                                "children": []
+                                                                            }
+                                                                        ],
+                                                                        "type": "BASH-LITERAL"
+                                                                    }
+                                                                ],
+                                                                "type": "BASH-ASSIGN-RHS"
+                                                            }
+                                                        ],
+                                                        "type": "BASH-ASSIGN"
+                                                    }
+                                                ],
+                                                "type": "BASH-IF-THEN"
+                                            },
+                                            {
+                                                "children": [
+                                                    {
+                                                        "children": [
+                                                            {
+                                                                "children": [
+                                                                    {
+                                                                        "children": [],
+                                                                        "type": "BASH-VARIABLE:postgresfile"
+                                                                    }
+                                                                ],
+                                                                "type": "BASH-ASSIGN-LHS"
+                                                            },
+                                                            {
+                                                                "children": [
+                                                                    {
+                                                                        "children": [
+                                                                            {
+                                                                                "type": "ABS-MAYBE-PATH",
+                                                                                "children": []
+                                                                            },
+                                                                            {
+                                                                                "type": "ABS-PATH-ABSOLUTE",
+                                                                                "children": []
+                                                                            }
+                                                                        ],
+                                                                        "type": "BASH-LITERAL"
+                                                                    }
+                                                                ],
+                                                                "type": "BASH-ASSIGN-RHS"
+                                                            }
+                                                        ],
+                                                        "type": "BASH-ASSIGN"
+                                                    }
+                                                ],
+                                                "type": "BASH-IF-ELSE"
+                                            }
+                                        ],
+                                        "type": "BASH-IF-EXPRESSION"
+                                    }
+                                ],
+                                "type": "BASH-AND-MEM"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [
+                                                    {
+                                                        "children": [
+                                                            {
+                                                                "children": [
+                                                                    {
+                                                                        "children": [
+                                                                            {
+                                                                                "children": [],
+                                                                                "type": "BASH-LITERAL"
+                                                                            }
+                                                                        ],
+                                                                        "type": "SC-ECHO-ITEM"
+                                                                    }
+                                                                ],
+                                                                "type": "SC-ECHO-ITEMS"
+                                                            }
+                                                        ],
+                                                        "type": "SC-ECHO"
+                                                    }
+                                                ],
+                                                "type": "BASH-REDIRECT-COMMAND"
+                                            },
+                                            {
+                                                "children": [
+                                                    {
+                                                        "children": [
+                                                            {
+                                                                "children": [
+                                                                    {
+                                                                        "children": [],
+                                                                        "type": "BASH-VARIABLE:postgresfile"
+                                                                    }
+                                                                ],
+                                                                "type": "BASH-PATH"
+                                                            }
+                                                        ],
+                                                        "type": "BASH-REDIRECT-APPEND"
+                                                    }
+                                                ],
+                                                "type": "BASH-REDIRECT-REDIRECTS"
+                                            }
+                                        ],
+                                        "type": "BASH-REDIRECT"
+                                    }
+                                ],
+                                "type": "BASH-AND-MEM"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [
+                                                    {
+                                                        "children": [
+                                                            {
+                                                                "children": [
+                                                                    {
+                                                                        "children": [
+                                                                            {
+                                                                                "children": [],
+                                                                                "type": "BASH-LITERAL"
+                                                                            }
+                                                                        ],
+                                                                        "type": "SC-ECHO-ITEM"
+                                                                    }
+                                                                ],
+                                                                "type": "SC-ECHO-ITEMS"
+                                                            }
+                                                        ],
+                                                        "type": "SC-ECHO"
+                                                    }
+                                                ],
+                                                "type": "BASH-REDIRECT-COMMAND"
+                                            },
+                                            {
+                                                "children": [
+                                                    {
+                                                        "children": [
+                                                            {
+                                                                "children": [
+                                                                    {
+                                                                        "children": [],
+                                                                        "type": "BASH-VARIABLE:postgresfile"
+                                                                    }
+                                                                ],
+                                                                "type": "BASH-PATH"
+                                                            }
+                                                        ],
+                                                        "type": "BASH-REDIRECT-APPEND"
+                                                    }
+                                                ],
+                                                "type": "BASH-REDIRECT-REDIRECTS"
+                                            }
+                                        ],
+                                        "type": "BASH-REDIRECT"
+                                    }
+                                ],
+                                "type": "BASH-AND-MEM"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [
+                                                    {
+                                                        "children": [
+                                                            {
+                                                                "children": [
+                                                                    {
+                                                                        "children": [
+                                                                            {
+                                                                                "children": [],
+                                                                                "type": "BASH-LITERAL"
+                                                                            }
+                                                                        ],
+                                                                        "type": "SC-ECHO-ITEM"
+                                                                    }
+                                                                ],
+                                                                "type": "SC-ECHO-ITEMS"
+                                                            }
+                                                        ],
+                                                        "type": "SC-ECHO"
+                                                    }
+                                                ],
+                                                "type": "BASH-REDIRECT-COMMAND"
+                                            },
+                                            {
+                                                "children": [
+                                                    {
+                                                        "children": [
+                                                            {
+                                                                "children": [
+                                                                    {
+                                                                        "children": [],
+                                                                        "type": "BASH-VARIABLE:postgresfile"
+                                                                    }
+                                                                ],
+                                                                "type": "BASH-PATH"
+                                                            }
+                                                        ],
+                                                        "type": "BASH-REDIRECT-APPEND"
+                                                    }
+                                                ],
+                                                "type": "BASH-REDIRECT-REDIRECTS"
+                                            }
+                                        ],
+                                        "type": "BASH-REDIRECT"
+                                    }
+                                ],
+                                "type": "BASH-AND-MEM"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [
+                                                    {
+                                                        "children": [
+                                                            {
+                                                                "children": [
+                                                                    {
+                                                                        "children": [
+                                                                            {
+                                                                                "children": [],
+                                                                                "type": "BASH-LITERAL"
+                                                                            }
+                                                                        ],
+                                                                        "type": "SC-ECHO-ITEM"
+                                                                    }
+                                                                ],
+                                                                "type": "SC-ECHO-ITEMS"
+                                                            }
+                                                        ],
+                                                        "type": "SC-ECHO"
+                                                    }
+                                                ],
+                                                "type": "BASH-REDIRECT-COMMAND"
+                                            },
+                                            {
+                                                "children": [
+                                                    {
+                                                        "children": [
+                                                            {
+                                                                "children": [
+                                                                    {
+                                                                        "children": [],
+                                                                        "type": "BASH-VARIABLE:postgresfile"
+                                                                    }
+                                                                ],
+                                                                "type": "BASH-PATH"
+                                                            }
+                                                        ],
+                                                        "type": "BASH-REDIRECT-APPEND"
+                                                    }
+                                                ],
+                                                "type": "BASH-REDIRECT-REDIRECTS"
+                                            }
+                                        ],
+                                        "type": "BASH-REDIRECT"
+                                    }
+                                ],
+                                "type": "BASH-AND-MEM"
+                            }
+                        ],
+                        "type": "BASH-AND-IF"
+                    }
+                ],
+                "type": "BASH-SCRIPT"
+            }
+        ],
+        "type": "DOCKER-RUN"
+    }
+]

@@ -1,0 +1,86 @@
+[
+    {
+        "children": [
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-NAME:armv7hf-fedora"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-REPO:balenalib"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-TAG:26-build"
+            }
+        ],
+        "type": "DOCKER-FROM"
+    },
+    {
+        "children": [
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [],
+                                                "type": "SC-DNF-F-ASSUMEYES"
+                                            },
+                                            {
+                                                "children": [
+                                                    {
+                                                        "children": [],
+                                                        "type": "SC-DNF-PACKAGE:LESS"
+                                                    },
+                                                    {
+                                                        "children": [],
+                                                        "type": "SC-DNF-PACKAGE:NANO"
+                                                    },
+                                                    {
+                                                        "children": [],
+                                                        "type": "SC-DNF-PACKAGE:NET-TOOLS"
+                                                    },
+                                                    {
+                                                        "children": [],
+                                                        "type": "SC-DNF-PACKAGE:USBUTILS"
+                                                    },
+                                                    {
+                                                        "children": [],
+                                                        "type": "SC-DNF-PACKAGE:GNUPG"
+                                                    },
+                                                    {
+                                                        "children": [],
+                                                        "type": "SC-DNF-PACKAGE:I2C-TOOLS"
+                                                    }
+                                                ],
+                                                "type": "SC-DNF-PACKAGES"
+                                            }
+                                        ],
+                                        "type": "SC-DNF-INSTALL"
+                                    }
+                                ],
+                                "type": "BASH-AND-MEM"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "type": "SC-DNF-CLEAN-ALL"
+                                    }
+                                ],
+                                "type": "BASH-AND-MEM"
+                            }
+                        ],
+                        "type": "BASH-AND-IF"
+                    }
+                ],
+                "type": "BASH-SCRIPT"
+            }
+        ],
+        "type": "DOCKER-RUN"
+    }
+]

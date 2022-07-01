@@ -1,0 +1,19 @@
+[
+    {
+        "children": [
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-NAME:galley"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-REPO:gcr.io"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-TAG:release-1.1-20181218-09-16"
+            }
+        ],
+        "type": "DOCKER-FROM"
+    }
+]

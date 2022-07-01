@@ -1,0 +1,19 @@
+[
+    {
+        "children": [
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-NAME:rosco"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-REPO:gcr.io"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-TAG:0.4.1-20170809184452"
+            }
+        ],
+        "type": "DOCKER-FROM"
+    }
+]

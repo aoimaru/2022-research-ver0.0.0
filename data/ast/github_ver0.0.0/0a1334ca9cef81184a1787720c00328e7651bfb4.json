@@ -1,0 +1,19 @@
+[
+    {
+        "children": [
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-NAME:pilot"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-REPO:gcr.io"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-TAG:0.6.0-pre20180222-22-57-06"
+            }
+        ],
+        "type": "DOCKER-FROM"
+    }
+]

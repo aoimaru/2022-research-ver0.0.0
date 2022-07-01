@@ -1,0 +1,15 @@
+[
+    {
+        "children": [
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-NAME:node"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-TAG:boron"
+            }
+        ],
+        "type": "DOCKER-FROM"
+    }
+]

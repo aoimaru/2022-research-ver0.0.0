@@ -1,0 +1,306 @@
+[
+    {
+        "children": [
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-NAME:ubuntu"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-TAG:14.04"
+            }
+        ],
+        "type": "DOCKER-FROM"
+    },
+    {
+        "children": [
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "children": [],
+                                "type": "SC-APT-GET-F-YES"
+                            }
+                        ],
+                        "type": "SC-APT-GET-UPDATE"
+                    }
+                ],
+                "type": "BASH-SCRIPT"
+            }
+        ],
+        "type": "DOCKER-RUN"
+    },
+    {
+        "children": [
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "children": [],
+                                "type": "SC-APT-GET-F-YES"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "type": "SC-APT-GET-PACKAGE:CLANG"
+                                    },
+                                    {
+                                        "children": [],
+                                        "type": "SC-APT-GET-PACKAGE:LIBICU-DEV"
+                                    },
+                                    {
+                                        "children": [],
+                                        "type": "SC-APT-GET-PACKAGE:UUID-DEV"
+                                    },
+                                    {
+                                        "children": [],
+                                        "type": "SC-APT-GET-PACKAGE:GIT"
+                                    },
+                                    {
+                                        "children": [],
+                                        "type": "SC-APT-GET-PACKAGE:LIBXML2-DEV"
+                                    },
+                                    {
+                                        "children": [],
+                                        "type": "SC-APT-GET-PACKAGE:LIBXSLT1-DEV"
+                                    },
+                                    {
+                                        "children": [],
+                                        "type": "SC-APT-GET-PACKAGE:PYTHON-DEV"
+                                    },
+                                    {
+                                        "children": [],
+                                        "type": "SC-APT-GET-PACKAGE:LIBCURL4-OPENSSL-DEV"
+                                    },
+                                    {
+                                        "children": [],
+                                        "type": "SC-APT-GET-PACKAGE:WGET"
+                                    }
+                                ],
+                                "type": "SC-APT-GET-PACKAGES"
+                            }
+                        ],
+                        "type": "SC-APT-GET-INSTALL"
+                    }
+                ],
+                "type": "BASH-SCRIPT"
+            }
+        ],
+        "type": "DOCKER-RUN"
+    },
+    {
+        "children": [
+            {
+                "children": [],
+                "type": "DOCKER-NAME:SWIFT_VERSION"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-LITERAL"
+            }
+        ],
+        "type": "DOCKER-ENV"
+    },
+    {
+        "children": [
+            {
+                "children": [],
+                "type": "DOCKER-NAME:SWIFTFILE"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-LITERAL"
+            }
+        ],
+        "type": "DOCKER-ENV"
+    },
+    {
+        "children": [
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [
+                                                    {
+                                                        "type": "ABS-PROBABLY-URL",
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "type": "ABS-MAYBE-BUILD-DIR",
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "type": "ABS-URL-PROTOCOL-HTTPS",
+                                                        "children": []
+                                                    }
+                                                ],
+                                                "type": "BASH-LITERAL"
+                                            },
+                                            {
+                                                "children": [],
+                                                "type": "BASH-VARIABLE:SWIFT_VERSION"
+                                            },
+                                            {
+                                                "children": [],
+                                                "type": "BASH-LITERAL"
+                                            },
+                                            {
+                                                "children": [],
+                                                "type": "BASH-VARIABLE:SWIFT_VERSION"
+                                            },
+                                            {
+                                                "children": [],
+                                                "type": "BASH-LITERAL"
+                                            },
+                                            {
+                                                "children": [],
+                                                "type": "BASH-VARIABLE:SWIFTFILE"
+                                            },
+                                            {
+                                                "children": [
+                                                    {
+                                                        "type": "ABS-EXTENSION-TAR",
+                                                        "children": []
+                                                    }
+                                                ],
+                                                "type": "BASH-LITERAL"
+                                            }
+                                        ],
+                                        "type": "BASH-CONCAT"
+                                    }
+                                ],
+                                "type": "SC-WGET-URL"
+                            }
+                        ],
+                        "type": "SC-WGET"
+                    }
+                ],
+                "type": "BASH-SCRIPT"
+            }
+        ],
+        "type": "DOCKER-RUN"
+    },
+    {
+        "children": [
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "children": [],
+                                "type": "SC-TAR-Z"
+                            },
+                            {
+                                "children": [],
+                                "type": "SC-TAR-X"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [
+                                                    {
+                                                        "children": [],
+                                                        "type": "BASH-VARIABLE:SWIFTFILE"
+                                                    },
+                                                    {
+                                                        "children": [
+                                                            {
+                                                                "type": "ABS-EXTENSION-TAR",
+                                                                "children": []
+                                                            }
+                                                        ],
+                                                        "type": "BASH-LITERAL"
+                                                    }
+                                                ],
+                                                "type": "BASH-CONCAT"
+                                            }
+                                        ],
+                                        "type": "BASH-PATH"
+                                    }
+                                ],
+                                "type": "SC-TAR-FILE"
+                            }
+                        ],
+                        "type": "SC-TAR"
+                    }
+                ],
+                "type": "BASH-SCRIPT"
+            }
+        ],
+        "type": "DOCKER-RUN"
+    },
+    {
+        "children": [
+            {
+                "children": [],
+                "type": "DOCKER-NAME:PATH"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-LITERAL"
+            }
+        ],
+        "type": "DOCKER-ENV"
+    },
+    {
+        "children": [
+            {
+                "children": [
+                    {
+                        "children": [],
+                        "type": "DOCKER-PATH"
+                    }
+                ],
+                "type": "DOCKER-COPY-TARGET"
+            },
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "type": "ABS-MAYBE-PATH",
+                                "children": []
+                            }
+                        ],
+                        "type": "DOCKER-PATH"
+                    }
+                ],
+                "type": "DOCKER-COPY-SOURCE"
+            }
+        ],
+        "type": "DOCKER-COPY"
+    },
+    {
+        "children": [
+            {
+                "children": [],
+                "type": "DOCKER-PATH"
+            }
+        ],
+        "type": "DOCKER-WORKDIR"
+    },
+    {
+        "children": [
+            {
+                "children": [
+                    {
+                        "type": "ABS-SINGLE-SPACE",
+                        "children": []
+                    }
+                ],
+                "type": "DOCKER-CMD-ARG"
+            }
+        ],
+        "type": "DOCKER-CMD"
+    }
+]

@@ -1,0 +1,854 @@
+[
+    {
+        "children": [
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-NAME:ubuntu"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-TAG:bionic"
+            }
+        ],
+        "type": "DOCKER-FROM"
+    },
+    {
+        "children": [
+            {
+                "children": [],
+                "type": "DOCKER-NAME:c_compiler"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-LITERAL"
+            }
+        ],
+        "type": "DOCKER-ARG"
+    },
+    {
+        "children": [
+            {
+                "children": [],
+                "type": "DOCKER-NAME:cxx_compiler"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-LITERAL"
+            }
+        ],
+        "type": "DOCKER-ARG"
+    },
+    {
+        "children": [
+            {
+                "children": [],
+                "type": "DOCKER-NAME:opencl"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-LITERAL"
+            }
+        ],
+        "type": "DOCKER-ARG"
+    },
+    {
+        "children": [
+            {
+                "children": [],
+                "type": "DOCKER-NAME:openmp"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-LITERAL"
+            }
+        ],
+        "type": "DOCKER-ARG"
+    },
+    {
+        "children": [
+            {
+                "children": [],
+                "type": "DOCKER-NAME:git_branch"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-LITERAL"
+            }
+        ],
+        "type": "DOCKER-ARG"
+    },
+    {
+        "children": [
+            {
+                "children": [],
+                "type": "DOCKER-NAME:git_slug"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-LITERAL"
+            }
+        ],
+        "type": "DOCKER-ARG"
+    },
+    {
+        "children": [
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "children": [],
+                                "type": "SC-APT-GET-F-YES"
+                            }
+                        ],
+                        "type": "SC-APT-GET-UPDATE"
+                    }
+                ],
+                "type": "BASH-SCRIPT"
+            }
+        ],
+        "type": "DOCKER-RUN"
+    },
+    {
+        "children": [
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "children": [],
+                                "type": "SC-APT-GET-F-YES"
+                            },
+                            {
+                                "children": [],
+                                "type": "SC-APT-GET-F-ALLOW-DOWNGRADES"
+                            },
+                            {
+                                "children": [],
+                                "type": "SC-APT-GET-F-ALLOW-REMOVE-ESSENTIAL"
+                            },
+                            {
+                                "children": [],
+                                "type": "SC-APT-GET-F-ALLOW-CHANGE-HELD-PACKAGES"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "type": "SC-APT-GET-PACKAGE:GIT"
+                                    },
+                                    {
+                                        "children": [],
+                                        "type": "SC-APT-GET-PACKAGE:WGET"
+                                    },
+                                    {
+                                        "children": [],
+                                        "type": "SC-APT-GET-PACKAGE:APT-UTILS"
+                                    },
+                                    {
+                                        "children": [],
+                                        "type": "SC-APT-GET-PACKAGE:CMAKE"
+                                    },
+                                    {
+                                        "children": [],
+                                        "type": "SC-APT-GET-PACKAGE:LIBBOOST-ALL-DEV"
+                                    }
+                                ],
+                                "type": "SC-APT-GET-PACKAGES"
+                            }
+                        ],
+                        "type": "SC-APT-GET-INSTALL"
+                    }
+                ],
+                "type": "BASH-SCRIPT"
+            }
+        ],
+        "type": "DOCKER-RUN"
+    },
+    {
+        "children": [
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [
+                                                    {
+                                                        "children": [],
+                                                        "type": "BASH-OP"
+                                                    }
+                                                ],
+                                                "type": "BASH-CONDITION-OP"
+                                            },
+                                            {
+                                                "children": [
+                                                    {
+                                                        "children": [
+                                                            {
+                                                                "children": [
+                                                                    {
+                                                                        "children": [],
+                                                                        "type": "BASH-OP"
+                                                                    }
+                                                                ],
+                                                                "type": "BASH-CONDITION-BINARY-OP"
+                                                            },
+                                                            {
+                                                                "children": [
+                                                                    {
+                                                                        "children": [
+                                                                            {
+                                                                                "children": [],
+                                                                                "type": "BASH-VARIABLE:c_compiler"
+                                                                            }
+                                                                        ],
+                                                                        "type": "BASH-DOUBLE-QUOTED"
+                                                                    }
+                                                                ],
+                                                                "type": "BASH-CONDITION-BINARY-LHS"
+                                                            },
+                                                            {
+                                                                "children": [
+                                                                    {
+                                                                        "children": [],
+                                                                        "type": "BASH-SINGLE-QUOTED"
+                                                                    }
+                                                                ],
+                                                                "type": "BASH-CONDITION-BINARY-RHS"
+                                                            }
+                                                        ],
+                                                        "type": "BASH-CONDITION-BINARY"
+                                                    }
+                                                ],
+                                                "type": "BASH-CONDITION-EXP"
+                                            }
+                                        ],
+                                        "type": "BASH-CONDITION"
+                                    }
+                                ],
+                                "type": "BASH-IF-CONDITION"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [],
+                                                "type": "SC-APT-GET-F-YES"
+                                            },
+                                            {
+                                                "children": [],
+                                                "type": "SC-APT-GET-F-ALLOW-DOWNGRADES"
+                                            },
+                                            {
+                                                "children": [],
+                                                "type": "SC-APT-GET-F-ALLOW-REMOVE-ESSENTIAL"
+                                            },
+                                            {
+                                                "children": [],
+                                                "type": "SC-APT-GET-F-ALLOW-CHANGE-HELD-PACKAGES"
+                                            },
+                                            {
+                                                "children": [
+                                                    {
+                                                        "children": [],
+                                                        "type": "SC-APT-GET-PACKAGE:CLANG-6.0"
+                                                    }
+                                                ],
+                                                "type": "SC-APT-GET-PACKAGES"
+                                            }
+                                        ],
+                                        "type": "SC-APT-GET-INSTALL"
+                                    }
+                                ],
+                                "type": "BASH-IF-THEN"
+                            },
+                            {
+                                "children": [],
+                                "type": "BASH-IF-ELSE"
+                            }
+                        ],
+                        "type": "BASH-IF-EXPRESSION"
+                    }
+                ],
+                "type": "BASH-SCRIPT"
+            }
+        ],
+        "type": "DOCKER-RUN"
+    },
+    {
+        "children": [
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [
+                                                    {
+                                                        "children": [],
+                                                        "type": "BASH-OP"
+                                                    }
+                                                ],
+                                                "type": "BASH-CONDITION-OP"
+                                            },
+                                            {
+                                                "children": [
+                                                    {
+                                                        "children": [
+                                                            {
+                                                                "children": [
+                                                                    {
+                                                                        "children": [],
+                                                                        "type": "BASH-OP"
+                                                                    }
+                                                                ],
+                                                                "type": "BASH-CONDITION-BINARY-OP"
+                                                            },
+                                                            {
+                                                                "children": [
+                                                                    {
+                                                                        "children": [
+                                                                            {
+                                                                                "children": [],
+                                                                                "type": "BASH-VARIABLE:c_compiler"
+                                                                            }
+                                                                        ],
+                                                                        "type": "BASH-DOUBLE-QUOTED"
+                                                                    }
+                                                                ],
+                                                                "type": "BASH-CONDITION-BINARY-LHS"
+                                                            },
+                                                            {
+                                                                "children": [
+                                                                    {
+                                                                        "children": [],
+                                                                        "type": "BASH-SINGLE-QUOTED"
+                                                                    }
+                                                                ],
+                                                                "type": "BASH-CONDITION-BINARY-RHS"
+                                                            }
+                                                        ],
+                                                        "type": "BASH-CONDITION-BINARY"
+                                                    }
+                                                ],
+                                                "type": "BASH-CONDITION-EXP"
+                                            }
+                                        ],
+                                        "type": "BASH-CONDITION"
+                                    }
+                                ],
+                                "type": "BASH-IF-CONDITION"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [],
+                                                "type": "SC-APT-GET-F-YES"
+                                            },
+                                            {
+                                                "children": [],
+                                                "type": "SC-APT-GET-F-ALLOW-DOWNGRADES"
+                                            },
+                                            {
+                                                "children": [],
+                                                "type": "SC-APT-GET-F-ALLOW-REMOVE-ESSENTIAL"
+                                            },
+                                            {
+                                                "children": [],
+                                                "type": "SC-APT-GET-F-ALLOW-CHANGE-HELD-PACKAGES"
+                                            },
+                                            {
+                                                "children": [
+                                                    {
+                                                        "children": [],
+                                                        "type": "SC-APT-GET-PACKAGE"
+                                                    },
+                                                    {
+                                                        "children": [],
+                                                        "type": "SC-APT-GET-PACKAGE:GCC-8"
+                                                    }
+                                                ],
+                                                "type": "SC-APT-GET-PACKAGES"
+                                            }
+                                        ],
+                                        "type": "SC-APT-GET-INSTALL"
+                                    }
+                                ],
+                                "type": "BASH-IF-THEN"
+                            },
+                            {
+                                "children": [],
+                                "type": "BASH-IF-ELSE"
+                            }
+                        ],
+                        "type": "BASH-IF-EXPRESSION"
+                    }
+                ],
+                "type": "BASH-SCRIPT"
+            }
+        ],
+        "type": "DOCKER-RUN"
+    },
+    {
+        "children": [
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [
+                                                    {
+                                                        "children": [],
+                                                        "type": "BASH-OP"
+                                                    }
+                                                ],
+                                                "type": "BASH-CONDITION-OP"
+                                            },
+                                            {
+                                                "children": [
+                                                    {
+                                                        "children": [
+                                                            {
+                                                                "children": [
+                                                                    {
+                                                                        "children": [],
+                                                                        "type": "BASH-OP"
+                                                                    }
+                                                                ],
+                                                                "type": "BASH-CONDITION-BINARY-OP"
+                                                            },
+                                                            {
+                                                                "children": [
+                                                                    {
+                                                                        "children": [
+                                                                            {
+                                                                                "children": [],
+                                                                                "type": "BASH-VARIABLE:openmp"
+                                                                            }
+                                                                        ],
+                                                                        "type": "BASH-DOUBLE-QUOTED"
+                                                                    }
+                                                                ],
+                                                                "type": "BASH-CONDITION-BINARY-LHS"
+                                                            },
+                                                            {
+                                                                "children": [
+                                                                    {
+                                                                        "children": [],
+                                                                        "type": "BASH-SINGLE-QUOTED"
+                                                                    }
+                                                                ],
+                                                                "type": "BASH-CONDITION-BINARY-RHS"
+                                                            }
+                                                        ],
+                                                        "type": "BASH-CONDITION-BINARY"
+                                                    }
+                                                ],
+                                                "type": "BASH-CONDITION-EXP"
+                                            }
+                                        ],
+                                        "type": "BASH-CONDITION"
+                                    }
+                                ],
+                                "type": "BASH-IF-CONDITION"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [],
+                                                "type": "SC-APT-GET-F-YES"
+                                            },
+                                            {
+                                                "children": [],
+                                                "type": "SC-APT-GET-F-ALLOW-DOWNGRADES"
+                                            },
+                                            {
+                                                "children": [],
+                                                "type": "SC-APT-GET-F-ALLOW-REMOVE-ESSENTIAL"
+                                            },
+                                            {
+                                                "children": [],
+                                                "type": "SC-APT-GET-F-ALLOW-CHANGE-HELD-PACKAGES"
+                                            },
+                                            {
+                                                "children": [
+                                                    {
+                                                        "children": [],
+                                                        "type": "SC-APT-GET-PACKAGE:LIBOMP-DEV"
+                                                    }
+                                                ],
+                                                "type": "SC-APT-GET-PACKAGES"
+                                            }
+                                        ],
+                                        "type": "SC-APT-GET-INSTALL"
+                                    }
+                                ],
+                                "type": "BASH-IF-THEN"
+                            },
+                            {
+                                "children": [],
+                                "type": "BASH-IF-ELSE"
+                            }
+                        ],
+                        "type": "BASH-IF-EXPRESSION"
+                    }
+                ],
+                "type": "BASH-SCRIPT"
+            }
+        ],
+        "type": "DOCKER-RUN"
+    },
+    {
+        "children": [
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [
+                                                    {
+                                                        "children": [],
+                                                        "type": "BASH-OP"
+                                                    }
+                                                ],
+                                                "type": "BASH-CONDITION-OP"
+                                            },
+                                            {
+                                                "children": [
+                                                    {
+                                                        "children": [
+                                                            {
+                                                                "children": [
+                                                                    {
+                                                                        "children": [],
+                                                                        "type": "BASH-OP"
+                                                                    }
+                                                                ],
+                                                                "type": "BASH-CONDITION-BINARY-OP"
+                                                            },
+                                                            {
+                                                                "children": [
+                                                                    {
+                                                                        "children": [
+                                                                            {
+                                                                                "children": [],
+                                                                                "type": "BASH-VARIABLE:opencl"
+                                                                            }
+                                                                        ],
+                                                                        "type": "BASH-DOUBLE-QUOTED"
+                                                                    }
+                                                                ],
+                                                                "type": "BASH-CONDITION-BINARY-LHS"
+                                                            },
+                                                            {
+                                                                "children": [
+                                                                    {
+                                                                        "children": [],
+                                                                        "type": "BASH-SINGLE-QUOTED"
+                                                                    }
+                                                                ],
+                                                                "type": "BASH-CONDITION-BINARY-RHS"
+                                                            }
+                                                        ],
+                                                        "type": "BASH-CONDITION-BINARY"
+                                                    }
+                                                ],
+                                                "type": "BASH-CONDITION-EXP"
+                                            }
+                                        ],
+                                        "type": "BASH-CONDITION"
+                                    }
+                                ],
+                                "type": "BASH-IF-CONDITION"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [],
+                                                "type": "SC-APT-GET-F-YES"
+                                            },
+                                            {
+                                                "children": [],
+                                                "type": "SC-APT-GET-F-ALLOW-DOWNGRADES"
+                                            },
+                                            {
+                                                "children": [],
+                                                "type": "SC-APT-GET-F-ALLOW-REMOVE-ESSENTIAL"
+                                            },
+                                            {
+                                                "children": [],
+                                                "type": "SC-APT-GET-F-ALLOW-CHANGE-HELD-PACKAGES"
+                                            },
+                                            {
+                                                "children": [
+                                                    {
+                                                        "children": [],
+                                                        "type": "SC-APT-GET-PACKAGE:OPENCL-HEADERS"
+                                                    },
+                                                    {
+                                                        "children": [],
+                                                        "type": "SC-APT-GET-PACKAGE:OCL-ICD-OPENCL-DEV"
+                                                    },
+                                                    {
+                                                        "children": [],
+                                                        "type": "SC-APT-GET-PACKAGE:LIBPOCL-DEV"
+                                                    }
+                                                ],
+                                                "type": "SC-APT-GET-PACKAGES"
+                                            }
+                                        ],
+                                        "type": "SC-APT-GET-INSTALL"
+                                    }
+                                ],
+                                "type": "BASH-IF-THEN"
+                            },
+                            {
+                                "children": [],
+                                "type": "BASH-IF-ELSE"
+                            }
+                        ],
+                        "type": "BASH-IF-EXPRESSION"
+                    }
+                ],
+                "type": "BASH-SCRIPT"
+            }
+        ],
+        "type": "DOCKER-RUN"
+    },
+    {
+        "children": [
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "type": "BASH-VARIABLE:git_branch"
+                                    }
+                                ],
+                                "type": "SC-GIT-BRANCH"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [
+                                                    {
+                                                        "type": "ABS-PROBABLY-URL",
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "type": "ABS-URL-PROTOCOL-HTTPS",
+                                                        "children": []
+                                                    }
+                                                ],
+                                                "type": "BASH-LITERAL"
+                                            },
+                                            {
+                                                "children": [],
+                                                "type": "BASH-VARIABLE:git_slug"
+                                            },
+                                            {
+                                                "children": [],
+                                                "type": "BASH-LITERAL"
+                                            }
+                                        ],
+                                        "type": "BASH-CONCAT"
+                                    }
+                                ],
+                                "type": "SC-GIT-URL"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "type": "ABS-MAYBE-PATH",
+                                                "children": []
+                                            },
+                                            {
+                                                "type": "ABS-PATH-ABSOLUTE",
+                                                "children": []
+                                            }
+                                        ],
+                                        "type": "BASH-LITERAL"
+                                    }
+                                ],
+                                "type": "SC-GIT-DIRECTORY"
+                            }
+                        ],
+                        "type": "SC-GIT-CLONE"
+                    }
+                ],
+                "type": "BASH-SCRIPT"
+            }
+        ],
+        "type": "DOCKER-RUN"
+    },
+    {
+        "children": [
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "type": "ABS-MAYBE-PATH",
+                                                "children": []
+                                            },
+                                            {
+                                                "type": "ABS-PATH-ABSOLUTE",
+                                                "children": []
+                                            }
+                                        ],
+                                        "type": "BASH-LITERAL"
+                                    }
+                                ],
+                                "type": "SC-CD-PATH"
+                            }
+                        ],
+                        "type": "SC-CD"
+                    },
+                    {
+                        "children": [
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [
+                                                    {
+                                                        "children": [
+                                                            {
+                                                                "children": [],
+                                                                "type": "BASH-LITERAL"
+                                                            }
+                                                        ],
+                                                        "type": "SC-CMAKE-D"
+                                                    },
+                                                    {
+                                                        "children": [
+                                                            {
+                                                                "children": [],
+                                                                "type": "BASH-LITERAL"
+                                                            }
+                                                        ],
+                                                        "type": "SC-CMAKE-D"
+                                                    },
+                                                    {
+                                                        "children": [
+                                                            {
+                                                                "children": [],
+                                                                "type": "BASH-LITERAL"
+                                                            }
+                                                        ],
+                                                        "type": "SC-CMAKE-D"
+                                                    },
+                                                    {
+                                                        "children": [
+                                                            {
+                                                                "children": [],
+                                                                "type": "BASH-LITERAL"
+                                                            }
+                                                        ],
+                                                        "type": "SC-CMAKE-D"
+                                                    }
+                                                ],
+                                                "type": "SC-CMAKE-DS"
+                                            },
+                                            {
+                                                "children": [
+                                                    {
+                                                        "children": [
+                                                            {
+                                                                "type": "ABS-MAYBE-PATH",
+                                                                "children": []
+                                                            }
+                                                        ],
+                                                        "type": "BASH-LITERAL"
+                                                    }
+                                                ],
+                                                "type": "SC-CMAKE-PATHTOSOURCEORBUILD"
+                                            }
+                                        ],
+                                        "type": "SC-CMAKE"
+                                    }
+                                ],
+                                "type": "BASH-AND-MEM"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [
+                                                    {
+                                                        "children": [
+                                                            {
+                                                                "type": "ABS-SINGLE-SPACE",
+                                                                "children": []
+                                                            }
+                                                        ],
+                                                        "type": "BASH-LITERAL"
+                                                    }
+                                                ],
+                                                "type": "SC-MAKE-JOBS"
+                                            }
+                                        ],
+                                        "type": "SC-MAKE"
+                                    }
+                                ],
+                                "type": "BASH-AND-MEM"
+                            }
+                        ],
+                        "type": "BASH-AND-IF"
+                    }
+                ],
+                "type": "BASH-SCRIPT"
+            }
+        ],
+        "type": "DOCKER-RUN"
+    },
+    {
+        "children": [
+            {
+                "children": [
+                    {
+                        "type": "ABS-SINGLE-SPACE",
+                        "children": []
+                    }
+                ],
+                "type": "DOCKER-CMD-ARG"
+            }
+        ],
+        "type": "DOCKER-CMD"
+    }
+]

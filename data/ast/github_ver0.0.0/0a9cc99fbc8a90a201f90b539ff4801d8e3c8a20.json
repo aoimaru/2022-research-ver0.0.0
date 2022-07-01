@@ -1,0 +1,136 @@
+[
+    {
+        "children": [
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-NAME:aarch64-alpine"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-REPO:balenalib"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-TAG:3.5-run"
+            }
+        ],
+        "type": "DOCKER-FROM"
+    },
+    {
+        "children": [
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [],
+                                                "type": "SC-APK-F-UPDATE"
+                                            },
+                                            {
+                                                "children": [
+                                                    {
+                                                        "children": [],
+                                                        "type": "SC-APK-PACKAGE:LESS"
+                                                    },
+                                                    {
+                                                        "children": [],
+                                                        "type": "SC-APK-PACKAGE:NANO"
+                                                    },
+                                                    {
+                                                        "children": [],
+                                                        "type": "SC-APK-PACKAGE:NET-TOOLS"
+                                                    },
+                                                    {
+                                                        "children": [],
+                                                        "type": "SC-APK-PACKAGE:IFUPDOWN"
+                                                    },
+                                                    {
+                                                        "children": [],
+                                                        "type": "SC-APK-PACKAGE:USBUTILS"
+                                                    },
+                                                    {
+                                                        "children": [],
+                                                        "type": "SC-APK-PACKAGE:GNUPG"
+                                                    }
+                                                ],
+                                                "type": "SC-APK-PACKAGES"
+                                            }
+                                        ],
+                                        "type": "SC-APK-ADD"
+                                    }
+                                ],
+                                "type": "BASH-AND-MEM"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [],
+                                                "type": "SC-RM-F-RECURSIVE"
+                                            },
+                                            {
+                                                "children": [],
+                                                "type": "SC-RM-F-FORCE"
+                                            },
+                                            {
+                                                "children": [
+                                                    {
+                                                        "children": [
+                                                            {
+                                                                "children": [
+                                                                    {
+                                                                        "children": [
+                                                                            {
+                                                                                "type": "ABS-MAYBE-PATH",
+                                                                                "children": []
+                                                                            },
+                                                                            {
+                                                                                "type": "ABS-PATH-VAR",
+                                                                                "children": []
+                                                                            },
+                                                                            {
+                                                                                "type": "ABS-PATH-ABSOLUTE",
+                                                                                "children": []
+                                                                            }
+                                                                        ],
+                                                                        "type": "BASH-LITERAL"
+                                                                    },
+                                                                    {
+                                                                        "children": [
+                                                                            {
+                                                                                "type": "ABS-GLOB-STAR",
+                                                                                "children": []
+                                                                            }
+                                                                        ],
+                                                                        "type": "BASH-GLOB"
+                                                                    }
+                                                                ],
+                                                                "type": "BASH-CONCAT"
+                                                            }
+                                                        ],
+                                                        "type": "SC-RM-PATH"
+                                                    }
+                                                ],
+                                                "type": "SC-RM-PATHS"
+                                            }
+                                        ],
+                                        "type": "SC-RM"
+                                    }
+                                ],
+                                "type": "BASH-AND-MEM"
+                            }
+                        ],
+                        "type": "BASH-AND-IF"
+                    }
+                ],
+                "type": "BASH-SCRIPT"
+            }
+        ],
+        "type": "DOCKER-RUN"
+    }
+]

@@ -1,0 +1,19 @@
+[
+    {
+        "children": [
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-NAME:logstash-oss"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-REPO:docker.elastic.co"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-TAG:6.1.1"
+            }
+        ],
+        "type": "DOCKER-FROM"
+    }
+]

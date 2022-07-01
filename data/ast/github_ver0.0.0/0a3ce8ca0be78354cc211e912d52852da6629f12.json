@@ -1,0 +1,19 @@
+[
+    {
+        "children": [
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-NAME:alertmanager"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-REPO:prom"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-TAG:v0.5.1"
+            }
+        ],
+        "type": "DOCKER-FROM"
+    }
+]

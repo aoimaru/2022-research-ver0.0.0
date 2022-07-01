@@ -1,0 +1,165 @@
+[
+    {
+        "children": [
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-NAME:centos"
+            }
+        ],
+        "type": "DOCKER-FROM"
+    },
+    {
+        "children": [
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "children": [],
+                                "type": "SC-YUM-F-ASSUMEYES"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "type": "SC-YUM-PACKAGE:NET-TOOLS"
+                                    },
+                                    {
+                                        "children": [],
+                                        "type": "SC-YUM-PACKAGE:PWGEN"
+                                    },
+                                    {
+                                        "children": [],
+                                        "type": "SC-YUM-PACKAGE:WGET"
+                                    },
+                                    {
+                                        "children": [],
+                                        "type": "SC-YUM-PACKAGE:CURL"
+                                    },
+                                    {
+                                        "children": [],
+                                        "type": "SC-YUM-PACKAGE:TAR"
+                                    },
+                                    {
+                                        "children": [],
+                                        "type": "SC-YUM-PACKAGE:UNZIP"
+                                    },
+                                    {
+                                        "children": [],
+                                        "type": "SC-YUM-PACKAGE:MLOCATE"
+                                    },
+                                    {
+                                        "children": [],
+                                        "type": "SC-YUM-PACKAGE:LOGROTATE"
+                                    }
+                                ],
+                                "type": "SC-YUM-PACKAGES"
+                            }
+                        ],
+                        "type": "SC-YUM-INSTALL"
+                    }
+                ],
+                "type": "BASH-SCRIPT"
+            }
+        ],
+        "type": "DOCKER-RUN"
+    },
+    {
+        "children": [
+            {
+                "children": [
+                    {
+                        "children": [],
+                        "type": "UNKNOWN"
+                    }
+                ],
+                "type": "BASH-SCRIPT"
+            }
+        ],
+        "type": "DOCKER-RUN"
+    },
+    {
+        "children": [
+            {
+                "children": [
+                    {
+                        "children": [],
+                        "type": "UNKNOWN"
+                    }
+                ],
+                "type": "BASH-SCRIPT"
+            }
+        ],
+        "type": "DOCKER-RUN"
+    },
+    {
+        "children": [
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "children": [],
+                                "type": "SC-YUM-F-ASSUMEYES"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "type": "SC-YUM-PACKAGE:ERLANG"
+                                    }
+                                ],
+                                "type": "SC-YUM-PACKAGES"
+                            }
+                        ],
+                        "type": "SC-YUM-INSTALL"
+                    }
+                ],
+                "type": "BASH-SCRIPT"
+            }
+        ],
+        "type": "DOCKER-RUN"
+    },
+    {
+        "children": [
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "children": [],
+                                "type": "SC-YUM-F-ASSUMEYES"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "type": "SC-YUM-PACKAGE:HTTP://WWW.RABBITMQ.COM/RELEASES/RABBITMQ-SERVER/V3.5.6/RABBITMQ-SERVER-3.5.6-1.NOARCH.RPM"
+                                    }
+                                ],
+                                "type": "SC-YUM-PACKAGES"
+                            }
+                        ],
+                        "type": "SC-YUM-INSTALL"
+                    }
+                ],
+                "type": "BASH-SCRIPT"
+            }
+        ],
+        "type": "DOCKER-RUN"
+    },
+    {
+        "children": [
+            {
+                "children": [
+                    {
+                        "children": [],
+                        "type": "UNKNOWN"
+                    }
+                ],
+                "type": "BASH-SCRIPT"
+            }
+        ],
+        "type": "DOCKER-RUN"
+    }
+]

@@ -1,0 +1,19 @@
+[
+    {
+        "children": [
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-NAME:hyperkube"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-REPO:quay.io"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-TAG:v1.4.0-beta.10_coreos.0"
+            }
+        ],
+        "type": "DOCKER-FROM"
+    }
+]

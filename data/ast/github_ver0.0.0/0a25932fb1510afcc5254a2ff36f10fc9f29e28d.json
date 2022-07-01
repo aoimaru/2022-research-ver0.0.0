@@ -1,0 +1,191 @@
+[
+    {
+        "children": [
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-NAME:fedora"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-TAG:26"
+            }
+        ],
+        "type": "DOCKER-FROM"
+    },
+    {
+        "children": [
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [],
+                                                "type": "SC-DNF-F-ASSUMEYES"
+                                            }
+                                        ],
+                                        "type": "SC-DNF-UPGRADE"
+                                    }
+                                ],
+                                "type": "BASH-OR-MEM"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "type": "SC-TRUE"
+                                    }
+                                ],
+                                "type": "BASH-OR-MEM"
+                            }
+                        ],
+                        "type": "BASH-OR-IF"
+                    }
+                ],
+                "type": "BASH-SCRIPT"
+            }
+        ],
+        "type": "DOCKER-RUN"
+    },
+    {
+        "children": [
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "children": [],
+                                "type": "SC-DNF-F-ASSUMEYES"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "type": "SC-DNF-PACKAGE:GCC"
+                                    },
+                                    {
+                                        "children": [],
+                                        "type": "SC-DNF-PACKAGE:LIBMSEED"
+                                    },
+                                    {
+                                        "children": [],
+                                        "type": "SC-DNF-PACKAGE:LIBMSEED-DEVEL"
+                                    },
+                                    {
+                                        "children": [],
+                                        "type": "SC-DNF-PACKAGE:NUMPY"
+                                    },
+                                    {
+                                        "children": [],
+                                        "type": "SC-DNF-PACKAGE:PYSHP"
+                                    },
+                                    {
+                                        "children": [],
+                                        "type": "SC-DNF-PACKAGE:PYTHON-GEOGRAPHICLIB"
+                                    },
+                                    {
+                                        "children": [],
+                                        "type": "SC-DNF-PACKAGE:PYTHON-BASEMAP"
+                                    },
+                                    {
+                                        "children": [],
+                                        "type": "SC-DNF-PACKAGE:PYTHON-BASEMAP-DATA"
+                                    },
+                                    {
+                                        "children": [],
+                                        "type": "SC-DNF-PACKAGE:PYTHON-DECORATOR"
+                                    },
+                                    {
+                                        "children": [],
+                                        "type": "SC-DNF-PACKAGE:PYTHON-FUTURE"
+                                    },
+                                    {
+                                        "children": [],
+                                        "type": "SC-DNF-PACKAGE:PYTHON-LXML"
+                                    },
+                                    {
+                                        "children": [],
+                                        "type": "SC-DNF-PACKAGE:PYTHON-MATPLOTLIB"
+                                    },
+                                    {
+                                        "children": [],
+                                        "type": "SC-DNF-PACKAGE:PYTHON-MOCK"
+                                    },
+                                    {
+                                        "children": [],
+                                        "type": "SC-DNF-PACKAGE:PYTHON-PIP"
+                                    },
+                                    {
+                                        "children": [],
+                                        "type": "SC-DNF-PACKAGE:PYTHON-REQUESTS"
+                                    },
+                                    {
+                                        "children": [],
+                                        "type": "SC-DNF-PACKAGE:PYTHON-SQLALCHEMY"
+                                    },
+                                    {
+                                        "children": [],
+                                        "type": "SC-DNF-PACKAGE:PYTHON-TORNADO"
+                                    },
+                                    {
+                                        "children": [],
+                                        "type": "SC-DNF-PACKAGE:REDHAT-RPM-CONFIG"
+                                    },
+                                    {
+                                        "children": [],
+                                        "type": "SC-DNF-PACKAGE:SCIPY"
+                                    }
+                                ],
+                                "type": "SC-DNF-PACKAGES"
+                            }
+                        ],
+                        "type": "SC-DNF-INSTALL"
+                    }
+                ],
+                "type": "BASH-SCRIPT"
+            }
+        ],
+        "type": "DOCKER-RUN"
+    },
+    {
+        "children": [
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [
+                                                    {
+                                                        "type": "ABS-PROBABLY-URL",
+                                                        "children": []
+                                                    },
+                                                    {
+                                                        "type": "ABS-URL-PROTOCOL-HTTPS",
+                                                        "children": []
+                                                    }
+                                                ],
+                                                "type": "BASH-LITERAL"
+                                            }
+                                        ],
+                                        "type": "SC-PIP-TARGET"
+                                    }
+                                ],
+                                "type": "SC-PIP-TARGETS"
+                            }
+                        ],
+                        "type": "SC-PIP-INSTALL"
+                    }
+                ],
+                "type": "BASH-SCRIPT"
+            }
+        ],
+        "type": "DOCKER-RUN"
+    }
+]

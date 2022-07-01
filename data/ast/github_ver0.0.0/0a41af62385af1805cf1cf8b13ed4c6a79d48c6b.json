@@ -1,0 +1,19 @@
+[
+    {
+        "children": [
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-NAME:cert-manager-controller"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-REPO:quay.io"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-TAG:master-4719"
+            }
+        ],
+        "type": "DOCKER-FROM"
+    }
+]

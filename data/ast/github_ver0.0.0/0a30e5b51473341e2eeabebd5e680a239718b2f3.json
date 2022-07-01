@@ -1,0 +1,19 @@
+[
+    {
+        "children": [
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-NAME:php"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-REPO:ambientum"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-TAG:7.2-nginx"
+            }
+        ],
+        "type": "DOCKER-FROM"
+    }
+]

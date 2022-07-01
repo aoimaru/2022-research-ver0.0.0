@@ -1,0 +1,208 @@
+[
+    {
+        "children": [
+            {
+                "children": [],
+                "type": "DOCKER-NAME:FROM_TAG"
+            }
+        ],
+        "type": "DOCKER-ARG"
+    },
+    {
+        "children": [
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-NAME:espnet"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-REPO:espnet"
+            },
+            {
+                "children": [],
+                "type": "DOCKER-IMAGE-TAG:${FROM_TAG}"
+            }
+        ],
+        "type": "DOCKER-FROM"
+    },
+    {
+        "children": [
+            {
+                "children": [],
+                "type": "DOCKER-NAME:THIS_USER"
+            }
+        ],
+        "type": "DOCKER-ARG"
+    },
+    {
+        "children": [
+            {
+                "children": [],
+                "type": "DOCKER-NAME:THIS_UID"
+            }
+        ],
+        "type": "DOCKER-ARG"
+    },
+    {
+        "children": [
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [
+                                                    {
+                                                        "children": [],
+                                                        "type": "BASH-OP"
+                                                    }
+                                                ],
+                                                "type": "BASH-CONDITION-OP"
+                                            },
+                                            {
+                                                "children": [
+                                                    {
+                                                        "children": [
+                                                            {
+                                                                "children": [
+                                                                    {
+                                                                        "children": [],
+                                                                        "type": "BASH-OP"
+                                                                    }
+                                                                ],
+                                                                "type": "BASH-CONDITION-UNARY-OP"
+                                                            },
+                                                            {
+                                                                "children": [
+                                                                    {
+                                                                        "children": [
+                                                                            {
+                                                                                "children": [
+                                                                                    {
+                                                                                        "children": [],
+                                                                                        "type": "BASH-OP"
+                                                                                    }
+                                                                                ],
+                                                                                "type": "BASH-CONDITION-UNARY-OP"
+                                                                            },
+                                                                            {
+                                                                                "children": [
+                                                                                    {
+                                                                                        "children": [
+                                                                                            {
+                                                                                                "children": [],
+                                                                                                "type": "BASH-VARIABLE:THIS_UID"
+                                                                                            }
+                                                                                        ],
+                                                                                        "type": "BASH-DOUBLE-QUOTED"
+                                                                                    }
+                                                                                ],
+                                                                                "type": "BASH-CONDITION-UNARY-EXP"
+                                                                            }
+                                                                        ],
+                                                                        "type": "BASH-CONDITION-UNARY"
+                                                                    }
+                                                                ],
+                                                                "type": "BASH-CONDITION-UNARY-EXP"
+                                                            }
+                                                        ],
+                                                        "type": "BASH-CONDITION-UNARY"
+                                                    }
+                                                ],
+                                                "type": "BASH-CONDITION-EXP"
+                                            }
+                                        ],
+                                        "type": "BASH-CONDITION"
+                                    }
+                                ],
+                                "type": "BASH-IF-CONDITION"
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [],
+                                                "type": "SC-USER-ADD-F-CREATE-HOME"
+                                            },
+                                            {
+                                                "children": [],
+                                                "type": "SC-USER-ADD-F-SYSTEM"
+                                            },
+                                            {
+                                                "children": [
+                                                    {
+                                                        "children": [],
+                                                        "type": "BASH-VARIABLE:THIS_UID"
+                                                    }
+                                                ],
+                                                "type": "SC-USER-ADD-UID"
+                                            },
+                                            {
+                                                "children": [
+                                                    {
+                                                        "children": [],
+                                                        "type": "BASH-LITERAL"
+                                                    }
+                                                ],
+                                                "type": "SC-USER-ADD-GID"
+                                            },
+                                            {
+                                                "children": [
+                                                    {
+                                                        "children": [],
+                                                        "type": "BASH-VARIABLE:THIS_USER"
+                                                    }
+                                                ],
+                                                "type": "SC-USER-ADD-LOGIN"
+                                            }
+                                        ],
+                                        "type": "SC-USER-ADD"
+                                    }
+                                ],
+                                "type": "BASH-IF-THEN"
+                            },
+                            {
+                                "children": [],
+                                "type": "BASH-IF-ELSE"
+                            }
+                        ],
+                        "type": "BASH-IF-EXPRESSION"
+                    }
+                ],
+                "type": "BASH-SCRIPT"
+            }
+        ],
+        "type": "DOCKER-RUN"
+    },
+    {
+        "children": [
+            {
+                "children": [],
+                "type": "DOCKER-LITERAL"
+            }
+        ],
+        "type": "DOCKER-USER"
+    },
+    {
+        "children": [
+            {
+                "children": [
+                    {
+                        "type": "ABS-MAYBE-PATH",
+                        "children": []
+                    },
+                    {
+                        "type": "ABS-PATH-ABSOLUTE",
+                        "children": []
+                    }
+                ],
+                "type": "DOCKER-PATH"
+            }
+        ],
+        "type": "DOCKER-WORKDIR"
+    }
+]
