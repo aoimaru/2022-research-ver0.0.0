@@ -75,6 +75,31 @@ class SampleDataVer001(SampleData):
                         sample_data.append(sequence)
                 
         return sample_data
+
+class SampleDataVer002(SampleData):
+    @staticmethod
+    def get(run):
+        file_shas = MetaData.get_github_ver001_path()
+        sample_data = list()
+        for file_sha in file_shas:
+            try:
+                ast_obj = SampleAST(file_sha)
+            except Exception as e:
+                print(e)
+            else:
+                if run == 1:
+                    for child in ast_obj.children:
+                        if not child["type"] == "DOCKER-RUN":
+                            continue
+                        sequence = Recursive.do(child)
+                        sequence = [word[2:] for word in sequence]
+                        sample_data.append(sequence)
+                else:
+                    for child in ast_obj.children:
+                        sequence = Recursive.do(child)
+                        sample_data.append(sequence)
+                
+        return sample_data
         
 
 
