@@ -6,6 +6,8 @@
 
     研究内容
     - パッチの作成とかどう?
+    - ベクトルがDockerfileからのパターンの検出に有効か
+    - どう工夫すれば, 精度を上げることができるか
 
     limit: 0.9
     /Users/nakamurahekikai/Desktop/2022-research-ver0.0.0/2022-research-ver0.0.0/word2vec_done_ver0.0.4.py:90: RuntimeWarning: invalid value encountered in double_scalars
