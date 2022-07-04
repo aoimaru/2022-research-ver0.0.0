@@ -23,6 +23,39 @@ def _test_0():
     test_cases = training_data[23]
     for test_case in test_cases:
         print(test_case)
+    
+    test_cases = training_data[24]
+    for test_case in test_cases:
+        print(test_case)
+
+    test_cases = training_data[25]
+    for test_case in test_cases:
+        print(test_case)
+    
+    test_cases = training_data[26]
+    for test_case in test_cases:
+        print(test_case)
+    
+    test_cases = training_data[27]
+    for test_case in test_cases:
+        print(test_case)
+
+    test_cases = training_data[28]
+    for test_case in test_cases:
+        print(test_case)
+    
+    test_cases = training_data[29]
+    for test_case in test_cases:
+        print(test_case)
+    
+    test_cases = training_data[30]
+    for test_case in test_cases:
+        print(test_case)
+
+    test_cases = training_data[31]
+    for test_case in test_cases:
+        print(test_case)
+    
 
 
 def _test_1():
@@ -39,78 +72,78 @@ def _test_1():
                 ['SC-APT-GET-INSTALL', 'SC-APT-GET-PACKAGES', 'SC-APT-GET-PACKAGE:FILE'],
                 ['SC-APT-GET-INSTALL', 'SC-APT-GET-PACKAGES', 'SC-APT-GET-PACKAGE'],
                 ['SC-APT-GET-INSTALL', 'SC-APT-GET-PACKAGES', 'SC-APT-GET-PACKAGE:GCC'],
-                # ['SC-APT-GET-INSTALL',
-                # 'SC-APT-GET-PACKAGES',
-                # 'SC-APT-GET-PACKAGE:IMAGEMAGICK'],
-                # ['SC-APT-GET-INSTALL', 'SC-APT-GET-PACKAGES', 'SC-APT-GET-PACKAGE:LIBBZ2-DEV'],
-                # ['SC-APT-GET-INSTALL', 'SC-APT-GET-PACKAGES', 'SC-APT-GET-PACKAGE:LIBC6-DEV'],
-                # ['SC-APT-GET-INSTALL',
-                # 'SC-APT-GET-PACKAGES',
-                # 'SC-APT-GET-PACKAGE:LIBCURL4-OPENSSL-DEV'],
-                # ['SC-APT-GET-INSTALL', 'SC-APT-GET-PACKAGES', 'SC-APT-GET-PACKAGE:LIBDB-DEV'],
-                # ['SC-APT-GET-INSTALL',
-                # 'SC-APT-GET-PACKAGES',
-                # 'SC-APT-GET-PACKAGE:LIBEVENT-DEV'],
-                # ['SC-APT-GET-INSTALL', 'SC-APT-GET-PACKAGES', 'SC-APT-GET-PACKAGE:LIBFFI-DEV'],
-                # ['SC-APT-GET-INSTALL',
-                # 'SC-APT-GET-PACKAGES',
-                # 'SC-APT-GET-PACKAGE:LIBGDBM-DEV'],
-                # ['SC-APT-GET-INSTALL',
-                # 'SC-APT-GET-PACKAGES',
-                # 'SC-APT-GET-PACKAGE:LIBGEOIP-DEV'],
-                # ['SC-APT-GET-INSTALL',
-                # 'SC-APT-GET-PACKAGES',
-                # 'SC-APT-GET-PACKAGE:LIBGLIB2.0-DEV'],
-                # ['SC-APT-GET-INSTALL', 'SC-APT-GET-PACKAGES', 'SC-APT-GET-PACKAGE:LIBGMP-DEV'],
-                # ['SC-APT-GET-INSTALL',
-                # 'SC-APT-GET-PACKAGES',
-                # 'SC-APT-GET-PACKAGE:LIBJPEG-DEV'],
-                # ['SC-APT-GET-INSTALL',
-                # 'SC-APT-GET-PACKAGES',
-                # 'SC-APT-GET-PACKAGE:LIBKRB5-DEV'],
-                # ['SC-APT-GET-INSTALL',
-                # 'SC-APT-GET-PACKAGES',
-                # 'SC-APT-GET-PACKAGE:LIBLZMA-DEV'],
-                # ['SC-APT-GET-INSTALL',
-                # 'SC-APT-GET-PACKAGES',
-                # 'SC-APT-GET-PACKAGE:LIBMAGICKCORE-DEV'],
-                # ['SC-APT-GET-INSTALL',
-                # 'SC-APT-GET-PACKAGES',
-                # 'SC-APT-GET-PACKAGE:LIBMAGICKWAND-DEV'],
-                # ['SC-APT-GET-INSTALL',
-                # 'SC-APT-GET-PACKAGES',
-                # 'SC-APT-GET-PACKAGE:LIBNCURSES5-DEV'],
-                # ['SC-APT-GET-INSTALL',
-                # 'SC-APT-GET-PACKAGES',
-                # 'SC-APT-GET-PACKAGE:LIBNCURSESW5-DEV'],
-                # ['SC-APT-GET-INSTALL', 'SC-APT-GET-PACKAGES', 'SC-APT-GET-PACKAGE:LIBPNG-DEV'],
-                # ['SC-APT-GET-INSTALL', 'SC-APT-GET-PACKAGES', 'SC-APT-GET-PACKAGE:LIBPQ-DEV'],
-                # ['SC-APT-GET-INSTALL',
-                # 'SC-APT-GET-PACKAGES',
-                # 'SC-APT-GET-PACKAGE:LIBREADLINE-DEV'],
-                # ['SC-APT-GET-INSTALL',
-                # 'SC-APT-GET-PACKAGES',
-                # 'SC-APT-GET-PACKAGE:LIBSQLITE3-DEV'],
-                # ['SC-APT-GET-INSTALL', 'SC-APT-GET-PACKAGES', 'SC-APT-GET-PACKAGE:LIBSSL-DEV'],
-                # ['SC-APT-GET-INSTALL', 'SC-APT-GET-PACKAGES', 'SC-APT-GET-PACKAGE:LIBTOOL'],
-                # ['SC-APT-GET-INSTALL',
-                # 'SC-APT-GET-PACKAGES',
-                # 'SC-APT-GET-PACKAGE:LIBWEBP-DEV'],
-                # ['SC-APT-GET-INSTALL',
-                # 'SC-APT-GET-PACKAGES',
-                # 'SC-APT-GET-PACKAGE:LIBXML2-DEV'],
-                # ['SC-APT-GET-INSTALL',
-                # 'SC-APT-GET-PACKAGES',
-                # 'SC-APT-GET-PACKAGE:LIBXSLT-DEV'],
-                # ['SC-APT-GET-INSTALL',
-                # 'SC-APT-GET-PACKAGES',
-                # 'SC-APT-GET-PACKAGE:LIBYAML-DEV'],
-                # ['SC-APT-GET-INSTALL', 'SC-APT-GET-PACKAGES', 'SC-APT-GET-PACKAGE:MAKE'],
-                # ['SC-APT-GET-INSTALL', 'SC-APT-GET-PACKAGES', 'SC-APT-GET-PACKAGE:PATCH'],
-                # ['SC-APT-GET-INSTALL', 'SC-APT-GET-PACKAGES', 'SC-APT-GET-PACKAGE:UNZIP'],
-                # ['SC-APT-GET-INSTALL', 'SC-APT-GET-PACKAGES', 'SC-APT-GET-PACKAGE:XZ-UTILS'],
-                # ['SC-APT-GET-INSTALL', 'SC-APT-GET-PACKAGES', 'SC-APT-GET-PACKAGE:ZLIB1G-DEV'],
-                # ['SC-APT-GET-INSTALL', 'SC-APT-GET-PACKAGES', 'SC-APT-GET-PACKAGE'],
+                ['SC-APT-GET-INSTALL',
+                'SC-APT-GET-PACKAGES',
+                'SC-APT-GET-PACKAGE:IMAGEMAGICK'],
+                ['SC-APT-GET-INSTALL', 'SC-APT-GET-PACKAGES', 'SC-APT-GET-PACKAGE:LIBBZ2-DEV'],
+                ['SC-APT-GET-INSTALL', 'SC-APT-GET-PACKAGES', 'SC-APT-GET-PACKAGE:LIBC6-DEV'],
+                ['SC-APT-GET-INSTALL',
+                'SC-APT-GET-PACKAGES',
+                'SC-APT-GET-PACKAGE:LIBCURL4-OPENSSL-DEV'],
+                ['SC-APT-GET-INSTALL', 'SC-APT-GET-PACKAGES', 'SC-APT-GET-PACKAGE:LIBDB-DEV'],
+                ['SC-APT-GET-INSTALL',
+                'SC-APT-GET-PACKAGES',
+                'SC-APT-GET-PACKAGE:LIBEVENT-DEV'],
+                ['SC-APT-GET-INSTALL', 'SC-APT-GET-PACKAGES', 'SC-APT-GET-PACKAGE:LIBFFI-DEV'],
+                ['SC-APT-GET-INSTALL',
+                'SC-APT-GET-PACKAGES',
+                'SC-APT-GET-PACKAGE:LIBGDBM-DEV'],
+                ['SC-APT-GET-INSTALL',
+                'SC-APT-GET-PACKAGES',
+                'SC-APT-GET-PACKAGE:LIBGEOIP-DEV'],
+                ['SC-APT-GET-INSTALL',
+                'SC-APT-GET-PACKAGES',
+                'SC-APT-GET-PACKAGE:LIBGLIB2.0-DEV'],
+                ['SC-APT-GET-INSTALL', 'SC-APT-GET-PACKAGES', 'SC-APT-GET-PACKAGE:LIBGMP-DEV'],
+                ['SC-APT-GET-INSTALL',
+                'SC-APT-GET-PACKAGES',
+                'SC-APT-GET-PACKAGE:LIBJPEG-DEV'],
+                ['SC-APT-GET-INSTALL',
+                'SC-APT-GET-PACKAGES',
+                'SC-APT-GET-PACKAGE:LIBKRB5-DEV'],
+                ['SC-APT-GET-INSTALL',
+                'SC-APT-GET-PACKAGES',
+                'SC-APT-GET-PACKAGE:LIBLZMA-DEV'],
+                ['SC-APT-GET-INSTALL',
+                'SC-APT-GET-PACKAGES',
+                'SC-APT-GET-PACKAGE:LIBMAGICKCORE-DEV'],
+                ['SC-APT-GET-INSTALL',
+                'SC-APT-GET-PACKAGES',
+                'SC-APT-GET-PACKAGE:LIBMAGICKWAND-DEV'],
+                ['SC-APT-GET-INSTALL',
+                'SC-APT-GET-PACKAGES',
+                'SC-APT-GET-PACKAGE:LIBNCURSES5-DEV'],
+                ['SC-APT-GET-INSTALL',
+                'SC-APT-GET-PACKAGES',
+                'SC-APT-GET-PACKAGE:LIBNCURSESW5-DEV'],
+                ['SC-APT-GET-INSTALL', 'SC-APT-GET-PACKAGES', 'SC-APT-GET-PACKAGE:LIBPNG-DEV'],
+                ['SC-APT-GET-INSTALL', 'SC-APT-GET-PACKAGES', 'SC-APT-GET-PACKAGE:LIBPQ-DEV'],
+                ['SC-APT-GET-INSTALL',
+                'SC-APT-GET-PACKAGES',
+                'SC-APT-GET-PACKAGE:LIBREADLINE-DEV'],
+                ['SC-APT-GET-INSTALL',
+                'SC-APT-GET-PACKAGES',
+                'SC-APT-GET-PACKAGE:LIBSQLITE3-DEV'],
+                ['SC-APT-GET-INSTALL', 'SC-APT-GET-PACKAGES', 'SC-APT-GET-PACKAGE:LIBSSL-DEV'],
+                ['SC-APT-GET-INSTALL', 'SC-APT-GET-PACKAGES', 'SC-APT-GET-PACKAGE:LIBTOOL'],
+                ['SC-APT-GET-INSTALL',
+                'SC-APT-GET-PACKAGES',
+                'SC-APT-GET-PACKAGE:LIBWEBP-DEV'],
+                ['SC-APT-GET-INSTALL',
+                'SC-APT-GET-PACKAGES',
+                'SC-APT-GET-PACKAGE:LIBXML2-DEV'],
+                ['SC-APT-GET-INSTALL',
+                'SC-APT-GET-PACKAGES',
+                'SC-APT-GET-PACKAGE:LIBXSLT-DEV'],
+                ['SC-APT-GET-INSTALL',
+                'SC-APT-GET-PACKAGES',
+                'SC-APT-GET-PACKAGE:LIBYAML-DEV'],
+                ['SC-APT-GET-INSTALL', 'SC-APT-GET-PACKAGES', 'SC-APT-GET-PACKAGE:MAKE'],
+                ['SC-APT-GET-INSTALL', 'SC-APT-GET-PACKAGES', 'SC-APT-GET-PACKAGE:PATCH'],
+                ['SC-APT-GET-INSTALL', 'SC-APT-GET-PACKAGES', 'SC-APT-GET-PACKAGE:UNZIP'],
+                ['SC-APT-GET-INSTALL', 'SC-APT-GET-PACKAGES', 'SC-APT-GET-PACKAGE:XZ-UTILS'],
+                ['SC-APT-GET-INSTALL', 'SC-APT-GET-PACKAGES', 'SC-APT-GET-PACKAGE:ZLIB1G-DEV'],
+                ['SC-APT-GET-INSTALL', 'SC-APT-GET-PACKAGES', 'SC-APT-GET-PACKAGE'],
                 ['SC-RM', 'SC-RM-F-RECURSIVE'],
                 ['SC-RM', 'SC-RM-F-FORCE'],
                 ['SC-RM',
@@ -157,12 +190,13 @@ def _test_1():
         except Exception as e:
             pritn(e)
         else:
-            if result > 0.5:
+            if result > 0.8:
                 # print("result:", result)
                 # pprint.pprint(gold_case)
                 flag_0 = 0
                 flag_1 = 0
                 flag_2 = 0
+                flag_3 = 0
                 for comp in gold_case:
                     if 'SC-APT-GET-INSTALL' in comp:
                         flag_0 = 1
@@ -170,7 +204,9 @@ def _test_1():
                         flag_1 = 1
                     if 'SC-APT-GET-UPDATE' in comp:
                         flag_2 = 1
-                if flag_0==1 and flag_1==1 and flag_2==1:
+                    if 'SC-APT-GET-F-YES' in comp:
+                        flag_3 = 1
+                if flag_0==1 and flag_1==1 and flag_2==1 and flag_3==1:
                     pprint.pprint(gold_case)
                     count += 1
     print(count)
@@ -229,7 +265,7 @@ def _test_3():
 
 
 def main():    
-    _test_1()
+    _test_0()
 
 
 

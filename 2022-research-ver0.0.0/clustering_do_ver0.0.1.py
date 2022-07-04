@@ -5,14 +5,6 @@ from libs.word2vecs import *
 from functions.functions import *
 from libs.vectors import *
 
-# from collections import defaultdict
-# from gensim.models.keyedvectors import KeyedVectors
-# from sklearn.cluster import KMeans
-
-
-# import matplotlib.pyplot as plt
-# from matplotlib.font_manager import FontProperties
-# from sklearn.decomposition import PCA
 
 from libs.configs import Config
 from libs.parameters import Parameter
