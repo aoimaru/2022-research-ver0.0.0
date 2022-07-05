@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 from gensim.models import word2vec
 
 from libs.configs import Config
+from libs.exceptions import *
 
 MODEL_PATH = Config.ROOT_PATH + "/data/model"
 
@@ -33,5 +34,9 @@ class BaseW2V(W2V):
     @staticmethod
     def load(sg=1, size=100, min_count=100, window=5, name="github", run=0):
         model_path = "{}/{}/sg-{}.size-{}.min_count-{}.window-{}.run-{}.model".format(MODEL_PATH, name, sg, size, min_count, window, run)
-        return word2vec.Word2Vec.load(model_path)
-
+        try:
+            model = word2vec.Word2Vec.load(model_path)
+        except Exception as e:
+            raise BaseException from e
+        else:
+            return model
