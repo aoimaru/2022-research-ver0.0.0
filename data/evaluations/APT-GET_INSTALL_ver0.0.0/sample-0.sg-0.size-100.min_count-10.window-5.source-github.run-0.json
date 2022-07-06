@@ -1,0 +1,90 @@
+[
+    {
+        "limit": 0.9,
+        "positive": 0,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.85,
+        "positive": 0,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.8,
+        "positive": 0,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.75,
+        "positive": 0,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.7,
+        "positive": 1,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0.0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.6,
+        "positive": 21,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0.0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.5,
+        "positive": 292,
+        "true_positive": 28,
+        "recall": 0.6222222222222222,
+        "precition": 0.0958904109589041,
+        "f_measure": 0.16617210682492584
+    },
+    {
+        "limit": 0.4,
+        "positive": 840,
+        "true_positive": 45,
+        "recall": 1.0,
+        "precition": 0.05357142857142857,
+        "f_measure": 0.10169491525423728
+    },
+    {
+        "limit": 0.3,
+        "positive": 1126,
+        "true_positive": 45,
+        "recall": 1.0,
+        "precition": 0.03996447602131439,
+        "f_measure": 0.07685738684884713
+    },
+    {
+        "limit": 0.2,
+        "positive": 1234,
+        "true_positive": 45,
+        "recall": 1.0,
+        "precition": 0.03646677471636953,
+        "f_measure": 0.07036747458952305
+    },
+    {
+        "limit": 0.1,
+        "positive": 1268,
+        "true_positive": 45,
+        "recall": 1.0,
+        "precition": 0.03548895899053628,
+        "f_measure": 0.06854531607006854
+    }
+]

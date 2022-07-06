@@ -20,39 +20,63 @@ gold_cases = SampleDataVer001.get(run=1)
 model = BaseW2V.load(sg=1, size=100, min_count=10, window=5, name="gold", run=1)
 
 def _test_0():
+    print()
     test_cases = training_data[23]
     for test_case in test_cases:
         print(test_case)
     
+    print()
     test_cases = training_data[24]
     for test_case in test_cases:
         print(test_case)
 
+    print()
     test_cases = training_data[25]
     for test_case in test_cases:
         print(test_case)
     
+    print()
     test_cases = training_data[26]
     for test_case in test_cases:
         print(test_case)
     
+    print()
     test_cases = training_data[27]
     for test_case in test_cases:
         print(test_case)
 
+    print()
     test_cases = training_data[28]
     for test_case in test_cases:
         print(test_case)
     
+    print()
     test_cases = training_data[29]
     for test_case in test_cases:
         print(test_case)
     
+    print()
     test_cases = training_data[30]
     for test_case in test_cases:
         print(test_case)
 
+    print()
     test_cases = training_data[31]
+    for test_case in test_cases:
+        print(test_case)
+    
+    print()
+    test_cases = training_data[32]
+    for test_case in test_cases:
+        print(test_case)
+    
+    print()
+    test_cases = training_data[33]
+    for test_case in test_cases:
+        print(test_case)
+    
+    print()
+    test_cases = training_data[34]
     for test_case in test_cases:
         print(test_case)
     
@@ -262,10 +286,19 @@ def _test_3():
     print(count)
         
 
-
+def _test_4():
+    for test_cases in training_data:
+        flag = 0
+        for test_case in test_cases:
+            if 'SC-GPG' in test_case:
+                flag = 1
+        if flag == 1:
+            print()
+            for test_case in test_cases:
+                print(test_case)
 
 def main():    
-    _test_0()
+    _test_4()
 
 
 

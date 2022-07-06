@@ -1,0 +1,90 @@
+[
+    {
+        "limit": 0.9,
+        "positive": 0,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.85,
+        "positive": 0,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.8,
+        "positive": 0,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.75,
+        "positive": 1,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0.0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.7,
+        "positive": 33,
+        "true_positive": 14,
+        "recall": 0.3111111111111111,
+        "precition": 0.42424242424242425,
+        "f_measure": 0.3589743589743589
+    },
+    {
+        "limit": 0.6,
+        "positive": 205,
+        "true_positive": 26,
+        "recall": 0.5777777777777777,
+        "precition": 0.12682926829268293,
+        "f_measure": 0.208
+    },
+    {
+        "limit": 0.5,
+        "positive": 512,
+        "true_positive": 41,
+        "recall": 0.9111111111111111,
+        "precition": 0.080078125,
+        "f_measure": 0.14721723518850988
+    },
+    {
+        "limit": 0.4,
+        "positive": 983,
+        "true_positive": 45,
+        "recall": 1.0,
+        "precition": 0.04577822990844354,
+        "f_measure": 0.08754863813229573
+    },
+    {
+        "limit": 0.3,
+        "positive": 1155,
+        "true_positive": 45,
+        "recall": 1.0,
+        "precition": 0.03896103896103896,
+        "f_measure": 0.07500000000000001
+    },
+    {
+        "limit": 0.2,
+        "positive": 1224,
+        "true_positive": 45,
+        "recall": 1.0,
+        "precition": 0.03676470588235294,
+        "f_measure": 0.07092198581560283
+    },
+    {
+        "limit": 0.1,
+        "positive": 1265,
+        "true_positive": 45,
+        "recall": 1.0,
+        "precition": 0.03557312252964427,
+        "f_measure": 0.06870229007633588
+    }
+]
