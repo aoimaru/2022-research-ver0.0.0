@@ -29,6 +29,7 @@ def main(args):
     # pprint.pprint(test_obj)
     parameters = Parameter.get("word2vec_done_ver0.1.0.json", args.version)
     for parameter in parameters:
+        print(parameter)
         try:
             model = BaseW2V.load(
                 sg=parameter["sg"], 
@@ -47,6 +48,7 @@ def main(args):
             ]
             evaluations = list()
             for limit in limits:
+                print("limit:", limit)
                 evaluation = Evaluation.do(
                     requires=test_obj["requires"], 
                     model=model,
@@ -56,6 +58,7 @@ def main(args):
                     limit=limit,
                     size=parameter["size"]
                 )
+                pprint.pprint(evaluation)
                 evaluations.append(evaluation)
             Evaluation.to_file(
                 parameter=parameter,
