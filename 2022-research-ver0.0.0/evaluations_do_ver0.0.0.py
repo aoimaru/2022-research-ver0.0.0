@@ -31,6 +31,7 @@ def _test_0():
 def _test_1(args):
     RESULT_PATH = Config.ROOT_PATH + "/data/evaluations/APT-GET_INSTALL_ver0.1.0"
     parameters = Parameter.get("word2vec_done_ver0.1.0.json", args.version)
+    result = dict()
     for parameter in parameters:
         pprint.pprint(parameter)
         file_path = "{result_path}/sample-0.sg-{sg}.size-{size}.min_count-{min_count}.window-{window}.source-{source}.run-{run}.json".format(
@@ -42,13 +43,17 @@ def _test_1(args):
             window=parameter["window"], 
             run=1
         )
-        with open(file_path, mode="r") as f:
-            datas = json.load(f)
-        basename = os.path.basename(file_path)
-        basename = basename.replace(".json", "")
-        for data in datas:
-            if data["limit"] == 0.9:
-                result[basename] = data["f_measure"]
+        try:
+            with open(file_path, mode="r") as f:
+                datas = json.load(f)
+        except Exception as e:
+            print(e)
+        else:
+            basename = os.path.basename(file_path)
+            basename = basename.replace(".json", "")
+            for data in datas:
+                if data["limit"] == 0.9:
+                    result[basename] = data["f_measure"]
 
     outputs = sorted(result.items(), key=lambda i: i[1], reverse=True)
     # pprint.pprint(outputs)

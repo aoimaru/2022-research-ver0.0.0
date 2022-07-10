@@ -36,13 +36,15 @@
         "size": [50, 100, 150, 200, 250, 300],
         "min_count": [5],
         "source": ["gold"],
-        "window": [5]
+        "window": [5],
+        "run": [0, 1]
     },
     "size_ver0.0.1": {
         "sg": [0],
         "size": [50, 100, 150, 200, 250, 300],
         "min_count": [5],
         "source": ["github"],
-        "window": [5]
+        "window": [5],
+        "run": [0, 1]
     }
 }

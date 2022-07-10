@@ -33,6 +33,7 @@ class BaseW2V(W2V):
     
     @staticmethod
     def load(sg=1, size=100, min_count=100, window=5, name="github", run=0):
+        # print(model_path)
         model_path = "{model_path}/{source}/sg-{sg}.size-{size}.min_count-{min_count}.window-{window}.run-{run}.model".format(
             model_path=MODEL_PATH, 
             source=name, 
@@ -45,7 +46,7 @@ class BaseW2V(W2V):
         try:
             model = word2vec.Word2Vec.load(model_path)
         except Exception as e:
-            print(e)
+            # print(e)
             raise BaseException from e
         else:
             return model

@@ -22,7 +22,7 @@ from libs.evaluations import *
 
 
 def main(args):    
-    test_obj = TestCase.get("APT-GET_INSTALL_ver0.1.0.json")
+    test_obj = TestCase.get("APT-GET_INSTALL_ver0.0.0.json")
     # ここはパッチっぽい
     sample_cases = SampleDataVer001.get(run=args.sample)
     num_of_true = Evaluation.count_true(requires=test_obj["requires"], cases=sample_cases)
@@ -41,8 +41,10 @@ def main(args):
             )
         except Exception as e:
             print(e)
+            # print(e)
             continue
         else:
+            print("OK")
             limits = [
                 0.9, 0.85, 0.8, 0.75, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1
             ]
