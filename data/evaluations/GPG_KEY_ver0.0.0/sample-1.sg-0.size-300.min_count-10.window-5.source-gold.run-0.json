@@ -1,0 +1,90 @@
+[
+    {
+        "limit": 0.9,
+        "positive": 0,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.85,
+        "positive": 0,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.8,
+        "positive": 24,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0.0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.75,
+        "positive": 94,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0.0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.7,
+        "positive": 139,
+        "true_positive": 2,
+        "recall": 0.1111111111111111,
+        "precition": 0.014388489208633094,
+        "f_measure": 0.025477707006369428
+    },
+    {
+        "limit": 0.6,
+        "positive": 452,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.03982300884955752,
+        "f_measure": 0.07659574468085106
+    },
+    {
+        "limit": 0.5,
+        "positive": 624,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.028846153846153848,
+        "f_measure": 0.05607476635514019
+    },
+    {
+        "limit": 0.4,
+        "positive": 883,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.020385050962627407,
+        "f_measure": 0.03995560488346282
+    },
+    {
+        "limit": 0.3,
+        "positive": 1044,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.017241379310344827,
+        "f_measure": 0.03389830508474576
+    },
+    {
+        "limit": 0.2,
+        "positive": 1115,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.016143497757847534,
+        "f_measure": 0.03177405119152692
+    },
+    {
+        "limit": 0.1,
+        "positive": 1206,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.014925373134328358,
+        "f_measure": 0.029411764705882353
+    }
+]

@@ -1,0 +1,90 @@
+[
+    {
+        "limit": 0.9,
+        "positive": 0,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.85,
+        "positive": 0,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.8,
+        "positive": 0,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.75,
+        "positive": 0,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.7,
+        "positive": 38,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0.0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.6,
+        "positive": 141,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.1276595744680851,
+        "f_measure": 0.22641509433962262
+    },
+    {
+        "limit": 0.5,
+        "positive": 353,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.05099150141643059,
+        "f_measure": 0.09703504043126684
+    },
+    {
+        "limit": 0.4,
+        "positive": 551,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.032667876588021776,
+        "f_measure": 0.0632688927943761
+    },
+    {
+        "limit": 0.3,
+        "positive": 719,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.025034770514603615,
+        "f_measure": 0.04884667571234735
+    },
+    {
+        "limit": 0.2,
+        "positive": 1005,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.01791044776119403,
+        "f_measure": 0.03519061583577713
+    },
+    {
+        "limit": 0.1,
+        "positive": 1058,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.017013232514177693,
+        "f_measure": 0.033457249070631974
+    }
+]

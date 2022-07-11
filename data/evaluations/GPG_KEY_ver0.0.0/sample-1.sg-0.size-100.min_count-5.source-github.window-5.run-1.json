@@ -1,0 +1,90 @@
+[
+    {
+        "limit": 0.9,
+        "positive": 0,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.85,
+        "positive": 0,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.8,
+        "positive": 0,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.75,
+        "positive": 0,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.7,
+        "positive": 12,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0.0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.6,
+        "positive": 112,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.16071428571428573,
+        "f_measure": 0.27692307692307694
+    },
+    {
+        "limit": 0.5,
+        "positive": 334,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.05389221556886228,
+        "f_measure": 0.10227272727272727
+    },
+    {
+        "limit": 0.4,
+        "positive": 542,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.033210332103321034,
+        "f_measure": 0.0642857142857143
+    },
+    {
+        "limit": 0.3,
+        "positive": 691,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.02604920405209841,
+        "f_measure": 0.050775740479548664
+    },
+    {
+        "limit": 0.2,
+        "positive": 970,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.018556701030927835,
+        "f_measure": 0.03643724696356276
+    },
+    {
+        "limit": 0.1,
+        "positive": 1052,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.017110266159695818,
+        "f_measure": 0.03364485981308411
+    }
+]

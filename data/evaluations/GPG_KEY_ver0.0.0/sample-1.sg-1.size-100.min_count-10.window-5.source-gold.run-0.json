@@ -1,0 +1,90 @@
+[
+    {
+        "limit": 0.9,
+        "positive": 11,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0.0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.85,
+        "positive": 105,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0.0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.8,
+        "positive": 253,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.07114624505928854,
+        "f_measure": 0.13284132841328414
+    },
+    {
+        "limit": 0.75,
+        "positive": 394,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.04568527918781726,
+        "f_measure": 0.08737864077669902
+    },
+    {
+        "limit": 0.7,
+        "positive": 800,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.0225,
+        "f_measure": 0.044009779951100246
+    },
+    {
+        "limit": 0.6,
+        "positive": 953,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.01888772298006296,
+        "f_measure": 0.037075180226570546
+    },
+    {
+        "limit": 0.5,
+        "positive": 1086,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.016574585635359115,
+        "f_measure": 0.03260869565217391
+    },
+    {
+        "limit": 0.4,
+        "positive": 1172,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.015358361774744027,
+        "f_measure": 0.030252100840336138
+    },
+    {
+        "limit": 0.3,
+        "positive": 1245,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.014457831325301205,
+        "f_measure": 0.028503562945368172
+    },
+    {
+        "limit": 0.2,
+        "positive": 1245,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.014457831325301205,
+        "f_measure": 0.028503562945368172
+    },
+    {
+        "limit": 0.1,
+        "positive": 1245,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.014457831325301205,
+        "f_measure": 0.028503562945368172
+    }
+]

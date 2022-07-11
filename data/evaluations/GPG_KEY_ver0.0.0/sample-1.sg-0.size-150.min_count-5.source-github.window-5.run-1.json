@@ -1,0 +1,90 @@
+[
+    {
+        "limit": 0.9,
+        "positive": 0,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.85,
+        "positive": 0,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.8,
+        "positive": 0,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.75,
+        "positive": 0,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.7,
+        "positive": 11,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0.0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.6,
+        "positive": 129,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.13953488372093023,
+        "f_measure": 0.24489795918367346
+    },
+    {
+        "limit": 0.5,
+        "positive": 358,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.05027932960893855,
+        "f_measure": 0.09574468085106383
+    },
+    {
+        "limit": 0.4,
+        "positive": 548,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.032846715328467155,
+        "f_measure": 0.06360424028268552
+    },
+    {
+        "limit": 0.3,
+        "positive": 717,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.02510460251046025,
+        "f_measure": 0.0489795918367347
+    },
+    {
+        "limit": 0.2,
+        "positive": 988,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.018218623481781375,
+        "f_measure": 0.03578528827037773
+    },
+    {
+        "limit": 0.1,
+        "positive": 1050,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.017142857142857144,
+        "f_measure": 0.033707865168539325
+    }
+]

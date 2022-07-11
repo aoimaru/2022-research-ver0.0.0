@@ -9,7 +9,7 @@ import pprint
 
 
 def main(args):
-    parameters = Parameter.get("word2vec_do_ver0.1.0.json", args.version)
+    parameters = Parameter.get("word2vec_done_ver0.1.0.json", args.version)
     training_data = TrainingData.get(args.source, args.run)
     for parameter in parameters:
         print(parameter)

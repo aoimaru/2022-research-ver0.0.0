@@ -1,0 +1,90 @@
+[
+    {
+        "limit": 0.9,
+        "positive": 0,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.85,
+        "positive": 0,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.8,
+        "positive": 0,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.75,
+        "positive": 0,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.7,
+        "positive": 14,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0.0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.6,
+        "positive": 116,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.15517241379310345,
+        "f_measure": 0.26865671641791045
+    },
+    {
+        "limit": 0.5,
+        "positive": 333,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.05405405405405406,
+        "f_measure": 0.10256410256410257
+    },
+    {
+        "limit": 0.4,
+        "positive": 541,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.033271719038817,
+        "f_measure": 0.06440071556350625
+    },
+    {
+        "limit": 0.3,
+        "positive": 1703,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.010569583088667059,
+        "f_measure": 0.020918070889018016
+    },
+    {
+        "limit": 0.2,
+        "positive": 2071,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.008691453404152583,
+        "f_measure": 0.017233125897558637
+    },
+    {
+        "limit": 0.1,
+        "positive": 2133,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.008438818565400843,
+        "f_measure": 0.01673640167364017
+    }
+]
