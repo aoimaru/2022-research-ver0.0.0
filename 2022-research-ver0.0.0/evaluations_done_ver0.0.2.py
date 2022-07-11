@@ -29,9 +29,9 @@ def _test_0(args):
             try:
                 datas = json.load(f)
             except Exception as e:
-                print( )
+                print(e)
             else:
-                print(file_name)
+                pprint.pprint(datas)
 
 
 def main(args):

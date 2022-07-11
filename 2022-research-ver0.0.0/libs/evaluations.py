@@ -97,9 +97,17 @@ class Evaluation(object):
     @staticmethod
     def to_file(parameter, evaluations, sample, folder):
         file_name = "sample-{}.".format(sample)
-        for key, value in parameter.items():
-            file_name += "{}-{}.".format(key, value)
-        file_name = file_name + "json"
+        # for key, value in parameter.items():
+        #     file_name += "{}-{}.".format(key, value)
+        file_name = "sample-{sample}.sg-{sg}.size-{size}.min_count-{min_count}.window-{window}.source-{source}.run-{run}.json".format(
+            sample=sample,
+            sg=parameter["sg"],
+            size=parameter["size"],
+            min_count=parameter["min_count"],
+            window=parameter["window"],
+            source=parameter["source"],
+            run=parameter["run"]
+        )
         file_path = EVALUATION_PATH+folder+"/"+file_name
         with open(file_path, mode="w") as f:
             json.dump(evaluations, f, ensure_ascii=False, indent=4)

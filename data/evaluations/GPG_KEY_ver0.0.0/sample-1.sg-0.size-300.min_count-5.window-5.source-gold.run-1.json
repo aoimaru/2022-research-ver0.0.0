@@ -1,0 +1,90 @@
+[
+    {
+        "limit": 0.9,
+        "positive": 0,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.85,
+        "positive": 9,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0.0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.8,
+        "positive": 84,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0.0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.75,
+        "positive": 114,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0.0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.7,
+        "positive": 200,
+        "true_positive": 16,
+        "recall": 0.8888888888888888,
+        "precition": 0.08,
+        "f_measure": 0.14678899082568808
+    },
+    {
+        "limit": 0.6,
+        "positive": 504,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.03571428571428571,
+        "f_measure": 0.0689655172413793
+    },
+    {
+        "limit": 0.5,
+        "positive": 749,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.02403204272363151,
+        "f_measure": 0.0469361147327249
+    },
+    {
+        "limit": 0.4,
+        "positive": 967,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.01861427094105481,
+        "f_measure": 0.03654822335025381
+    },
+    {
+        "limit": 0.3,
+        "positive": 1049,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.017159199237368923,
+        "f_measure": 0.03373945641986879
+    },
+    {
+        "limit": 0.2,
+        "positive": 1085,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.016589861751152075,
+        "f_measure": 0.032638259292837715
+    },
+    {
+        "limit": 0.1,
+        "positive": 1195,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.01506276150627615,
+        "f_measure": 0.029678483099752677
+    }
+]

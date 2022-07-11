@@ -1,0 +1,90 @@
+[
+    {
+        "limit": 0.9,
+        "positive": 0,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.85,
+        "positive": 14,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0.0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.8,
+        "positive": 88,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0.0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.75,
+        "positive": 112,
+        "true_positive": 0,
+        "recall": 0.0,
+        "precition": 0.0,
+        "f_measure": 0
+    },
+    {
+        "limit": 0.7,
+        "positive": 204,
+        "true_positive": 16,
+        "recall": 0.8888888888888888,
+        "precition": 0.0784313725490196,
+        "f_measure": 0.14414414414414414
+    },
+    {
+        "limit": 0.6,
+        "positive": 534,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.033707865168539325,
+        "f_measure": 0.06521739130434782
+    },
+    {
+        "limit": 0.5,
+        "positive": 763,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.023591087811271297,
+        "f_measure": 0.046094750320102434
+    },
+    {
+        "limit": 0.4,
+        "positive": 983,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.018311291963377416,
+        "f_measure": 0.03596403596403596
+    },
+    {
+        "limit": 0.3,
+        "positive": 1056,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.017045454545454544,
+        "f_measure": 0.0335195530726257
+    },
+    {
+        "limit": 0.2,
+        "positive": 1079,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.016682113067655237,
+        "f_measure": 0.032816773017319965
+    },
+    {
+        "limit": 0.1,
+        "positive": 1130,
+        "true_positive": 18,
+        "recall": 1.0,
+        "precition": 0.01592920353982301,
+        "f_measure": 0.0313588850174216
+    }
+]
