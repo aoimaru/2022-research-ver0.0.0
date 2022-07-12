@@ -22,7 +22,7 @@ from libs.evaluations import *
 
 
 def main(args):    
-    test_obj = TestCase.get("GPG_KEY_ver0.0.0.json")
+    test_obj = TestCase.get("APT-GET_INSTALL_ver0.1.0.json")
     # ここはパッチっぽい
     sample_cases = SampleDataVer001.get(run=args.sample)
     num_of_true = Evaluation.count_true(requires=test_obj["requires"], cases=sample_cases)
@@ -66,7 +66,7 @@ def main(args):
                 parameter=parameter,
                 evaluations=evaluations,
                 sample=args.sample,
-                folder="GPG_KEY_ver0.0.0"
+                folder="APT-GET_INSTALL_ver0.1.0"
             )
 
 
