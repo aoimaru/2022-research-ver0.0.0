@@ -80,14 +80,16 @@ def per_min_count(args, target):
 
 
 def main(args):
+    pass
     # per_size(args, target="APT-GET_INSTALL_ver0.0.0")
     # per_size(args, target="APT-GET_INSTALL_ver0.1.0")
     # per_size(args, target="GPG_KEY_ver0.0.0")
+    # per_size(args, target="APK_ADD_USE_NO_CACHE_ver0.0.0")
 
-    per_min_count(args, target="APT-GET_INSTALL_ver0.0.0")
-    per_min_count(args, target="APT-GET_INSTALL_ver0.1.0")
-    per_min_count(args, target="GPG_KEY_ver0.0.0")
-    
+    # per_min_count(args, target="APT-GET_INSTALL_ver0.0.0")
+    # per_min_count(args, target="APT-GET_INSTALL_ver0.1.0")
+    # per_min_count(args, target="GPG_KEY_ver0.0.0")
+    # per_min_count(args, target="APK_ADD_USE_NO_CACHE_ver0.0.0")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="word2vecで学習させる際のパラメータを指定")
