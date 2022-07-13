@@ -17,12 +17,9 @@ from libs.cases import *
 """
 
 from libs.evaluations import *
-    
-                
 
-
-def main(args):    
-    test_obj = TestCase.get("APT-GET_INSTALL_ver0.0.0.json")
+def do(args, target):    
+    test_obj = TestCase.get("{target}.json".format(target=target))
     # ここはパッチっぽい
     sample_cases = SampleDataVer001.get(run=args.sample)
     num_of_true = Evaluation.count_true(requires=test_obj["requires"], cases=sample_cases)
@@ -66,8 +63,16 @@ def main(args):
                 parameter=parameter,
                 evaluations=evaluations,
                 sample=args.sample,
-                folder="APT-GET_INSTALL_ver0.1.0"
+                folder=target
             )
+
+
+
+def main(args):
+    do(args, target="APT-GET_INSTALL_ver0.0.0")
+    do(args, target="APT-GET_INSTALL_ver0.1.0")
+    do(args, target="GPG_KEY_ver0.0.0")
+    # done()
 
 
 if __name__ == "__main__":

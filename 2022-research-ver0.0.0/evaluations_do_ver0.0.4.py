@@ -80,14 +80,6 @@ class BarChart(Chart):
             seconds = seconds*10
 
             firsts = np.array(firsts)
-            # thirds = np.array(thirds)
-            # thirds = thirds*10
-
-            # firsts = np.array(firsts)
-            # seconds = np.array(seconds)
-            # width_bar=0.2
-            # thirds_firsts=thirds-width_bar
-            # thirds_seconds=thirds+width_bar
 
             plt.title(title, fontsize=12)
             plt.xlabel("f_measure", fontsize=12)
@@ -116,7 +108,7 @@ class BarChart(Chart):
                 firsts=f_measures,
                 seconds=limits,
                 title="score by size:{}".format(key),
-                x_label="recalls",
+                x_label="f_measure",
                 y_label="presicions"
             )
         plt.show()
