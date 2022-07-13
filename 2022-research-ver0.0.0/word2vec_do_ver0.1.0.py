@@ -13,7 +13,15 @@ def main(args):
     training_data = TrainingData.get(args.source, args.run)
     for parameter in parameters:
         print(parameter)
-        BaseW2V.do(corpus=training_data, sg=parameter["sg"], size=parameter["size"], min_count=parameter["min_count"], window=parameter["window"], name=args.source, run=args.run)
+        BaseW2V.do(
+            corpus=training_data, 
+            sg=parameter["sg"], 
+            size=parameter["size"], 
+            min_count=parameter["min_count"], 
+            window=parameter["window"], 
+            name=args.source, 
+            run=args.run
+        )
 
 
 if __name__ == "__main__":
