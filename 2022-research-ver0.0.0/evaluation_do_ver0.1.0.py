@@ -43,8 +43,8 @@ def per_size(args, target):
             datas[parameter["size"]] = data
         
     
-    RPChart.draw(datas, n_high=2, n_wide=3, recognize="size", target=target)
-    FmChart.draw(datas, n_high=2, n_wide=3, recognize="size", target=target)
+    RPChart.draw(datas, n_high=2, n_wide=3, recognize="size", target=target, description="50*n")
+    FmChart.draw(datas, n_high=2, n_wide=3, recognize="size", target=target, description="50*n")
 
 def per_min_count(args, target):
     FILE_PATH = Config.ROOT_PATH+"/data/evaluations/{}/".format(target)
@@ -114,10 +114,22 @@ def main(args):
     # per_size(args, target="GPG_KEY_ver0.0.0")
     # per_size(args, target="APK_ADD_USE_NO_CACHE_ver0.0.0")
 
-    per_min_count(args, target="APT-GET_INSTALL_ver0.0.0")
-    per_min_count(args, target="APT-GET_INSTALL_ver0.1.0")
-    per_min_count(args, target="GPG_KEY_ver0.0.0")
-    per_min_count(args, target="APK_ADD_USE_NO_CACHE_ver0.0.0")
+    # per_min_count(args, target="APT-GET_INSTALL_ver0.0.0")
+    # per_min_count(args, target="APT-GET_INSTALL_ver0.1.0")
+    # per_min_count(args, target="GPG_KEY_ver0.0.0")
+    # per_min_count(args, target="APK_ADD_USE_NO_CACHE_ver0.0.0")
+
+    # per_min_count(args, target="APT-GET_INSTALL_ver0.1.1")
+    # per_min_count(args, target="APT-GET_INSTALL_ver0.2.0")
+    # per_min_count(args, target="APT-GET_INSTALL_ver0.3.0")
+    # per_min_count(args, target="APT-GET_INSTALL_ver0.4.0")
+    # per_min_count(args, target="APT-GET_INSTALL_ver0.5.0")
+
+    per_size(args, target="APT-GET_INSTALL_ver0.1.1")
+    per_size(args, target="APT-GET_INSTALL_ver0.2.0")
+    per_size(args, target="APT-GET_INSTALL_ver0.3.0")
+    per_size(args, target="APT-GET_INSTALL_ver0.4.0")
+    per_size(args, target="APT-GET_INSTALL_ver0.5.0")
 
     # per_window(args, target="APT-GET_INSTALL_ver0.0.0")
     # per_window(args, target="APT-GET_INSTALL_ver0.1.0")
