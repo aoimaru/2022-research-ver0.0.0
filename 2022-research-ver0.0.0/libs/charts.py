@@ -68,7 +68,7 @@ class RPChart(Chart):
         plt.show()
     
     @staticmethod
-    def draw(datas, n_high, n_wide, recognize, target):
+    def draw(datas, n_high, n_wide, recognize, target, description):
         def do(rcs, prs, lims, rcs_label, prs_label, title):
             rcs = np.array(rcs)
             prs = np.array(prs)
@@ -114,9 +114,10 @@ class RPChart(Chart):
                 prs_label="presicions"
             )
 
-        STORAGE_PATH = Config.ROOT_PATH+"/data/chart/{target}/{recognize}/recall_and_precision.png".format(
+        STORAGE_PATH = Config.ROOT_PATH+"/data/chart/{target}/{recognize}/recall_and_precision_{description}.png".format(
             target=target,
-            recognize=recognize
+            recognize=recognize,
+            description=description
         )
         plt.savefig(STORAGE_PATH)
     
@@ -164,7 +165,7 @@ class FmChart(Chart):
         plt.show()
 
     @staticmethod
-    def draw(datas, n_high, n_wide, recognize, target):
+    def draw(datas, n_high, n_wide, recognize, target, description):
         def do(fms, lims, fms_label, title):
             fms = np.array(fms)
             lims = np.array(lims)
@@ -202,9 +203,10 @@ class FmChart(Chart):
                 title="score by {recognize}:{key}".format(recognize=recognize, key=key),
                 fms_label="f_measure"
             )
-        STORAGE_PATH = Config.ROOT_PATH+"/data/chart/{target}/{recognize}/f_measures.png".format(
+        STORAGE_PATH = Config.ROOT_PATH+"/data/chart/{target}/{recognize}/f_measures_{description}.png".format(
             target=target,
-            recognize=recognize
+            recognize=recognize,
+            description=description
         )
         plt.savefig(STORAGE_PATH)
 

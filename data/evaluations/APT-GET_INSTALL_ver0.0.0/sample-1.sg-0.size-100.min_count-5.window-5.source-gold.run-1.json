@@ -1,11 +1,11 @@
 [
     {
         "limit": 0.9,
-        "positive": 17,
+        "positive": 16,
         "true_positive": 12,
         "recall": 0.26666666666666666,
-        "precition": 0.7058823529411765,
-        "f_measure": 0.3870967741935483
+        "precition": 0.75,
+        "f_measure": 0.3934426229508197
     },
     {
         "limit": 0.85,
@@ -17,74 +17,74 @@
     },
     {
         "limit": 0.8,
-        "positive": 73,
+        "positive": 71,
         "true_positive": 27,
         "recall": 0.6,
-        "precition": 0.3698630136986301,
-        "f_measure": 0.45762711864406774
+        "precition": 0.38028169014084506,
+        "f_measure": 0.4655172413793103
     },
     {
         "limit": 0.75,
-        "positive": 90,
-        "true_positive": 30,
-        "recall": 0.6666666666666666,
-        "precition": 0.3333333333333333,
-        "f_measure": 0.4444444444444444
+        "positive": 88,
+        "true_positive": 29,
+        "recall": 0.6444444444444445,
+        "precition": 0.32954545454545453,
+        "f_measure": 0.4360902255639098
     },
     {
         "limit": 0.7,
-        "positive": 108,
-        "true_positive": 40,
-        "recall": 0.8888888888888888,
-        "precition": 0.37037037037037035,
-        "f_measure": 0.5228758169934641
+        "positive": 100,
+        "true_positive": 32,
+        "recall": 0.7111111111111111,
+        "precition": 0.32,
+        "f_measure": 0.44137931034482764
     },
     {
         "limit": 0.6,
-        "positive": 266,
-        "true_positive": 43,
-        "recall": 0.9555555555555556,
-        "precition": 0.16165413533834586,
-        "f_measure": 0.27652733118971057
+        "positive": 167,
+        "true_positive": 41,
+        "recall": 0.9111111111111111,
+        "precition": 0.24550898203592814,
+        "f_measure": 0.3867924528301887
     },
     {
         "limit": 0.5,
-        "positive": 406,
+        "positive": 404,
         "true_positive": 45,
         "recall": 1.0,
-        "precition": 0.11083743842364532,
-        "f_measure": 0.19955654101995568
+        "precition": 0.11138613861386139,
+        "f_measure": 0.20044543429844097
     },
     {
         "limit": 0.4,
-        "positive": 581,
+        "positive": 683,
         "true_positive": 45,
         "recall": 1.0,
-        "precition": 0.0774526678141136,
-        "f_measure": 0.14376996805111822
+        "precition": 0.06588579795021962,
+        "f_measure": 0.12362637362637363
     },
     {
         "limit": 0.3,
-        "positive": 879,
+        "positive": 877,
         "true_positive": 45,
         "recall": 1.0,
-        "precition": 0.051194539249146756,
-        "f_measure": 0.0974025974025974
+        "precition": 0.05131128848346636,
+        "f_measure": 0.09761388286334056
     },
     {
         "limit": 0.2,
-        "positive": 1044,
+        "positive": 1034,
         "true_positive": 45,
         "recall": 1.0,
-        "precition": 0.04310344827586207,
-        "f_measure": 0.08264462809917356
+        "precition": 0.043520309477756286,
+        "f_measure": 0.08341056533827618
     },
     {
         "limit": 0.1,
-        "positive": 1098,
+        "positive": 1096,
         "true_positive": 45,
         "recall": 1.0,
-        "precition": 0.040983606557377046,
-        "f_measure": 0.07874015748031496
+        "precition": 0.04105839416058394,
+        "f_measure": 0.07887817703768624
     }
 ]

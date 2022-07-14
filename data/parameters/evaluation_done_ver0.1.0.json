@@ -70,6 +70,21 @@
         "source": ["gold"],
         "window": [5],
         "run": [1]
+    },
+    "min_count_ver0.0.1": {
+        "sg": [0],
+        "size": [100],
+        "min_count": [20, 40, 60, 80, 100],
+        "source": ["gold"],
+        "window": [5],
+        "run": [1]
+    },
+    "window_ver0.0.0": {
+        "sg": [0],
+        "size": [100],
+        "min_count": [5],
+        "source": ["gold"],
+        "window": [5, 10, 15, 20],
+        "run": [1]
     }
-
 }
