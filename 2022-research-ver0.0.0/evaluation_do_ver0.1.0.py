@@ -48,7 +48,7 @@ def per_size(args, target):
 
 def per_min_count(args, target):
     FILE_PATH = Config.ROOT_PATH+"/data/evaluations/{}/".format(target)
-    parameters = Parameter.get("evaluation_done_ver0.1.0.json", "min_count_ver0.0.1")
+    parameters = Parameter.get("evaluation_done_ver0.1.0.json", "size_ver0.0.2")
     datas = dict()
     for parameter in parameters:
         file_name = "sample-{sample}.sg-{sg}.size-{size}.min_count-{min_count}.window-{window}.source-{source}.run-{run}.json".format(
