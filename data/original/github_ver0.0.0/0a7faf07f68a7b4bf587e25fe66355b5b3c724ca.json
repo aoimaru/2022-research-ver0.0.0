@@ -1,0 +1,77 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "jetson-tx1-fedora",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-REPO",
+                "value": "balenalib",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "26-build",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "NODE_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "12.4.0",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "YARN_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "1.15.2",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "for key in \t6A010C5166006599AA17F08146C2130DFD2497F5 \t; do \t\tgpg --keyserver pgp.mit.edu --recv-keys \"$key\" || \t\tgpg --keyserver keyserver.pgp.com --recv-keys \"$key\" || \t\tgpg --keyserver ha.pool.sks-keyservers.net --recv-keys \"$key\" ; \tdone \t&& curl -SLO \"http://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-arm64.tar.gz\" \t&& echo \"312a7942f5fbd0aa83d6e624a06681275db2cb3c3eeaf3e452ad04aac17b6de5  node-v$NODE_VERSION-linux-arm64.tar.gz\" | sha256sum -c - \t&& tar -xzf \"node-v$NODE_VERSION-linux-arm64.tar.gz\" -C /usr/local --strip-components=1 \t&& rm \"node-v$NODE_VERSION-linux-arm64.tar.gz\" \t&& curl -fSLO --compressed \"https://yarnpkg.com/downloads/$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz\" \t&& curl -fSLO --compressed \"https://yarnpkg.com/downloads/$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz.asc\" \t&& gpg --batch --verify yarn-v$YARN_VERSION.tar.gz.asc yarn-v$YARN_VERSION.tar.gz \t&& mkdir -p /opt/yarn \t&& tar -xzf yarn-v$YARN_VERSION.tar.gz -C /opt/yarn --strip-components=1 \t&& ln -s /opt/yarn/bin/yarn /usr/local/bin/yarn \t&& ln -s /opt/yarn/bin/yarn /usr/local/bin/yarnpkg \t&& rm yarn-v$YARN_VERSION.tar.gz.asc yarn-v$YARN_VERSION.tar.gz \t&& npm config set unsafe-perm true -g --unsafe-perm \t&& rm -rf /tmp/*",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-CMD",
+        "children": [
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "echo",
+                "children": []
+            },
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "'No CMD command was set in Dockerfile! Details about CMD command could be found in Dockerfile Guide section in our Docs. Here's the link: https://balena.io/docs",
+                "children": []
+            }
+        ]
+    }
+]

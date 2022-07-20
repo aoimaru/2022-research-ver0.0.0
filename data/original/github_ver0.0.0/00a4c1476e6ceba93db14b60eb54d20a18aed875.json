@@ -1,0 +1,52 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "ruby-dependencies",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-REPO",
+                "value": "gewo",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "APP_RUBY_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "2.1.1",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "rvm install ruby-${APP_RUBY_VERSION} --default",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-CMD",
+        "children": [
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "/bin/bash",
+                "children": []
+            }
+        ]
+    }
+]

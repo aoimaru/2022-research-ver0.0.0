@@ -1,0 +1,407 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "golang",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "1.11",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "LD_LIBRARY_PATH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/usr/lib/oracle/18.3/client64/lib",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apt-get -qq update && apt-get install --no-install-recommends -qq libaio1 rpm",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/usr/share/pkgconfig",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "oci8.pc",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "*.rpm",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "rpm -Uvh --nodeps /oracle-instantclient*.x86_64.rpm && rm /*.rpm",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "echo $LD_LIBRARY_PATH >> /etc/ld.so.conf.d/oracle.conf && ldconfig",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/go/src/oracledb_exporter",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": ".",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": ".",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "go get -d -v",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ARG",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "VERSION",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "${VERSION:-0.1.0}",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "PKG_CONFIG_PATH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/go/src/oracledb_exporter",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "GOOS",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "linux",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "go build -v -ldflags \"-X main.Version=${VERSION} -s -w\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "ubuntu",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "18.04",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "${VERSION:-0.1.0}",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "oracle-instantclient*basic*.rpm",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apt-get -qq update &&     apt-get -qq install --no-install-recommends -qq libaio1 rpm -y && rpm -Uvh --nodeps /oracle*rpm &&     rm -f /oracle*rpm",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "LD_LIBRARY_PATH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/usr/lib/oracle/18.3/client64/lib",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "echo $LD_LIBRARY_PATH >> /etc/ld.so.conf.d/oracle.conf && ldconfig",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/oracledb_exporter",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/go/src/oracledb_exporter/oracledb_exporter",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ADD",
+        "children": [
+            {
+                "type": "DOCKER-ADD-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/default-metrics.toml",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-ADD-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "./default-metrics.toml",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "DATA_SOURCE_NAME",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "system/oracle@oracle/xe",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "chmod 755 /oracledb_exporter",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-EXPOSE",
+        "children": [
+            {
+                "type": "DOCKER-PORT",
+                "value": "9161",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENTRYPOINT",
+        "children": [
+            {
+                "type": "DOCKER-ENTRYPOINT-EXECUTABLE",
+                "value": "/oracledb_exporter",
+                "children": []
+            }
+        ]
+    }
+]

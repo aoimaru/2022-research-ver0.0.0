@@ -1,0 +1,42 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "postgres",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "9.4.21-alpine",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "POSTGRES_DB",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "circle_test",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "if [ -e /usr/local/share/postgresql/postgresql.conf.sample ]; then         postgresfile=/usr/local/share/postgresql/postgresql.conf.sample;     else         postgresfile=/usr/share/postgresql/postgresql.conf.sample;     fi &&     echo fsync=off >> $postgresfile &&    echo synchronous_commit=off >> $postgresfile &&    echo full_page_writes=off >> $postgresfile &&    echo bgwriter_lru_maxpages=0 >> $postgresfile",
+                "children": []
+            }
+        ]
+    }
+]

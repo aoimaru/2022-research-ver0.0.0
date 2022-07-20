@@ -1,0 +1,67 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "buildpack-deps",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "stretch-curl",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "FILENAME",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"jdk-7u45-linux-x64.tar.gz\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "JAVA_HOME",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"/opt/jdk\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -ex     && mkdir -p ${JAVA_HOME}     && cd ${JAVA_HOME}     && wget -qO- http://api.vulhub.org/download/jdk/7/${FILENAME} | tar xz --strip-components=1     && update-alternatives --install /usr/bin/java java /opt/jdk/bin/java 100     && update-alternatives --install /usr/bin/javac javac /opt/jdk/bin/javac 100",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "${JAVA_HOME}",
+                "children": []
+            }
+        ]
+    }
+]

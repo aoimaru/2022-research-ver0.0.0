@@ -1,0 +1,112 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "ubuntu",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "artful",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apt-get update -y && apt-get install -y --no-install-recommends     ant     autoconf     build-essential     cmake     curl     gdb     gdbserver     git     libczmq-dev     libgtest-dev     libminizip-dev     libtool-bin     libzmq3-dev     ninja-build     openjdk-8-jdk     pkg-config     python-dev     python2.7     python-pip     python3-pip     python3-setuptools     rsync     unzip     uuid-dev     wget     zlib1g-dev",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apt-get install -y --no-install-recommends     automake",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "pip3 install wheel",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "pip3 install -Iv https://github.com/mesonbuild/meson/releases/download/0.47.0/meson-0.47.0.tar.gz",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/UxAS/Installation/InstallLibraries/",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "./",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "ContainerScriptsAndFiles/InstallLibraries/*",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "chmod -R +x .     && python3 ./00_InstallDependencies.py NO_SUDO",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/UxAS",
+                "children": []
+            }
+        ]
+    }
+]

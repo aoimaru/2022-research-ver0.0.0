@@ -1,0 +1,212 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "centos",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "7",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "yum -y update",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "yum install -y httpd httpd-devel gcc libtool wget ea-apache24-devel make",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "wget https://archive.apache.org/dist/tomcat/tomcat-connectors/jk/tomcat-connectors-1.2.44-src.tar.gz -O /tmp/jk.tar.gz",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "tar xvf /tmp/jk.tar.gz -C /tmp/",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/tmp/tomcat-connectors-1.2.44-src/native",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "./configure -with-apxs=/usr/bin/apxs",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "make",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "mv apache-2.0/mod_jk.so /etc/httpd/modules/mod_jk.so",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ADD",
+        "children": [
+            {
+                "type": "DOCKER-ADD-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/etc/httpd/conf/httpd.conf",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-ADD-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "cnf/httpd.conf",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ADD",
+        "children": [
+            {
+                "type": "DOCKER-ADD-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/etc/httpd/conf.modules.d/00-base.conf",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-ADD-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "cnf/00-base.conf",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ADD",
+        "children": [
+            {
+                "type": "DOCKER-ADD-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/etc/httpd/conf.d/mod-jk.conf",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-ADD-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "cnf/mod-jk.conf",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ADD",
+        "children": [
+            {
+                "type": "DOCKER-ADD-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/etc/httpd/conf/workers.properties",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-ADD-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "cnf/workers.properties",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-CMD",
+        "children": [
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "/usr/sbin/httpd",
+                "children": []
+            },
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "-DFOREGROUND",
+                "children": []
+            }
+        ]
+    }
+]

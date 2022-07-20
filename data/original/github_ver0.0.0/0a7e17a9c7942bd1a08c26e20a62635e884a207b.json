@@ -1,0 +1,137 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "openjdk",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "11-jdk-slim",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ADD",
+        "children": [
+            {
+                "type": "DOCKER-ADD-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/app/examples",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-ADD-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": ".",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/app",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "javac examples/*.java",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "jar cfe main.jar examples.HelloJava examples/*.class",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "java",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-REPO",
+                "value": "gcr.io",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "11",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/app",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/app",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/app",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-CMD",
+        "children": [
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "main.jar",
+                "children": []
+            }
+        ]
+    }
+]

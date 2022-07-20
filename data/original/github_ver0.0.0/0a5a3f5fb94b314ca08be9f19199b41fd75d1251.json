@@ -1,0 +1,117 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "java7",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-REPO",
+                "value": "openrasp",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "install_url",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "https://packages.baidu.com/app/apache-activemq-5.13.0-bin.tar.gz",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "cd /tmp \t&& curl \"$install_url\" -o package.tar.gz \t&& tar xf package.tar.gz \t&& rm -f package.tar.gz \t&& mv apache-activemq-* /activemq",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/root/",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "*.sh",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/activemq/conf",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "jetty.xml",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENTRYPOINT",
+        "children": [
+            {
+                "type": "DOCKER-ENTRYPOINT-EXECUTABLE",
+                "value": "/bin/bash",
+                "children": []
+            },
+            {
+                "type": "DOCKER-ENTRYPOINT-ARG",
+                "value": "/root/start.sh",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-EXPOSE",
+        "children": [
+            {
+                "type": "DOCKER-PORT",
+                "value": "80",
+                "children": []
+            }
+        ]
+    }
+]

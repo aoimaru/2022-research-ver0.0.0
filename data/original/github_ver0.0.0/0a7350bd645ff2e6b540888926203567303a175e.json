@@ -1,0 +1,67 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "sd_shutit",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-REPO",
+                "value": "imiell",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/opt",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "git clone https://github.com/ianmiell/shutit-distro.git",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/opt/shutit/library/libxml2",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "/opt/shutit/shutit build --shutit_module_path .. --delivery bash",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-CMD",
+        "children": [
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "/bin/bash",
+                "children": []
+            }
+        ]
+    }
+]

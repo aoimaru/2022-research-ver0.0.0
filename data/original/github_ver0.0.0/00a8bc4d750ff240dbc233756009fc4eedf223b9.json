@@ -1,0 +1,227 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "openjdk",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "8-jre-alpine",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "addgroup -S neo4j && adduser -S -H -h /var/lib/neo4j -G neo4j neo4j",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "NEO4J_SHA256",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "15d5e074197ad9e0c78e5284ee65994bcc9a6ac9a45c9757cbab5e58bca03cb2",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "NEO4J_TARBALL",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "neo4j-enterprise-3.3.7-unix.tar.gz",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "NEO4J_EDITION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "enterprise",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ARG",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "NEO4J_URI",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "http://dist.neo4j.org/neo4j-enterprise-3.3.7-unix.tar.gz",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/tmp/",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "./local-package/*",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apk add --no-cache --quiet     bash     curl     tini     su-exec     && curl --fail --silent --show-error --location --remote-name ${NEO4J_URI}     && echo \"${NEO4J_SHA256}  ${NEO4J_TARBALL}\" | sha256sum -csw -     && tar --extract --file ${NEO4J_TARBALL} --directory /var/lib     && mv /var/lib/neo4j-* /var/lib/neo4j     && rm ${NEO4J_TARBALL}     && mv /var/lib/neo4j/data /data     && chown -R neo4j:neo4j /data     && chmod -R 777 /data     && chown -R neo4j:neo4j /var/lib/neo4j     && chmod -R 777 /var/lib/neo4j     && ln -s /data /var/lib/neo4j/data     && apk del curl",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "PATH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/var/lib/neo4j/bin:$PATH",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/var/lib/neo4j",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-VOLUME",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/data",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/docker-entrypoint.sh",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "docker-entrypoint.sh",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-EXPOSE",
+        "children": [
+            {
+                "type": "DOCKER-PORT",
+                "value": "7474",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENTRYPOINT",
+        "children": [
+            {
+                "type": "DOCKER-ENTRYPOINT-EXECUTABLE",
+                "value": "/sbin/tini",
+                "children": []
+            },
+            {
+                "type": "DOCKER-ENTRYPOINT-ARG",
+                "value": "-g",
+                "children": []
+            },
+            {
+                "type": "DOCKER-ENTRYPOINT-ARG",
+                "value": "--",
+                "children": []
+            },
+            {
+                "type": "DOCKER-ENTRYPOINT-ARG",
+                "value": "/docker-entrypoint.sh",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-CMD",
+        "children": [
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "neo4j",
+                "children": []
+            }
+        ]
+    }
+]

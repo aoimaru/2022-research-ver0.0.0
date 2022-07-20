@@ -1,0 +1,137 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "alpine",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ARG",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "SRC_DIR",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"maven/target/go/linux-amd64\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-USER",
+        "children": [
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "998",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-EXPOSE",
+        "children": [
+            {
+                "type": "DOCKER-PORT",
+                "value": "8080",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/licenses",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "licenses",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/apicurito-ui",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "${SRC_DIR}/apicurito-ui",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-CMD",
+        "children": [
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "/apicurito-ui",
+                "children": []
+            },
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "--port",
+                "children": []
+            },
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "8080",
+                "children": []
+            },
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "--path",
+                "children": []
+            },
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "/html",
+                "children": []
+            },
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "--spa",
+                "children": []
+            },
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "--etags",
+                "children": []
+            }
+        ]
+    }
+]

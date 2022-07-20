@@ -1,0 +1,92 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "ubuntu",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "14.04",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -o xtrace     && sed -i 's,^deb-src,# no src # &,; s,http://archive.ubuntu.com/ubuntu/,mirror://mirrors.ubuntu.com/mirrors.txt,' /etc/apt/sources.list     && apt-get update     && apt-get install -y xinetd",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -o xtrace     && apt-get install -y iperf",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/etc/xinetd.d/testing",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "testing",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-CMD",
+        "children": [
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "/usr/sbin/xinetd",
+                "children": []
+            },
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "-dontfork",
+                "children": []
+            },
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "-pidfile",
+                "children": []
+            },
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "/run/xinetd.pid",
+                "children": []
+            },
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "-inetd_ipv6",
+                "children": []
+            }
+        ]
+    }
+]

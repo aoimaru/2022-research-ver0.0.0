@@ -1,0 +1,207 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "java",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "latest",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "LIQUIBASE_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"3.5.3\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "LIQUIBASE_DRIVER",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"org.postgresql.Driver\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "LIQUIBASE_CLASSPATH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"/usr/share/java/postgresql.jar\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "LIQUIBASE_URL",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "LIQUIBASE_USERNAME",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "LIQUIBASE_PASSWORD",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "LIQUIBASE_CHANGELOG",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"liquibase.xml\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "LIQUIBASE_CONTEXTS",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "LIQUIBASE_OPTS",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/opt/docker/",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "conf/",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -x     && apt-get update \t&& apt-get install -yq --no-install-recommends \t\tlibpostgresql-jdbc-java     && wget -q -O/tmp/liquibase.tar.gz \"https://github.com/liquibase/liquibase/releases/download/liquibase-parent-${LIQUIBASE_VERSION}/liquibase-${LIQUIBASE_VERSION}-bin.tar.gz\"     && mkdir -p /opt/liquibase     && tar -xzf /tmp/liquibase.tar.gz -C /opt/liquibase     && rm -f /tmp/liquibase.tar.gz     && chmod +x /opt/liquibase/liquibase     && ln -s /opt/liquibase/liquibase /usr/local/bin/     && chmod +x /opt/docker/bin/entrypoint.sh \t&& apt-get clean \t&& rm -r /var/lib/apt/lists/*     && mkdir /liquibase     && ln -sf /opt/docker/bin/entrypoint.sh /entrypoint     && apt-get autoremove -y -f     && apt-get clean -y     && rm -rf /var/lib/apt/lists/*",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/liquibase",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENTRYPOINT",
+        "children": [
+            {
+                "type": "DOCKER-ENTRYPOINT-EXECUTABLE",
+                "value": "/entrypoint",
+                "children": []
+            }
+        ]
+    }
+]

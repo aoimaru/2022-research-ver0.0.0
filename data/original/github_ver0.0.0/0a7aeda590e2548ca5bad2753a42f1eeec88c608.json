@@ -1,0 +1,182 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "ubuntu",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "latest",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "repo/",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": ".",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "repo",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apt-get update; apt-get -y install maven; apt-get -y install openjdk-8-jdk",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "mvn -DskipTests package",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/usr/src/app",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "cp /repo/target/*.jar ./app.jar",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "chown -R ${SERVICE_USER}:${SERVICE_GROUP} ./app.jar",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-USER",
+        "children": [
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "${SERVICE_USER}",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ARG",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "BUILD_DATE",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ARG",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "BUILD_VERSION",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ARG",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "COMMIT",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "JAVA_OPTS",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"-Djava.security.egd=file:/dev/urandom\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENTRYPOINT",
+        "children": [
+            {
+                "type": "DOCKER-ENTRYPOINT-EXECUTABLE",
+                "value": "/usr/bin/java",
+                "children": []
+            },
+            {
+                "type": "DOCKER-ENTRYPOINT-ARG",
+                "value": "-jar",
+                "children": []
+            },
+            {
+                "type": "DOCKER-ENTRYPOINT-ARG",
+                "value": "./app.jar",
+                "children": []
+            },
+            {
+                "type": "DOCKER-ENTRYPOINT-ARG",
+                "value": "--port=80",
+                "children": []
+            }
+        ]
+    }
+]

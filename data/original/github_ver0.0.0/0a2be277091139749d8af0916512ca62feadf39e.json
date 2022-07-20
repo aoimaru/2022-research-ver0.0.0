@@ -1,0 +1,82 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "scala",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-REPO",
+                "value": "bigtruedata",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "2.11.9-alpine",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apk add --no-cache --virtual=.dependencies tar wget",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "wget -O- \"https://github.com/sbt/sbt/releases/download/v1.0.2/sbt-1.0.2.tgz\"     |  tar xzf - -C /usr/local --strip-components=1     && sbt exit",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apk del --no-cache .dependencies",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-VOLUME",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/app",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/app",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-CMD",
+        "children": [
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "sbt",
+                "children": []
+            }
+        ]
+    }
+]

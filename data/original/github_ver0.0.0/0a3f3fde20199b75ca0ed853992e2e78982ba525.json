@@ -1,0 +1,297 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "docker-shader",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-REPO",
+                "value": "gwihlidal",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "10",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ARG",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "DEBIAN_FRONTEND",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"noninteractive\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apt update && apt install -y \t\tbuild-essential \t\tlibssl-dev \t\tpkg-config \t\tcurl \t&& apt autoremove -y \t&& apt autoclean \t&& apt clean \t&& apt autoremove",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apt-get update && apt-get install --yes --no-install-recommends \t\tca-certificates \t\tcurl \t&& echo \"deb http://packages.cloud.google.com/apt gcsfuse-bionic main\" \t\t| tee /etc/apt/sources.list.d/gcsfuse.list \t&& curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - \t&& apt-get update \t&& apt-get install --yes gcsfuse \t&& apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/app",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/service",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "curl https://sh.rustup.rs -sSf | sh -s -- -y",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "PATH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"/root/.cargo/bin:${PATH}\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "./",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "Cargo.*",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "mkdir -p src/bin/compile && echo \"fn main() {}\" > src/bin/compile/main.rs && \tmkdir -p src/bin/service && echo \"fn main() {}\" > src/bin/service/main.rs && \techo \"fn fake() {}\" > src/lib.rs && \techo \"fn main() {}\" > build.rs && \tcargo build --release",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "src",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "src",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "proto",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "proto",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": ".",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "build.rs",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "touch src/bin/compile/main.rs && \ttouch src/bin/service/main.rs && \ttouch src/lib.rs && \ttouch build.rs && \tcargo build --release --color never && \tmkdir -p /service/storage && \tmkdir -p /service/temp",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "STORAGE_PATH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"/service/data/storage\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "TRANSFORM_PATH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"/service/data/transform\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "TEMP_PATH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"/service/temp\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "echo \"\" > service.env",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-EXPOSE",
+        "children": [
+            {
+                "type": "DOCKER-PORT",
+                "value": "63999",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENTRYPOINT",
+        "children": [
+            {
+                "type": "DOCKER-ENTRYPOINT-EXECUTABLE",
+                "value": "./target/release/service",
+                "children": []
+            }
+        ]
+    }
+]

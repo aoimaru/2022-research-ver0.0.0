@@ -1,0 +1,107 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "java",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "8",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-VOLUME",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/tmp",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ADD",
+        "children": [
+            {
+                "type": "DOCKER-ADD-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "app.jar",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-ADD-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "qa.qanary_component-AnnotationofSpotClass-tgm-0.0.1.jar",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "sh -c 'touch /app.jar'",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENTRYPOINT",
+        "children": [
+            {
+                "type": "DOCKER-ENTRYPOINT-EXECUTABLE",
+                "value": "java",
+                "children": []
+            },
+            {
+                "type": "DOCKER-ENTRYPOINT-ARG",
+                "value": "-server",
+                "children": []
+            },
+            {
+                "type": "DOCKER-ENTRYPOINT-ARG",
+                "value": "-Xms256M",
+                "children": []
+            },
+            {
+                "type": "DOCKER-ENTRYPOINT-ARG",
+                "value": "-Xmx512M",
+                "children": []
+            },
+            {
+                "type": "DOCKER-ENTRYPOINT-ARG",
+                "value": "-XX:MaxDirectMemorySize=256M",
+                "children": []
+            },
+            {
+                "type": "DOCKER-ENTRYPOINT-ARG",
+                "value": "-Djava.security.egd=file:/dev/./urandom",
+                "children": []
+            },
+            {
+                "type": "DOCKER-ENTRYPOINT-ARG",
+                "value": "-jar",
+                "children": []
+            },
+            {
+                "type": "DOCKER-ENTRYPOINT-ARG",
+                "value": "app.jar",
+                "children": []
+            }
+        ]
+    }
+]

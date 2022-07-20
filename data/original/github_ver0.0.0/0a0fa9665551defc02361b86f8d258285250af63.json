@@ -1,0 +1,377 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "jenkins-slave",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-REPO",
+                "value": "publicisworldwide",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "container",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "docker",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "version_phantomjs",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "2.1.1",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "version_selenium",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "2.53.1",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "version_firefox",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "46.0.1",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "SYSTEMCTL_SKIP_REDIRECT",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "foo",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm         bzip2         unzip         git         wget         java-1.8.0-openjdk     yum clean all",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "mkdir -pv /jenkins",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "yum install -y nodejs npm &&     npm install -g grunt-cli &&     npm install -g karma-cli &&     yum clean all",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "yum-config-manager --enable ol7_optional_latest &&     yum clean all &&     yum install -y ruby ruby-devel gcc make &&     gem install json_pure &&     gem update --system &&     gem install compass &&     yum clean all",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "yum install -y tree make which curl GraphicsMagick ghostscript gtk3 xorg-x11-server-Xvfb &&     yum clean all",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "adduser screener",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "cd /opt &&     wget https://ftp.mozilla.org/pub/firefox/releases/${version_firefox}/linux-x86_64/de/firefox-${version_firefox}.tar.bz2 &&     tar xvjf firefox-${version_firefox}.tar.bz2 &&     rm -f firefox-${version_firefox}.tar.bz2 &&     mv firefox firefox.${version_firefox} &&     ln -s /opt/firefox.${version_firefox}/firefox /usr/local/bin/ &&     chmod +x /usr/local/bin/firefox &&     chown -R screener:screener /opt/firefox.${version_firefox} &&     chown -R screener:screener /usr/local/bin/firefox",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "cd /opt &&     wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-${version_phantomjs}-linux-x86_64.tar.bz2 &&     tar xvjf phantomjs-${version_phantomjs}-linux-x86_64.tar.bz2 &&     rm -Rf phantomjs-${version_phantomjs}-linux-x86_64.tar.bz2 &&     mkdir -p /var/log/phantomjs &&     ln -s /opt/phantomjs-${version_phantomjs}-linux-x86_64/bin/phantomjs /usr/local/bin &&     chmod +x /usr/local/bin/phantomjs &&     chown -R screener:screener /opt/phantomjs-${version_phantomjs}-linux-x86_64 &&     chown -R screener:screener /usr/local/bin/phantomjs &&     chown -R screener:screener /var/log/phantomjs",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "version_selenium_short=$(echo ${version_selenium} | cut -d\\. -f1-2) &&     mkdir -p /opt/selenium-server &&     cd /opt/selenium-server &&     wget https://selenium-release.storage.googleapis.com/${version_selenium_short}/selenium-server-standalone-${version_selenium}.jar &&     mkdir -p /var/log/selenium-server &&     chown -R screener:screener /opt/selenium-server &&     chown -R screener:screener /var/log/selenium-server",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "yum install -y httpd  mariadb-server mariadb &&     yum clean all",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "mkdir -p /var/www/behat &&     chown apache:apache /var/www/behat &&     chmod 2777 /var/www/behat",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/etc/httpd/conf.d/",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/conf.files/etc/httpd/conf.d/*",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "yum install -y http://rpms.famillecollet.com/enterprise/remi-release-7.rpm &&     yum install -y yum-utils &&     yum-config-manager --enable remi-php56 &&     yum install -y php php-mysql php-gd php-opcache php-mbstring php-xdebug &&     yum clean all",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/etc/php.d/",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/conf.files/etc/php.d/*",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "yum install -y composer &&     yum clean all",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "mkdir -p /jenkins.workspace/dir-project &&     mkdir -p /jenkins.workspace/dir-ci &&     mkdir -p /jenkins.workspace/dir-architecture &&     mkdir -p /jenkins.workspace/dir-tools &&     chmod -R 777 /jenkins.workspace",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "SERVICES",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"phantomjs selenium mariadb httpd\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/etc/init.d/",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/conf.files/etc/init.d/*",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "for i in ${SERVICES} ; do chmod -v +x /etc/init.d/\"$i\" ; done",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ADD",
+        "children": [
+            {
+                "type": "DOCKER-ADD-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/entrypoint.sh",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-ADD-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "./entrypoint.sh",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "chmod -v u+x /entrypoint.sh",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENTRYPOINT",
+        "children": [
+            {
+                "type": "DOCKER-ENTRYPOINT-EXECUTABLE",
+                "value": "/entrypoint.sh",
+                "children": []
+            }
+        ]
+    }
+]

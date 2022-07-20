@@ -1,0 +1,82 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "photon",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-REPO",
+                "value": "vmware",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "tdnf install -y tar sed gzip xz && curl -O https://nodejs.org/dist/v10.15.1/node-v10.15.1-linux-x64.tar.xz && mkdir -p /node/ && tar -xJf node-v10.15.1-linux-x64.tar.xz -C /node && ln -sf /node/node-v10.15.1-linux-x64/bin/node /usr/bin/node && ln -sf /node/node-v10.15.1-linux-x64/bin/npm /usr/bin/npm && rm -rf node-v10.15.1-linux-x64.tar.xz && mkdir -p /var/opt/mangle-ui/",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/var/opt/mangle-ui/",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": ".",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/var/opt/mangle-ui",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-EXPOSE",
+        "children": [
+            {
+                "type": "DOCKER-PORT",
+                "value": "4200",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENTRYPOINT",
+        "children": [
+            {
+                "type": "DOCKER-ENTRYPOINT-EXECUTABLE",
+                "value": "sh mangleEntry.sh",
+                "children": []
+            }
+        ]
+    }
+]

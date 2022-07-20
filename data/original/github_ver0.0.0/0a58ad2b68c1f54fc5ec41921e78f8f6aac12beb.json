@@ -1,0 +1,147 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "ngseasy-base",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-REPO",
+                "value": "compbio",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "1.0-r001",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apt-get update -y && apt-get upgrade -y",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "mkdir /usr/local/pipeline/bcbio  &&   cd /usr/local/pipeline/bcbio &&   wget https://github.com/chapmanb/bcbio.variation/releases/download/v0.2.4/bcbio.variation-0.2.4-standalone.jar &&   chmod 777 bcbio.variation-0.2.4-standalone.jar &&   sed -i '$aCLASSPATH=.:${CLASSPATH}:/usr/local/pipeline/bcbio/bcbio.variation-0.2.4-standalone.jar' /home/pipeman/.bashrc &&   sed -i '$aPATH=${PATH}:/usr/local/pipeline/bcbio/' /home/pipeman/.bashrc &&   sed -i '$aPATH=${PATH}:/usr/local/pipeline/bcbio/' ~/.bashrc &&   cp -v bcbio.variation-0.2.4-standalone.jar /usr/local/bin/ &&   ln -s /usr/local/bin/bcbio.variation-0.2.4-standalone.jar /usr/local/bin/bcbio.variation.standalone.jar",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "cd /usr/local/pipeline/ && \twget https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein && \tmv -v lein /usr/local/bin && \tchmod a+x /usr/local/bin/lein",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ADD",
+        "children": [
+            {
+                "type": "DOCKER-ADD-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/usr/local/bin/",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-ADD-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "fix_ambiguous",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "chmod -R 777 /usr/local/pipeline",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "chown -R pipeman:ngsgroup /usr/local/pipeline",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "rm -rf /tmp/*",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-EXPOSE",
+        "children": [
+            {
+                "type": "DOCKER-PORT",
+                "value": "8080",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-CMD",
+        "children": [
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "/bin/bash",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apt-get autoclean && apt-get autoremove -y && rm -rf /var/lib/{apt,dpkg,cache,log}/",
+                "children": []
+            }
+        ]
+    }
+]

@@ -1,0 +1,87 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "php",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "latest",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ARG",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "VCS_REF",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ARG",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "BUILD_DATE",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ARG",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "BUILD_VERSION",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "curl --silent https://getcomposer.org/installer | php > /dev/null 2>&1 &&     mv ./composer.phar /usr/local/bin/composer > /dev/null 2>&1",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apt-get update > /dev/null 2>&1 &&     apt-get -y install         curl         git         zip         unzip         zlib1g-dev         libzip-dev > /dev/null 2>&1 &&     apt-get clean &&     docker-php-ext-install zip &&     rm -rf /var/lib/apt/lists/* > /dev/null 2>&1",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "composer global require         phpunit/phpunit         squizlabs/php_codesniffer         friendsofphp/php-cs-fixer         phpmd/phpmd         behat/behat         phploc/phploc         phpstan/phpstan         icanhazstring/composer-unused > /dev/null 2>&1",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "ln -s /root/.composer/vendor/bin/* /usr/local/bin/ > /dev/null 2>&1",
+                "children": []
+            }
+        ]
+    }
+]

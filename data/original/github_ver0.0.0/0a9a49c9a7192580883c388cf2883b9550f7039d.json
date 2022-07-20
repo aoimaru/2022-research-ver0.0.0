@@ -1,0 +1,472 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "java",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-REPO",
+                "value": "cloudsuite",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "openjdk7",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "FABAN_USER",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "faban",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apt-get update -y \t&& apt-get install -y --no-install-recommends telnet wget tar curl \t&& rm -rf /var/lib/apt/lists/* \t&& groupadd -r $FABAN_USER  \t&& useradd -r -g $FABAN_USER $FABAN_USER",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "BASE_PATH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/usr/src",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "FABAN_HOME",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "$BASE_PATH/faban",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "FABAN_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "1.3",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "PACKAGES_URL",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "http://cloudsuite.ch/download/web_search",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "SEARCH_DRIVER_URL",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "$PACKAGES_URL/search.tar.gz",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "FABAN_PORT",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "9980",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "ANT_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "1.9.6",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "ANT_HOME",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "$BASE_PATH/ant",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "FABAN_OUTPUT_DIR",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "$BASE_PATH/outputFaban",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "CLIENT_HEAP_SIZE",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "2g",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "DRIVER_DIR",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "$FABAN_HOME/search",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "POLICY_PATH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "$DRIVER_DIR/config/security/driver.policy",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "BENCHMARK_CONFIG",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "$FABAN_HOME/search/deploy/run.xml",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "SOLR_PORT",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "8983",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "SEARCH_DRIVER",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "Ziphian.java",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "TERMS_FILE",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "terms_ordered",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "RAMP_UP",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "90",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "RAMP_DOWN",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "60",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "STEADY_STATE",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "60",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "SCALE",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "50",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "AGENT_ID",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "1",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "NUM_AGENTS",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "1",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "cd $BASE_PATH \t&& wget \"faban.org/downloads/faban-kit-$FABAN_VERSION.tar.gz\" \t&& tar -xzf faban-kit-$FABAN_VERSION.tar.gz",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "cd $BASE_PATH \t&& wget \"archive.apache.org/dist/ant/binaries/apache-ant-$ANT_VERSION-bin.tar.gz\" \t&& tar -zxf apache-ant-$ANT_VERSION-bin.tar.gz \t&& ln -s $BASE_PATH/apache-ant-$ANT_VERSION/ $ANT_HOME",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "cd $FABAN_HOME \t&& wget -O - $SEARCH_DRIVER_URL \t| tar -xzf -",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "cd $FABAN_HOME/search \t&& sed -i \"/faban.home/c\\\\faban.home=$FABAN_HOME\" build.properties \t&& sed -i \"/ant.home/c\\\\ant.home=$ANT_HOME\" build.properties \t&& sed -i \"/faban.url/c\\\\faban.url=http://localhost:$FABAN_PORT/\" build.properties",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/entrypoint.sh",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "docker-entrypoint.sh",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "chmod +x /entrypoint.sh",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-EXPOSE",
+        "children": [
+            {
+                "type": "DOCKER-PORT",
+                "value": "$FABAN_PORT",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENTRYPOINT",
+        "children": [
+            {
+                "type": "DOCKER-ENTRYPOINT-EXECUTABLE",
+                "value": "/entrypoint.sh",
+                "children": []
+            }
+        ]
+    }
+]

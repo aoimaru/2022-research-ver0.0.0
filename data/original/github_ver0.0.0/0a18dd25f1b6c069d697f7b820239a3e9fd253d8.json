@@ -1,0 +1,102 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "windowsservercore",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-REPO",
+                "value": "microsoft",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "powershell -Command \t$ErrorActionPreference = 'Stop'; \tInvoke-WebRequest -Method Get -Uri https://www.apachelounge.com/download/VC11/binaries/httpd-2.4.20-win32-VC11.zip -OutFile c:\\apache.zip ; \tExpand-Archive -Path c:\\apache.zip -DestinationPath c:\\ ; \tRemove-Item c:\\apache.zip -Force",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "powershell -Command \t$ErrorActionPreference = 'Stop';    \tInvoke-WebRequest -Method Get -Uri \"https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe\" -OutFile c:\\vcredist_x86.exe ;    \tstart-Process c:\\vcredist_x86.exe -ArgumentList '/quiet' -Wait ;    \tRemove-Item c:\\vcredist_x86.exe -Force",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "powershell -Command \t$ErrorActionPreference = 'Stop'; \tInvoke-WebRequest -Method Get -Uri http://windows.php.net/downloads/releases/php-5.5.36-Win32-VC11-x86.zip -OutFile c:\\php.zip ; \tExpand-Archive -Path c:\\php.zip -DestinationPath c:\\php ; \tRemove-Item c:\\php.zip -Force",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "powershell -Command \t$ErrorActionPreference = 'Stop'; \tRemove-Item c:\\Apache24\\conf\\httpd.conf ; \tnew-item -Type Directory c:\\www -Force ; \tAdd-Content -Value \"'<?php phpinfo() ?>'\" -Path c:\\www\\index.php",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ADD",
+        "children": [
+            {
+                "type": "DOCKER-ADD-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/apache24/conf",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-ADD-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "httpd.conf",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/Apache24/bin",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-CMD",
+        "children": [
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "/Apache24/bin/httpd.exe -w",
+                "children": []
+            }
+        ]
+    }
+]

@@ -1,0 +1,27 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "php7-fpm",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-REPO",
+                "value": "dockenizer",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apk --update add make g++ autoconf && pecl install xdebug && docker-php-ext-enable xdebug && apk del --purge make g++ autoconf libtool && rm -rf /var/cache/apk/*",
+                "children": []
+            }
+        ]
+    }
+]

@@ -1,0 +1,162 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "php-apache",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-REPO",
+                "value": "webdevops",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "ubuntu-14.04",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "WEB_DOCUMENT_ROOT",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/app",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "WEB_DOCUMENT_INDEX",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "index.php",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "WEB_ALIAS_DOMAIN",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "*.vm",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "WEB_PHP_TIMEOUT",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "600",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "WEB_PHP_SOCKET",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "WEB_PHP_SOCKET",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "127.0.0.1:9000",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "WEB_NO_CACHE_PATTERN",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"\\.(css|js|gif|png|jpg|svg|json|xml)$\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/opt/docker/",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "conf/",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -x     && apt-install         gnupg     && wget -q -O - https://packages.blackfire.io/gpg.key | apt-key add -     && echo \"deb https://packages.blackfire.io/debian any main\" | tee /etc/apt/sources.list.d/blackfire.list     && apt-install         graphviz         php5-xdebug         blackfire-php         blackfire-agent         nano         vim     && docker-service enable syslog     && docker-service enable postfix     && docker-service enable ssh     && docker-run-bootstrap     && docker-image-cleanup",
+                "children": []
+            }
+        ]
+    }
+]

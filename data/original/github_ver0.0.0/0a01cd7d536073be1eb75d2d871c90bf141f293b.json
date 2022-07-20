@@ -1,0 +1,642 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "oraclelinux-extras",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-REPO",
+                "value": "bitnami",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "7-r378",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "install_packages bzip2-libs cronie cyrus-sasl-lib expat freetds freetype glibc gmp gnutls keyutils-libs krb5-libs libcom_err libcurl libffi libgcc libgcrypt libgpg-error libicu libidn libjpeg-turbo libmcrypt libmemcached libnghttp2 libpng libselinux libssh2 libstdc++ libtasn1 libtidy libxml2 libxslt ncurses-libs nettle nspr nss nss-softokn-freebl nss-util openldap openssl-libs p11-kit pcre postgresql-libs readline sqlite xz-libs zlib",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "bitnami-pkg unpack apache-2.4.39-2 --checksum bd13d67036ecb691256893b0ba4034364b90c05747b2afbaa3c097fb218bc2e1",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "bitnami-pkg unpack php-7.1.30-0 --checksum 232ee9f323d2ba318e43574670b8e5b327c8f6b9635aebe8b73fb7b8ec2c22f9",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "bitnami-pkg unpack mysql-client-10.2.25-0 --checksum 1b3f2a4194cb18648b9e99adb3af88c09077b77ee72153fc23a27a15122c58be",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "bitnami-pkg install libphp-7.1.30-0 --checksum 15aa01c485336e8f34f2fba037acecb1af506d7abc23d0942a08c55de339ddf5",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "bitnami-pkg unpack magento-2.3.1-5 --checksum 71a319a7706096200dda0193b52d2929dba49fd5e874e1b0d68e1bffdeaf5f81",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "ln -sf /dev/stdout /opt/bitnami/apache/logs/access_log",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "ln -sf /dev/stderr /opt/bitnami/apache/logs/error_log",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "find /opt/bitnami/magento/htdocs -type d -print0 | xargs -0 chmod 775 && find /opt/bitnami/magento/htdocs -type f -print0 | xargs -0 chmod 664 && chown -R bitnami:daemon /opt/bitnami/magento/htdocs",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "rootfs",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "ALLOW_EMPTY_PASSWORD",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"no\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "APACHE_HTTPS_PORT_NUMBER",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "APACHE_HTTP_PORT_NUMBER",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "APACHE_SET_HTTPS_PORT",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"no\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "APACHE_SET_HTTP_PORT",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"no\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "BITNAMI_APP_NAME",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"magento\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "BITNAMI_IMAGE_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"2.3.1-ol-7-r80\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "ELASTICSEARCH_HOST",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "ELASTICSEARCH_PORT_NUMBER",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "EXTERNAL_HTTPS_PORT_NUMBER",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"443\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "EXTERNAL_HTTP_PORT_NUMBER",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"80\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "MAGENTO_ADMINURI",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"admin\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "MAGENTO_DATABASE_NAME",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"bitnami_magento\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "MAGENTO_DATABASE_PASSWORD",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "MAGENTO_DATABASE_USER",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"bn_magento\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "MAGENTO_EMAIL",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"user@example.com\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "MAGENTO_FIRSTNAME",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"FirstName\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "MAGENTO_HOST",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"127.0.0.1\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "MAGENTO_LASTNAME",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"LastName\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "MAGENTO_MODE",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"developer\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "MAGENTO_PASSWORD",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"bitnami1\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "MAGENTO_USERNAME",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"user\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "MARIADB_HOST",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"mariadb\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "MARIADB_PORT_NUMBER",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"3306\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "MARIADB_ROOT_PASSWORD",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "MARIADB_ROOT_USER",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"root\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "MYSQL_CLIENT_CREATE_DATABASE_NAME",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "MYSQL_CLIENT_CREATE_DATABASE_PASSWORD",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "MYSQL_CLIENT_CREATE_DATABASE_PRIVILEGES",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"ALL\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "MYSQL_CLIENT_CREATE_DATABASE_USER",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "PATH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"/opt/bitnami/apache/bin:/opt/bitnami/php/bin:/opt/bitnami/php/sbin:/opt/bitnami/mysql/bin:/opt/bitnami/magento/bin:$PATH\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-VOLUME",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/certs",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-EXPOSE",
+        "children": [
+            {
+                "type": "DOCKER-PORT",
+                "value": "80",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENTRYPOINT",
+        "children": [
+            {
+                "type": "DOCKER-ENTRYPOINT-EXECUTABLE",
+                "value": "/app-entrypoint.sh",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-CMD",
+        "children": [
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "/run.sh",
+                "children": []
+            }
+        ]
+    }
+]

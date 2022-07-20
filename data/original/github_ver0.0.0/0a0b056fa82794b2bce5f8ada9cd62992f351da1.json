@@ -1,0 +1,142 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "ubuntu",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "16.04",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "DEBIAN_FRONTEND",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "noninteractive",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "BITCOIN_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "0.17.0",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/build",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apt-get -qq update &&     apt-get -qq install --no-install-recommends --allow-unauthenticated -yy \tasciidoc \tautoconf \tautomake \tclang \tcppcheck \tdocbook-xml \tshellcheck \teatmydata \tsoftware-properties-common \tbuild-essential \tautoconf \tlocales \tlibtool \tlibprotobuf-c-dev \tlibsqlite3-dev \tlibgmp-dev \tgit \tpython \tpython3 \tvalgrind \tnet-tools \tpython3-pip \tpython3-setuptools \tpython-pkg-resources \tshellcheck \tlibxml2-utils \twget \txsltproc \tzlib1g-dev && \trm -rf /var/lib/apt/lists/*",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "LANGUAGE",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "en_US.UTF-8",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "LANG",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "en_US.UTF-8",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "LC_ALL",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "en_US.UTF-8",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "locale-gen en_US.UTF-8 && dpkg-reconfigure locales",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "cd /tmp/ &&     wget https://bitcoin.org/bin/bitcoin-core-$BITCOIN_VERSION/bitcoin-$BITCOIN_VERSION-x86_64-linux-gnu.tar.gz -O bitcoin.tar.gz &&     tar -xvzf bitcoin.tar.gz &&     mv /tmp/bitcoin-$BITCOIN_VERSION/bin/bitcoin* /usr/local/bin/ &&     rm -rf bitcoin.tar.gz /tmp/bitcoin-$BITCOIN_VERSION",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "pip3 install --upgrade pip &&     python3 -m pip install \tCherryPy==17.3.0 \tFlask==1.0.2 \tcheroot==6.5.2 \tephemeral-port-reserve==1.1.0 \tflaky==3.4.0 \tpytest-benchmark==3.1.1         pytest-forked==0.2 \tpytest-timeout==1.3.3 \tpytest-xdist==1.22.2 \tpytest==3.8.1 \tpython-bitcoinlib==0.7.0 \ttqdm==4.26.0 \tpytest-test-groups==1.0.3 \tflake8==3.5.0 \tpytest-rerunfailures==3.1",
+                "children": []
+            }
+        ]
+    }
+]

@@ -1,0 +1,247 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "alpine",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "3.8",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "IP",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "0.0.0.0",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "PORT",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "1688",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "EPID",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "LCID",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "1033",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "CLIENT_COUNT",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "26",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "ACTIVATION_INTERVAL",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "120",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "RENEWAL_INTERVAL",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "10080",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "SQLITE",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "false",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "HWID",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "364F463A8863D35F",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "LOGLEVEL",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "ERROR",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "LOGFILE",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/var/log/pykms_logserver.log",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/usr/bin/start.sh",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "start.sh",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "echo \"http://dl-cdn.alpinelinux.org/alpine/latest-stable/main\" >> /etc/apk/repositories &&     apk update &&     apk upgrade &&     apk add --update \tbash \tgit \tpython2 \tpy2-argparse \tpy2-tz \tpy2-pysqlite \tpy2-flask \tpy2-pygments \tpython2-tkinter \tpy2-pip && git clone https://github.com/SystemRage/py-kms.git /home/py-kms && git clone https://github.com/coleifer/sqlite-web.git /tmp/sqlite_web && mv /tmp/sqlite_web/sqlite_web /home/ && rm -rf /tmp/sqlite_web && pip install peewee tzlocal && chmod a+x /usr/bin/start.sh && apk del git py2-pip",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/home/py-kms/py-kms",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-EXPOSE",
+        "children": [
+            {
+                "type": "DOCKER-PORT",
+                "value": "${PORT}/tcp",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENTRYPOINT",
+        "children": [
+            {
+                "type": "DOCKER-ENTRYPOINT-EXECUTABLE",
+                "value": "/usr/bin/start.sh",
+                "children": []
+            }
+        ]
+    }
+]

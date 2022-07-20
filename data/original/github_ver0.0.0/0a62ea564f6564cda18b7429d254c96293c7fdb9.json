@@ -1,0 +1,47 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "hygieia-sonar-codequality-collector",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-REPO",
+                "value": "docker.io",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "SPRING_DATA_MONGODB_HOST",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "localhost",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "SPRING_DATA_MONGODB_PORT",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "27017",
+                "children": []
+            }
+        ]
+    }
+]

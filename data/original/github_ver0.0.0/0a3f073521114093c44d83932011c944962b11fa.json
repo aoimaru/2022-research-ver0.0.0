@@ -1,0 +1,132 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "base",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-REPO",
+                "value": "webdevops",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "ubuntu-14.04",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "APPLICATION_USER",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "application",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "APPLICATION_GROUP",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "application",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "APPLICATION_PATH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/app",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "APPLICATION_UID",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "1000",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "APPLICATION_GID",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "1000",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/opt/docker/",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "conf/",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -x     && apt-install         zip         unzip         bzip2         moreutils         dnsutils         openssh-client         rsync         git     && mkdir -p /var/lib/syslog-ng/     && /usr/local/bin/generate-locales     && docker-run-bootstrap     && docker-image-cleanup",
+                "children": []
+            }
+        ]
+    }
+]

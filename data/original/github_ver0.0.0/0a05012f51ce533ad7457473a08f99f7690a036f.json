@@ -1,0 +1,287 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "base",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-REPO",
+                "value": "dockcross",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "latest",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "echo \"deb http://emdebian.org/tools/debian/ jessie main\" >> /etc/apt/sources.list &&   dpkg --add-architecture powerpc &&   curl http://emdebian.org/tools/debian/emdebian-toolchain-archive.key | apt-key add -",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apt-get update && apt-get install -y   crossbuild-essential-powerpc   gfortran-powerpc-linux-gnu   libbz2-dev:powerpc   libexpat1-dev:powerpc   ncurses-dev:powerpc   libssl-dev:powerpc",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/usr/src",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apt-get update &&   apt-get install -y libglib2.0-dev zlib1g-dev libpixman-1-dev &&   curl -L http://wiki.qemu-project.org/download/qemu-2.6.0.tar.bz2 | tar xj &&   cd qemu-2.6.0 &&   ./configure --target-list=ppc64-linux-user --prefix=/usr &&   make -j$(nproc) &&   make install &&   cd .. && rm -rf qemu-2.6.0",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "CROSS_TRIPLE",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "powerpc-linux-gnu",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "CROSS_ROOT",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/usr/${CROSS_TRIPLE}",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "AS",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/usr/bin/${CROSS_TRIPLE}-as",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "AR",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/usr/bin/${CROSS_TRIPLE}-ar",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "CC",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/usr/bin/${CROSS_TRIPLE}-gcc",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "CPP",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/usr/bin/${CROSS_TRIPLE}-cpp",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "CXX",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/usr/bin/${CROSS_TRIPLE}-g++",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "LD",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/usr/bin/${CROSS_TRIPLE}-ld",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "DEFAULT_DOCKCROSS_IMAGE",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "dockcross/linux-ppc64",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/work",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/usr/lib/${CROSS_TRIPLE}/Toolchain.cmake",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "Toolchain-ppc64.cmake",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "CMAKE_TOOLCHAIN_FILE",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/usr/lib/${CROSS_TRIPLE}/Toolchain.cmake",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ARG",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "BUILD_DATE",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ARG",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "IMAGE",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ARG",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "VCS_REF",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ARG",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "VCS_URL",
+                "children": []
+            }
+        ]
+    }
+]

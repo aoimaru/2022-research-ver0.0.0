@@ -1,0 +1,67 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "debian",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "testing",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "LANG",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "en_US.UTF-8",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "LC_CTYPE",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "zh_TW.UTF-8",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apt-get update -qq &&   apt-get install -qqy locales vim-nox &&   apt-get clean &&   rm -rf /var/lib/apt/lists/* &&   sed -e 's|^# en_US.UTF-8|en_US.UTF-8|g' -i /etc/locale.gen &&   sed -e 's|^# zh_TW.UTF-8|zh_TW.UTF-8|g' -i /etc/locale.gen &&   locale-gen",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENTRYPOINT",
+        "children": [
+            {
+                "type": "DOCKER-ENTRYPOINT-EXECUTABLE",
+                "value": "vim",
+                "children": []
+            }
+        ]
+    }
+]

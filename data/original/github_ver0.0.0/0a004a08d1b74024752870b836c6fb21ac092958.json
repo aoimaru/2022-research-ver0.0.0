@@ -1,0 +1,212 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "redash",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-REPO",
+                "value": "supinf",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "core-6.0",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "REDASH_DATABASE_URL",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "postgresql://postgres@localhost:5432/postgres",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "REDASH_REDIS_URL",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "redis://localhost:6379/0",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "REDIS_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "5.0.3",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "S6_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "v1.21.7.0",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "S6_LOGGING",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "1",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-USER",
+        "children": [
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "root",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "mkdir -p /var/cache/apt     && apt-get install -y gnupg2 curl     && s6_dl=https://github.com/just-containers/s6-overlay/releases/download     && s6_tar=s6-overlay-amd64.tar.gz     && curl --location --silent --show-error -O \"${s6_dl}/${S6_VERSION}/${s6_tar}\"     && curl --location --silent --show-error -O \"${s6_dl}/${S6_VERSION}/${s6_tar}.sig\"     && curl --location --silent --show-error https://keybase.io/justcontainers/key.asc | gpg --import     && gpg --verify ${s6_tar}.sig ${s6_tar}     && tar xzf ${s6_tar} -C /     && apt-get remove --purge -y gnupg2 curl     && apt autoremove -y     && rm -rf ${s6_tar} ${s6_tar}.sig /var/cache",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "mkdir -p /var/cache/apt     && apt-get install -y postgresql postgresql-contrib     && echo \"host  all  postgres  0.0.0.0/0  trust\" > /etc/postgresql/9.5/main/pg_hba.conf     && echo \"host  all  redash    0.0.0.0/0  trust\" >> /etc/postgresql/9.5/main/pg_hba.conf     && echo \"listen_addresses='*'\" >> /etc/postgresql/9.5/main/postgresql.conf     && echo \"stats_temp_directory='/tmp'\" >> /etc/postgresql/9.5/main/postgresql.conf     && rm -rf /var/cache",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "mkdir -p /var/cache/apt     && apt-get install -y build-essential curl tcl     && cd /tmp     && curl --location --silent --show-error -O        \"http://download.redis.io/releases/redis-${REDIS_VERSION}.tar.gz\"     && tar xzf \"redis-${REDIS_VERSION}.tar.gz\"     && cd \"redis-${REDIS_VERSION}\"     && make && make install     && mkdir /etc/redis     && cp \"/tmp/redis-${REDIS_VERSION}/redis.conf\" /etc/redis     && adduser --system --group --no-create-home redis     && mkdir -p /var/lib/redis     && chown redis:redis /var/lib/redis     && chmod 770 /var/lib/redis     && apt-get remove --purge -y build-essential curl tcl     && apt autoremove -y     && cd /     && rm -rf /var/cache /tmp/*",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "mkdir -p /etc/services.d/postgres     && echo \"#!/usr/bin/with-contenv sh\\ns6-setuidgid postgres /usr/lib/postgresql/9.5/bin/postgres -D /var/lib/postgresql/9.5/main -c config_file=/etc/postgresql/9.5/main/postgresql.conf\"       > /etc/services.d/postgres/run",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "mkdir -p /etc/services.d/redis     && echo \"#!/usr/bin/with-contenv sh\\n/usr/local/bin/redis-server /etc/redis/redis.conf\"       > /etc/services.d/redis/run",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "mkdir -p /etc/services.d/celery-worker     && echo \"#!/usr/bin/with-contenv sh\\nsleep 3\\ncd /app\\ns6-setuidgid postgres /app/bin/docker-entrypoint create_db\\ns6-setuidgid redash /app/bin/docker-entrypoint scheduler\"       > /etc/services.d/celery-worker/run",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-EXPOSE",
+        "children": [
+            {
+                "type": "DOCKER-PORT",
+                "value": "5432",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENTRYPOINT",
+        "children": [
+            {
+                "type": "DOCKER-ENTRYPOINT-EXECUTABLE",
+                "value": "/init",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-CMD",
+        "children": [
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "s6-setuidgid",
+                "children": []
+            },
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "redash",
+                "children": []
+            },
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "/app/bin/docker-entrypoint",
+                "children": []
+            },
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "server",
+                "children": []
+            }
+        ]
+    }
+]

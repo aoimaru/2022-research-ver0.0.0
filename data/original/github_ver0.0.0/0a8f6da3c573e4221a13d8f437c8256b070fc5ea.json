@@ -1,0 +1,177 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "ubuntu",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "bionic",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "LC_ALL",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "C.UTF-8",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "LANG",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "C.UTF-8",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apt-get update -q &&     apt-get install --no-install-recommends -y -q         python3-dev         python3-pip         build-essential         gcc         swig         curl         git         libgomp1         ca-certificates &&     pip3 install setuptools pip --upgrade &&     curl -sL https://deb.nodesource.com/setup_8.x | bash - &&     apt-get install --no-install-recommends -y -q nodejs",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "cd /home     && git clone https://github.com/gangtao/dataplay3",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/home/dataplay3",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "curl https://raw.githubusercontent.com/automl/auto-sklearn/master/requirements.txt | xargs -n 1 -L 1 pip3 install",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "cd /home/dataplay3/server &&     pip3 install -r requirements.txt",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "pip3 install numpy==1.16.0 holidays==0.9.8 --force-reinstall",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "cd /home/dataplay3/client &&     mkdir /home/dataplay3/server/dataplay/static &&     npm install --silent &&     npm run build",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-EXPOSE",
+        "children": [
+            {
+                "type": "DOCKER-PORT",
+                "value": "8000",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/home/dataplay3",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "entrypoint.sh",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "find /usr/local/lib/python3.6/ -name 'tests' -exec rm -r '{}' + &&     find /usr/local/lib/python3.6/ -name '*.pyc' -exec rm -r '{}' + &&     rm -rf /home/dataplay3/client &&     rm -rf /home/dataplay3/docs &&     apt-get remove nodejs gcc git curl -y &&     apt-get autoremove -y &&     apt-get clean &&     rm -rf         /var/lib/apt/lists/*         /tmp/*         /var/tmp/*",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-CMD",
+        "children": [
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "sh",
+                "children": []
+            },
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "/home/dataplay3/entrypoint.sh",
+                "children": []
+            }
+        ]
+    }
+]

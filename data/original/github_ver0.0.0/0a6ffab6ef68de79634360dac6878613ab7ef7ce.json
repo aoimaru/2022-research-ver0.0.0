@@ -1,0 +1,222 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "debian",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "jessie",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apt-get update && apt-get install -y --no-install-recommends \t\tbtrfs-tools \t\tbuild-essential \t\tcurl \t\tgcc \t\tgit \t\tlibapparmor-dev \t\tlibdevmapper-dev \t\tlibsqlite3-dev \t\t\t\tca-certificates \t\te2fsprogs \t\tiptables \t\tprocps \t\txfsprogs \t\txz-utils \t\t\t\taufs-tools \t&& rm -rf /var/lib/apt/lists/*",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "SECCOMP_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "2.3.1",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -x \t&& export SECCOMP_PATH=\"$(mktemp -d)\" \t&& curl -fsSL \"https://github.com/seccomp/libseccomp/releases/download/v${SECCOMP_VERSION}/libseccomp-${SECCOMP_VERSION}.tar.gz\" \t\t| tar -xzC \"$SECCOMP_PATH\" --strip-components=1 \t&& ( \t\tcd \"$SECCOMP_PATH\" \t\t&& ./configure --prefix=/usr/local \t\t&& make \t\t&& make install \t\t&& ldconfig \t) \t&& rm -rf \"$SECCOMP_PATH\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "GO_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "1.6.2",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "curl -fsSL \"https://storage.googleapis.com/golang/go${GO_VERSION}.linux-amd64.tar.gz\" \t| tar -xzC /usr/local",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "PATH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/go/bin:/usr/local/go/bin:$PATH",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "GOPATH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/go:/go/src/github.com/docker/docker/vendor",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "CGO_LDFLAGS",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "-L/lib",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "RUNC_COMMIT",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "cc29e3dded8e27ba8f65738f40d251c885030a28",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -x \t&& export GOPATH=\"$(mktemp -d)\" \t&& git clone https://github.com/opencontainers/runc.git \"$GOPATH/src/github.com/opencontainers/runc\" \t&& cd \"$GOPATH/src/github.com/opencontainers/runc\" \t&& git checkout -q \"$RUNC_COMMIT\" \t&& make static BUILDTAGS=\"seccomp apparmor selinux\" \t&& cp runc /usr/local/bin/docker-runc \t&& rm -rf \"$GOPATH\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "CONTAINERD_COMMIT",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "1b3a81545ca79456086dc2aa424357be98b962ee",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -x \t&& export GOPATH=\"$(mktemp -d)\" \t&& git clone https://github.com/docker/containerd.git \"$GOPATH/src/github.com/docker/containerd\" \t&& cd \"$GOPATH/src/github.com/docker/containerd\" \t&& git checkout -q \"$CONTAINERD_COMMIT\" \t&& make static \t&& cp bin/containerd /usr/local/bin/docker-containerd \t&& cp bin/containerd-shim /usr/local/bin/docker-containerd-shim \t&& cp bin/ctr /usr/local/bin/docker-containerd-ctr \t&& rm -rf \"$GOPATH\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "AUTO_GOPATH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "1",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/usr/src/docker",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/usr/src/docker",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": ".",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    }
+]

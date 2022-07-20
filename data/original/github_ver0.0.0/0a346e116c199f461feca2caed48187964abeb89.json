@@ -1,0 +1,47 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "debian",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "sid",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apt-get update -qqy && apt-get install \tcargo \tdebcargo \tdebootstrap \tdevscripts \tlibssl-dev \tpkg-config \treprepro \tsbuild \t-y",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "sbuild-createchroot --include=eatmydata,ccache,gnupg,dh-cargo,cargo,lintian,perl-openssl-defaults       --chroot-prefix debcargo-unstable unstable       /srv/chroot/debcargo-unstable-amd64-sbuild http://deb.debian.org/debian",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "cargo install --git https://github.com/pop-os/debrepbuild.git",
+                "children": []
+            }
+        ]
+    }
+]

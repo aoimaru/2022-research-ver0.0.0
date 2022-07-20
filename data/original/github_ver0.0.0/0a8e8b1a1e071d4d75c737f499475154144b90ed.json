@@ -1,0 +1,47 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "devel",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-REPO",
+                "value": "bwbush",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/root/tmp",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apt-get update && apt-get install --no-install-recommends --yes g++ gfortran libblas-dev libcairo2-dev libgmp-dev libgmp10 libgmp3-dev libgsl0-dev libjpeg62 liblapack-dev libncurses5-dev libreadline-dev libx11-dev libxt-dev make r-base r-base-core r-base-dev r-cran-amelia r-cran-ggplot2 r-cran-mvtnorm r-cran-plyr r-cran-reshape2 r-cran-zoo texlive-fonts-extra texlive-latex-base zlib1g-dev && apt-get clean autoclean && apt-get autoremove --yes",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-CMD",
+        "children": [
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "R",
+                "children": []
+            }
+        ]
+    }
+]

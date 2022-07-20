@@ -1,0 +1,942 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "neurodebian",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "jessie-non-free",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ARG",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "DEBIAN_FRONTEND",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "noninteractive",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "LANG",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"C.UTF-8\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "LC_ALL",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"C.UTF-8\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apt-get -qq update &&     apt-get install -yq --no-install-recommends       bc       bzip2       ca-certificates       curl       libgomp1       perl-modules       tar       tcsh       wget &&     apt-get clean &&     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* &&     wget -qO- ftp://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/5.3.0-HCP/freesurfer-Linux-centos4_x86_64-stable-pub-v5.3.0-HCP.tar.gz     | tar zxv -C /opt       --exclude='freesurfer/trctrain'       --exclude='freesurfer/subjects/fsaverage_sym'       --exclude='freesurfer/subjects/fsaverage3'       --exclude='freesurfer/subjects/fsaverage4'       --exclude='freesurfer/subjects/fsaverage5'       --exclude='freesurfer/subjects/fsaverage6'       --exclude='freesurfer/subjects/cvs_avg35'       --exclude='freesurfer/subjects/cvs_avg35_inMNI152'       --exclude='freesurfer/subjects/bert'       --exclude='freesurfer/subjects/V1_average'       --exclude='freesurfer/average/mult-comp-cor'       --exclude='freesurfer/lib/cuda'       --exclude='freesurfer/lib/qt' &&     echo \"cHJpbnRmICJrcnp5c3p0b2YuZ29yZ29sZXdza2lAZ21haWwuY29tXG41MTcyXG4gKkN2dW12RVYzelRmZ1xuRlM1Si8yYzFhZ2c0RVxuIiA+IC9vcHQvZnJlZXN1cmZlci9saWNlbnNlLnR4dAo=\" | base64 -d | sh",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "OS",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "Linux",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "FS_OVERRIDE",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "0",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "FIX_VERTEX_AREA",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "SUBJECTS_DIR",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/opt/freesurfer/subjects",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "FSF_OUTPUT_FORMAT",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "nii.gz",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "MNI_DIR",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/opt/freesurfer/mni",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "LOCAL_DIR",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/opt/freesurfer/local",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "FREESURFER_HOME",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/opt/freesurfer",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "FSFAST_HOME",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/opt/freesurfer/fsfast",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "MINC_BIN_DIR",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/opt/freesurfer/mni/bin",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "MINC_LIB_DIR",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/opt/freesurfer/mni/lib",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "MNI_DATAPATH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/opt/freesurfer/mni/data",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "FMRI_ANALYSIS_DIR",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/opt/freesurfer/fsfast",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "PERL5LIB",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/opt/freesurfer/mni/lib/perl5/5.8.5",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "MNI_PERL5LIB",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/opt/freesurfer/mni/lib/perl5/5.8.5",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "PATH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/opt/freesurfer/bin:/opt/freesurfer/fsfast/bin:/opt/freesurfer/tktools:/opt/freesurfer/mni/bin:$PATH",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "MATLABCMD",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"/opt/matlabmcr-2016b/v91/toolbox/matlab\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "MATLAB_COMPILER_RUNTIME",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"/opt/matlabmcr-2016b/v91\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "LD_LIBRARY_PATH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"/opt/matlabmcr-2016b/v91/runtime/glnxa64:/opt/matlabmcr-2016b/v91/bin/glnxa64:/opt/matlabmcr-2016b/v91/sys/os/glnxa64:$LD_LIBRARY_PATH\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apt-get update -qq     && apt-get install -y -q --no-install-recommends        libxext6        libxpm-dev        libxt6        unzip     && apt-get clean     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*     && echo \"Downloading MATLAB Compiler Runtime ...\"     && curl -fsSL --retry 5 -o /tmp/mcr.zip https://ssd.mathworks.com/supportfiles/downloads/R2016b/deployment_files/R2016b/installers/glnxa64/MCR_R2016b_glnxa64_installer.zip     && unzip -q /tmp/mcr.zip -d /tmp/mcrtmp     && /tmp/mcrtmp/install -destinationFolder /opt/matlabmcr-2016b -mode silent -agreeToLicense yes     && rm -rf /tmp/*",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "PATH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"/usr/local/miniconda/bin:$PATH\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "curl -fsSLO https://repo.continuum.io/miniconda/Miniconda2-4.5.4-Linux-x86_64.sh &&     bash Miniconda2-4.5.4-Linux-x86_64.sh -b -p /usr/local/miniconda &&     rm Miniconda2-4.5.4-Linux-x86_64.sh &&     conda config --add channels conda-forge &&     conda install -y mkl mkl-service numpy nibabel pandas && sync &&     conda clean -tipsy && sync &&     pip install --no-cache-dir pybids[analysis]==0.6.3",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/opt",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "wget -q https://ftp.humanconnectome.org/workbench/workbench-linux64-v1.3.0.zip -O wb.zip     && unzip wb.zip     && rm wb.zip",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "CARET7DIR",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"/opt/workbench/bin_linux64\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apt-get -qq update &&     apt-get install -yq --no-install-recommends gcc g++ libglu1 &&     rm -rf /tmp/* &&     wget -qO- https://github.com/Washington-University/Pipelines/archive/v3.26.1.tar.gz | tar xz -C /tmp &&     mv /tmp/* /opt/HCP-Pipelines &&     rm -rf /tmp/* &&     wget -qO- https://www.doc.ic.ac.uk/~ecr05/MSM_HOCR_v2/MSM_HOCR_v2-download.tgz | tar xz -C /tmp &&     mv /tmp/homes/ecr05/MSM_HOCR_v2/Ubuntu /opt/HCP-Pipelines/MSMBinaries &&     apt-get clean &&     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "HCPPIPEDIR",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/opt/HCP-Pipelines",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "HCPPIPEDIR_Templates",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "${HCPPIPEDIR}/global/templates",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "HCPPIPEDIR_Bin",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "${HCPPIPEDIR}/global/binaries",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "HCPPIPEDIR_Config",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "${HCPPIPEDIR}/global/config",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "HCPPIPEDIR_PreFS",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "${HCPPIPEDIR}/PreFreeSurfer/scripts",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "HCPPIPEDIR_FS",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "${HCPPIPEDIR}/FreeSurfer/scripts",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "HCPPIPEDIR_PostFS",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "${HCPPIPEDIR}/PostFreeSurfer/scripts",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "HCPPIPEDIR_fMRISurf",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "${HCPPIPEDIR}/fMRISurface/scripts",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "HCPPIPEDIR_fMRIVol",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "${HCPPIPEDIR}/fMRIVolume/scripts",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "HCPPIPEDIR_tfMRI",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "${HCPPIPEDIR}/tfMRI/scripts",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "HCPPIPEDIR_dMRI",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "${HCPPIPEDIR}/DiffusionPreprocessing/scripts",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "HCPPIPEDIR_dMRITract",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "${HCPPIPEDIR}/DiffusionTractography/scripts",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "HCPPIPEDIR_Global",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "${HCPPIPEDIR}/global/scripts",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "HCPPIPEDIR_tfMRIAnalysis",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "${HCPPIPEDIR}/TaskfMRIAnalysis/scripts",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "MSMBINDIR",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "${HCPPIPEDIR}/MSMBinaries",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "MSMCONFIGDIR",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "${HCPPIPEDIR}/MSMConfig",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "wget -qO- https://deb.nodesource.com/setup_10.x | bash - &&     apt-get update &&     apt-get install -y --no-install-recommends nodejs &&     npm install -g bids-validator@0.26.13 &&     apt-get clean &&     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apt-get update &&     apt-get install -y fsl=5.0.9-4~nd80+1 &&     apt-get clean &&     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "FSLDIR",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/usr/share/fsl/5.0",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "FSL_DIR",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"${FSLDIR}\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "FSLOUTPUTTYPE",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "NIFTI_GZ",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "PATH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/usr/lib/fsl/5.0:$PATH",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "FSLMULTIFILEQUIT",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "TRUE",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "POSSUMDIR",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/usr/share/fsl/5.0",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "LD_LIBRARY_PATH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/usr/lib/fsl/5.0:$LD_LIBRARY_PATH",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "FSLTCLSH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/usr/bin/tclsh",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "FSLWISH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/usr/bin/wish",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "FSLOUTPUTTYPE",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "NIFTI_GZ",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "echo \"deb http://ftp.de.debian.org/debian stretch main\" >> /etc/apt/sources.list &&     apt-get update &&     apt-get install -y libstdc++6",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "rm /opt/matlabmcr-2016b/v91/sys/os/glnxa64/libstdc++.so.6 &&     ln -s /usr/lib/x86_64-linux-gnu/libstdc++.so.6 /opt/matlabmcr-2016b/v91/sys/os/glnxa64/libstdc++.so.6",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "pip install https://github.com/Washington-University/gradunwarp/archive/v1.0.3.zip",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "run.py",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "version",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "chmod +x /run.py",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENTRYPOINT",
+        "children": [
+            {
+                "type": "DOCKER-ENTRYPOINT-EXECUTABLE",
+                "value": "/run.py",
+                "children": []
+            }
+        ]
+    }
+]

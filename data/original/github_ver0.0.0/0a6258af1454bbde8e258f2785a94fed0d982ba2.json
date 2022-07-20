@@ -1,0 +1,312 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "alpine",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "3.7",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "echo \"http://dl-cdn.alpinelinux.org/alpine/edge/community/\" >> /etc/apk/repositories &&     echo \"http://dl-cdn.alpinelinux.org/alpine/edge/testing/\" >> /etc/apk/repositories &&     apk add --update openvpn=2.4.4-r1       bash easy-rsa libintl inotify-tools openvpn-auth-pam google-authenticator pamtester &&     apk add --virtual temppkg gettext &&      cp /usr/bin/envsubst /usr/local/bin/envsubst &&     ln -s /usr/share/easy-rsa/easyrsa /usr/local/bin &&     apk del temppkg &&     rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /var/cache/distfiles/*",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "OPENVPN",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/etc/openvpn",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "OVPN_TEMPLATE",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "$OPENVPN/templates/openvpn.tmpl",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "OVPN_CONFIG",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "$OPENVPN/openvpn.conf",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "OVPN_PORTMAPPING",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "$OPENVPN/portmapping",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "OVPN_CRL",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "$OPENVPN/crl/crl.pem",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "OVPN_CCD",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "$OPENVPN/ccd",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "OVPN_DEFROUTE",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "0",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "OVPN_CIPHER",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"AES-256-CBC\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "OVPN_TLS_CIPHER",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"TLS-ECDHE-RSA-WITH-AES-128-GCM-SHA256:TLS-ECDHE-ECDSA-WITH-AES-128-GCM-SHA256:TLS-ECDHE-RSA-WITH-AES-256-GCM-SHA384:TLS-DHE-RSA-WITH-AES-256-CBC-SHA256\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "EASYRSA",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/usr/share/easy-rsa",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "EASYRSA_PKI",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "$OPENVPN/pki",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ADD",
+        "children": [
+            {
+                "type": "DOCKER-ADD-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/usr/local/bin",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-ADD-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "./bin",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "chmod a+x /usr/local/bin/*",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/sbin/",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "*.sh",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "$OVPN_TEMPLATE",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "openvpn.tmpl",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ADD",
+        "children": [
+            {
+                "type": "DOCKER-ADD-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/etc/pam.d/",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-ADD-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "./otp/openvpn",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-CMD",
+        "children": [
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "/sbin/entrypoint.sh",
+                "children": []
+            }
+        ]
+    }
+]

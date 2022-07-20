@@ -1,0 +1,32 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "ruby",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "2.1-onbuild",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-CMD",
+        "children": [
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "ruby",
+                "children": []
+            },
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "./slacker.rb",
+                "children": []
+            }
+        ]
+    }
+]

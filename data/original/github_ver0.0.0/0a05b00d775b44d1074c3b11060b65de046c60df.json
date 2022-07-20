@@ -1,0 +1,32 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "ec-build-box",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-REPO",
+                "value": "easycryptpa",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "latest",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "opam pin add -n easycrypt https://github.com/EasyCrypt/easycrypt.git#BRANCH && \topam install easycrypt.dev && \trm -rf .opam/packages.dev/*",
+                "children": []
+            }
+        ]
+    }
+]

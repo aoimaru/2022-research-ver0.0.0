@@ -1,0 +1,107 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "node",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "8-slim",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -eux; \tyarn global add node-gyp@5.0.1; \tnode-gyp --version",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/usr/src/xo/packages/xo-server",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "XO_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "xo-server-v5.43.0",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -eux; \tcd /usr/src/xo; \twget -O xo.tgz \"https://github.com/vatesfr/xen-orchestra/archive/$XO_VERSION.tar.gz\"; \ttar -xvf xo.tgz --strip-components=1; \trm xo.tgz",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -eux; \tcd /usr/src/xo; \tyarn; \tyarn build",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "set -eux; \tmkdir /etc/xo-server; \tsed \t\t-e \"s!#uri = 'redis://.*'!uri = 'redis://redis:6379'!\" \t\tsample.config.toml > /etc/xo-server/config.toml \t; \tgrep -vE '^#' config.toml | grep '../xo-web/dist'; \tgrep 'redis:6379' /etc/xo-server/config.toml",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-EXPOSE",
+        "children": [
+            {
+                "type": "DOCKER-PORT",
+                "value": "80",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-CMD",
+        "children": [
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "yarn",
+                "children": []
+            },
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "start",
+                "children": []
+            }
+        ]
+    }
+]

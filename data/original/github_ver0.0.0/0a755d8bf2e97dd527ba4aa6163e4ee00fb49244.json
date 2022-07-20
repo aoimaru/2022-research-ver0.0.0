@@ -1,0 +1,247 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "debian",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "latest",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apt-get update -qq &&     DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends         bash-completion         build-essential         git         python-minimal         python-dev         python-pip         libxml2-dev         xorg-dev         ssh         curl         libfreetype6-dev         libpng-dev         libxft-dev         xvfb         freeglut3         freeglut3-dev         libgl1-mesa-dri         libgl1-mesa-glx         python-tk         rsync         vim         less         xauth         swig         gdb-minimal         python2.7-dbg         wget         gfortran  &&     apt-get clean &&     rm -rf /var/lib/apt/lists/*",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ARG",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "MPICH_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"3.1.4\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ARG",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "MPICH_CONFIGURE_OPTIONS",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/usr\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ARG",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "MPICH_MAKE_OPTIONS",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "\"-j4\"",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/tmp/mpich-build",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "wget http://www.mpich.org/static/downloads/${MPICH_VERSION}/mpich-${MPICH_VERSION}.tar.gz &&     tar xvzf mpich-${MPICH_VERSION}.tar.gz &&     cd mpich-${MPICH_VERSION}              &&     ./configure ${MPICH_CONFIGURE_OPTIONS} &&     make ${MPICH_MAKE_OPTIONS}             &&     make install                           &&     ldconfig                               &&     cd /tmp                                &&     rm -fr *",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "pip install --no-cache-dir setuptools wheel &&     pip install --no-cache-dir packaging         appdirs         numpy         jupyter         plotly         matplotlib         runipy         pillow         pyvirtualdisplay         ipython==4.2.0         ipyparallel         pint         sphinx         sphinx_rtd_theme         sphinxcontrib-napoleon         mock         scipy         tabulate",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/tmp/petsc-build",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "wget http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.9.3.tar.gz",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "tar zxf petsc-lite-3.9.3.tar.gz && cd petsc-3.9.3 &&     ./configure --with-debugging=0 --prefix=/usr                                                 --COPTFLAGS=\"-g -O3\" --CXXOPTFLAGS=\"-g -O3\" --FOPTFLAGS=\"-g -O3\"                 --download-petsc4py=1                     --download-mpi4py=1                       --download-mumps=1                        --download-parmetis=1                     --download-metis=1                        --download-superlu=1                      --download-hypre=1                        --download-cmake=1                        --download-scalapack=1                    --download-superlu_dist=1                 --download-superlu=1                      --download-fblaslapack=1                  --download-hdf5=1                                                    &&     make PETSC_DIR=/tmp/petsc-build/petsc-3.9.3 PETSC_ARCH=arch-linux2-c-opt all     &&     make PETSC_DIR=/tmp/petsc-build/petsc-3.9.3 PETSC_ARCH=arch-linux2-c-opt install &&     cd /tmp &&     rm -fr *",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "PYTHONPATH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "$PYTHONPATH:/usr/lib",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "CC=mpicc HDF5_MPI=\"ON\" pip install --no-cache-dir --no-binary=h5py h5py",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "curl -L https://github.com/krallin/tini/releases/download/v0.10.0/tini > tini &&     echo \"1361527f39190a7338a0b434bd8c88ff7233ce7b9a4876f3315c22fce7eca1b0 *tini\" | sha256sum -c - &&     mv tini /usr/local/bin/tini &&     chmod +x /usr/local/bin/tini",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "GLUCIFER_USE_XVFB",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "1",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "mkdir -p -m 700 /root/.jupyter/ &&     echo \"c.NotebookApp.ip = '*'\" >> /root/.jupyter/jupyter_notebook_config.py",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/root/.jupyter",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "ipcluster nbextension enable &&     ipython profile create --parallel --profile=mpi &&     echo \"c.IPClusterEngines.engine_launcher_class = 'MPIEngineSetLauncher'\" >> /root/.ipython/profile_mpi/ipcluster_config.py",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-EXPOSE",
+        "children": [
+            {
+                "type": "DOCKER-PORT",
+                "value": "8888",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENTRYPOINT",
+        "children": [
+            {
+                "type": "DOCKER-ENTRYPOINT-EXECUTABLE",
+                "value": "/usr/local/bin/tini",
+                "children": []
+            },
+            {
+                "type": "DOCKER-ENTRYPOINT-ARG",
+                "value": "--",
+                "children": []
+            }
+        ]
+    }
+]

@@ -1,0 +1,57 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "brew",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-REPO",
+                "value": "linuxbrew",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "2.0.5",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "HOMEBREW_NO_AUTO_UPDATE",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "1",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "sudo apt-get update \t&& sudo apt-get install -y --no-install-recommends \t\tfonts-dejavu-core \t&& sudo rm -rf /var/lib/apt/lists/*",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "brew update && brew tap brewsci/base && brew tap brewsci/bio && brew tap brewsci/science && brew install autoconf automake berkeley-db cpanm expat jdk jdk@8 less libxml2 man-db matplotlib miller numpy pandoc perl python python@2 r ruby scipy tcsh unzip vim zip zlib",
+                "children": []
+            }
+        ]
+    }
+]

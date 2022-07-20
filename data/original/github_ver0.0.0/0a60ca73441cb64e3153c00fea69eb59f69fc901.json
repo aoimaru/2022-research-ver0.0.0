@@ -1,0 +1,77 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "docker-hadoop",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-REPO",
+                "value": "tonywell",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "HIVE_HOME",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/usr/local/hive",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "wget http://mirror.bit.edu.cn/apache/hive/hive-1.2.1/apache-hive-1.2.1-bin.tar.gz &&      tar -zvxf apache-hive-1.2.1-bin.tar.gz -C /usr/local/ &&      mv /usr/local/apache-hive-1.2.1-bin /usr/local/hive &&      rm apache-hive-1.2.1-bin.tar.gz",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "wget http://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.39.tar.gz &&     tar -zvxf mysql-connector-java-5.1.39.tar.gz -C /usr/local/ &&     mv /usr/local/mysql-connector-java-5.1.39/mysql-connector-java-5.1.39-bin.jar $HIVE_HOME/lib/ &&     rm -rf /usr/local/mysql-connector-java-5.1.39",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "mkdir -p /usr/hive/warehouse && mkdir -p /usr/hive/log",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "PATH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "$PATH:$HIVE_HOME/bin:.",
+                "children": []
+            }
+        ]
+    }
+]

@@ -1,0 +1,37 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "postgres",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-REPO",
+                "value": "circleci",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "9.6.12",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "PGDATA",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "/dev/shm/pgdata/data",
+                "children": []
+            }
+        ]
+    }
+]

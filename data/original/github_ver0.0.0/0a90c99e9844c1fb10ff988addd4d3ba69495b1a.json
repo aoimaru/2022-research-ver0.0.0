@@ -1,0 +1,57 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "redis",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "4.0.11-alpine",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-CMD",
+        "children": [
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "redis-server",
+                "children": []
+            },
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "--appendfsync",
+                "children": []
+            },
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "no",
+                "children": []
+            },
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "--save",
+                "children": []
+            },
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "",
+                "children": []
+            },
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "--appendonly",
+                "children": []
+            },
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "no",
+                "children": []
+            }
+        ]
+    }
+]

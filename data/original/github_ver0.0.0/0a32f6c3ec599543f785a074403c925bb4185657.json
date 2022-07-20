@@ -1,0 +1,47 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "r-devel",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-REPO",
+                "value": "rocker",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "rm -rf /var/lib/apt/lists/   && apt-get update   && apt-get install -y -t unstable --no-install-recommends     libcurl4-openssl-dev     libssl1.0.0     libssl-dev     libproj-dev     libgdal-dev     libgdal1-dev   && apt-get clean   && rm -rf /var/lib/apt/lists/",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "wget https://github.com/jgm/pandoc/releases/download/1.16.0.2/pandoc-1.16.0.2-1-amd64.deb &&     dpkg -i pandoc* &&     rm pandoc* &&     apt-get clean",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "install2.r -r http://cran.rstudio.com     openssl     httr     rgdal     ggplot2     gridExtra     hexbin     scales     MASS     knitr     dichromat     colorspace     rasterVis     mapproj     rmarkdown",
+                "children": []
+            }
+        ]
+    }
+]

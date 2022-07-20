@@ -1,0 +1,232 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "base-php7",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-REPO",
+                "value": "unocha",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "%%UPSTREAM%%",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ARG",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "VERSION",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ARG",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "VCS_URL",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ARG",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "VCS_REF",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ARG",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "BUILD_DATE",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "DRUSH_VERSION",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "8",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "DRUSH_RELEASE",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "8.1.15",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "WP_RELEASE",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "2.1.0",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "PAGER",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "more",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/client.cnf",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "etc/my.cnf.d/client.cnf",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/drushrc.php",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "drushrc.php",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/tmp/drush8-2282.patch",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "drush8-2282.patch",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-COPY",
+        "children": [
+            {
+                "type": "DOCKER-COPY-TARGET",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "/tmp/drush8-2567.patch",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "type": "DOCKER-COPY-SOURCE",
+                "children": [
+                    {
+                        "type": "DOCKER-PATH",
+                        "value": "drush8-2567.patch",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apk add --update-cache         git         php7         mysql-client         postgresql-client &&     rm -rf /var/cache/apk/* &&         mv -f /client.cnf /etc/my.cnf.d/client.cnf &&         COMPOSER_HASH=$(curl -sS https://composer.github.io/installer.sig) &&     php -r \"copy('https://getcomposer.org/installer', 'composer-setup.php');\" &&     php -r \"if (hash_file('SHA384', 'composer-setup.php') === '$COMPOSER_HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;\" &&     php composer-setup.php --install-dir=/usr/bin --filename=composer &&     php -r \"unlink('composer-setup.php');\" &&     COMPOSER_HOME=/usr/local/drush$DRUSH_VERSION       composer global require drush/drush:$DRUSH_RELEASE &&     cd /usr/local/drush8/vendor/drush/drush &&       patch -p1 -i /tmp/drush8-2282.patch &&       patch -p1 -i /tmp/drush8-2567.patch &&     cd / &&     ln -sf /usr/local/drush$DRUSH_VERSION/vendor/bin/drush /usr/bin/drush &&     drush status &&     drush -y @none dl --destination=/home/appuser/.drush/commands registry_rebuild-7.x &&     chown -R appuser:appuser /home/appuser/.drush &&     mkdir -p /root/.drush &&     ln -s /home/appuser/.drush/commands /root/.drush/commands &&     mkdir -p /etc/drush &&     mv /drushrc.php /etc/drush/drushrc.php &&     rm -f /tmp/drush8-2282.patch /tmp/drush8-2567.patch &&     COMPOSER_HOME=/usr/local/wp$WP_RELEASE        composer global require wp-cli/wp-cli:$WP_RELEASE &&     ln -sf /usr/local/wp$WP_RELEASE/vendor/wp-cli/wp-cli/bin/wp /usr/bin/wp &&     wp --info",
+                "children": []
+            }
+        ]
+    }
+]

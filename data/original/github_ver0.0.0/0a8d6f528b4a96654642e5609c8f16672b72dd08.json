@@ -1,0 +1,137 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "nginx-php",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-REPO",
+                "value": "codfrm",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/var/www",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "DB_HOST",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "'127.0.0.1'",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "DB_USER",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "'root'",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "DB_PASSWORD",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "''",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "DB_NAME",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "'cas'",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "DB_PREFIX",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "'cas_'",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "DB_PORT",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "'3306'",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apk add --no-cache git     && rm -rf html/     && git clone https://github.com/CodFrm/cas.git /var/www/html     && cd html     && apk del git     && chown www .env",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENTRYPOINT",
+        "children": [
+            {
+                "type": "DOCKER-ENTRYPOINT-EXECUTABLE",
+                "value": "php-fpm && nginx && cd html/     && echo -e \"DB_HOST=${DB_HOST}\\nDB_USER=${DB_USER}\\nDB_NAME=${DB_NAME}\\nDB_PASSWORD=${DB_PASSWORD}\\nDB_PREFIX=${DB_PREFIX}\\nDB_PORT=${DB_PORT}\" > .env     && php app/install.php     && php start.php",
+                "children": []
+            }
+        ]
+    }
+]

@@ -1,0 +1,152 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "ubuntu",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "16.04",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "DEBIAN_FRONTEND",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "noninteractive",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "mv /etc/apt/sources.list /etc/apt/sources.list.bkp &&     bash -c 'echo -e \"deb mirror://mirrors.ubuntu.com/mirrors.txt xenial main restricted universe multiverse\\ndeb mirror://mirrors.ubuntu.com/mirrors.txt xenial-updates main restricted universe multiverse\\ndeb mirror://mirrors.ubuntu.com/mirrors.txt xenial-backports main restricted universe multiverse\\ndeb mirror://mirrors.ubuntu.com/mirrors.txt xenial-security main restricted universe multiverse\\n\\n\" > /etc/apt/sources.list' &&     cat /etc/apt/sources.list.bkp >> /etc/apt/sources.list &&     cat /etc/apt/sources.list",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "apt-get clean all &&      apt-get update &&         apt-get upgrade -y &&     apt-get install -y          pkg-config              zip                     g++                     zlib1g-dev              unzip                   curl                    git                     lsb-release             liblz4-dev              libssl-dev              libcurl4-openssl-dev         liblz-dev               libbz2-dev              liblzma-dev             autotools-dev           automake                cmake                   curl                    grep                    sed                     dpkg                    fuse                    git                     wget                    zip                     build-essential         pkg-config              bzip2                   git                     zlib1g-dev &&           apt-get clean &&         apt-get purge &&         rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "mkdir -p /opt",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "cd /opt     && git clone https://github.com/samtools/htslib.git     && cd /opt/htslib     && make     && make lib-static     && make install",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "cd /opt     && git clone https://github.com/facebook/zstd.git     && cd /opt/zstd/     && make     && make install",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "cd /opt     && git clone https://mklarqvist:CpgqYBz6-S@github.com/mklarqvist/tomahawk     && cd /opt/tomahawk/     && make     && make install",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "PATH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "$PATH:/usr/local/bin",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-ENV",
+        "children": [
+            {
+                "type": "DOCKER-NAME",
+                "value": "LD_LIBRARY_PATH",
+                "children": []
+            },
+            {
+                "type": "DOCKER-LITERAL",
+                "value": "$LD_LIBRARY_PATH:/usr/local/lib/",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-VOLUME",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/data",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-CMD",
+        "children": [
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "/bin/bash",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-WORKDIR",
+        "children": [
+            {
+                "type": "DOCKER-PATH",
+                "value": "/data",
+                "children": []
+            }
+        ]
+    }
+]

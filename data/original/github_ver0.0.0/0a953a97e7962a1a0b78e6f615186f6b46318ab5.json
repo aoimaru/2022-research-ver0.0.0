@@ -1,0 +1,67 @@
+[
+    {
+        "type": "DOCKER-FROM",
+        "children": [
+            {
+                "type": "DOCKER-IMAGE-NAME",
+                "value": "ubuntu",
+                "children": []
+            },
+            {
+                "type": "DOCKER-IMAGE-TAG",
+                "value": "16.04",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-SHELL",
+        "children": [
+            {
+                "type": "DOCKER-SHELL-EXECUTABLE",
+                "value": "/bin/bash",
+                "children": []
+            },
+            {
+                "type": "DOCKER-SHELL-ARG",
+                "value": "-o",
+                "children": []
+            },
+            {
+                "type": "DOCKER-SHELL-ARG",
+                "value": "pipefail",
+                "children": []
+            },
+            {
+                "type": "DOCKER-SHELL-ARG",
+                "value": "-c",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-RUN",
+        "children": [
+            {
+                "type": "MAYBE-BASH",
+                "value": "echo \"deb http://ppa.launchpad.net/ansible/ansible/ubuntu xenial main\" | tee /etc/apt/sources.list.d/ansible.list           &&     echo \"deb-src http://ppa.launchpad.net/ansible/ansible/ubuntu xenial main\" | tee -a /etc/apt/sources.list.d/ansible.list    &&     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 7BB9C367    &&     DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y --no-install-recommends         ansible         fonts-lato         javascript-common         libjs-jquery         libruby         rake         ruby         ruby-minitest         ruby-test-unit         rubygems-integration         unzip         zip &&     rm -rf /var/lib/apt/lists/*  /etc/apt/sources.list.d/ansible.list &&     gem install bundler &&     gem cleanup all",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "DOCKER-CMD",
+        "children": [
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "ansible-playbook",
+                "children": []
+            },
+            {
+                "type": "DOCKER-CMD-ARG",
+                "value": "--version",
+                "children": []
+            }
+        ]
+    }
+]
