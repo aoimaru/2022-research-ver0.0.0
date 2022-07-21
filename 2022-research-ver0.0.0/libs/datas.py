@@ -6,7 +6,7 @@ from abc import ABC, abstractmethod
     - sampleデータを検証するためのパッチ
 """
 from libs.metadatas import MetaData
-from libs.files import SampleAST
+from libs.files import *
 
 class Data(object):
     @staticmethod
@@ -104,4 +104,42 @@ class SampleDataVer002(SampleData):
         # return sample_data
         
 
+
+class SampleDataVer010(SampleData):
+    @staticmethod
+    def get(run):
+        file_shas = MetaData.get_github_ver001_path()
+        sample_data = dict()
+        for file_sha in file_shas:
+            try:
+                ast_obj = SampleAST(file_sha)
+            except Exception as e:
+                print(e)
+            else:
+                if run == 1:
+                    for idx, child in enumerate(ast_obj.children):
+                        if not child["type"] == "DOCKER-RUN":
+                            continue
+                        sequence = Recursive.do(child)
+                        sequence = [word[2:] for word in sequence]
+                        sample_data[file_sha+"-"+str(idx)] = sequence
+                else:
+                    for idx, child in enumerate(ast_obj.children):
+                        sequence = Recursive.do(child)
+                        sample_data[file_sha+"-"+str(idx)] = sequence
+                
+        return sample_data
+    
+    @staticmethod
+    def _patch_get_original(file_id):
+        file_sha, idx = file_id.split("-")
+        originals = list()
+        try:
+            ast_obj = SampleOriginal(file_sha)
+        except Exception as e:
+            print(e)
+        else:
+            for ix, child in enumerate(ast_obj.children):
+                if ix == int(idx):
+                    pprint.pprint(child["children"][0]["value"])
 

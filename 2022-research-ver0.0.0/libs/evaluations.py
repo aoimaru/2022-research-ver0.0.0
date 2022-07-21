@@ -116,7 +116,8 @@ class Evaluation(object):
         test_case_vector = test_case_vector_obj.vector
         positive = 0
         true_positive = 0
-        for sample_case in sample_cases:
+        results = list()
+        for idx, sample_case in sample_cases.items():
             sample_case_vector_obj = Vector(contexts=sample_case, model=model, size=size)
             sample_case_vector = sample_case_vector_obj.vector
             try:
@@ -125,7 +126,9 @@ class Evaluation(object):
                 print(e)
             else:
                 if result >= limit:
-                    print(sample_case)
+                    results.append(idx)
+        
+        return results
                     
 
 
