@@ -11,6 +11,7 @@ from libs.word2vecs import BaseW2V
 from libs.vectors import Vector
 from functions.functions import *
 from libs.cases import *
+from libs.to_csv import *
 
 """
     - 効率を考えて今回はグローバルに定義
@@ -19,7 +20,7 @@ from libs.cases import *
 from libs.evaluations import *
 
 
-def do(args, target, top=20):
+def do(args, target, top=20, seed="tmp"):
     test_obj = TestCase.get("{target}.json".format(target=target))
     # ここはパッチっぽい
     sample_cases = SampleDataVer000.get(run=args.sample)
@@ -72,10 +73,38 @@ def do(args, target, top=20):
                     words += token
                 data.append([result[1], words])
 
+            ToCSV.do(
+                parameter=parameter,
+                data=data,
+                sample_case_version="tmp",
+                target=target,
+                top_lim=top,
+                seed=seed
+            )
+
 
 
 def main(args):
-    do(args, target="APT-GET_INSTALL_ver0.0.0", top=20)
+    # do(args, target="APT-GET_INSTALL_ver0.0.0", top=10, seed="size")
+    # do(args, target="APT-GET_INSTALL_ver0.0.0", top=20, seed="size")
+    # do(args, target="APT-GET_INSTALL_ver0.0.0", top=30, seed="size")
+    # do(args, target="APT-GET_INSTALL_ver0.0.0", top=40, seed="size")
+
+    # do(args, target="APT-GET_INSTALL_ver0.1.0", top=10, seed="size")
+    # do(args, target="APT-GET_INSTALL_ver0.1.0", top=20, seed="size")
+    # do(args, target="APT-GET_INSTALL_ver0.1.0", top=30, seed="size")
+    # do(args, target="APT-GET_INSTALL_ver0.1.0", top=40, seed="size")
+
+    # do(args, target="APT-GET_INSTALL_ver0.1.1", top=10, seed="size")
+    # do(args, target="APT-GET_INSTALL_ver0.1.1", top=20, seed="size")
+    # do(args, target="APT-GET_INSTALL_ver0.1.1", top=30, seed="size")
+    # do(args, target="APT-GET_INSTALL_ver0.1.1", top=40, seed="size")
+
+    do(args, target="GPG_KEY_ver0.0.0", top=10, seed="size")
+    do(args, target="GPG_KEY_ver0.0.0", top=20, seed="size")
+    do(args, target="GPG_KEY_ver0.0.0", top=30, seed="size")
+    do(args, target="GPG_KEY_ver0.0.0", top=40, seed="size")
+
     # do(args, target="APT-GET_INSTALL_ver0.1.0")
     # do(args, target="GPG_KEY_ver0.0.0")
     # do(args, target="APK_ADD_USE_NO_CACHE_ver0.0.0")
