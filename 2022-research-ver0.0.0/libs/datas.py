@@ -105,10 +105,10 @@ class SampleDataVer002(SampleData):
         
 
 
-class SampleDataVer010(SampleData):
+class SampleDataVer000(SampleData):
     @staticmethod
     def get(run):
-        file_shas = MetaData.get_github_ver001_path()
+        file_shas = MetaData.get_github_ver000_path()
         sample_data = dict()
         for file_sha in file_shas:
             try:
@@ -141,5 +141,7 @@ class SampleDataVer010(SampleData):
         else:
             for ix, child in enumerate(ast_obj.children):
                 if ix == int(idx):
-                    pprint.pprint(child["children"][0]["value"])
+                    return child["children"][0]["value"]
+            else:
+                return ""
 

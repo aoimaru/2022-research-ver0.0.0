@@ -18,7 +18,8 @@ from libs.cases import *
 
 from libs.evaluations import *
 
-def do(args, target, top=20):    
+
+def do(args, target, top=20):
     test_obj = TestCase.get("{target}.json".format(target=target))
     # ここはパッチっぽい
     sample_cases = SampleDataVer000.get(run=args.sample)
@@ -61,11 +62,16 @@ def do(args, target, top=20):
                     break
             
             results = sorted(results.items(), reverse=True)
+            data = list()
+            data.append(["result", "description"])
             for result in results[:top]:
                 print(result[1])
-                pprint.pprint(SampleDataVer000._patch_get_original(result[0]))
-            
-                
+                tokens = SampleDataVer000._patch_get_original(result[0])
+                words = ""
+                for token in tokens:
+                    words += token
+                data.append([result[1], words])
+
 
 
 def main(args):

@@ -41,6 +41,7 @@ def make_dir():
     root_path = os.getcwd()
     for file_path in file_paths:
         try:
+            print(root_path+file_path)
             os.makedirs(root_path+file_path)
         except Exception as e:
             print(e)
@@ -48,4 +49,7 @@ def make_dir():
 
 def main():
     make_dir()
-    
+
+
+if __name__ == "__main__":
+    main()
