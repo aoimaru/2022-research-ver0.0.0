@@ -1,0 +1,11 @@
+result,description
+0.9428873199661392,set -x &&     apk add --update --no-cache ffmpeg &&     rm -rf /var/cache/apk/* /tmp/*
+0.9099044051385845,apt-get update && apt-get install -y --no-install-recommends 		g++ 		gcc 		libc6-dev 		make 		pkg-config 		git 	&& rm -rf /var/lib/apt/lists/*
+0.9290370344176383,apt-get update && apt-get -y install     build-essential     git-core     curl libssl-dev     libreadline-dev     zlib1g zlib1g-dev     libcurl4-openssl-dev     libxslt-dev libxml2-dev     xvfb nodejs-legacy     postgresql   && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+0.9808437427806599,rm -rf /tmp/* /var/tmp/*
+0.9268088295623846,apt update && apt install -y cmake g++                && rm -rf /var/lib/apt/lists/*
+0.9182176472860308,apt-get update && apt-get install -y 	software-properties-common 	--no-install-recommends && 	add-apt-repository ppa:yubico/stable && 	apt-get update && apt-get install -y 	pcscd 	usbutils 	yubico-piv-tool 	&& rm -rf /var/lib/apt/lists/*
+0.9524597471676782,apt-get update && apt-get install -y fml-asm && apt-get clean && apt-get purge && rm -rf /var/lib/apt/lists/* /tmp/*
+0.9099044051385845,apt-get update && apt-get install -y --no-install-recommends 		g++ 		gcc 		libc6-dev 		make 		pkg-config 		git 	&& rm -rf /var/lib/apt/lists/*
+0.9498934541391536,set -xv ; apt-get -qq update && apt-get -qq dist-upgrade -y && apt-get -qq install -y ${pkgs} ${pkgs_tmp} && gem install fpm && apt-get remove -y --purge ${pkgs_tmp} && apt-get -qq autoremove -y && apt-get -qq clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /*.deb /MoarVM* /nqp* /rakudo*
+0.9286032288230922,set -ex ;     tools/fetch.sh > BUILD.bazel ;     bazel fetch --noshow_progress //:fetch 2>&1 ;     rm -rf /home/scion/.cache/bazel/_bazel_scion/*/external/*/\.git ;     sudo tar czf /scioncache/bazel.tar.gz --owner=scion -C ~ .cache/bazel;     sudo rm -r ~/.cache/bazel;     sudo rm -r ./*

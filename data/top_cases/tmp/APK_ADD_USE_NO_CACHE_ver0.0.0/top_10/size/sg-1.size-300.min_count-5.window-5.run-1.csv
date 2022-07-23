@@ -1,0 +1,11 @@
+result,description
+0.9497334878129549,apk add --no-cache libgcc libstdc++ libuv 	&& apk add --no-cache libssl1.0 || apk add --no-cache libssl1.1
+0.9833623158304954,apk update && apk upgrade && apk add --no-cache git nodejs bash npm
+0.9497334878129549,apk add --no-cache libgcc libstdc++ libuv 	&& apk add --no-cache libssl1.0 || apk add --no-cache libssl1.1
+0.926538344817257,apk add --update --no-cache curl
+0.92749089588274,apk add --update --no-cache     python     make     g++
+0.9497334878129549,apk add --no-cache libgcc libstdc++ libuv 	&& apk add --no-cache libssl1.0 || apk add --no-cache libssl1.1
+0.9539570624536291,apk update && apk add git
+0.9192839837088601,apk add -qU --no-cache iptables openssh
+0.9312539884512124,apk add --no-cache 		bash 		sed
+0.9335407477180948,apk add --no-cache bash

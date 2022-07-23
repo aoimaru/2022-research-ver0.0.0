@@ -1,0 +1,41 @@
+result,description
+0.9480040961411862,apk add --no-cache libgcc libstdc++ libuv 	&& apk add --no-cache libssl1.0 || apk add --no-cache libssl1.1
+0.9824510769871088,apk update && apk upgrade && apk add --no-cache git nodejs bash npm
+0.9480040961411862,apk add --no-cache libgcc libstdc++ libuv 	&& apk add --no-cache libssl1.0 || apk add --no-cache libssl1.1
+0.9257946387363233,apk add --update --no-cache curl
+0.9267248475807888,apk add --update --no-cache     python     make     g++
+0.9480040961411862,apk add --no-cache libgcc libstdc++ libuv 	&& apk add --no-cache libssl1.0 || apk add --no-cache libssl1.1
+0.9516934037991016,apk update && apk add git
+0.9194473272623463,apk add -qU --no-cache iptables openssh
+0.9279615619756244,apk add --no-cache 		bash 		sed
+0.930146316886124,apk add --no-cache bash
+0.9253397641882866,apk --no-cache add libc6-compat
+0.9761628565645244,apk add --no-cache --initdb -p /out   alpine-baselayout   binutils   busybox   dosfstools   libarchive-tools   mtools   xorriso   && true
+0.9916125620762137,apk add --update make gcc g++ python curl git krb5-dev zeromq-dev && npm install zeromq --zmq-external --save && apk del make gcc g++ python curl git krb5-dev
+0.9568790141097718,apk add --update --no-cache openjdk8-jre &&    gcloud components install cloud-datastore-emulator beta --quiet
+0.9244307661187336,apk add --no-cache dropbear openssh rsync bash
+0.9658094753318894,apk add --no-cache git &&     yarn install
+0.9555886995964812,apk --no-cache add upx  && upx /x/bin/*
+0.9253397641882866,apk --no-cache add man
+0.9291972743617553,apk add --no-cache git gcc ca-certificates
+0.9291972743617553,apk add --no-cache git gcc ca-certificates
+0.930146316886124,apk add --no-cache bash
+0.9282732902679788,apk add --no-cache make   gcc   g++
+0.9417690537328571,apk update && apk upgrade && apk add --no-cache bash
+0.9516934037991016,apk update && apk add protobuf
+0.9253397641882866,apk add --no-cache libstdc++
+0.9291972743617553,apk add --no-cache git gcc ca-certificates
+0.9480040961411862,apk add --no-cache libgcc libstdc++ libuv 	&& apk add --no-cache libssl1.0 || apk add --no-cache libssl1.1
+0.9165790911833758,apk add git
+0.925868057700333,apk add python make g++
+0.9480040961411862,apk add --no-cache libgcc libstdc++ libuv 	&& apk add --no-cache libssl1.0 || apk add --no-cache libssl1.1
+0.9140209918256323,apk --update add iperf
+0.9157596970568332,apk del --no-cache .dependencies
+0.9283248322601328,apk add --no-cache --virtual=.dependencies tar wget
+0.9290436028400836,apk --no-cache add curl
+0.962987387057009,apk update && apk add curl
+0.9248123463036998,apk add --update bash yarn git wget make gettext
+0.922249804270465,apk add --update bash ttf-dejavu fontconfig
+0.9140209918256323,apk add --update java-cacerts
+0.9167393027182629,apk add --update python3 py3-pip git
+0.9480040961411862,apk add --no-cache libgcc libstdc++ libuv 	&& apk add --no-cache libssl1.0 || apk add --no-cache libssl1.1

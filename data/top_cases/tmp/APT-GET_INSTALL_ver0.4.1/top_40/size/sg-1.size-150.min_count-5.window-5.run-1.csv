@@ -1,0 +1,41 @@
+result,description
+0.9341577477641493,set -x &&     apk add --update --no-cache ffmpeg &&     rm -rf /var/cache/apk/* /tmp/*
+0.9013087337654198,apt-get update && apt-get install -y --no-install-recommends 		g++ 		gcc 		libc6-dev 		make 		pkg-config 		git 	&& rm -rf /var/lib/apt/lists/*
+0.921418399345783,apt-get update && apt-get -y install     build-essential     git-core     curl libssl-dev     libreadline-dev     zlib1g zlib1g-dev     libcurl4-openssl-dev     libxslt-dev libxml2-dev     xvfb nodejs-legacy     postgresql   && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+0.9811615533405101,rm -rf /tmp/* /var/tmp/*
+0.9173645976428378,apt update && apt install -y cmake g++                && rm -rf /var/lib/apt/lists/*
+0.9078826893645381,apt-get update && apt-get install -y 	software-properties-common 	--no-install-recommends && 	add-apt-repository ppa:yubico/stable && 	apt-get update && apt-get install -y 	pcscd 	usbutils 	yubico-piv-tool 	&& rm -rf /var/lib/apt/lists/*
+0.9449772109059253,apt-get update && apt-get install -y fml-asm && apt-get clean && apt-get purge && rm -rf /var/lib/apt/lists/* /tmp/*
+0.9013087337654198,apt-get update && apt-get install -y --no-install-recommends 		g++ 		gcc 		libc6-dev 		make 		pkg-config 		git 	&& rm -rf /var/lib/apt/lists/*
+0.9433255172490664,set -xv ; apt-get -qq update && apt-get -qq dist-upgrade -y && apt-get -qq install -y ${pkgs} ${pkgs_tmp} && gem install fpm && apt-get remove -y --purge ${pkgs_tmp} && apt-get -qq autoremove -y && apt-get -qq clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /*.deb /MoarVM* /nqp* /rakudo*
+0.9291970588000631,set -ex ;     tools/fetch.sh > BUILD.bazel ;     bazel fetch --noshow_progress //:fetch 2>&1 ;     rm -rf /home/scion/.cache/bazel/_bazel_scion/*/external/*/\.git ;     sudo tar czf /scioncache/bazel.tar.gz --owner=scion -C ~ .cache/bazel;     sudo rm -r ~/.cache/bazel;     sudo rm -r ./*
+0.9449772109059253,apt-get update && apt-get install -y pbsuite && apt-get clean && apt-get purge && rm -rf /var/lib/apt/lists/* /tmp/*
+0.9322240678256688,apk add --update dos2unix && rm -rf /var/cache/apk/*
+0.9322240678256688,apk add --update dos2unix && rm -rf /var/cache/apk/*
+0.9013087337654198,apt-get update && apt-get install -y --no-install-recommends 		g++ 		gcc 		libc6-dev 		make 		pkg-config 		git 	&& rm -rf /var/lib/apt/lists/*
+0.9392217385984556,apt-get update &&	apt-get install -y --no-install-recommends 	nodejs 	python-pygments &&	rm -rf /var/lib/apt/lists/*
+0.9013087337654198,apt-get update && apt-get install -y --no-install-recommends 		g++ 		gcc 		libc6-dev 		make 		pkg-config 		git 	&& rm -rf /var/lib/apt/lists/*
+0.9370447389719685,apt-get update     && apt-get install -y ssl-cert ca-certificates     && apt-get clean     && rm -rf /var/lib/apt/lists/*
+0.9742641112566736,rm /var/www/html/*.html
+0.9426105786484725,apt-get clean     && rm -rf /var/lib/apt/lists/*
+0.9854785534537345,rm -rf /tmp/*
+0.9304558818818569,"apt-get autoclean && apt-get autoremove -y && rm -rf /var/lib/{apt,dpkg,cache,log}/"
+0.9499779534298579,apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+0.9766412459519805,rm *.o
+0.9766412459519805,rm *.o
+0.9766412459519805,rm *.o
+0.9766412459519805,rm *.o
+0.945201119913486,apt-get update && apt-get install -y mariadb-server pwgen     && apt-get clean     && rm -rf /var/lib/apt/lists/*     && rm -rf /var/lib/mysql/*
+0.9288390402313622,rm -fr /var/lib/apt/lists &&     apt-get update &&     apt-get install -y         curl         binutils-doc         flex         git         ruby ruby-dev         ccache         fakeroot         libreadline-dev         libcurl4-openssl-dev         libexpat1-dev         libicu-dev         reprepro         sudo &&     apt-get clean &&     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+0.9134847237443484,apt-get update &&     apt-get install -y --no-install-recommends         libjemalloc1 	libsnappy1         ca-certificates         pwgen         curl     &&     rm -rf /var/lib/apt/lists/*
+0.9013087337654198,apt-get update && apt-get install -y --no-install-recommends 		g++ 		gcc 		libc6-dev 		make 		pkg-config 		git 	&& rm -rf /var/lib/apt/lists/*
+0.9242705205558477,"apt-get update && apt-get install --yes --no-install-recommends 		ca-certificates 		curl 	&& echo ""deb http://packages.cloud.google.com/apt gcsfuse-bionic main"" 		| tee /etc/apt/sources.list.d/gcsfuse.list 	&& curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - 	&& apt-get update 	&& apt-get install --yes gcsfuse 	&& apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*"
+0.9246047837709498,apt-get update     && apt-get install --no-install-recommends -y curl build-essential clang-3.9     && apt-get clean     && rm -rf /var/lib/apt/lists/*
+0.9099678814389688,apt-get update  && apt-get install -y -q --no-install-recommends     ca-certificates     wget     git     vim  && apt-get clean  && rm -r /var/lib/apt/lists/*
+0.9424015748005439,rm /hello
+0.9750368122984137,rm /var/cache/apk/*
+0.9691514687049785,rm -rf /etc/nginx
+0.9450643919141715,apt-get update &&     apt-get install -y ca-certificates nginx=${NGINX_VERSION} &&     rm -rf /var/lib/apt/lists/*
+0.9305479664118387,set -x &&     apt-get update &&     apt-get -y install         libssl-dev         python         python-pip &&     rm -rf /var/lib/apt/lists/*
+0.9524457479196669,rm -Rf ${LLVM_SOURCES}
+0.9520284017232876,apt-get purge -y git curl gcc &&     apt-get clean -y &&     rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
