@@ -15,7 +15,7 @@
                         "source",
                         "window"
                     ],
-                    "APT_GET_INSTALL_ver0.0.0": [
+                    "APT-GET_INSTALL_ver0.0.0": [
                         "min_count",
                         "run",
                         "sg",
@@ -23,7 +23,7 @@
                         "source",
                         "window"
                     ],
-                    "APT_GET_INSTALL_ver0.0.1": [
+                    "APT-GET_INSTALL_ver0.0.1": [
                         "min_count",
                         "run",
                         "sg",
@@ -31,7 +31,7 @@
                         "source",
                         "window"
                     ],
-                    "APT_GET_INSTALL_ver0.1.0": [
+                    "APT-GET_INSTALL_ver0.1.0": [
                         "min_count",
                         "run",
                         "sg",
@@ -39,7 +39,7 @@
                         "source",
                         "window"
                     ],
-                    "APT_GET_INSTALL_ver0.1.1": [
+                    "APT-GET_INSTALL_ver0.1.1": [
                         "min_count",
                         "run",
                         "sg",
@@ -47,7 +47,7 @@
                         "source",
                         "window"
                     ],
-                    "APT_GET_INSTALL_ver0.2.0": [
+                    "APT-GET_INSTALL_ver0.2.0": [
                         "min_count",
                         "run",
                         "sg",
@@ -55,7 +55,7 @@
                         "source",
                         "window"
                     ],
-                    "APT_GET_INSTALL_ver0.2.1": [
+                    "APT-GET_INSTALL_ver0.2.1": [
                         "min_count",
                         "run",
                         "sg",
@@ -63,7 +63,7 @@
                         "source",
                         "window"
                     ],
-                    "APT_GET_INSTALL_ver0.3.0": [
+                    "APT-GET_INSTALL_ver0.3.0": [
                         "min_count",
                         "run",
                         "sg",
@@ -71,7 +71,7 @@
                         "source",
                         "window"
                     ],
-                    "APT_GET_INSTALL_ver0.3.1": [
+                    "APT-GET_INSTALL_ver0.3.1": [
                         "min_count",
                         "run",
                         "sg",
@@ -79,7 +79,7 @@
                         "source",
                         "window"
                     ],
-                    "APT_GET_INSTALL_ver0.4.0": [
+                    "APT-GET_INSTALL_ver0.4.0": [
                         "min_count",
                         "run",
                         "sg",
@@ -87,7 +87,7 @@
                         "source",
                         "window"
                     ],
-                    "APT_GET_INSTALL_ver0.4.1": [
+                    "APT-GET_INSTALL_ver0.4.1": [
                         "min_count",
                         "run",
                         "sg",
@@ -95,7 +95,7 @@
                         "source",
                         "window"
                     ],
-                    "APT_GET_INSTALL_ver0.5.0": [
+                    "APT-GET_INSTALL_ver0.5.0": [
                         "min_count",
                         "run",
                         "sg",
@@ -103,7 +103,7 @@
                         "source",
                         "window"
                     ],
-                    "APT_GET_INSTALL_ver0.5.1": [
+                    "APT-GET_INSTALL_ver0.5.1": [
                         "min_count",
                         "run",
                         "sg",
@@ -111,7 +111,7 @@
                         "source",
                         "window"
                     ],
-                    "GPG_KEY_ver0.0.0": [
+                    "GPG-KEY_ver0.0.0": [
                         "min_count",
                         "run",
                         "sg",
@@ -137,7 +137,7 @@
                         "source",
                         "window"
                     ],
-                    "APT_GET_INSTALL_ver0.0.0": [
+                    "APT-GET_INSTALL_ver0.0.0": [
                         "min_count",
                         "run",
                         "sg",
@@ -145,7 +145,7 @@
                         "source",
                         "window"
                     ],
-                    "APT_GET_INSTALL_ver0.0.1": [
+                    "APT-GET_INSTALL_ver0.0.1": [
                         "min_count",
                         "run",
                         "sg",
@@ -153,7 +153,7 @@
                         "source",
                         "window"
                     ],
-                    "APT_GET_INSTALL_ver0.1.0": [
+                    "APT-GET_INSTALL_ver0.1.0": [
                         "min_count",
                         "run",
                         "sg",
@@ -161,7 +161,7 @@
                         "source",
                         "window"
                     ],
-                    "APT_GET_INSTALL_ver0.1.1": [
+                    "APT-GET_INSTALL_ver0.1.1": [
                         "min_count",
                         "run",
                         "sg",
@@ -169,7 +169,7 @@
                         "source",
                         "window"
                     ],
-                    "APT_GET_INSTALL_ver0.2.0": [
+                    "APT-GET_INSTALL_ver0.2.0": [
                         "min_count",
                         "run",
                         "sg",
@@ -177,7 +177,7 @@
                         "source",
                         "window"
                     ],
-                    "APT_GET_INSTALL_ver0.2.1": [
+                    "APT-GET_INSTALL_ver0.2.1": [
                         "min_count",
                         "run",
                         "sg",
@@ -185,7 +185,7 @@
                         "source",
                         "window"
                     ],
-                    "APT_GET_INSTALL_ver0.3.0": [
+                    "APT-GET_INSTALL_ver0.3.0": [
                         "min_count",
                         "run",
                         "sg",
@@ -193,7 +193,7 @@
                         "source",
                         "window"
                     ],
-                    "APT_GET_INSTALL_ver0.3.1": [
+                    "APT-GET_INSTALL_ver0.3.1": [
                         "min_count",
                         "run",
                         "sg",
@@ -201,7 +201,7 @@
                         "source",
                         "window"
                     ],
-                    "APT_GET_INSTALL_ver0.4.0": [
+                    "APT-GET_INSTALL_ver0.4.0": [
                         "min_count",
                         "run",
                         "sg",
@@ -209,7 +209,7 @@
                         "source",
                         "window"
                     ],
-                    "APT_GET_INSTALL_ver0.4.1": [
+                    "APT-GET_INSTALL_ver0.4.1": [
                         "min_count",
                         "run",
                         "sg",
@@ -217,7 +217,7 @@
                         "source",
                         "window"
                     ],
-                    "APT_GET_INSTALL_ver0.5.0": [
+                    "APT-GET_INSTALL_ver0.5.0": [
                         "min_count",
                         "run",
                         "sg",
@@ -225,7 +225,7 @@
                         "source",
                         "window"
                     ],
-                    "APT_GET_INSTALL_ver0.5.1": [
+                    "APT-GET_INSTALL_ver0.5.1": [
                         "min_count",
                         "run",
                         "sg",
@@ -233,7 +233,7 @@
                         "source",
                         "window"
                     ],
-                    "GPG_KEY_ver0.0.0": [
+                    "GPG-KEY_ver0.0.0": [
                         "min_count",
                         "run",
                         "sg",
@@ -259,7 +259,7 @@
                         "source",
                         "window"
                     ],
-                    "APT_GET_INSTALL_ver0.0.0": [
+                    "APT-GET_INSTALL_ver0.0.0": [
                         "min_count",
                         "run",
                         "sg",
@@ -267,7 +267,7 @@
                         "source",
                         "window"
                     ],
-                    "APT_GET_INSTALL_ver0.0.1": [
+                    "APT-GET_INSTALL_ver0.0.1": [
                         "min_count",
                         "run",
                         "sg",
@@ -275,7 +275,7 @@
                         "source",
                         "window"
                     ],
-                    "APT_GET_INSTALL_ver0.1.0": [
+                    "APT-GET_INSTALL_ver0.1.0": [
                         "min_count",
                         "run",
                         "sg",
@@ -283,7 +283,7 @@
                         "source",
                         "window"
                     ],
-                    "APT_GET_INSTALL_ver0.1.1": [
+                    "APT-GET_INSTALL_ver0.1.1": [
                         "min_count",
                         "run",
                         "sg",
@@ -291,7 +291,7 @@
                         "source",
                         "window"
                     ],
-                    "APT_GET_INSTALL_ver0.2.0": [
+                    "APT-GET_INSTALL_ver0.2.0": [
                         "min_count",
                         "run",
                         "sg",
@@ -299,7 +299,7 @@
                         "source",
                         "window"
                     ],
-                    "APT_GET_INSTALL_ver0.2.1": [
+                    "APT-GET_INSTALL_ver0.2.1": [
                         "min_count",
                         "run",
                         "sg",
@@ -307,7 +307,7 @@
                         "source",
                         "window"
                     ],
-                    "APT_GET_INSTALL_ver0.3.0": [
+                    "APT-GET_INSTALL_ver0.3.0": [
                         "min_count",
                         "run",
                         "sg",
@@ -315,7 +315,7 @@
                         "source",
                         "window"
                     ],
-                    "APT_GET_INSTALL_ver0.3.1": [
+                    "APT-GET_INSTALL_ver0.3.1": [
                         "min_count",
                         "run",
                         "sg",
@@ -323,7 +323,7 @@
                         "source",
                         "window"
                     ],
-                    "APT_GET_INSTALL_ver0.4.0": [
+                    "APT-GET_INSTALL_ver0.4.0": [
                         "min_count",
                         "run",
                         "sg",
@@ -331,7 +331,7 @@
                         "source",
                         "window"
                     ],
-                    "APT_GET_INSTALL_ver0.4.1": [
+                    "APT-GET_INSTALL_ver0.4.1": [
                         "min_count",
                         "run",
                         "sg",
@@ -339,7 +339,7 @@
                         "source",
                         "window"
                     ],
-                    "APT_GET_INSTALL_ver0.5.0": [
+                    "APT-GET_INSTALL_ver0.5.0": [
                         "min_count",
                         "run",
                         "sg",
@@ -347,7 +347,7 @@
                         "source",
                         "window"
                     ],
-                    "APT_GET_INSTALL_ver0.5.1": [
+                    "APT-GET_INSTALL_ver0.5.1": [
                         "min_count",
                         "run",
                         "sg",
@@ -355,7 +355,7 @@
                         "source",
                         "window"
                     ],
-                    "GPG_KEY_ver0.0.0": [
+                    "GPG-KEY_ver0.0.0": [
                         "min_count",
                         "run",
                         "sg",
@@ -379,18 +379,18 @@
             ],
             "evaluations": [
                 "APK_ADD_USE_NO_CACHE_ver0.0.0",
-                "APT_GET_INSTALL_ver0.0.0",
-                "APT_GET_INSTALL_ver0.0.1",
-                "APT_GET_INSTALL_ver0.1.0",
-                "APT_GET_INSTALL_ver0.1.1",
-                "APT_GET_INSTALL_ver0.2.0",
-                "APT_GET_INSTALL_ver0.2.1",
-                "APT_GET_INSTALL_ver0.3.0",
-                "APT_GET_INSTALL_ver0.3.1",
-                "APT_GET_INSTALL_ver0.4.0",
-                "APT_GET_INSTALL_ver0.4.1",
-                "APT_GET_INSTALL_ver0.5.0",
-                "APT_GET_INSTALL_ver0.5.1"
+                "APT-GET_INSTALL_ver0.0.0",
+                "APT-GET_INSTALL_ver0.0.1",
+                "APT-GET_INSTALL_ver0.1.0",
+                "APT-GET_INSTALL_ver0.1.1",
+                "APT-GET_INSTALL_ver0.2.0",
+                "APT-GET_INSTALL_ver0.2.1",
+                "APT-GET_INSTALL_ver0.3.0",
+                "APT-GET_INSTALL_ver0.3.1",
+                "APT-GET_INSTALL_ver0.4.0",
+                "APT-GET_INSTALL_ver0.4.1",
+                "APT-GET_INSTALL_ver0.5.0",
+                "APT-GET_INSTALL_ver0.5.1"
             ],
             "graph": [
                 "original",
@@ -449,7 +449,7 @@
                             "window"
                         ]
                     },
-                    "APT_GET_INSTALL_ver0.0.0": {
+                    "APT-GET_INSTALL_ver0.0.0": {
                         "top_10": [
                             "min_count",
                             "run",
@@ -483,7 +483,7 @@
                             "window"
                         ]
                     },
-                    "APT_GET_INSTALL_ver0.0.1": {
+                    "APT-GET_INSTALL_ver0.0.1": {
                         "top_10": [
                             "min_count",
                             "run",
@@ -517,7 +517,7 @@
                             "window"
                         ]
                     },
-                    "APT_GET_INSTALL_ver0.1.0": {
+                    "APT-GET_INSTALL_ver0.1.0": {
                         "top_10": [
                             "min_count",
                             "run",
@@ -551,7 +551,7 @@
                             "window"
                         ]
                     },
-                    "APT_GET_INSTALL_ver0.1.1": {
+                    "APT-GET_INSTALL_ver0.1.1": {
                         "top_10": [
                             "min_count",
                             "run",
@@ -585,7 +585,7 @@
                             "window"
                         ]
                     },
-                    "APT_GET_INSTALL_ver0.2.0": {
+                    "APT-GET_INSTALL_ver0.2.0": {
                         "top_10": [
                             "min_count",
                             "run",
@@ -619,7 +619,7 @@
                             "window"
                         ]
                     },
-                    "APT_GET_INSTALL_ver0.2.1": {
+                    "APT-GET_INSTALL_ver0.2.1": {
                         "top_10": [
                             "min_count",
                             "run",
@@ -653,7 +653,7 @@
                             "window"
                         ]
                     },
-                    "APT_GET_INSTALL_ver0.3.0": {
+                    "APT-GET_INSTALL_ver0.3.0": {
                         "top_10": [
                             "min_count",
                             "run",
@@ -687,7 +687,7 @@
                             "window"
                         ]
                     },
-                    "APT_GET_INSTALL_ver0.3.1": {
+                    "APT-GET_INSTALL_ver0.3.1": {
                         "top_10": [
                             "min_count",
                             "run",
@@ -721,7 +721,7 @@
                             "window"
                         ]
                     },
-                    "APT_GET_INSTALL_ver0.4.0": {
+                    "APT-GET_INSTALL_ver0.4.0": {
                         "top_10": [
                             "min_count",
                             "run",
@@ -755,7 +755,7 @@
                             "window"
                         ]
                     },
-                    "APT_GET_INSTALL_ver0.4.1": {
+                    "APT-GET_INSTALL_ver0.4.1": {
                         "top_10": [
                             "min_count",
                             "run",
@@ -789,7 +789,7 @@
                             "window"
                         ]
                     },
-                    "APT_GET_INSTALL_ver0.5.0": {
+                    "APT-GET_INSTALL_ver0.5.0": {
                         "top_10": [
                             "min_count",
                             "run",
@@ -823,7 +823,7 @@
                             "window"
                         ]
                     },
-                    "APT_GET_INSTALL_ver0.5.1": {
+                    "APT-GET_INSTALL_ver0.5.1": {
                         "top_10": [
                             "min_count",
                             "run",
@@ -961,7 +961,7 @@
                             "window"
                         ]
                     },
-                    "APT_GET_INSTALL_ver0.0.0": {
+                    "APT-GET_INSTALL_ver0.0.0": {
                         "top_10": [
                             "min_count",
                             "run",
@@ -995,7 +995,7 @@
                             "window"
                         ]
                     },
-                    "APT_GET_INSTALL_ver0.0.1": {
+                    "APT-GET_INSTALL_ver0.0.1": {
                         "top_10": [
                             "min_count",
                             "run",
@@ -1029,7 +1029,7 @@
                             "window"
                         ]
                     },
-                    "APT_GET_INSTALL_ver0.1.0": {
+                    "APT-GET_INSTALL_ver0.1.0": {
                         "top_10": [
                             "min_count",
                             "run",
@@ -1063,7 +1063,7 @@
                             "window"
                         ]
                     },
-                    "APT_GET_INSTALL_ver0.1.1": {
+                    "APT-GET_INSTALL_ver0.1.1": {
                         "top_10": [
                             "min_count",
                             "run",
@@ -1097,7 +1097,7 @@
                             "window"
                         ]
                     },
-                    "APT_GET_INSTALL_ver0.2.0": {
+                    "APT-GET_INSTALL_ver0.2.0": {
                         "top_10": [
                             "min_count",
                             "run",
@@ -1131,7 +1131,7 @@
                             "window"
                         ]
                     },
-                    "APT_GET_INSTALL_ver0.2.1": {
+                    "APT-GET_INSTALL_ver0.2.1": {
                         "top_10": [
                             "min_count",
                             "run",
@@ -1165,7 +1165,7 @@
                             "window"
                         ]
                     },
-                    "APT_GET_INSTALL_ver0.3.0": {
+                    "APT-GET_INSTALL_ver0.3.0": {
                         "top_10": [
                             "min_count",
                             "run",
@@ -1199,7 +1199,7 @@
                             "window"
                         ]
                     },
-                    "APT_GET_INSTALL_ver0.3.1": {
+                    "APT-GET_INSTALL_ver0.3.1": {
                         "top_10": [
                             "min_count",
                             "run",
@@ -1233,7 +1233,7 @@
                             "window"
                         ]
                     },
-                    "APT_GET_INSTALL_ver0.4.0": {
+                    "APT-GET_INSTALL_ver0.4.0": {
                         "top_10": [
                             "min_count",
                             "run",
@@ -1267,7 +1267,7 @@
                             "window"
                         ]
                     },
-                    "APT_GET_INSTALL_ver0.4.1": {
+                    "APT-GET_INSTALL_ver0.4.1": {
                         "top_10": [
                             "min_count",
                             "run",
@@ -1301,7 +1301,7 @@
                             "window"
                         ]
                     },
-                    "APT_GET_INSTALL_ver0.5.0": {
+                    "APT-GET_INSTALL_ver0.5.0": {
                         "top_10": [
                             "min_count",
                             "run",
@@ -1335,7 +1335,7 @@
                             "window"
                         ]
                     },
-                    "APT_GET_INSTALL_ver0.5.1": {
+                    "APT-GET_INSTALL_ver0.5.1": {
                         "top_10": [
                             "min_count",
                             "run",
@@ -1473,7 +1473,7 @@
                             "window"
                         ]
                     },
-                    "APT_GET_INSTALL_ver0.0.0": {
+                    "APT-GET_INSTALL_ver0.0.0": {
                         "top_10": [
                             "min_count",
                             "run",
@@ -1507,7 +1507,7 @@
                             "window"
                         ]
                     },
-                    "APT_GET_INSTALL_ver0.0.1": {
+                    "APT-GET_INSTALL_ver0.0.1": {
                         "top_10": [
                             "min_count",
                             "run",
@@ -1541,7 +1541,7 @@
                             "window"
                         ]
                     },
-                    "APT_GET_INSTALL_ver0.1.0": {
+                    "APT-GET_INSTALL_ver0.1.0": {
                         "top_10": [
                             "min_count",
                             "run",
@@ -1575,7 +1575,7 @@
                             "window"
                         ]
                     },
-                    "APT_GET_INSTALL_ver0.1.1": {
+                    "APT-GET_INSTALL_ver0.1.1": {
                         "top_10": [
                             "min_count",
                             "run",
@@ -1609,7 +1609,7 @@
                             "window"
                         ]
                     },
-                    "APT_GET_INSTALL_ver0.2.0": {
+                    "APT-GET_INSTALL_ver0.2.0": {
                         "top_10": [
                             "min_count",
                             "run",
@@ -1643,7 +1643,7 @@
                             "window"
                         ]
                     },
-                    "APT_GET_INSTALL_ver0.2.1": {
+                    "APT-GET_INSTALL_ver0.2.1": {
                         "top_10": [
                             "min_count",
                             "run",
@@ -1677,7 +1677,7 @@
                             "window"
                         ]
                     },
-                    "APT_GET_INSTALL_ver0.3.0": {
+                    "APT-GET_INSTALL_ver0.3.0": {
                         "top_10": [
                             "min_count",
                             "run",
@@ -1711,7 +1711,7 @@
                             "window"
                         ]
                     },
-                    "APT_GET_INSTALL_ver0.3.1": {
+                    "APT-GET_INSTALL_ver0.3.1": {
                         "top_10": [
                             "min_count",
                             "run",
@@ -1745,7 +1745,7 @@
                             "window"
                         ]
                     },
-                    "APT_GET_INSTALL_ver0.4.0": {
+                    "APT-GET_INSTALL_ver0.4.0": {
                         "top_10": [
                             "min_count",
                             "run",
@@ -1779,7 +1779,7 @@
                             "window"
                         ]
                     },
-                    "APT_GET_INSTALL_ver0.4.1": {
+                    "APT-GET_INSTALL_ver0.4.1": {
                         "top_10": [
                             "min_count",
                             "run",
@@ -1813,7 +1813,7 @@
                             "window"
                         ]
                     },
-                    "APT_GET_INSTALL_ver0.5.0": {
+                    "APT-GET_INSTALL_ver0.5.0": {
                         "top_10": [
                             "min_count",
                             "run",
@@ -1847,7 +1847,7 @@
                             "window"
                         ]
                     },
-                    "APT_GET_INSTALL_ver0.5.1": {
+                    "APT-GET_INSTALL_ver0.5.1": {
                         "top_10": [
                             "min_count",
                             "run",

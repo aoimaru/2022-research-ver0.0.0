@@ -1,0 +1,21 @@
+result,description
+0.9377277515669465,set -x &&     apk add --update --no-cache ffmpeg &&     rm -rf /var/cache/apk/* /tmp/*
+0.9048395380289953,apt-get update && apt-get install -y --no-install-recommends 		g++ 		gcc 		libc6-dev 		make 		pkg-config 		git 	&& rm -rf /var/lib/apt/lists/*
+0.9246374820803952,apt-get update && apt-get -y install     build-essential     git-core     curl libssl-dev     libreadline-dev     zlib1g zlib1g-dev     libcurl4-openssl-dev     libxslt-dev libxml2-dev     xvfb nodejs-legacy     postgresql   && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+0.9810568215929237,rm -rf /tmp/* /var/tmp/*
+0.9202573837447171,apt update && apt install -y cmake g++                && rm -rf /var/lib/apt/lists/*
+0.9116503825086811,apt-get update && apt-get install -y 	software-properties-common 	--no-install-recommends && 	add-apt-repository ppa:yubico/stable && 	apt-get update && apt-get install -y 	pcscd 	usbutils 	yubico-piv-tool 	&& rm -rf /var/lib/apt/lists/*
+0.9472784064452024,apt-get update && apt-get install -y fml-asm && apt-get clean && apt-get purge && rm -rf /var/lib/apt/lists/* /tmp/*
+0.9048395380289953,apt-get update && apt-get install -y --no-install-recommends 		g++ 		gcc 		libc6-dev 		make 		pkg-config 		git 	&& rm -rf /var/lib/apt/lists/*
+0.9455301567725641,set -xv ; apt-get -qq update && apt-get -qq dist-upgrade -y && apt-get -qq install -y ${pkgs} ${pkgs_tmp} && gem install fpm && apt-get remove -y --purge ${pkgs_tmp} && apt-get -qq autoremove -y && apt-get -qq clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /*.deb /MoarVM* /nqp* /rakudo*
+0.9321259665398253,set -ex ;     tools/fetch.sh > BUILD.bazel ;     bazel fetch --noshow_progress //:fetch 2>&1 ;     rm -rf /home/scion/.cache/bazel/_bazel_scion/*/external/*/\.git ;     sudo tar czf /scioncache/bazel.tar.gz --owner=scion -C ~ .cache/bazel;     sudo rm -r ~/.cache/bazel;     sudo rm -r ./*
+0.9011068571952728,env/pip2/deps && rm -r ~/.cache/pip
+0.9472784064452024,apt-get update && apt-get install -y pbsuite && apt-get clean && apt-get purge && rm -rf /var/lib/apt/lists/* /tmp/*
+0.9353580184179874,apk add --update dos2unix && rm -rf /var/cache/apk/*
+0.9353580184179874,apk add --update dos2unix && rm -rf /var/cache/apk/*
+0.9048395380289953,apt-get update && apt-get install -y --no-install-recommends 		g++ 		gcc 		libc6-dev 		make 		pkg-config 		git 	&& rm -rf /var/lib/apt/lists/*
+0.9417530489432682,apt-get update &&	apt-get install -y --no-install-recommends 	nodejs 	python-pygments &&	rm -rf /var/lib/apt/lists/*
+0.9048395380289953,apt-get update && apt-get install -y --no-install-recommends 		g++ 		gcc 		libc6-dev 		make 		pkg-config 		git 	&& rm -rf /var/lib/apt/lists/*
+0.9398150554755748,apt-get update     && apt-get install -y ssl-cert ca-certificates     && apt-get clean     && rm -rf /var/lib/apt/lists/*
+0.9737958957758898,rm /var/www/html/*.html
+0.9443104240110303,apt-get clean     && rm -rf /var/lib/apt/lists/*

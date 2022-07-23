@@ -1,0 +1,41 @@
+result,description
+0.9326208925057566,set -x &&     apk add --update --no-cache ffmpeg &&     rm -rf /var/cache/apk/* /tmp/*
+0.919426714335303,apt-get update && apt-get -y install     build-essential     git-core     curl libssl-dev     libreadline-dev     zlib1g zlib1g-dev     libcurl4-openssl-dev     libxslt-dev libxml2-dev     xvfb nodejs-legacy     postgresql   && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+0.9802108680292533,rm -rf /tmp/* /var/tmp/*
+0.917060010970328,apt update && apt install -y cmake g++                && rm -rf /var/lib/apt/lists/*
+0.9038879816860832,apt-get update && apt-get install -y 	software-properties-common 	--no-install-recommends && 	add-apt-repository ppa:yubico/stable && 	apt-get update && apt-get install -y 	pcscd 	usbutils 	yubico-piv-tool 	&& rm -rf /var/lib/apt/lists/*
+0.944525332039982,apt-get update && apt-get install -y fml-asm && apt-get clean && apt-get purge && rm -rf /var/lib/apt/lists/* /tmp/*
+0.9422628583345599,set -xv ; apt-get -qq update && apt-get -qq dist-upgrade -y && apt-get -qq install -y ${pkgs} ${pkgs_tmp} && gem install fpm && apt-get remove -y --purge ${pkgs_tmp} && apt-get -qq autoremove -y && apt-get -qq clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /*.deb /MoarVM* /nqp* /rakudo*
+0.9276681686807575,set -ex ;     tools/fetch.sh > BUILD.bazel ;     bazel fetch --noshow_progress //:fetch 2>&1 ;     rm -rf /home/scion/.cache/bazel/_bazel_scion/*/external/*/\.git ;     sudo tar czf /scioncache/bazel.tar.gz --owner=scion -C ~ .cache/bazel;     sudo rm -r ~/.cache/bazel;     sudo rm -r ./*
+0.944525332039982,apt-get update && apt-get install -y pbsuite && apt-get clean && apt-get purge && rm -rf /var/lib/apt/lists/* /tmp/*
+0.9310025610224423,apk add --update dos2unix && rm -rf /var/cache/apk/*
+0.9310025610224423,apk add --update dos2unix && rm -rf /var/cache/apk/*
+0.9378819685454381,apt-get update &&	apt-get install -y --no-install-recommends 	nodejs 	python-pygments &&	rm -rf /var/lib/apt/lists/*
+0.9361201429656769,apt-get update     && apt-get install -y ssl-cert ca-certificates     && apt-get clean     && rm -rf /var/lib/apt/lists/*
+0.9733625410658637,rm /var/www/html/*.html
+0.9427056350526908,apt-get clean     && rm -rf /var/lib/apt/lists/*
+0.984301171983675,rm -rf /tmp/*
+0.9307924806827732,"apt-get autoclean && apt-get autoremove -y && rm -rf /var/lib/{apt,dpkg,cache,log}/"
+0.9498228973834003,apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+0.9737356985856171,rm *.o
+0.9737356985856171,rm *.o
+0.9737356985856171,rm *.o
+0.9737356985856171,rm *.o
+0.9450609459794642,apt-get update && apt-get install -y mariadb-server pwgen     && apt-get clean     && rm -rf /var/lib/apt/lists/*     && rm -rf /var/lib/mysql/*
+0.9265515706941109,rm -fr /var/lib/apt/lists &&     apt-get update &&     apt-get install -y         curl         binutils-doc         flex         git         ruby ruby-dev         ccache         fakeroot         libreadline-dev         libcurl4-openssl-dev         libexpat1-dev         libicu-dev         reprepro         sudo &&     apt-get clean &&     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+0.910099252339703,apt-get update &&     apt-get install -y --no-install-recommends         libjemalloc1 	libsnappy1         ca-certificates         pwgen         curl     &&     rm -rf /var/lib/apt/lists/*
+0.9209462674760674,"apt-get update && apt-get install --yes --no-install-recommends 		ca-certificates 		curl 	&& echo ""deb http://packages.cloud.google.com/apt gcsfuse-bionic main"" 		| tee /etc/apt/sources.list.d/gcsfuse.list 	&& curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - 	&& apt-get update 	&& apt-get install --yes gcsfuse 	&& apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*"
+0.9225100130874448,apt-get update     && apt-get install --no-install-recommends -y curl build-essential clang-3.9     && apt-get clean     && rm -rf /var/lib/apt/lists/*
+0.9062112355777305,apt-get update  && apt-get install -y -q --no-install-recommends     ca-certificates     wget     git     vim  && apt-get clean  && rm -r /var/lib/apt/lists/*
+0.9441729234131275,rm /hello
+0.9744707581353583,rm /var/cache/apk/*
+0.9709248658323362,rm -rf /etc/nginx
+0.94426380139741,apt-get update &&     apt-get install -y ca-certificates nginx=${NGINX_VERSION} &&     rm -rf /var/lib/apt/lists/*
+0.9287924570281604,set -x &&     apt-get update &&     apt-get -y install         libssl-dev         python         python-pip &&     rm -rf /var/lib/apt/lists/*
+0.9537914687326866,rm -Rf ${LLVM_SOURCES}
+0.9516377511194333,apt-get purge -y git curl gcc &&     apt-get clean -y &&     rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
+0.9437131406750782,rpm -Uvh --nodeps /oracle-instantclient*.x86_64.rpm && rm /*.rpm
+0.9096220192472952,apt-get -qq update &&     apt-get -qq install --no-install-recommends -qq libaio1 rpm -y && rpm -Uvh --nodeps /oracle*rpm &&     rm -f /oracle*rpm
+0.9162800222688428,apt-get update   && apt-get install -y git python make g++ libnss-mdns avahi-discover libavahi-compat-libdnssd-dev     inetutils-ping sudo nano   && apt-get clean   && rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/*   && chmod 4755 /bin/ping   && mkdir /homebridge   && npm set global-style=true   && npm set package-lock=false
+0.9349115267329839,apt-get update &&apt-get install -qy curl &&apt-get clean -y && rm -rf /var/lib/apt/lists/*
+0.9346484751970601,apt-get update &&apt-get install -qy iceweasel &&apt-get clean -y && rm -rf /var/lib/apt/lists/*

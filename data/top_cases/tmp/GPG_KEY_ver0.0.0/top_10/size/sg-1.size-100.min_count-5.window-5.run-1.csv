@@ -1,0 +1,11 @@
+result,description
+0.9072120901544979,ln -s /root/.composer/vendor/bin/* /usr/local/bin/ > /dev/null 2>&1
+0.915556633928913,curl ${COREOS_RELEASE_URL}/coreos_developer_container.bin.bz2 |         bzip2 -d > /tmp/coreos_developer_container.bin
+0.9162536543731054,curl --silent --location https://raw.githubusercontent.com/heroku/heroku-buildpack-php/5a770b914549cf2a897cbbaf379eb5adf410d464/conf/apache2/httpd.conf.default > /app/.heroku/php/etc/apache2/httpd.conf
+0.9162536543731054,curl --silent --location https://raw.githubusercontent.com/heroku/heroku-buildpack-php/5a770b914549cf2a897cbbaf379eb5adf410d464/conf/php/php.ini > /app/.heroku/php/etc/php/php.ini
+0.9162536543731054,curl --silent --location https://raw.githubusercontent.com/heroku/heroku-buildpack-php/5a770b914549cf2a897cbbaf379eb5adf410d464/conf/nginx/nginx.conf.default > /app/.heroku/php/etc/nginx/nginx.conf
+0.9091328493103207,if [ -e /usr/local/share/postgresql/postgresql.conf.sample ]; then         postgresfile=/usr/local/share/postgresql/postgresql.conf.sample;     else         postgresfile=/usr/share/postgresql/postgresql.conf.sample;     fi &&     echo fsync=off >> $postgresfile &&    echo synchronous_commit=off >> $postgresfile &&    echo full_page_writes=off >> $postgresfile &&    echo bgwriter_lru_maxpages=0 >> $postgresfile
+0.9019334803153914,"echo ""jenkins    ALL=NOPASSWD: ALL"" > /etc/sudoers.d/jenkins"
+0.9013337663417685,echo 'deb http://download.opensuse.org/repositories/home:/hpcoder1/xUbuntu_18.04/ /' >/etc/apt/sources.list.d/hpcoders.list
+0.9032805433734263,"echo """" > service.env"
+0.9032805433734263,echo localhost > inventory

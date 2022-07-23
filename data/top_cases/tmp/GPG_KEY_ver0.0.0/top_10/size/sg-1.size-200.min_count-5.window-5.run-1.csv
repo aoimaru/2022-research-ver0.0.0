@@ -1,0 +1,11 @@
+result,description
+0.9025340522236283,ln -s /root/.composer/vendor/bin/* /usr/local/bin/ > /dev/null 2>&1
+0.9129734976508515,curl --silent --location https://raw.githubusercontent.com/heroku/heroku-buildpack-php/5a770b914549cf2a897cbbaf379eb5adf410d464/conf/apache2/httpd.conf.default > /app/.heroku/php/etc/apache2/httpd.conf
+0.9129734976508515,curl --silent --location https://raw.githubusercontent.com/heroku/heroku-buildpack-php/5a770b914549cf2a897cbbaf379eb5adf410d464/conf/php/php.ini > /app/.heroku/php/etc/php/php.ini
+0.9129734976508515,curl --silent --location https://raw.githubusercontent.com/heroku/heroku-buildpack-php/5a770b914549cf2a897cbbaf379eb5adf410d464/conf/nginx/nginx.conf.default > /app/.heroku/php/etc/nginx/nginx.conf
+0.9053053550026509,if [ -e /usr/local/share/postgresql/postgresql.conf.sample ]; then         postgresfile=/usr/local/share/postgresql/postgresql.conf.sample;     else         postgresfile=/usr/share/postgresql/postgresql.conf.sample;     fi &&     echo fsync=off >> $postgresfile &&    echo synchronous_commit=off >> $postgresfile &&    echo full_page_writes=off >> $postgresfile &&    echo bgwriter_lru_maxpages=0 >> $postgresfile
+0.9002151434013806,"echo ""jenkins    ALL=NOPASSWD: ALL"" > /etc/sudoers.d/jenkins"
+0.9008291760990241,"echo """" > service.env"
+0.9008291760990241,echo localhost > inventory
+0.9054121712727786,"echo ""c.NotebookApp.allow_root = True"" >> /etc/jupyter/jupyter_notebook_config.py"
+0.9273499828798588,go build

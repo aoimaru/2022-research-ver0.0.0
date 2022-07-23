@@ -1,0 +1,41 @@
+result,description
+0.8741643398823552,"curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash &&     export NVM_DIR=""$HOME/.nvm"" && [ -s ""$NVM_DIR/nvm.sh"" ] && \. ""$NVM_DIR/nvm.sh""  &&     nvm install 8.4 &&     npm install -g yarn"
+0.9138379419240729,ln -s /root/.composer/vendor/bin/* /usr/local/bin/ > /dev/null 2>&1
+0.8766902386372141,composer global require         phpunit/phpunit         squizlabs/php_codesniffer         friendsofphp/php-cs-fixer         phpmd/phpmd         behat/behat         phploc/phploc         phpstan/phpstan         icanhazstring/composer-unused > /dev/null 2>&1
+0.8822378200408566,apt-get update > /dev/null 2>&1 &&     apt-get -y install         curl         git         zip         unzip         zlib1g-dev         libzip-dev > /dev/null 2>&1 &&     apt-get clean &&     docker-php-ext-install zip &&     rm -rf /var/lib/apt/lists/* > /dev/null 2>&1
+0.877061949795431,curl --silent https://getcomposer.org/installer | php > /dev/null 2>&1 &&     mv ./composer.phar /usr/local/bin/composer > /dev/null 2>&1
+0.8847052279574954,./configure --libdir=/usr/lib64 1> /dev/null
+0.8841722195894257,make samples 1> /dev/null
+0.8841722195894257,make install 1> /dev/null
+0.8752494128474066,make 1> /dev/null
+0.8913023508899359,echo 'bundle config --global jobs $(cat /proc/cpuinfo | grep -c processor)' >> $CONTAINER_INIT
+0.8913023508899359,echo 'service postgresql start' >> $CONTAINER_INIT
+0.9038806051281537,echo '#!/usr/bin/env bash' > $CONTAINER_INIT ; chmod +x $CONTAINER_INIT
+0.8913023508899359,echo 'Xvfb :0 -ac -screen 0 1024x768x24 >/dev/null 2>&1 &' >> $CONTAINER_INIT
+0.8890273600967439,"/bin/echo -e ""tail -f /dev/null"" >> ${HOME}/.vnc/xstartup"
+0.8890273600967439,"/bin/echo -e ""fi"" >> ${HOME}/.vnc/xstartup"
+0.8890273600967439,"/bin/echo -e ""    mv ${HOME}/.vnc/xstartup_after ${HOME}/.vnc/xstartup"" >> ${HOME}/.vnc/xstartup"
+0.8890273600967439,"/bin/echo -e ""    tar -zxf /tmp/installers/Thunder\ Network.tar.gz --directory=\""${HOME}/.cxoffice/${BOTTLE}/drive_c/Program Files/\"""" >> ${HOME}/.vnc/xstartup"
+0.8890273600967439,"/bin/echo -e ""    cp /tmp/installers/dll/* \""${HOME}/.cxoffice/${BOTTLE}/drive_c/windows/system32/\"""" >> ${HOME}/.vnc/xstartup"
+0.8890273600967439,"/bin/echo -e ""    [[ -d /mnt/drive_d ]] && ln -snf /mnt/drive_d \""${HOME}/.cxoffice/${BOTTLE}/dosdevices/d:\""""  >> ${HOME}/.vnc/xstartup"
+0.8890273600967439,"/bin/echo -e ""    sed -i -e 's/;;\""AllowUntrusted\"" = \""\""/\""AllowUntrusted\"" = \""1\""/' ${HOME}/.cxoffice/${BOTTLE}/cxbottle.conf"" >> ${HOME}/.vnc/xstartup"
+0.8890273600967439,"/bin/echo -e ""    ${INSTALLDIR}/bin/cxbottle --create --bottle \""${BOTTLE}\"" --description \""迅雷容器\"" --template \""winxp\"""" >> ${HOME}/.vnc/xstartup"
+0.8890273600967439,"/bin/echo -e ""if [[ ! -f \""${HOME}/.cxoffice/${BOTTLE}/cxbottle.conf\"" ]]; then"" >> ${HOME}/.vnc/xstartup"
+0.8890273600967439,"/bin/echo -e ""[ -r ${HOME}/.Xresources ] && xrdb ${HOME}/.Xresources\nxsetroot -solid grey""  >> ${HOME}/.vnc/xstartup"
+0.8890273600967439,"/bin/echo -e ""export DISPLAY=${DISPLAY}""  >> ${HOME}/.vnc/xstartup"
+0.8932308009601875,for i in $(seq 500 1100); do echo snapper:x:$i:100:a build user:/build:/bin/bash ; done | tee -a /etc/passwd
+0.8636913563210655,"echo ""ALL ALL=NOPASSWD: /usr/bin/apt-get,/usr/bin/apt-mark"" >> /etc/sudoers.d/apt-get  && chmod 0440 /etc/sudoers.d/apt-get"
+0.8700690821747047,"cd snapcraft  && echo ""override_dh_auto_test:"" >> debian/rules  && mk-build-deps debian/control -i --tool 'apt-get -y --no-install-recommends'  && dpkg-buildpackage -us -uc"
+0.8697773827487669,"set -ex; 	curl -o wordpress.tar.gz -fSL ""https://wordpress.org/wordpress-${WORDPRESS_VERSION}.tar.gz""; 	echo ""$WORDPRESS_SHA1 *wordpress.tar.gz"" | sha1sum -c -; 	tar -xzf wordpress.tar.gz -C /usr/src/; 	rm wordpress.tar.gz; 	chown -R www-data:www-data /usr/src/wordpress"
+0.8860631413675258,{ 		echo 'opcache.memory_consumption=128'; 		echo 'opcache.interned_strings_buffer=8'; 		echo 'opcache.max_accelerated_files=4000'; 		echo 'opcache.revalidate_freq=2'; 		echo 'opcache.fast_shutdown=1'; 		echo 'opcache.enable_cli=1'; 	} > /usr/local/etc/php/conf.d/opcache-recommended.ini
+0.8693642696725535,"if grep -q Debian /etc/os-release && grep -q jessie /etc/os-release; then     echo ""deb http://http.us.debian.org/debian/ jessie-backports main"" | sudo tee -a /etc/apt/sources.list     && echo ""deb-src http://http.us.debian.org/debian/ jessie-backports main"" | sudo tee -a /etc/apt/sources.list     && sudo apt-get update; sudo apt-get install -y -t jessie-backports openjdk-8-jre openjdk-8-jre-headless openjdk-8-jdk openjdk-8-jdk-headless   ; elif grep -q Ubuntu /etc/os-release && grep -q Trusty /etc/os-release; then     echo ""deb http://ppa.launchpad.net/openjdk-r/ppa/ubuntu trusty main"" | sudo tee -a /etc/apt/sources.list     && echo ""deb-src http://ppa.launchpad.net/openjdk-r/ppa/ubuntu trusty main"" | sudo tee -a /etc/apt/sources.list     && sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key DA1A4A13543B466853BAF164EB9B1D8886F44E2A     && sudo apt-get update; sudo apt-get install -y openjdk-8-jre openjdk-8-jre-headless openjdk-8-jdk openjdk-8-jdk-headless   ; else     sudo apt-get update; sudo apt-get install -y openjdk-8-jre openjdk-8-jre-headless openjdk-8-jdk openjdk-8-jdk-headless   ; fi"
+0.9155395888902734,curl ${COREOS_RELEASE_URL}/coreos_developer_container.bin.bz2 |         bzip2 -d > /tmp/coreos_developer_container.bin
+0.8829421923714006,"apk --no-cache add curl     && API_VERSION=$(curl -sI https://github.com/triggermesh/aws-custom-runtime/releases/latest | grep ""Location:"" | awk -F ""/"" '{print $NF}' | tr -d ""\r"")     && RUNTIME_VERSION=$(curl -sI https://github.com/triggermesh/knative-lambda-runtime/releases/latest | grep ""Location:"" | awk -F ""/"" '{print $NF}' | tr -d ""\r"")     && curl -sL https://github.com/triggermesh/aws-custom-runtime/releases/download/${API_VERSION}/aws-custom-runtime > aws-custom-runtime     && chmod +x aws-custom-runtime     && curl -sL https://github.com/triggermesh/knative-lambda-runtime/archive/${RUNTIME_VERSION}.tar.gz | tar -xz knative-lambda-runtime-${RUNTIME_VERSION}/python-2.7     && mv knative-lambda-runtime-${RUNTIME_VERSION}/python-2.7/* ."
+0.8971653358816122,"echo ""host all all 0.0.0.0/0 md5"" >> /etc/postgresql/10/main/pg_hba.conf"
+0.8971653358816122,"echo ""listen_addresses = '*'"" >> /etc/postgresql/10/main/postgresql.conf"
+0.898064941573937,"echo ""Pacific/Auckland"" > /etc/timezone"
+0.8971653358816122,"echo ""host all all ::/0 md5"" >> /etc/postgresql/10/main/pg_hba.conf"
+0.8971653358816122,"echo ""daemon off;"" >> /etc/nginx/nginx.conf"
+0.8979209667917996,"echo ""upstream php-upstream { server php:9000; }"" > /etc/nginx/conf.d/upstream.conf"
+0.8871015087094865,"set -ex   && export DOCKER_VERSION=$(curl --silent --fail --retry 3 https://download.docker.com/linux/static/stable/x86_64/ | grep -o -e 'docker-[.0-9]*-ce\.tgz' | sort -r | head -n 1)   && DOCKER_URL=""https://download.docker.com/linux/static/stable/x86_64/${DOCKER_VERSION}""   && echo Docker URL: $DOCKER_URL   && curl --silent --show-error --location --fail --retry 3 --output /tmp/docker.tgz ""${DOCKER_URL}""   && ls -lha /tmp/docker.tgz   && tar -xz -C /tmp -f /tmp/docker.tgz   && mv /tmp/docker/* /usr/bin   && rm -rf /tmp/docker /tmp/docker.tgz   && which docker   && (docker version || true)"
+0.8906851242851545,"echo 'APT::Get::Assume-Yes ""true"";' > /etc/apt/apt.conf.d/90circleci   && echo 'DPkg::Options ""--force-confnew"";' >> /etc/apt/apt.conf.d/90circleci"

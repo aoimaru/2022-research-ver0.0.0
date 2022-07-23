@@ -1,0 +1,21 @@
+result,description
+0.8747489077077123,"curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash &&     export NVM_DIR=""$HOME/.nvm"" && [ -s ""$NVM_DIR/nvm.sh"" ] && \. ""$NVM_DIR/nvm.sh""  &&     nvm install 8.4 &&     npm install -g yarn"
+0.9025340522236283,ln -s /root/.composer/vendor/bin/* /usr/local/bin/ > /dev/null 2>&1
+0.8752558783169523,composer global require         phpunit/phpunit         squizlabs/php_codesniffer         friendsofphp/php-cs-fixer         phpmd/phpmd         behat/behat         phploc/phploc         phpstan/phpstan         icanhazstring/composer-unused > /dev/null 2>&1
+0.8858533201400117,apt-get update > /dev/null 2>&1 &&     apt-get -y install         curl         git         zip         unzip         zlib1g-dev         libzip-dev > /dev/null 2>&1 &&     apt-get clean &&     docker-php-ext-install zip &&     rm -rf /var/lib/apt/lists/* > /dev/null 2>&1
+0.8716428041210292,curl --silent https://getcomposer.org/installer | php > /dev/null 2>&1 &&     mv ./composer.phar /usr/local/bin/composer > /dev/null 2>&1
+0.8778791048187753,./configure --libdir=/usr/lib64 1> /dev/null
+0.8804785435357534,make samples 1> /dev/null
+0.8804785435357534,make install 1> /dev/null
+0.8735582237205074,make 1> /dev/null
+0.8913377682506944,echo 'bundle config --global jobs $(cat /proc/cpuinfo | grep -c processor)' >> $CONTAINER_INIT
+0.8913377682506944,echo 'service postgresql start' >> $CONTAINER_INIT
+0.8978173588101892,echo '#!/usr/bin/env bash' > $CONTAINER_INIT ; chmod +x $CONTAINER_INIT
+0.8913377682506944,echo 'Xvfb :0 -ac -screen 0 1024x768x24 >/dev/null 2>&1 &' >> $CONTAINER_INIT
+0.8877162195085035,"/bin/echo -e ""tail -f /dev/null"" >> ${HOME}/.vnc/xstartup"
+0.8877162195085035,"/bin/echo -e ""fi"" >> ${HOME}/.vnc/xstartup"
+0.8877162195085035,"/bin/echo -e ""    mv ${HOME}/.vnc/xstartup_after ${HOME}/.vnc/xstartup"" >> ${HOME}/.vnc/xstartup"
+0.8877162195085035,"/bin/echo -e ""    tar -zxf /tmp/installers/Thunder\ Network.tar.gz --directory=\""${HOME}/.cxoffice/${BOTTLE}/drive_c/Program Files/\"""" >> ${HOME}/.vnc/xstartup"
+0.8877162195085035,"/bin/echo -e ""    cp /tmp/installers/dll/* \""${HOME}/.cxoffice/${BOTTLE}/drive_c/windows/system32/\"""" >> ${HOME}/.vnc/xstartup"
+0.8877162195085035,"/bin/echo -e ""    [[ -d /mnt/drive_d ]] && ln -snf /mnt/drive_d \""${HOME}/.cxoffice/${BOTTLE}/dosdevices/d:\""""  >> ${HOME}/.vnc/xstartup"
+0.8877162195085035,"/bin/echo -e ""    sed -i -e 's/;;\""AllowUntrusted\"" = \""\""/\""AllowUntrusted\"" = \""1\""/' ${HOME}/.cxoffice/${BOTTLE}/cxbottle.conf"" >> ${HOME}/.vnc/xstartup"

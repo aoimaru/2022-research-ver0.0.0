@@ -1,0 +1,11 @@
+result,description
+0.9063877380507213,ln -s /root/.composer/vendor/bin/* /usr/local/bin/ > /dev/null 2>&1
+0.9062911344365252,curl ${COREOS_RELEASE_URL}/coreos_developer_container.bin.bz2 |         bzip2 -d > /tmp/coreos_developer_container.bin
+0.9185396701650981,curl --silent --location https://raw.githubusercontent.com/heroku/heroku-buildpack-php/5a770b914549cf2a897cbbaf379eb5adf410d464/conf/apache2/httpd.conf.default > /app/.heroku/php/etc/apache2/httpd.conf
+0.9027041436005643,"echo ""\nuser_ini.cache_ttl = 30 \nzend_extension = opcache.so \nopcache.enable_cli = 1 \nopcache.validate_timestamps = 1 \nopcache.revalidate_freq = 0 \nopcache.fast_shutdown = 0 \nextension=bcmath.so \nextension=calendar.so \nextension=exif.so \nextension=ftp.so \nextension=gd.so \nextension=gettext.so \nextension=intl.so \nextension=mbstring.so \nextension=pcntl.so \nextension=shmop.so \nextension=soap.so \nextension=sqlite3.so \nextension=pdo_sqlite.so \nextension=xmlrpc.so \nextension=xsl.so\n"" >> /app/.heroku/php/etc/php/php.ini"
+0.9185396701650981,curl --silent --location https://raw.githubusercontent.com/heroku/heroku-buildpack-php/5a770b914549cf2a897cbbaf379eb5adf410d464/conf/php/php.ini > /app/.heroku/php/etc/php/php.ini
+0.9008421019990313,"echo ""\nuser nobody root;\n"" >> /app/.heroku/php/etc/nginx/nginx.conf"
+0.9185396701650981,curl --silent --location https://raw.githubusercontent.com/heroku/heroku-buildpack-php/5a770b914549cf2a897cbbaf379eb5adf410d464/conf/nginx/nginx.conf.default > /app/.heroku/php/etc/nginx/nginx.conf
+0.9008421019990313,"echo ""\nGroup root\n"" >> /app/.heroku/php/etc/apache2/httpd.conf"
+0.9060372463209023,if [ -e /usr/local/share/postgresql/postgresql.conf.sample ]; then         postgresfile=/usr/local/share/postgresql/postgresql.conf.sample;     else         postgresfile=/usr/share/postgresql/postgresql.conf.sample;     fi &&     echo fsync=off >> $postgresfile &&    echo synchronous_commit=off >> $postgresfile &&    echo full_page_writes=off >> $postgresfile &&    echo bgwriter_lru_maxpages=0 >> $postgresfile
+0.9031236356270258,"echo ""jenkins    ALL=NOPASSWD: ALL"" > /etc/sudoers.d/jenkins"
