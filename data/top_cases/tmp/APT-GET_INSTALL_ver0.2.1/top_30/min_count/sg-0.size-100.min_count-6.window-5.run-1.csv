@@ -1,0 +1,31 @@
+result,description
+0.9374513214453729,set -x &&     apk add --update --no-cache ffmpeg &&     rm -rf /var/cache/apk/* /tmp/*
+0.9243334834433069,apt-get update && apt-get -y install     build-essential     git-core     curl libssl-dev     libreadline-dev     zlib1g zlib1g-dev     libcurl4-openssl-dev     libxslt-dev libxml2-dev     xvfb nodejs-legacy     postgresql   && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+0.9825692314285608,rm -rf /tmp/* /var/tmp/*
+0.9260634059901354,apt update && apt install -y cmake g++                && rm -rf /var/lib/apt/lists/*
+0.9005226228814027,apt-get update && apt-get install -y 	software-properties-common 	--no-install-recommends && 	add-apt-repository ppa:yubico/stable && 	apt-get update && apt-get install -y 	pcscd 	usbutils 	yubico-piv-tool 	&& rm -rf /var/lib/apt/lists/*
+0.9525696179070505,apt-get update && apt-get install -y fml-asm && apt-get clean && apt-get purge && rm -rf /var/lib/apt/lists/* /tmp/*
+0.9489929931744868,set -xv ; apt-get -qq update && apt-get -qq dist-upgrade -y && apt-get -qq install -y ${pkgs} ${pkgs_tmp} && gem install fpm && apt-get remove -y --purge ${pkgs_tmp} && apt-get -qq autoremove -y && apt-get -qq clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /*.deb /MoarVM* /nqp* /rakudo*
+0.9525696179070505,apt-get update && apt-get install -y pbsuite && apt-get clean && apt-get purge && rm -rf /var/lib/apt/lists/* /tmp/*
+0.9349768317332054,apk add --update dos2unix && rm -rf /var/cache/apk/*
+0.9349768317332054,apk add --update dos2unix && rm -rf /var/cache/apk/*
+0.9438077852082518,apt-get update &&	apt-get install -y --no-install-recommends 	nodejs 	python-pygments &&	rm -rf /var/lib/apt/lists/*
+0.9419447680565596,apt-get update     && apt-get install -y ssl-cert ca-certificates     && apt-get clean     && rm -rf /var/lib/apt/lists/*
+0.9755827144996013,rm /var/www/html/*.html
+0.9498065725067895,apt-get clean     && rm -rf /var/lib/apt/lists/*
+0.9869853287285494,rm -rf /tmp/*
+0.9331337658016289,"apt-get autoclean && apt-get autoremove -y && rm -rf /var/lib/{apt,dpkg,cache,log}/"
+0.9566905885172458,apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+0.9765707826207808,rm *.o
+0.9765707826207808,rm *.o
+0.9765707826207808,rm *.o
+0.9765707826207808,rm *.o
+0.9525698975992092,apt-get update && apt-get install -y mariadb-server pwgen     && apt-get clean     && rm -rf /var/lib/apt/lists/*     && rm -rf /var/lib/mysql/*
+0.9343354595330446,rm -fr /var/lib/apt/lists &&     apt-get update &&     apt-get install -y         curl         binutils-doc         flex         git         ruby ruby-dev         ccache         fakeroot         libreadline-dev         libcurl4-openssl-dev         libexpat1-dev         libicu-dev         reprepro         sudo &&     apt-get clean &&     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+0.9096739059155999,apt-get update &&     apt-get install -y --no-install-recommends         libjemalloc1 	libsnappy1         ca-certificates         pwgen         curl     &&     rm -rf /var/lib/apt/lists/*
+0.9268247215268807,apt-get update     && apt-get install --no-install-recommends -y curl build-essential clang-3.9     && apt-get clean     && rm -rf /var/lib/apt/lists/*
+0.9028015183258304,apt-get update  && apt-get install -y -q --no-install-recommends     ca-certificates     wget     git     vim  && apt-get clean  && rm -r /var/lib/apt/lists/*
+0.9387159054129062,rm /hello
+0.9769616277788701,rm /var/cache/apk/*
+0.9695051501650104,rm -rf /etc/nginx
+0.9496555476469848,apt-get update &&     apt-get install -y ca-certificates nginx=${NGINX_VERSION} &&     rm -rf /var/lib/apt/lists/*

@@ -1,0 +1,31 @@
+result,description
+0.927943647906086,apk add --no-cache libgcc libstdc++ libuv 	&& apk add --no-cache libssl1.0 || apk add --no-cache libssl1.1
+0.9871993544950455,apk update && apk upgrade && apk add --no-cache git nodejs bash npm
+0.927943647906086,apk add --no-cache libgcc libstdc++ libuv 	&& apk add --no-cache libssl1.0 || apk add --no-cache libssl1.1
+0.9494531323753405,apk add --update --no-cache curl
+0.9537227194010807,apk add --update --no-cache     python     make     g++
+0.927943647906086,apk add --no-cache libgcc libstdc++ libuv 	&& apk add --no-cache libssl1.0 || apk add --no-cache libssl1.1
+0.9612690196145768,apk update && apk add git
+0.9479976434015425,apk add -qU --no-cache iptables openssh
+0.9555795893212353,apk add --no-cache 		bash 		sed
+0.9553130740514392,apk add --no-cache bash
+0.9536033458274055,apk --no-cache add libc6-compat
+0.9783339188442957,apk add --no-cache --initdb -p /out   alpine-baselayout   binutils   busybox   dosfstools   libarchive-tools   mtools   xorriso   && true
+0.9911643171024064,apk add --update make gcc g++ python curl git krb5-dev zeromq-dev && npm install zeromq --zmq-external --save && apk del make gcc g++ python curl git krb5-dev
+0.9652086672993504,apk add --update --no-cache openjdk8-jre &&    gcloud components install cloud-datastore-emulator beta --quiet
+0.905384836452872,apk update && apk upgrade && apk add netcat-openbsd
+0.9552880339495498,apk add --no-cache dropbear openssh rsync bash
+0.974733644209556,apk add --no-cache git &&     yarn install
+0.9638060797869225,apk --no-cache add upx  && upx /x/bin/*
+0.9536033458274055,apk --no-cache add man
+0.9561849951122688,apk add --no-cache git gcc ca-certificates
+0.9561849951122688,apk add --no-cache git gcc ca-certificates
+0.9553130740514392,apk add --no-cache bash
+0.9558145898049075,apk add --no-cache make   gcc   g++
+0.9497436436820139,apk update && apk upgrade && apk add --no-cache bash
+0.9612690196145768,apk update && apk add protobuf
+0.9536033458274055,apk add --no-cache libstdc++
+0.9561849951122688,apk add --no-cache git gcc ca-certificates
+0.927943647906086,apk add --no-cache libgcc libstdc++ libuv 	&& apk add --no-cache libssl1.0 || apk add --no-cache libssl1.1
+0.9541705906387029,apk add git
+0.9553268301135837,apk add python make g++

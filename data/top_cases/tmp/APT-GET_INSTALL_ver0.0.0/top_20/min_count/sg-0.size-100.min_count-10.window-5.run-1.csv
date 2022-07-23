@@ -1,0 +1,21 @@
+result,description
+0.9261021386368052,apt-get update && apt-get install -y --no-install-recommends 		less 		kmod 		nano 		net-tools 		ifupdown 		iputils-ping 		i2c-tools 		usbutils 	&& rm -rf /var/lib/apt/lists/*
+0.9261021386368052,apt-get update && apt-get install -y --no-install-recommends 		less 		kmod 		nano 		net-tools 		ifupdown 		iputils-ping 		i2c-tools 		usbutils 	&& rm -rf /var/lib/apt/lists/*
+0.9291402676916443,apt-get update && apt-get install -y --no-install-recommends 		g++ 		gcc 		libc6-dev 		make 		pkg-config 		git 	&& rm -rf /var/lib/apt/lists/*
+0.9288268030905785,apt-get update && apt-get -y install     build-essential     git-core     curl libssl-dev     libreadline-dev     zlib1g zlib1g-dev     libcurl4-openssl-dev     libxslt-dev libxml2-dev     xvfb nodejs-legacy     postgresql   && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+0.9071032518889328,apt-get update && apt-get install -y 	software-properties-common 	--no-install-recommends && 	add-apt-repository ppa:yubico/stable && 	apt-get update && apt-get install -y 	pcscd 	usbutils 	yubico-piv-tool 	&& rm -rf /var/lib/apt/lists/*
+0.9291402676916443,apt-get update && apt-get install -y --no-install-recommends 		g++ 		gcc 		libc6-dev 		make 		pkg-config 		git 	&& rm -rf /var/lib/apt/lists/*
+0.9291402676916443,apt-get update && apt-get install -y --no-install-recommends 		g++ 		gcc 		libc6-dev 		make 		pkg-config 		git 	&& rm -rf /var/lib/apt/lists/*
+0.9291402676916443,apt-get update && apt-get install -y --no-install-recommends 		g++ 		gcc 		libc6-dev 		make 		pkg-config 		git 	&& rm -rf /var/lib/apt/lists/*
+0.9139036158008279,rm -fr /var/lib/apt/lists &&     apt-get update &&     apt-get install -y         curl         binutils-doc         flex         git         ruby ruby-dev         ccache         fakeroot         libreadline-dev         libcurl4-openssl-dev         libexpat1-dev         libicu-dev         reprepro         sudo &&     apt-get clean &&     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+0.9251357455088063,apt-get update &&     apt-get install -y --no-install-recommends         libjemalloc1 	libsnappy1         ca-certificates         pwgen         curl     &&     rm -rf /var/lib/apt/lists/*
+0.9291402676916443,apt-get update && apt-get install -y --no-install-recommends 		g++ 		gcc 		libc6-dev 		make 		pkg-config 		git 	&& rm -rf /var/lib/apt/lists/*
+0.9014260806442763,apt-get update     && apt-get install --no-install-recommends -y curl build-essential clang-3.9     && apt-get clean     && rm -rf /var/lib/apt/lists/*
+0.9146916893917172,apt-get update  && apt-get install -y -q --no-install-recommends     ca-certificates     wget     git     vim  && apt-get clean  && rm -r /var/lib/apt/lists/*
+0.9019147080540051,set -x &&     apt-get update &&     apt-get -y install         libssl-dev         python         python-pip &&     rm -rf /var/lib/apt/lists/*
+0.9261021386368052,apt-get update && apt-get install -y --no-install-recommends 		less 		kmod 		nano 		net-tools 		ifupdown 		iputils-ping 		i2c-tools 		usbutils 	&& rm -rf /var/lib/apt/lists/*
+0.9227254711586532,apt-get update     && apt-get install -y --no-install-recommends         ca-certificates         curl                 libc6         libgcc1         libgssapi-krb5-2         libicu57         liblttng-ust0         libssl1.0.2         libstdc++6         zlib1g     && rm -rf /var/lib/apt/lists/*
+0.9291402676916443,apt-get update && apt-get install -y --no-install-recommends 		g++ 		gcc 		libc6-dev 		make 		pkg-config 		git 	&& rm -rf /var/lib/apt/lists/*
+0.9235431685863519,apt-get update &&     apt-get install -y --no-install-recommends         curl         gcc         libarchive-tools         make         rpm         unzip         xz-utils         zip     &&     apt-get clean &&     rm --recursive /var/lib/apt/lists/*
+0.9014049538328628,apt-get update && apt-get install -y ca-certificates curl --no-install-recommends && rm -rf /var/lib/apt/lists/*
+0.9291402676916443,apt-get update && apt-get install -y --no-install-recommends 		g++ 		gcc 		libc6-dev 		make 		pkg-config 		git 	&& rm -rf /var/lib/apt/lists/*

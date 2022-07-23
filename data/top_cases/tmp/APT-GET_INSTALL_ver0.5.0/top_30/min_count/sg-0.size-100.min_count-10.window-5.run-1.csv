@@ -1,0 +1,31 @@
+result,description
+0.9427165353123181,apt-get update && apt-get install -y --no-install-recommends 		less 		kmod 		nano 		net-tools 		ifupdown 		iputils-ping 		i2c-tools 		usbutils 	&& rm -rf /var/lib/apt/lists/*
+0.9090220266490108,apk add --update 		less 		nano 		net-tools 		ifupdown 		usbutils 		gnupg 	&& rm -rf /var/cache/apk/*
+0.9883260524793077,set -x &&     apk add --update --no-cache ffmpeg &&     rm -rf /var/cache/apk/* /tmp/*
+0.9427165353123181,apt-get update && apt-get install -y --no-install-recommends 		less 		kmod 		nano 		net-tools 		ifupdown 		iputils-ping 		i2c-tools 		usbutils 	&& rm -rf /var/lib/apt/lists/*
+0.9717115706122162,apt-get update -y 	&& apt-get install -y --no-install-recommends telnet wget tar curl 	&& rm -rf /var/lib/apt/lists/* 	&& groupadd -r $FABAN_USER  	&& useradd -r -g $FABAN_USER $FABAN_USER
+0.9579818328512106,apt-get update && apt-get install -y --no-install-recommends 		g++ 		gcc 		libc6-dev 		make 		pkg-config 		git 	&& rm -rf /var/lib/apt/lists/*
+0.9792778833941334,apt-get update && apt-get -y install     build-essential     git-core     curl libssl-dev     libreadline-dev     zlib1g zlib1g-dev     libcurl4-openssl-dev     libxslt-dev libxml2-dev     xvfb nodejs-legacy     postgresql   && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+0.921072597314512,find /usr/local/lib/python3.6/ -name 'tests' -exec rm -r '{}' + &&     find /usr/local/lib/python3.6/ -name '*.pyc' -exec rm -r '{}' + &&     rm -rf /home/dataplay3/client &&     rm -rf /home/dataplay3/docs &&     apt-get remove nodejs gcc git curl -y &&     apt-get autoremove -y &&     apt-get clean &&     rm -rf         /var/lib/apt/lists/*         /tmp/*         /var/tmp/*
+0.9416015946883824,rm -rf /tmp/* /var/tmp/*
+0.9857430560611807,apt update && apt install -y cmake g++                && rm -rf /var/lib/apt/lists/*
+0.9471289756149421,git checkout -b stable v${KERNEL_TAG} && rm -rf .git
+0.9763117857258146,apt-get update && apt-get install -y 	software-properties-common 	--no-install-recommends && 	add-apt-repository ppa:yubico/stable && 	apt-get update && apt-get install -y 	pcscd 	usbutils 	yubico-piv-tool 	&& rm -rf /var/lib/apt/lists/*
+0.9959160435682063,apt-get update && apt-get install -y fml-asm && apt-get clean && apt-get purge && rm -rf /var/lib/apt/lists/* /tmp/*
+0.9579818328512106,apt-get update && apt-get install -y --no-install-recommends 		g++ 		gcc 		libc6-dev 		make 		pkg-config 		git 	&& rm -rf /var/lib/apt/lists/*
+0.9900300819096085,set -xv ; apt-get -qq update && apt-get -qq dist-upgrade -y && apt-get -qq install -y ${pkgs} ${pkgs_tmp} && gem install fpm && apt-get remove -y --purge ${pkgs_tmp} && apt-get -qq autoremove -y && apt-get -qq clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /*.deb /MoarVM* /nqp* /rakudo*
+0.9681647908895716,env/pip2/deps && rm -r ~/.cache/pip
+0.9959160435682063,apt-get update && apt-get install -y pbsuite && apt-get clean && apt-get purge && rm -rf /var/lib/apt/lists/* /tmp/*
+0.9883821069768791,apk add --update dos2unix && rm -rf /var/cache/apk/*
+0.9883821069768791,apk add --update dos2unix && rm -rf /var/cache/apk/*
+0.9579818328512106,apt-get update && apt-get install -y --no-install-recommends 		g++ 		gcc 		libc6-dev 		make 		pkg-config 		git 	&& rm -rf /var/lib/apt/lists/*
+0.9984303466544237,apt-get update &&	apt-get install -y --no-install-recommends 	nodejs 	python-pygments &&	rm -rf /var/lib/apt/lists/*
+0.9047125589899937,apt-get update -qq &&   apt-get install -qqy locales vim-nox &&   apt-get clean &&   rm -rf /var/lib/apt/lists/* &&   sed -e 's|^# en_US.UTF-8|en_US.UTF-8|g' -i /etc/locale.gen &&   sed -e 's|^# zh_TW.UTF-8|zh_TW.UTF-8|g' -i /etc/locale.gen &&   locale-gen
+0.9222455638205962,"echo ""http://dl-cdn.alpinelinux.org/alpine/edge/community/"" >> /etc/apk/repositories &&     echo ""http://dl-cdn.alpinelinux.org/alpine/edge/testing/"" >> /etc/apk/repositories &&     apk add --update openvpn=2.4.4-r1       bash easy-rsa libintl inotify-tools openvpn-auth-pam google-authenticator pamtester &&     apk add --virtual temppkg gettext &&      cp /usr/bin/envsubst /usr/local/bin/envsubst &&     ln -s /usr/share/easy-rsa/easyrsa /usr/local/bin &&     apk del temppkg &&     rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /var/cache/distfiles/*"
+0.9579818328512106,apt-get update && apt-get install -y --no-install-recommends 		g++ 		gcc 		libc6-dev 		make 		pkg-config 		git 	&& rm -rf /var/lib/apt/lists/*
+0.9994561791842673,apt-get update     && apt-get install -y ssl-cert ca-certificates     && apt-get clean     && rm -rf /var/lib/apt/lists/*
+0.9350774389887704,rm /var/www/html/*.html
+0.9836789067248933,apt-get clean     && rm -rf /var/lib/apt/lists/*
+0.9459535095956993,rm -rf /tmp/*
+0.9746903191708992,"apt-get autoclean && apt-get autoremove -y && rm -rf /var/lib/{apt,dpkg,cache,log}/"
+0.9781577243715375,apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

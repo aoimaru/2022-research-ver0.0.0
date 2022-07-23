@@ -1,0 +1,31 @@
+result,description
+0.8831075217529389,apt-get update && apt-get install -y     build-essential     curl     gcovr     git     g++-4.9     lcov     libprocps4-dev     libssl-dev     ninja-build     pandoc     python-cheetah     python-matplotlib     python-pip     pkg-config     s3cmd     tar     unzip     wget     && rm -rf /var/lib/apt/lists/*
+0.9158970435593659,apt-get update && apt-get install -y --no-install-recommends 		less 		kmod 		nano 		net-tools 		ifupdown 		iputils-ping 		i2c-tools 		usbutils 	&& rm -rf /var/lib/apt/lists/*
+0.9158970435593659,apt-get update && apt-get install -y --no-install-recommends 		less 		kmod 		nano 		net-tools 		ifupdown 		iputils-ping 		i2c-tools 		usbutils 	&& rm -rf /var/lib/apt/lists/*
+0.8753525217082058,apt-get update -y 	&& apt-get install -y --no-install-recommends telnet wget tar curl 	&& rm -rf /var/lib/apt/lists/* 	&& groupadd -r $FABAN_USER  	&& useradd -r -g $FABAN_USER $FABAN_USER
+0.9185827026643894,apt-get update && apt-get install -y --no-install-recommends 		g++ 		gcc 		libc6-dev 		make 		pkg-config 		git 	&& rm -rf /var/lib/apt/lists/*
+0.9184901050342502,apt-get update && apt-get -y install     build-essential     git-core     curl libssl-dev     libreadline-dev     zlib1g zlib1g-dev     libcurl4-openssl-dev     libxslt-dev libxml2-dev     xvfb nodejs-legacy     postgresql   && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+0.8946305817934997,apt-get update && apt-get install -y 	software-properties-common 	--no-install-recommends && 	add-apt-repository ppa:yubico/stable && 	apt-get update && apt-get install -y 	pcscd 	usbutils 	yubico-piv-tool 	&& rm -rf /var/lib/apt/lists/*
+0.9185827026643894,apt-get update && apt-get install -y --no-install-recommends 		g++ 		gcc 		libc6-dev 		make 		pkg-config 		git 	&& rm -rf /var/lib/apt/lists/*
+0.8923929870608104,apt-get update && apt-get install -y --no-install-recommends 		btrfs-tools 		build-essential 		curl 		gcc 		git 		libapparmor-dev 		libdevmapper-dev 		libsqlite3-dev 				ca-certificates 		e2fsprogs 		iptables 		procps 		xfsprogs 		xz-utils 				aufs-tools 	&& rm -rf /var/lib/apt/lists/*
+0.9185827026643894,apt-get update && apt-get install -y --no-install-recommends 		g++ 		gcc 		libc6-dev 		make 		pkg-config 		git 	&& rm -rf /var/lib/apt/lists/*
+0.8852652422263144,apt-get update &&	apt-get install -y --no-install-recommends 	nodejs 	python-pygments &&	rm -rf /var/lib/apt/lists/*
+0.9185827026643894,apt-get update && apt-get install -y --no-install-recommends 		g++ 		gcc 		libc6-dev 		make 		pkg-config 		git 	&& rm -rf /var/lib/apt/lists/*
+0.8724389586976754,apt-get update     && apt-get install -y ssl-cert ca-certificates     && apt-get clean     && rm -rf /var/lib/apt/lists/*
+0.8554944617379795,rm -rf /tmp/*
+0.8745033168328002,apt-get update &&     apt-get install -y         at         curl         gcc         gdb         git         iputils-ping         libcurl3         libffi-dev         libgdiplus         libicu-dev         libssl-dev         libunwind8         locales         locales-all         python3-dev         python3-pip         sudo         tzdata         unzip     && rm -rf /var/lib/apt/lists/*         && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+0.8521580195634832,apt-get update && apt-get install -y mariadb-server pwgen     && apt-get clean     && rm -rf /var/lib/apt/lists/*     && rm -rf /var/lib/mysql/*
+0.9043901057228544,rm -fr /var/lib/apt/lists &&     apt-get update &&     apt-get install -y         curl         binutils-doc         flex         git         ruby ruby-dev         ccache         fakeroot         libreadline-dev         libcurl4-openssl-dev         libexpat1-dev         libicu-dev         reprepro         sudo &&     apt-get clean &&     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+0.9142874472031473,apt-get update &&     apt-get install -y --no-install-recommends         libjemalloc1 	libsnappy1         ca-certificates         pwgen         curl     &&     rm -rf /var/lib/apt/lists/*
+0.9185827026643894,apt-get update && apt-get install -y --no-install-recommends 		g++ 		gcc 		libc6-dev 		make 		pkg-config 		git 	&& rm -rf /var/lib/apt/lists/*
+0.8898291227511961,apt-get update     && apt-get install --no-install-recommends -y curl build-essential clang-3.9     && apt-get clean     && rm -rf /var/lib/apt/lists/*
+0.9016047827609999,apt-get update  && apt-get install -y -q --no-install-recommends     ca-certificates     wget     git     vim  && apt-get clean  && rm -r /var/lib/apt/lists/*
+0.868644069725943,rm -rf /var/lib/apt/lists/   && apt-get update   && apt-get install -y -t unstable --no-install-recommends     libcurl4-openssl-dev     libssl1.0.0     libssl-dev     libproj-dev     libgdal-dev     libgdal1-dev   && apt-get clean   && rm -rf /var/lib/apt/lists/
+0.8840666853466019,apt-get update &&     apt-get install -y ca-certificates nginx=${NGINX_VERSION} &&     rm -rf /var/lib/apt/lists/*
+0.8911040095202036,set -x &&     apt-get update &&     apt-get -y install         libssl-dev         python         python-pip &&     rm -rf /var/lib/apt/lists/*
+0.8643087856157693,rm -Rf ${LLVM_SOURCES}
+0.8653926185896876,apt-get purge -y git curl gcc &&     apt-get clean -y &&     rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
+0.8761993029205685,apt-get -qq update &&     apt-get -qq install --no-install-recommends -qq libaio1 rpm -y && rpm -Uvh --nodeps /oracle*rpm &&     rm -f /oracle*rpm
+0.9158970435593659,apt-get update && apt-get install -y --no-install-recommends 		less 		kmod 		nano 		net-tools 		ifupdown 		iputils-ping 		i2c-tools 		usbutils 	&& rm -rf /var/lib/apt/lists/*
+0.8717474407916563,apt-get update   && apt-get install -y git python make g++ libnss-mdns avahi-discover libavahi-compat-libdnssd-dev     inetutils-ping sudo nano   && apt-get clean   && rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/*   && chmod 4755 /bin/ping   && mkdir /homebridge   && npm set global-style=true   && npm set package-lock=false
+0.8604916248475273,apt-get update &&apt-get install -qy curl &&apt-get clean -y && rm -rf /var/lib/apt/lists/*

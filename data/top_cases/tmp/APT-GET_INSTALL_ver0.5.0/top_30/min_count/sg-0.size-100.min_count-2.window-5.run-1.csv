@@ -1,0 +1,31 @@
+result,description
+0.9369505863483453,apt-get update && apt-get install -y --no-install-recommends 		less 		kmod 		nano 		net-tools 		ifupdown 		iputils-ping 		i2c-tools 		usbutils 	&& rm -rf /var/lib/apt/lists/*
+0.9176388864267991,apk add --update 		less 		nano 		net-tools 		ifupdown 		usbutils 		gnupg 	&& rm -rf /var/cache/apk/*
+0.989201718065553,set -x &&     apk add --update --no-cache ffmpeg &&     rm -rf /var/cache/apk/* /tmp/*
+0.9369505863483453,apt-get update && apt-get install -y --no-install-recommends 		less 		kmod 		nano 		net-tools 		ifupdown 		iputils-ping 		i2c-tools 		usbutils 	&& rm -rf /var/lib/apt/lists/*
+0.9684546272518755,apt-get update -y 	&& apt-get install -y --no-install-recommends telnet wget tar curl 	&& rm -rf /var/lib/apt/lists/* 	&& groupadd -r $FABAN_USER  	&& useradd -r -g $FABAN_USER $FABAN_USER
+0.9549033614870471,apt-get update && apt-get install -y --no-install-recommends 		g++ 		gcc 		libc6-dev 		make 		pkg-config 		git 	&& rm -rf /var/lib/apt/lists/*
+0.9777945296261678,apt-get update && apt-get -y install     build-essential     git-core     curl libssl-dev     libreadline-dev     zlib1g zlib1g-dev     libcurl4-openssl-dev     libxslt-dev libxml2-dev     xvfb nodejs-legacy     postgresql   && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+0.9231367194940768,find /usr/local/lib/python3.6/ -name 'tests' -exec rm -r '{}' + &&     find /usr/local/lib/python3.6/ -name '*.pyc' -exec rm -r '{}' + &&     rm -rf /home/dataplay3/client &&     rm -rf /home/dataplay3/docs &&     apt-get remove nodejs gcc git curl -y &&     apt-get autoremove -y &&     apt-get clean &&     rm -rf         /var/lib/apt/lists/*         /tmp/*         /var/tmp/*
+0.9356521644489193,rm -rf /tmp/* /var/tmp/*
+0.9852026018326463,apt update && apt install -y cmake g++                && rm -rf /var/lib/apt/lists/*
+0.9433928865228289,git checkout -b stable v${KERNEL_TAG} && rm -rf .git
+0.9740263527244116,apt-get update && apt-get install -y 	software-properties-common 	--no-install-recommends && 	add-apt-repository ppa:yubico/stable && 	apt-get update && apt-get install -y 	pcscd 	usbutils 	yubico-piv-tool 	&& rm -rf /var/lib/apt/lists/*
+0.995636374531813,apt-get update && apt-get install -y fml-asm && apt-get clean && apt-get purge && rm -rf /var/lib/apt/lists/* /tmp/*
+0.9549033614870471,apt-get update && apt-get install -y --no-install-recommends 		g++ 		gcc 		libc6-dev 		make 		pkg-config 		git 	&& rm -rf /var/lib/apt/lists/*
+0.9899336545291415,set -xv ; apt-get -qq update && apt-get -qq dist-upgrade -y && apt-get -qq install -y ${pkgs} ${pkgs_tmp} && gem install fpm && apt-get remove -y --purge ${pkgs_tmp} && apt-get -qq autoremove -y && apt-get -qq clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /*.deb /MoarVM* /nqp* /rakudo*
+0.9652598318373071,env/pip2/deps && rm -r ~/.cache/pip
+0.995636374531813,apt-get update && apt-get install -y pbsuite && apt-get clean && apt-get purge && rm -rf /var/lib/apt/lists/* /tmp/*
+0.9889841624777199,apk add --update dos2unix && rm -rf /var/cache/apk/*
+0.9889841624777199,apk add --update dos2unix && rm -rf /var/cache/apk/*
+0.9549033614870471,apt-get update && apt-get install -y --no-install-recommends 		g++ 		gcc 		libc6-dev 		make 		pkg-config 		git 	&& rm -rf /var/lib/apt/lists/*
+0.9982855628450603,apt-get update &&	apt-get install -y --no-install-recommends 	nodejs 	python-pygments &&	rm -rf /var/lib/apt/lists/*
+0.9257757506345718,"echo ""http://dl-cdn.alpinelinux.org/alpine/edge/community/"" >> /etc/apk/repositories &&     echo ""http://dl-cdn.alpinelinux.org/alpine/edge/testing/"" >> /etc/apk/repositories &&     apk add --update openvpn=2.4.4-r1       bash easy-rsa libintl inotify-tools openvpn-auth-pam google-authenticator pamtester &&     apk add --virtual temppkg gettext &&      cp /usr/bin/envsubst /usr/local/bin/envsubst &&     ln -s /usr/share/easy-rsa/easyrsa /usr/local/bin &&     apk del temppkg &&     rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /var/cache/distfiles/*"
+0.9549033614870471,apt-get update && apt-get install -y --no-install-recommends 		g++ 		gcc 		libc6-dev 		make 		pkg-config 		git 	&& rm -rf /var/lib/apt/lists/*
+0.9993990538898069,apt-get update     && apt-get install -y ssl-cert ca-certificates     && apt-get clean     && rm -rf /var/lib/apt/lists/*
+0.9295752286990089,rm /var/www/html/*.html
+0.9824970250640436,apt-get clean     && rm -rf /var/lib/apt/lists/*
+0.9394572158564695,rm -rf /tmp/*
+0.9734387795651253,"apt-get autoclean && apt-get autoremove -y && rm -rf /var/lib/{apt,dpkg,cache,log}/"
+0.9765985328793421,apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+0.918362108217343,rm *.o

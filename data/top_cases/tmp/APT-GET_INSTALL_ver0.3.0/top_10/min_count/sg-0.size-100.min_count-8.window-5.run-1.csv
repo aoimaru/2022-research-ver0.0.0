@@ -1,0 +1,11 @@
+result,description
+0.940057741733297,apt-get update && apt-get install -y --no-install-recommends 		less 		kmod 		nano 		net-tools 		ifupdown 		iputils-ping 		i2c-tools 		usbutils 	&& rm -rf /var/lib/apt/lists/*
+0.9134084042586806,apk add --update 		less 		nano 		net-tools 		ifupdown 		usbutils 		gnupg 	&& rm -rf /var/cache/apk/*
+0.9885521454946679,set -x &&     apk add --update --no-cache ffmpeg &&     rm -rf /var/cache/apk/* /tmp/*
+0.940057741733297,apt-get update && apt-get install -y --no-install-recommends 		less 		kmod 		nano 		net-tools 		ifupdown 		iputils-ping 		i2c-tools 		usbutils 	&& rm -rf /var/lib/apt/lists/*
+0.9702053472779778,apt-get update -y 	&& apt-get install -y --no-install-recommends telnet wget tar curl 	&& rm -rf /var/lib/apt/lists/* 	&& groupadd -r $FABAN_USER  	&& useradd -r -g $FABAN_USER $FABAN_USER
+0.9564976767336296,apt-get update && apt-get install -y --no-install-recommends 		g++ 		gcc 		libc6-dev 		make 		pkg-config 		git 	&& rm -rf /var/lib/apt/lists/*
+0.9783556903959173,apt-get update && apt-get -y install     build-essential     git-core     curl libssl-dev     libreadline-dev     zlib1g zlib1g-dev     libcurl4-openssl-dev     libxslt-dev libxml2-dev     xvfb nodejs-legacy     postgresql   && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+0.9202997817517694,find /usr/local/lib/python3.6/ -name 'tests' -exec rm -r '{}' + &&     find /usr/local/lib/python3.6/ -name '*.pyc' -exec rm -r '{}' + &&     rm -rf /home/dataplay3/client &&     rm -rf /home/dataplay3/docs &&     apt-get remove nodejs gcc git curl -y &&     apt-get autoremove -y &&     apt-get clean &&     rm -rf         /var/lib/apt/lists/*         /tmp/*         /var/tmp/*
+0.9401151245528039,rm -rf /tmp/* /var/tmp/*
+0.9851788125220529,apt update && apt install -y cmake g++                && rm -rf /var/lib/apt/lists/*

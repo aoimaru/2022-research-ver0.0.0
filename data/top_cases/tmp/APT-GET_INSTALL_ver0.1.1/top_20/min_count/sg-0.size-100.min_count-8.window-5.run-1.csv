@@ -1,0 +1,21 @@
+result,description
+0.9441274226665644,set -x &&     apk add --update --no-cache ffmpeg &&     rm -rf /var/cache/apk/* /tmp/*
+0.9252902878151811,apt-get update && apt-get -y install     build-essential     git-core     curl libssl-dev     libreadline-dev     zlib1g zlib1g-dev     libcurl4-openssl-dev     libxslt-dev libxml2-dev     xvfb nodejs-legacy     postgresql   && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+0.9817849225862265,rm -rf /tmp/* /var/tmp/*
+0.9328986012852738,apt update && apt install -y cmake g++                && rm -rf /var/lib/apt/lists/*
+0.9032941898749978,apt-get update && apt-get install -y 	software-properties-common 	--no-install-recommends && 	add-apt-repository ppa:yubico/stable && 	apt-get update && apt-get install -y 	pcscd 	usbutils 	yubico-piv-tool 	&& rm -rf /var/lib/apt/lists/*
+0.9574709771595343,apt-get update && apt-get install -y fml-asm && apt-get clean && apt-get purge && rm -rf /var/lib/apt/lists/* /tmp/*
+0.9543215924748484,set -xv ; apt-get -qq update && apt-get -qq dist-upgrade -y && apt-get -qq install -y ${pkgs} ${pkgs_tmp} && gem install fpm && apt-get remove -y --purge ${pkgs_tmp} && apt-get -qq autoremove -y && apt-get -qq clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /*.deb /MoarVM* /nqp* /rakudo*
+0.9019540500138616,env/pip2/deps && rm -r ~/.cache/pip
+0.9574709771595343,apt-get update && apt-get install -y pbsuite && apt-get clean && apt-get purge && rm -rf /var/lib/apt/lists/* /tmp/*
+0.9416773053763074,apk add --update dos2unix && rm -rf /var/cache/apk/*
+0.9416773053763074,apk add --update dos2unix && rm -rf /var/cache/apk/*
+0.9483657626659865,apt-get update &&	apt-get install -y --no-install-recommends 	nodejs 	python-pygments &&	rm -rf /var/lib/apt/lists/*
+0.9474568848954613,apt-get update     && apt-get install -y ssl-cert ca-certificates     && apt-get clean     && rm -rf /var/lib/apt/lists/*
+0.9742019800923042,rm /var/www/html/*.html
+0.9537917723409268,apt-get clean     && rm -rf /var/lib/apt/lists/*
+0.9863457309136519,rm -rf /tmp/*
+0.9354387849960595,"apt-get autoclean && apt-get autoremove -y && rm -rf /var/lib/{apt,dpkg,cache,log}/"
+0.959746848706881,apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+0.976229465133029,rm *.o
+0.976229465133029,rm *.o

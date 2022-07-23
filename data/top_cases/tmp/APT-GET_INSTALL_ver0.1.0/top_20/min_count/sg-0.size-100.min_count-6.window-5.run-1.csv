@@ -1,0 +1,21 @@
+result,description
+0.9465480681683944,apt-get update && apt-get install -y --no-install-recommends 		less 		kmod 		nano 		net-tools 		ifupdown 		iputils-ping 		i2c-tools 		usbutils 	&& rm -rf /var/lib/apt/lists/*
+0.9110744278276549,apk add --update 		less 		nano 		net-tools 		ifupdown 		usbutils 		gnupg 	&& rm -rf /var/cache/apk/*
+0.9892846900929108,set -x &&     apk add --update --no-cache ffmpeg &&     rm -rf /var/cache/apk/* /tmp/*
+0.9465480681683944,apt-get update && apt-get install -y --no-install-recommends 		less 		kmod 		nano 		net-tools 		ifupdown 		iputils-ping 		i2c-tools 		usbutils 	&& rm -rf /var/lib/apt/lists/*
+0.9728500307212248,apt-get update -y 	&& apt-get install -y --no-install-recommends telnet wget tar curl 	&& rm -rf /var/lib/apt/lists/* 	&& groupadd -r $FABAN_USER  	&& useradd -r -g $FABAN_USER $FABAN_USER
+0.9604136726291916,apt-get update && apt-get install -y --no-install-recommends 		g++ 		gcc 		libc6-dev 		make 		pkg-config 		git 	&& rm -rf /var/lib/apt/lists/*
+0.9808610156080627,apt-get update && apt-get -y install     build-essential     git-core     curl libssl-dev     libreadline-dev     zlib1g zlib1g-dev     libcurl4-openssl-dev     libxslt-dev libxml2-dev     xvfb nodejs-legacy     postgresql   && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+0.9242496188178915,find /usr/local/lib/python3.6/ -name 'tests' -exec rm -r '{}' + &&     find /usr/local/lib/python3.6/ -name '*.pyc' -exec rm -r '{}' + &&     rm -rf /home/dataplay3/client &&     rm -rf /home/dataplay3/docs &&     apt-get remove nodejs gcc git curl -y &&     apt-get autoremove -y &&     apt-get clean &&     rm -rf         /var/lib/apt/lists/*         /tmp/*         /var/tmp/*
+0.9382386473043823,rm -rf /tmp/* /var/tmp/*
+0.9863271726072831,apt update && apt install -y cmake g++                && rm -rf /var/lib/apt/lists/*
+0.942680761075583,git checkout -b stable v${KERNEL_TAG} && rm -rf .git
+0.977803645351485,apt-get update && apt-get install -y 	software-properties-common 	--no-install-recommends && 	add-apt-repository ppa:yubico/stable && 	apt-get update && apt-get install -y 	pcscd 	usbutils 	yubico-piv-tool 	&& rm -rf /var/lib/apt/lists/*
+0.9961705484006915,apt-get update && apt-get install -y fml-asm && apt-get clean && apt-get purge && rm -rf /var/lib/apt/lists/* /tmp/*
+0.9604136726291916,apt-get update && apt-get install -y --no-install-recommends 		g++ 		gcc 		libc6-dev 		make 		pkg-config 		git 	&& rm -rf /var/lib/apt/lists/*
+0.9911281082228716,set -xv ; apt-get -qq update && apt-get -qq dist-upgrade -y && apt-get -qq install -y ${pkgs} ${pkgs_tmp} && gem install fpm && apt-get remove -y --purge ${pkgs_tmp} && apt-get -qq autoremove -y && apt-get -qq clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /*.deb /MoarVM* /nqp* /rakudo*
+0.96771967019292,env/pip2/deps && rm -r ~/.cache/pip
+0.9961705484006915,apt-get update && apt-get install -y pbsuite && apt-get clean && apt-get purge && rm -rf /var/lib/apt/lists/* /tmp/*
+0.9890117367440813,apk add --update dos2unix && rm -rf /var/cache/apk/*
+0.9890117367440813,apk add --update dos2unix && rm -rf /var/cache/apk/*
+0.9604136726291916,apt-get update && apt-get install -y --no-install-recommends 		g++ 		gcc 		libc6-dev 		make 		pkg-config 		git 	&& rm -rf /var/lib/apt/lists/*

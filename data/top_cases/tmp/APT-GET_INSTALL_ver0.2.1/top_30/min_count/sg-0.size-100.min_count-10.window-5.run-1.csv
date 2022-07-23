@@ -1,0 +1,31 @@
+result,description
+0.9442054344576204,set -x &&     apk add --update --no-cache ffmpeg &&     rm -rf /var/cache/apk/* /tmp/*
+0.9283192259977946,apt-get update && apt-get -y install     build-essential     git-core     curl libssl-dev     libreadline-dev     zlib1g zlib1g-dev     libcurl4-openssl-dev     libxslt-dev libxml2-dev     xvfb nodejs-legacy     postgresql   && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+0.9821186823366699,rm -rf /tmp/* /var/tmp/*
+0.934976203447357,apt update && apt install -y cmake g++                && rm -rf /var/lib/apt/lists/*
+0.9067120312404581,apt-get update && apt-get install -y 	software-properties-common 	--no-install-recommends && 	add-apt-repository ppa:yubico/stable && 	apt-get update && apt-get install -y 	pcscd 	usbutils 	yubico-piv-tool 	&& rm -rf /var/lib/apt/lists/*
+0.9591480112778177,apt-get update && apt-get install -y fml-asm && apt-get clean && apt-get purge && rm -rf /var/lib/apt/lists/* /tmp/*
+0.9556243612984242,set -xv ; apt-get -qq update && apt-get -qq dist-upgrade -y && apt-get -qq install -y ${pkgs} ${pkgs_tmp} && gem install fpm && apt-get remove -y --purge ${pkgs_tmp} && apt-get -qq autoremove -y && apt-get -qq clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /*.deb /MoarVM* /nqp* /rakudo*
+0.9013672718020831,env/pip2/deps && rm -r ~/.cache/pip
+0.9591480112778177,apt-get update && apt-get install -y pbsuite && apt-get clean && apt-get purge && rm -rf /var/lib/apt/lists/* /tmp/*
+0.9413128403330215,apk add --update dos2unix && rm -rf /var/cache/apk/*
+0.9413128403330215,apk add --update dos2unix && rm -rf /var/cache/apk/*
+0.9502163098478075,apt-get update &&	apt-get install -y --no-install-recommends 	nodejs 	python-pygments &&	rm -rf /var/lib/apt/lists/*
+0.949266038276972,apt-get update     && apt-get install -y ssl-cert ca-certificates     && apt-get clean     && rm -rf /var/lib/apt/lists/*
+0.9749675628641631,rm /var/www/html/*.html
+0.9554477880351775,apt-get clean     && rm -rf /var/lib/apt/lists/*
+0.9866150382226532,rm -rf /tmp/*
+0.9385904477612245,"apt-get autoclean && apt-get autoremove -y && rm -rf /var/lib/{apt,dpkg,cache,log}/"
+0.9609729867882532,apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+0.9770480541968025,rm *.o
+0.9770480541968025,rm *.o
+0.9770480541968025,rm *.o
+0.9770480541968025,rm *.o
+0.9590072226592501,apt-get update && apt-get install -y mariadb-server pwgen     && apt-get clean     && rm -rf /var/lib/apt/lists/*     && rm -rf /var/lib/mysql/*
+0.9388717564159013,rm -fr /var/lib/apt/lists &&     apt-get update &&     apt-get install -y         curl         binutils-doc         flex         git         ruby ruby-dev         ccache         fakeroot         libreadline-dev         libcurl4-openssl-dev         libexpat1-dev         libicu-dev         reprepro         sudo &&     apt-get clean &&     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+0.914154629039709,apt-get update &&     apt-get install -y --no-install-recommends         libjemalloc1 	libsnappy1         ca-certificates         pwgen         curl     &&     rm -rf /var/lib/apt/lists/*
+0.9055875244206181,"apt-get update && apt-get install --yes --no-install-recommends 		ca-certificates 		curl 	&& echo ""deb http://packages.cloud.google.com/apt gcsfuse-bionic main"" 		| tee /etc/apt/sources.list.d/gcsfuse.list 	&& curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - 	&& apt-get update 	&& apt-get install --yes gcsfuse 	&& apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*"
+0.9335964775508263,apt-get update     && apt-get install --no-install-recommends -y curl build-essential clang-3.9     && apt-get clean     && rm -rf /var/lib/apt/lists/*
+0.9096170871547177,apt-get update  && apt-get install -y -q --no-install-recommends     ca-certificates     wget     git     vim  && apt-get clean  && rm -r /var/lib/apt/lists/*
+0.9359890201809902,rm /hello
+0.9762837178392616,rm /var/cache/apk/*

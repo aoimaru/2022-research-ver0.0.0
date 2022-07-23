@@ -1,0 +1,21 @@
+result,description
+0.9278652483469289,apk add --no-cache libgcc libstdc++ libuv 	&& apk add --no-cache libssl1.0 || apk add --no-cache libssl1.1
+0.9872401163972038,apk update && apk upgrade && apk add --no-cache git nodejs bash npm
+0.9278652483469289,apk add --no-cache libgcc libstdc++ libuv 	&& apk add --no-cache libssl1.0 || apk add --no-cache libssl1.1
+0.9449271778126468,apk add --update --no-cache curl
+0.9511017834750825,apk add --update --no-cache     python     make     g++
+0.9278652483469289,apk add --no-cache libgcc libstdc++ libuv 	&& apk add --no-cache libssl1.0 || apk add --no-cache libssl1.1
+0.9633177480759813,apk update && apk add git
+0.9444517992162579,apk add -qU --no-cache iptables openssh
+0.9523672033904544,apk add --no-cache 		bash 		sed
+0.951787263663741,apk add --no-cache bash
+0.9496586068447365,apk --no-cache add libc6-compat
+0.9780755892858127,apk add --no-cache --initdb -p /out   alpine-baselayout   binutils   busybox   dosfstools   libarchive-tools   mtools   xorriso   && true
+0.9907295704548793,apk add --update make gcc g++ python curl git krb5-dev zeromq-dev && npm install zeromq --zmq-external --save && apk del make gcc g++ python curl git krb5-dev
+0.9651189109995746,apk add --update --no-cache openjdk8-jre &&    gcloud components install cloud-datastore-emulator beta --quiet
+0.9060035505472257,apk update && apk upgrade && apk add netcat-openbsd
+0.9521747145846632,apk add --no-cache dropbear openssh rsync bash
+0.9756013553912615,apk add --no-cache git &&     yarn install
+0.9653498028916702,apk --no-cache add upx  && upx /x/bin/*
+0.9496586068447365,apk --no-cache add man
+0.9527166778894659,apk add --no-cache git gcc ca-certificates
