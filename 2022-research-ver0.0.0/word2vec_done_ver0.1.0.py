@@ -21,7 +21,7 @@ from libs.evaluations import *
 def do(args, target):    
     test_obj = TestCase.get("{target}.json".format(target=target))
     # ここはパッチっぽい
-    sample_cases = SampleDataVer001.get(run=args.sample)
+    sample_cases = SampleDataVer000.get(run=args.sample)
     num_of_true = Evaluation.count_true(requires=test_obj["requires"], cases=sample_cases)
     # pprint.pprint(test_obj)
     parameters = Parameter.get("word2vec_done_ver0.1.0.json", args.version)
@@ -71,16 +71,16 @@ def do(args, target):
 def main(args):
     # do(args, target="APT-GET_INSTALL_ver0.0.0")
     # do(args, target="APT-GET_INSTALL_ver0.1.0")
-    # do(args, target="GPG_KEY_ver0.0.0")
+    do(args, target="GPG_KEY_ver0.0.1")
     # do(args, target="APK_ADD_USE_NO_CACHE_ver0.0.0")
     # do(args, target="APT-GET_INSTALL_ver0.1.1")
     # do(args, target="APT-GET_INSTALL_ver0.2.0")
     # do(args, target="APT-GET_INSTALL_ver0.3.0")
     # do(args, target="APT-GET_INSTALL_ver0.4.0")
-    do(args, target="APT-GET_INSTALL_ver0.2.1")
-    do(args, target="APT-GET_INSTALL_ver0.3.1")
-    do(args, target="APT-GET_INSTALL_ver0.4.1")
-    do(args, target="APT-GET_INSTALL_ver0.5.1")
+    # do(args, target="APT-GET_INSTALL_ver0.2.1")
+    # do(args, target="APT-GET_INSTALL_ver0.3.1")
+    # do(args, target="APT-GET_INSTALL_ver0.4.1")
+    # do(args, target="APT-GET_INSTALL_ver0.5.1")
     # done()
 
 

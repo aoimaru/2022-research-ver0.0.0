@@ -119,6 +119,14 @@
                         "source",
                         "window"
                     ],
+                    "GPG-KEY_ver0.0.1": [
+                        "min_count",
+                        "run",
+                        "sg",
+                        "size",
+                        "source",
+                        "window"
+                    ],
                     "tmp": [
                         "min_count",
                         "run",
@@ -234,6 +242,14 @@
                         "window"
                     ],
                     "GPG-KEY_ver0.0.0": [
+                        "min_count",
+                        "run",
+                        "sg",
+                        "size",
+                        "source",
+                        "window"
+                    ],
+                    "GPG-KEY_ver0.0.1": [
                         "min_count",
                         "run",
                         "sg",
@@ -363,6 +379,14 @@
                         "source",
                         "window"
                     ],
+                    "GPG-KEY_ver0.0.1": [
+                        "min_count",
+                        "run",
+                        "sg",
+                        "size",
+                        "source",
+                        "window"
+                    ],
                     "tmp": [
                         "min_count",
                         "run",
@@ -390,7 +414,9 @@
                 "APT-GET_INSTALL_ver0.4.0",
                 "APT-GET_INSTALL_ver0.4.1",
                 "APT-GET_INSTALL_ver0.5.0",
-                "APT-GET_INSTALL_ver0.5.1"
+                "APT-GET_INSTALL_ver0.5.1",
+                "GPG_KEY_ver0.0.0",
+                "GPG_KEY_ver0.0.1"
             ],
             "graph": [
                 "original",
@@ -858,6 +884,40 @@
                         ]
                     },
                     "GPG_KEY_ver0.0.0": {
+                        "top_10": [
+                            "min_count",
+                            "run",
+                            "sg",
+                            "size",
+                            "source",
+                            "window"
+                        ],
+                        "top_20": [
+                            "min_count",
+                            "run",
+                            "sg",
+                            "size",
+                            "source",
+                            "window"
+                        ],
+                        "top_30": [
+                            "min_count",
+                            "run",
+                            "sg",
+                            "size",
+                            "source",
+                            "window"
+                        ],
+                        "top_40": [
+                            "min_count",
+                            "run",
+                            "sg",
+                            "size",
+                            "source",
+                            "window"
+                        ]
+                    },
+                    "GPG_KEY_ver0.0.1": {
                         "top_10": [
                             "min_count",
                             "run",
@@ -1950,6 +2010,51 @@
                         ]
                     }
                 }
+            },
+            "tendency_json": {
+                "tmp": [
+                    "tmp",
+                    "ver0.0.0",
+                    "ver0.0.1"
+                ],
+                "ver0.0.0": [
+                    "tmp",
+                    "ver0.0.0",
+                    "ver0.0.1"
+                ],
+                "ver0.0.1": [
+                    "tmp",
+                    "ver0.0.0",
+                    "ver0.0.1"
+                ],
+                "gold": [
+                    "tmp",
+                    "ver0.0.0",
+                    "ver0.0.1"
+                ]
+
+            },
+            "tendency_image": {
+                "tmp": [
+                    "tmp",
+                    "ver0.0.0",
+                    "ver0.0.1"
+                ],
+                "ver0.0.0": [
+                    "tmp",
+                    "ver0.0.0",
+                    "ver0.0.1"
+                ],
+                "ver0.0.1": [
+                    "tmp",
+                    "ver0.0.0",
+                    "ver0.0.1"
+                ],
+                "gold": [
+                    "tmp",
+                    "ver0.0.0",
+                    "ver0.0.1"
+                ]
             }
         }
     }
