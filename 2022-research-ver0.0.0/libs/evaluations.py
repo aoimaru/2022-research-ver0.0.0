@@ -130,6 +130,30 @@ class Evaluation(object):
                     result_obj[idx] = result
         
         return result_obj
+    
+
+    @staticmethod
+    def get_similar_objs_v2(requires, model, sample_cases, test_cases, num_of_true, limit, size=100):
+        test_case_vector_obj = Vector(contexts=test_cases, model=model, size=size)
+        test_case_vector = test_case_vector_obj.vector
+        positive = 0
+        true_positive = 0
+        result_obj = dict()
+        for idx, sample_case in sample_cases.items():
+            print()
+            pprint.pprint(sample_case)
+            sample_case_vector_obj = Vector(contexts=sample_case, model=model, size=size)
+            sample_case_vector = sample_case_vector_obj.vector
+            try:
+                result = dot(test_case_vector, sample_case_vector)/(norm(test_case_vector)*norm(sample_case_vector))
+            except Exception as e:
+                print(e)
+            else:
+                if result >= limit:
+                    # result.append(idx)
+                    result_obj[idx] = result
+        
+        return result_obj
                     
 
 

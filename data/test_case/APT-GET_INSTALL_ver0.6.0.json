@@ -1,0 +1,17 @@
+{
+    "requires": [
+        "SC-APT-GET-INSTALL",
+        "SC-APT-GET-F-NO-INSTALL-RECOMMENDS",
+        "SC-RM",
+        "SC-APT-GET-UPDATE",
+        "SC-APT-GET-F-YES",
+        "SC-RM-F-RECURSIVE",
+        "SC-RM-F-FORCE",
+        "SC-APT-GET-PACKAGES"
+    ],
+    "cases": [
+        ["SC-APT-GET-INSTALL", "SC-APT-GET-F-YES"],
+        ["SC-APT-GET-INSTALL", "SC-APT-GET-F-NO-INSTALL-RECOMMENDS"],
+        ["SC-APT-GET-INSTALL", "SC-APT-GET-PACKAGES", "SC-APT-GET-PACKAGE:TK-DEV"]
+    ]
+}
