@@ -78,10 +78,10 @@ def main():
         "-y",
         "--no-install-recommends"
     ]
-    words = [
-        "./configure",
-        "--build="
-    ]
+    # words = [
+    #     "./configure",
+    #     "--build="
+    # ]
     # words = [
     #     "rm",
     #     "-r",
