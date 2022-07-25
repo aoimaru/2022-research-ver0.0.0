@@ -17,6 +17,52 @@ class Data(object):
 class TrainingData(Data):
     @staticmethod
     def get(source, run):
+        ignores = [
+            "DOCKER-RUN",
+            "BASH-SCRIPT",
+            "BASH-AND-IF",
+            "BASH-AND-MEM"
+            # "UNKNOWN"
+        ]
+        if source == "github":
+            file_shas = MetaData.get_github_path()
+        elif source == "gold":
+            file_shas = MetaData.get_gold_path()
+        else:
+            file_shas = MetaData.get_github_ver000_path()
+        
+        sample_data = list()
+        for file_sha in file_shas:
+            try:
+                ast_obj = SampleAST(file_sha)
+            except Exception as e:
+                print(e)
+            else:
+                if run == 1:
+                    for child in ast_obj.children:
+                        if not child["type"] == "DOCKER-RUN":
+                            continue
+                        tmps = list()
+                        sequences = Recursive.do(child)
+                        for sequence in sequences:
+                            sequence = [word for word in sequence if not word in ignores]
+                            if "UNKNOWN" in sequence:
+                                continue
+                            if not sequence:
+                                continue
+                            tmps.append(sequence)
+                        sample_data.append(tmps)
+                        
+                else:
+                    for child in ast_obj.children:
+                        sequence = Recursive.do(child)
+                        sample_data.append(sequence)
+                
+        return sample_data
+
+
+    @staticmethod
+    def get_ver00m1(source, run):
         if source == "github":
             if run == 1:
                 training_data = W2VFunction.get_training_github_data_filter_run()
@@ -32,6 +78,51 @@ class TrainingData(Data):
 class TestData(Data):
     @staticmethod
     def get(source, run):
+        ignores = [
+            "DOCKER-RUN",
+            "BASH-SCRIPT",
+            "BASH-AND-IF",
+            "BASH-AND-MEM"
+            # "UNKNOWN"
+        ]
+        if source == "github":
+            file_shas = MetaData.get_github_path()
+        elif source == "gold":
+            file_shas = MetaData.get_gold_path()
+        else:
+            file_shas = MetaData.get_github_ver000_path()
+        
+        sample_data = list()
+        for file_sha in file_shas:
+            try:
+                ast_obj = SampleAST(file_sha)
+            except Exception as e:
+                print(e)
+            else:
+                if run == 1:
+                    for child in ast_obj.children:
+                        if not child["type"] == "DOCKER-RUN":
+                            continue
+                        tmps = list()
+                        sequences = Recursive.do(child)
+                        for sequence in sequences:
+                            sequence = [word for word in sequence if not word in ignores]
+                            if "UNKNOWN" in sequence:
+                                continue
+                            if not sequence:
+                                continue
+                            tmps.append(sequence)
+                        sample_data.append(tmps)
+                        
+                else:
+                    for child in ast_obj.children:
+                        sequence = Recursive.do(child)
+                        sample_data.append(sequence)
+                
+        return sample_data
+        
+    @staticmethod
+    def get_ver00m1(source, run):
         if source == "github":
             if run == 1:
                 test_data = W2VFunction.get_test_github_data_filter_run()
