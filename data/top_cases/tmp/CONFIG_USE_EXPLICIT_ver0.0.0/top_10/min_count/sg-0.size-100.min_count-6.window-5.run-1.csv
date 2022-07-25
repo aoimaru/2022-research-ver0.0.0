@@ -1,0 +1,11 @@
+result,description
+0.7649069511273239,make menuselect.makeopts
+0.7723714740652013,git clone --depth=1 https://github.com/jvm-profiling-tools/async-profiler     && cd async-profiler && make
+0.7505780534884353,git clone --depth=1 https://github.com/jvm-profiling-tools/perf-map-agent     && cd perf-map-agent && cmake . && make
+0.7649069511273239,make modules_prepare
+0.7879654701878256,groupadd -g 939 --system docker
+0.8314799739347941,"tar zxf petsc-lite-3.9.3.tar.gz && cd petsc-3.9.3 &&     ./configure --with-debugging=0 --prefix=/usr                                                 --COPTFLAGS=""-g -O3"" --CXXOPTFLAGS=""-g -O3"" --FOPTFLAGS=""-g -O3""                 --download-petsc4py=1                     --download-mpi4py=1                       --download-mumps=1                        --download-parmetis=1                     --download-metis=1                        --download-superlu=1                      --download-hypre=1                        --download-cmake=1                        --download-scalapack=1                    --download-superlu_dist=1                 --download-superlu=1                      --download-fblaslapack=1                  --download-hdf5=1                                                    &&     make PETSC_DIR=/tmp/petsc-build/petsc-3.9.3 PETSC_ARCH=arch-linux2-c-opt all     &&     make PETSC_DIR=/tmp/petsc-build/petsc-3.9.3 PETSC_ARCH=arch-linux2-c-opt install &&     cd /tmp &&     rm -fr *"
+0.7743482562596752,cd /trisycl; cmake . -DTRISYCL_OPENCL=${opencl}                                -DTRISYCL_OPENMP=${openmp} -DCMAKE_C_COMPILER=${c_compiler}                    -DCMAKE_CXX_COMPILER=${cxx_compiler} && make -j`nproc`
+0.7533740871676299,adduser opencog sudo
+0.7827772910820536,"adduser --disabled-password --gecos ""OpenCog Developer"" opencog"
+0.8985884251934273,./configure -with-apxs=/usr/bin/apxs

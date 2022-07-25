@@ -1,0 +1,31 @@
+result,description
+0.6459603033971686,cd /opt     && wget https://cmake.org/files/v3.7/cmake-3.7.2-Linux-x86_64.tar.gz     && tar zxvf cmake-3.7.2-Linux-x86_64.tar.gz
+0.6553256750069036,pip install diff_cover
+0.6408365481473377,"mkdir -p ""$GOPATH/src"" ""$GOPATH/bin"" && chmod -R 777 ""$GOPATH"""
+0.6185186392556056,"mkdir -p /usr/local/go 	&& curl -SLO ""http://resin-packages.s3.amazonaws.com/golang/v$GO_VERSION/go$GO_VERSION.linux-alpine-amd64.tar.gz"" 	&& echo ""cefdfd2b941303fd25dd06bd04871b12a58a2a9a3d105eb67aed40dac092c863  go$GO_VERSION.linux-alpine-amd64.tar.gz"" | sha256sum -c - 	&& tar -xzf ""go$GO_VERSION.linux-alpine-amd64.tar.gz"" -C /usr/local/go --strip-components=1 	&& rm -f go$GO_VERSION.linux-alpine-amd64.tar.gz"
+0.6955596657194261,npm install --silent --progress=false --production
+0.6553256750069036,pip3 install uwsgi
+0.6756304638754687,"php -r ""unlink('composer-setup.php');"""
+0.6756304638754687,php composer-setup.php
+0.6276425860150949,"php -r ""copy('https://getcomposer.org/installer', 'composer-setup.php');"""
+0.6275474844306997,useradd -m asterisk -s /sbin/nologin
+0.7959538006240356,make menuselect.makeopts
+0.60405786624979,addgroup shortener && adduser -D -H -G shortener shortener
+0.6408365481473377,"mkdir -p ""$GOPATH/src"" ""$GOPATH/bin"" && chmod -R 777 ""$GOPATH"""
+0.6290268761120634,gem install rubygems-update && update_rubygems
+0.6945628038136467,gem install bundler
+0.6553256750069036,pip install Flask dnspython oauth2client google-api-python-client httplib2 google-cloud
+0.6083162040058889,npm run test
+0.6083162040058889,npm run build:nginx
+0.6083162040058889,npm run format
+0.6685819107559744,cd /home/dataplay3/client &&     mkdir /home/dataplay3/server/dataplay/static &&     npm install --silent &&     npm run build
+0.6482552326992966,pip3 install numpy==1.16.0 holidays==0.9.8 --force-reinstall
+0.6777734369097098,cd /home/dataplay3/server &&     pip3 install -r requirements.txt
+0.6991817898669468,cd /home     && git clone https://github.com/gangtao/dataplay3
+0.6207960428633863,"set -ex; 	curl -o wordpress.tar.gz -fSL ""https://wordpress.org/wordpress-${WORDPRESS_VERSION}.tar.gz""; 	echo ""$WORDPRESS_SHA1 *wordpress.tar.gz"" | sha1sum -c -; 	tar -xzf wordpress.tar.gz -C /usr/src/; 	rm wordpress.tar.gz; 	chown -R www-data:www-data /usr/src/wordpress"
+0.6553256750069036,"pip install ""Django==1.5"""
+0.6553256750069036,"pip install ""uWSGI"""
+0.6553256750069036,"pip install ""pydicom"""
+0.6553256750069036,"pip install ""requests"""
+0.6830986987817235,apt-get update -qq --fix-missing
+0.7436264963010527,git clone --depth=1 https://github.com/jvm-profiling-tools/async-profiler     && cd async-profiler && make

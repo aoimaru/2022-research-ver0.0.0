@@ -1,0 +1,21 @@
+result,description
+0.7122187969129965,cd /opt     && wget https://cmake.org/files/v3.7/cmake-3.7.2-Linux-x86_64.tar.gz     && tar zxvf cmake-3.7.2-Linux-x86_64.tar.gz
+0.7022576858759842,"mkdir -p ""$GOPATH/src"" ""$GOPATH/bin"" && chmod -R 777 ""$GOPATH"""
+0.7960778173833324,npm install --silent --progress=false --production
+0.7432884104445874,"php -r ""unlink('composer-setup.php');"""
+0.7432884104445874,php composer-setup.php
+0.7144093367876325,"php -r ""copy('https://getcomposer.org/installer', 'composer-setup.php');"""
+0.7162377974139766,git clone -b certified/11.6 --depth 1 https://gerrit.asterisk.org/asterisk
+0.7242709040346909,useradd -m asterisk -s /sbin/nologin
+0.7493987125525772,make menuselect.makeopts
+0.7022576858759842,"mkdir -p ""$GOPATH/src"" ""$GOPATH/bin"" && chmod -R 777 ""$GOPATH"""
+0.7059079515441026,CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
+0.7812949568723487,gem install bundler
+0.7003720648840489,cd /home/dataplay3/client &&     mkdir /home/dataplay3/server/dataplay/static &&     npm install --silent &&     npm run build
+0.7015417637241765,cd /home/dataplay3/server &&     pip3 install -r requirements.txt
+0.728179309046476,cd /home     && git clone https://github.com/gangtao/dataplay3
+0.7085685176242967,git clone --depth 1 --branch ${SNAPCRAFT_VERSION} https://github.com/snapcore/snapcraft
+0.7352832361615143,git clone --depth=1 https://github.com/jvm-profiling-tools/async-profiler     && cd async-profiler && make
+0.7226224813887436,git clone --depth=1 https://github.com/jvm-profiling-tools/perf-map-agent     && cd perf-map-agent && cmake . && make
+0.7022576858759842,"mkdir -p ""$GOPATH/src"" ""$GOPATH/bin"" && chmod -R 777 ""$GOPATH"""
+0.7060548103057996,"export CHROMEDRIVER_RELEASE=$(curl --location --fail --retry 3 http://chromedriver.storage.googleapis.com/LATEST_RELEASE)       && curl --silent --show-error --location --fail --retry 3 --output /tmp/chromedriver_linux64.zip ""http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_RELEASE/chromedriver_linux64.zip""       && cd /tmp       && unzip chromedriver_linux64.zip       && rm -rf chromedriver_linux64.zip       && sudo mv chromedriver /usr/local/bin/chromedriver       && sudo chmod +x /usr/local/bin/chromedriver       && chromedriver --version"

@@ -1,0 +1,21 @@
+result,description
+0.7955298878696462,npm install --silent --progress=false --production
+0.7468452414312303,"php -r ""unlink('composer-setup.php');"""
+0.7468452414312303,php composer-setup.php
+0.707697647477362,git clone -b certified/11.6 --depth 1 https://gerrit.asterisk.org/asterisk
+0.7034689973891213,useradd -m asterisk -s /sbin/nologin
+0.7576676853938135,make menuselect.makeopts
+0.7054724220673759,CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
+0.7951529654159466,gem install bundler
+0.7037490738850827,cd /home/dataplay3/client &&     mkdir /home/dataplay3/server/dataplay/static &&     npm install --silent &&     npm run build
+0.7016189479362919,cd /home/dataplay3/server &&     pip3 install -r requirements.txt
+0.7283051331996571,cd /home     && git clone https://github.com/gangtao/dataplay3
+0.7405144640097752,git clone --depth=1 https://github.com/jvm-profiling-tools/async-profiler     && cd async-profiler && make
+0.7283665148733152,git clone --depth=1 https://github.com/jvm-profiling-tools/perf-map-agent     && cd perf-map-agent && cmake . && make
+0.7576676853938135,make modules_prepare
+0.8444219813411031,groupadd -g 939 --system docker
+0.7196207598961065,useradd -u 30041 -s /bin/bash scion
+0.7119738684604533,"curl -L https://github.com/krallin/tini/releases/download/v0.10.0/tini > tini &&     echo ""1361527f39190a7338a0b434bd8c88ff7233ce7b9a4876f3315c22fce7eca1b0 *tini"" | sha256sum -c - &&     mv tini /usr/local/bin/tini &&     chmod +x /usr/local/bin/tini"
+0.8254249317134464,"tar zxf petsc-lite-3.9.3.tar.gz && cd petsc-3.9.3 &&     ./configure --with-debugging=0 --prefix=/usr                                                 --COPTFLAGS=""-g -O3"" --CXXOPTFLAGS=""-g -O3"" --FOPTFLAGS=""-g -O3""                 --download-petsc4py=1                     --download-mpi4py=1                       --download-mumps=1                        --download-parmetis=1                     --download-metis=1                        --download-superlu=1                      --download-hypre=1                        --download-cmake=1                        --download-scalapack=1                    --download-superlu_dist=1                 --download-superlu=1                      --download-fblaslapack=1                  --download-hdf5=1                                                    &&     make PETSC_DIR=/tmp/petsc-build/petsc-3.9.3 PETSC_ARCH=arch-linux2-c-opt all     &&     make PETSC_DIR=/tmp/petsc-build/petsc-3.9.3 PETSC_ARCH=arch-linux2-c-opt install &&     cd /tmp &&     rm -fr *"
+0.7263328031776812,"php -r ""copy('https://raw.githubusercontent.com/composer/getcomposer.org/master/web/installer', 'composer-setup.php');"" &&     php composer-setup.php &&     php -r ""unlink('composer-setup.php');"" &&     mv composer.phar /usr/local/bin/composer"
+0.7071762964737623,"set -x 	&& export SECCOMP_PATH=""$(mktemp -d)"" 	&& curl -fsSL ""https://github.com/seccomp/libseccomp/releases/download/v${SECCOMP_VERSION}/libseccomp-${SECCOMP_VERSION}.tar.gz"" 		| tar -xzC ""$SECCOMP_PATH"" --strip-components=1 	&& ( 		cd ""$SECCOMP_PATH"" 		&& ./configure --prefix=/usr/local 		&& make 		&& make install 		&& ldconfig 	) 	&& rm -rf ""$SECCOMP_PATH"""

@@ -1,0 +1,21 @@
+result,description
+0.7047049366515403,pip install diff_cover
+0.7423795936012895,npm install --silent --progress=false --production
+0.7047049366515403,pip3 install uwsgi
+0.7341803867936099,"php -r ""unlink('composer-setup.php');"""
+0.7341803867936099,php composer-setup.php
+0.7015630598880978,git clone -b certified/11.6 --depth 1 https://gerrit.asterisk.org/asterisk
+0.7792033879620435,make menuselect.makeopts
+0.7537307665708453,gem install bundler
+0.7047049366515403,pip install Flask dnspython oauth2client google-api-python-client httplib2 google-cloud
+0.7279866426543917,cd /home     && git clone https://github.com/gangtao/dataplay3
+0.7047049366515403,"pip install ""Django==1.5"""
+0.7047049366515403,"pip install ""uWSGI"""
+0.7047049366515403,"pip install ""pydicom"""
+0.7047049366515403,"pip install ""requests"""
+0.702540691949395,apt-get update -qq --fix-missing
+0.7670142598146806,git clone --depth=1 https://github.com/jvm-profiling-tools/async-profiler     && cd async-profiler && make
+0.7487077461313602,git clone --depth=1 https://github.com/jvm-profiling-tools/perf-map-agent     && cd perf-map-agent && cmake . && make
+0.7065799451693647,"export CHROMEDRIVER_RELEASE=$(curl --location --fail --retry 3 http://chromedriver.storage.googleapis.com/LATEST_RELEASE)       && curl --silent --show-error --location --fail --retry 3 --output /tmp/chromedriver_linux64.zip ""http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_RELEASE/chromedriver_linux64.zip""       && cd /tmp       && unzip chromedriver_linux64.zip       && rm -rf chromedriver_linux64.zip       && sudo mv chromedriver /usr/local/bin/chromedriver       && sudo chmod +x /usr/local/bin/chromedriver       && chromedriver --version"
+0.7792033879620435,make modules_prepare
+0.7933301242944476,groupadd -g 939 --system docker

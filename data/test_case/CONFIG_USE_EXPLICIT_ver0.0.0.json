@@ -1,0 +1,10 @@
+{
+    "requires": [
+
+    ],
+    "cases": [
+        ["SC-CONFIGURE", "SC-CONFIGURE-BUILD", "BASH-LITERAL"],
+        ["SC-CONFIGURE", "SC-CONFIGURE-WITH-CONFIG-FILE-PATH", "BASH-LITERAL"]
+    ]
+
+}

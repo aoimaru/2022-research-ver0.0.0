@@ -1,0 +1,11 @@
+result,description
+0.7955298878696462,npm install --silent --progress=false --production
+0.7576676853938135,make menuselect.makeopts
+0.7951529654159466,gem install bundler
+0.7576676853938135,make modules_prepare
+0.8444219813411031,groupadd -g 939 --system docker
+0.8254249317134464,"tar zxf petsc-lite-3.9.3.tar.gz && cd petsc-3.9.3 &&     ./configure --with-debugging=0 --prefix=/usr                                                 --COPTFLAGS=""-g -O3"" --CXXOPTFLAGS=""-g -O3"" --FOPTFLAGS=""-g -O3""                 --download-petsc4py=1                     --download-mpi4py=1                       --download-mumps=1                        --download-parmetis=1                     --download-metis=1                        --download-superlu=1                      --download-hypre=1                        --download-cmake=1                        --download-scalapack=1                    --download-superlu_dist=1                 --download-superlu=1                      --download-fblaslapack=1                  --download-hdf5=1                                                    &&     make PETSC_DIR=/tmp/petsc-build/petsc-3.9.3 PETSC_ARCH=arch-linux2-c-opt all     &&     make PETSC_DIR=/tmp/petsc-build/petsc-3.9.3 PETSC_ARCH=arch-linux2-c-opt install &&     cd /tmp &&     rm -fr *"
+0.7526475465242671,cd /trisycl; cmake . -DTRISYCL_OPENCL=${opencl}                                -DTRISYCL_OPENMP=${openmp} -DCMAKE_C_COMPILER=${c_compiler}                    -DCMAKE_CXX_COMPILER=${cxx_compiler} && make -j`nproc`
+0.7906331719291702,adduser opencog sudo
+0.8090557141817059,"adduser --disabled-password --gecos ""OpenCog Developer"" opencog"
+0.7590464764412204,npm install --only=production
