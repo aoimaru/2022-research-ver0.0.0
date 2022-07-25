@@ -66,4 +66,4 @@
 ```
 
 ## APT-GET INSTALL
-(https://github.com/aoimaru/2022-research-ver0.0.0/blob/main/data/chart/tmp/APT-GET_INSTALL_ver0.0.0/size/recall_and_precision.png)
+![apt-get install](https://github.com/aoimaru/2022-research-ver0.0.0/blob/main/data/chart/tmp/APT-GET_INSTALL_ver0.0.0/size/recall_and_precision.png)
