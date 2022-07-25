@@ -6,11 +6,14 @@
         ["SC-GPG", "SC-GPG-KEYSERVER", "BASH-LITERAL", "ABS-URL-POOL"]
     ]
 
-    "original"
-    -> gpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys "$GPG_KEY"
-
     "result"
     (https://github.com/aoimaru/2022-research-ver0.0.0/blob/main/data/top_cases/tmp/GPG_KEY_ver0.0.1/top_10/min_count/sg-0.size-100.min_count-10.window-5.run-1.csv)
+
+
+    *** original ***
+    RUN ***
+        && gpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys "$GPG_KEY"
+
 
     *** result_1 ***
     set -ex  
@@ -40,18 +43,15 @@
         ["SC-RM", "SC-RM-PATHS", "SC-RM-PATH", "BASH-CONCAT", "BASH-GLOB", "ABS-GLOB-STAR"]
     ]
 
-    "original"
-    ->  RUN apt-get update && 
-            apt-get install -y \
-                $PHPIZE_DEPS \
-                ca-certificates \
-                curl \
-                xz-utils \
-            --no-install-recommends && 
-            rm -r /var/lib/apt/lists/*
-
-    "result"
-    (https://github.com/aoimaru/2022-research-ver0.0.0/blob/main/data/top_cases/tmp/GPG_KEY_ver0.0.1/top_10/min_count/sg-0.size-100.min_count-10.window-5.run-1.csv)
+    *** original ***
+    RUN apt-get update && 
+        apt-get install -y \
+            $PHPIZE_DEPS \
+            ca-certificates \
+            curl \
+            xz-utils \
+        --no-install-recommends && 
+        rm -r /var/lib/apt/lists/*
 
     *** result_1 ***
     RUN apt update && 
