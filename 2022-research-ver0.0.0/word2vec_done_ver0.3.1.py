@@ -73,7 +73,7 @@ def do(args, target, top=20, seed="tmp"):
                     words += token
                 data.append([result[1], words])
 
-            ToCSV.do(
+            ToCSV.do_v2(
                 parameter=parameter,
                 data=data,
                 sample_case_version="tmp",
