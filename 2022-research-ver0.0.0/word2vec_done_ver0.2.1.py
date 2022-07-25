@@ -11,6 +11,7 @@ from libs.word2vecs import BaseW2V
 from libs.vectors import Vector
 from functions.functions import *
 from libs.cases import *
+from libs.to_csv import *
 
 """
     - 効率を考えて今回はグローバルに定義
@@ -18,52 +19,107 @@ from libs.cases import *
 
 from libs.evaluations import *
 
-def do(args, target, top=20):    
+
+def do(args, target, top=20, seed="tmp"):
     test_obj = TestCase.get("{target}.json".format(target=target))
     # ここはパッチっぽい
     sample_cases = SampleDataVer000._patch_get_v2(run=args.sample)
     num_of_true = Evaluation.count_true(requires=test_obj["requires"], cases=sample_cases)
     # pprint.pprint(test_obj)
-    try:
-        model = BaseW2V.load(
-            sg=1, 
-            size=100, 
-            min_count=10, 
-            window=5, 
-            name="gold", 
-            run=1
-        )
-    except Exception as e:
-        print(e)
-    else:
-        print("OK")
-        limits = [
-            0.9, 0.85, 0.8, 0.75, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1
-        ]
-        results = dict()
-        results = Evaluation.get_similar_objs_v2(
-            requires=test_obj["requires"], 
-            model=model,
-            sample_cases=sample_cases,
-            test_cases=test_obj["cases"],
-            num_of_true=num_of_true,
-            limit=0.8,
-            size=100
-        )
+    parameters = Parameter.get("word2vec_done_ver0.1.0.json", args.version)
+    for parameter in parameters:
+        print(parameter)
+        try:
+            model = BaseW2V.load(
+                sg=parameter["sg"], 
+                size=parameter["size"], 
+                min_count=parameter["min_count"], 
+                window=parameter["window"], 
+                name=parameter["source"], 
+                run=parameter["run"]
+            )
+        except Exception as e:
+            # print(e)
+            continue
+        else:
+            print("OK")
+            limits = [
+                0.9, 0.85, 0.8, 0.75, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1
+            ]
+            evaluations = list()
+            for limit in limits:
+                print("limit:", limit)
+                evaluation = Evaluation.do(
+                    requires=test_obj["requires"], 
+                    model=model,
+                    sample_cases=sample_cases,
+                    test_cases=test_obj["cases"],
+                    num_of_true=num_of_true,
+                    limit=limit,
+                    size=parameter["size"]
+                )
+                pprint.pprint(evaluation)
+                evaluations.append(evaluation)
+            Evaluation.to_file_v2(
+                parameter=parameter,
+                evaluations=evaluations,
+                sample=args.sample,
+                folder=target
+            )
 
-        results = sorted(results.items(), reverse=True)
-        for result in results[:top]:
-            print(result[1])
-            pprint.pprint(SampleDataVer000._patch_get_original_v2(result[0]))
-                
 
 
 def main(args):
-    # do(args, target="APT-GET_INSTALL_ver0.0.0", top=10)
-    do(args, target="APT-GET_INSTALL_ver0.6.3", top=20)
+    pass
+    do(args, target="APT-GET_INSTALL_ver0.0.0", top=10, seed="size")
+    do(args, target="APT-GET_INSTALL_ver0.1.0", top=10, seed="size")
+
+    do(args, target="APT-GET_INSTALL_ver0.1.1", top=10, seed="size")
+    
+    do(args, target="GPG_KEY_ver0.0.1", top=10, seed="size")
+    
+    do(args, target="CONFIG_USE_EXPLICIT_ver0.0.0", top=10, seed="size")
+    
+
+    do(args, target="CONFIG_USE_EXPLICIT_ver0.0.0", top=10, seed="size")
+    
+
+    do(args, target="APT-GET_INSTALL_ver0.2.0", top=10, seed="size")
+    
+
+    do(args, target="APT-GET_INSTALL_ver0.2.1", top=10, seed="size")
+    
+
+    do(args, target="APT-GET_INSTALL_ver0.3.0", top=10, seed="size")
+    
+
+    do(args, target="APT-GET_INSTALL_ver0.3.1", top=10, seed="size")
+    
+    do(args, target="APT-GET_INSTALL_ver0.4.0", top=10, seed="size")
+    
+    do(args, target="APT-GET_INSTALL_ver0.4.1", top=10, seed="size")
+    
+
+    do(args, target="APT-GET_INSTALL_ver0.5.0", top=10, seed="size")
+    
+
+    do(args, target="APT-GET_INSTALL_ver0.5.1", top=10, seed="size")
+    
+    do(args, target="APT-GET_INSTALL_ver0.6.0", top=10, seed="size")
+    
+    do(args, target="APT-GET_INSTALL_ver0.6.1", top=10, seed="size")
+    
+
+    do(args, target="APT-GET_INSTALL_ver0.6.2", top=10, seed="size")
+    
+    do(args, target="APT-GET_INSTALL_ver0.6.3", top=10, seed="size")
+    
+
+    do(args, target="APK_ADD_USE_NO_CACHE_ver0.0.0", top=10, seed="size")
+    
+
+    # do(args, target="APT-GET_INSTALL_ver0.1.0")
     # do(args, target="GPG_KEY_ver0.0.0")
-    do(args, target="GPG_KEY_ver0.0.1", top=20)
-    # do(args, target="CONFIG_USE_EXPLICIT_ver0.0.0", top=20)
     # do(args, target="APK_ADD_USE_NO_CACHE_ver0.0.0")
     # do(args, target="APT-GET_INSTALL_ver0.1.1")
     # do(args, target="APT-GET_INSTALL_ver0.2.0")

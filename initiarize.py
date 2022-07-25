@@ -3,7 +3,7 @@ import copy
 import json
 import pprint
 import os
-
+import sys
 
 def recursive(objs):
     paths = list()
@@ -33,8 +33,8 @@ def count():
         count += 1
     print("count:", count)
 
-def make_dir():
-    with open("./data_level.json", mode="r") as f:
+def make_dir(file_name):
+    with open("./{}.json".format(file_name), mode="r") as f:
         obj = json.load(f)
 
     file_paths = recursive(obj["levels"])
@@ -47,9 +47,9 @@ def make_dir():
             print(e)
 
 
-def main():
-    make_dir()
+def main(args):
+    make_dir(args[1])
 
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv)

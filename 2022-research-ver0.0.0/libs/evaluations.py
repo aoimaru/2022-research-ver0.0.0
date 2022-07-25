@@ -11,6 +11,7 @@ from libs.configs import Config
 
 
 EVALUATION_PATH = Config.ROOT_PATH+"/data/evaluations/"
+EVALUATION_PATH_V2 = Config.ROOT_PATH+"/data/evaluations_v2/"
 
 class Evaluation(object):
     @staticmethod
@@ -107,6 +108,22 @@ class Evaluation(object):
             run=parameter["run"]
         )
         file_path = EVALUATION_PATH+folder+"/"+file_name
+        with open(file_path, mode="w") as f:
+            json.dump(evaluations, f, ensure_ascii=False, indent=4)
+    
+    @staticmethod
+    def to_file_v2(parameter, evaluations, sample, folder):
+        file_name = "sample-{}.".format(sample)
+        file_name = "sample-{sample}.sg-{sg}.size-{size}.min_count-{min_count}.window-{window}.source-{source}.run-{run}.json".format(
+            sample=sample,
+            sg=parameter["sg"],
+            size=parameter["size"],
+            min_count=parameter["min_count"],
+            window=parameter["window"],
+            source=parameter["source"],
+            run=parameter["run"]
+        )
+        file_path = EVALUATION_PATH_V2+folder+"/"+file_name
         with open(file_path, mode="w") as f:
             json.dump(evaluations, f, ensure_ascii=False, indent=4)
     
