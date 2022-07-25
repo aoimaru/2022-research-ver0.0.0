@@ -73,7 +73,7 @@ def main(args):
     # do(args, target="APT-GET_INSTALL_ver0.1.0")
     # do(args, target="GPG_KEY_ver0.0.0")
     do(args, target="GPG_KEY_ver0.0.1", top=20)
-    do(args, target="CONFIG_USE_EXPLICIT_ver0.0.0", top=20)
+    # do(args, target="CONFIG_USE_EXPLICIT_ver0.0.0", top=20)
     # do(args, target="APK_ADD_USE_NO_CACHE_ver0.0.0")
     # do(args, target="APT-GET_INSTALL_ver0.1.1")
     # do(args, target="APT-GET_INSTALL_ver0.2.0")
