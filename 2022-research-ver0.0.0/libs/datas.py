@@ -144,6 +144,49 @@ class SampleData(object):
 
 class SampleDataVer001(SampleData):
     @staticmethod
+    def _patch_get_v2(run):
+        ignores = [
+            "DOCKER-RUN",
+            "BASH-SCRIPT",
+            "BASH-AND-IF",
+            "BASH-AND-MEM"
+            # "UNKNOWN"
+        ]
+        file_shas = MetaData.get_gold_path()
+        sample_data = dict()
+        for file_sha in file_shas:
+            try:
+                ast_obj = GoldAst(file_sha)
+            except Exception as e:
+                print("Ok")
+                print(e)
+            else:
+                if run == 1:
+                    for idx, child in enumerate(ast_obj.children):
+                        if not child["type"] == "DOCKER-RUN":
+                            continue
+                        tmps = list()
+                        sequences = Recursive.do(child)
+                        FLAG = "INIT"
+                        tmp = list()
+                        for cnt, sequence in enumerate(sequences):
+                            sequence = [word for word in sequence if not word in ignores]
+                            if "UNKNOWN" in sequence:
+                                continue
+                            if not sequence:
+                                continue
+                            if sequence[0] != FLAG:
+                                if sequence:
+                                    sample_data[file_sha+"-"+str(idx)+"-"+str(cnt)] = tmp
+                                tmp = list()
+                                FLAG = sequence[0]
+                            tmp.append(sequence)
+                else:
+                    return 
+                
+        return sample_data
+
+    @staticmethod
     def get(run):
         file_shas = MetaData.get_github_ver001_path()
         sample_data = list()

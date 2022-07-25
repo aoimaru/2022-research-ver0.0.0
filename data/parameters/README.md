@@ -1,0 +1,63 @@
+```bash
+
+    "ver0.0.0": {
+        "sg": [0, 1],
+        "size": [100, 200, 300],
+        "min_count": [50, 100],
+        "window": [5, 10]
+    },
+    "ver0.0.1": {
+        "sg": [0, 1],
+        "size": [100, 200, 300],
+        "min_count": [10],
+        "window": [5, 10]
+    },
+    "size_ver0.0.0": {
+        "sg": [1],
+        "size": [50, 100, 150, 200, 250, 300],
+        "min_count": [5],
+        "window": [5]
+    },
+    "size_ver0.0.1": {
+        "sg": [0],
+        "size": [50, 100, 150, 200, 250, 300],
+        "min_count": [5],
+        "window": [5]
+    },
+    "min_count_ver0.0.0": {
+        "sg": [0],
+        "size": [100],
+        "min_count": [2, 4, 6, 8, 10],
+        "source": ["gold"],
+        "window": [5],
+        "run": [1]
+    },
+    "min_count_ver0.0.1": {
+        "sg": [0],
+        "size": [100],
+        "min_count": [20, 40, 60, 80, 100],
+        "source": ["gold"],
+        "window": [5],
+        "run": [1]
+    },
+    "window_ver0.0.0": {
+        "sg": [0],
+        "size": [100],
+        "min_count": [5],
+        "source": ["gold"],
+        "window": [5, 10, 15, 20],
+        "run": [1]
+    }
+
+
+
+    "size_ver0.0.0": {
+        "sg": [1],
+        "size": [50, 100, 150, 200, 250, 300],
+        "min_count": [5],
+        "window": [5]
+    }
+
+    
+
+```
