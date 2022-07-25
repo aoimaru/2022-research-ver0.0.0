@@ -101,20 +101,20 @@ def main(args):
     # do(args, target="APT-GET_INSTALL_ver0.1.1", top=30, seed="min_count")
     # do(args, target="APT-GET_INSTALL_ver0.1.1", top=40, seed="min_count")
 
-    # do(args, target="GPG_KEY_ver0.0.0", top=10, seed="min_count")
-    # do(args, target="GPG_KEY_ver0.0.0", top=20, seed="min_count")
-    # do(args, target="GPG_KEY_ver0.0.0", top=30, seed="min_count")
-    # do(args, target="GPG_KEY_ver0.0.0", top=40, seed="min_count")
+    do(args, target="GPG_KEY_ver0.0.1", top=10, seed="min_count")
+    do(args, target="GPG_KEY_ver0.0.1", top=20, seed="min_count")
+    do(args, target="GPG_KEY_ver0.0.1", top=30, seed="min_count")
+    do(args, target="GPG_KEY_ver0.0.1", top=40, seed="min_count")
 
     # do(args, target="CONFIG_USE_EXPLICIT_ver0.0.0", top=10, seed="min_count")
     # do(args, target="CONFIG_USE_EXPLICIT_ver0.0.0", top=20, seed="min_count")
     # do(args, target="CONFIG_USE_EXPLICIT_ver0.0.0", top=30, seed="min_count")
     # do(args, target="CONFIG_USE_EXPLICIT_ver0.0.0", top=40, seed="min_count")
 
-    do(args, target="CONFIG_USE_EXPLICIT_ver0.0.0", top=10, seed="size")
-    do(args, target="CONFIG_USE_EXPLICIT_ver0.0.0", top=20, seed="size")
-    do(args, target="CONFIG_USE_EXPLICIT_ver0.0.0", top=30, seed="size")
-    do(args, target="CONFIG_USE_EXPLICIT_ver0.0.0", top=40, seed="size")
+    # do(args, target="CONFIG_USE_EXPLICIT_ver0.0.0", top=10, seed="size")
+    # do(args, target="CONFIG_USE_EXPLICIT_ver0.0.0", top=20, seed="size")
+    # do(args, target="CONFIG_USE_EXPLICIT_ver0.0.0", top=30, seed="size")
+    # do(args, target="CONFIG_USE_EXPLICIT_ver0.0.0", top=40, seed="size")
 
     # do(args, target="APT-GET_INSTALL_ver0.2.0", top=10, seed="min_count")
     # do(args, target="APT-GET_INSTALL_ver0.2.0", top=20, seed="min_count")
