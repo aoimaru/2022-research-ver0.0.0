@@ -22,7 +22,7 @@ def get_file_contents(file_path):
 
 
 def reference_original(search_words):
-    for file_path in glob.glob(ORIGINAL_GOLD_PATH+"**/*", recursive=True)[:20]:
+    for file_path in glob.glob(ORIGINAL_GOLD_PATH+"**/*", recursive=True):
         contents = get_file_contents(file_path)
         # pprint.pprint(contents)
         # print()
@@ -46,10 +46,26 @@ def reference_original(search_words):
 def reference_ast(file_sha, cnt):
     file_path = AST_GOLD_PATH+"{}.json".format(file_sha)
     contents = get_file_contents(file_path)
+    ignores = [
+        "DOCKER-RUN",
+        "BASH-SCRIPT",
+        "BASH-AND-IF",
+        "BASH-AND-MEM"
+        # "UNKNOWN"
+    ]
     for dnt, content in enumerate(contents):
         if dnt == cnt:
             sequences = Recursive.do(content)
+            FLAG = "INIT"
             for sequence in sequences:
+                sequence = [word for word in sequence if not word in ignores]
+                if "UNKNOWN" in sequence:
+                    continue
+                if not sequence:
+                    continue
+                if sequence[0] != FLAG:
+                    FLAG = sequence[0]
+                    print()
                 print(sequence)
 
 
@@ -62,10 +78,10 @@ def main():
         "-y",
         "--no-install-recommends"
     ]
-    # words = [
-    #     "./configure",
-    #     "--build="
-    # ]
+    words = [
+        "./configure",
+        "--build="
+    ]
     # words = [
     #     "rm",
     #     "-r",
