@@ -5,7 +5,7 @@
         ["SC-GPG", "SC-GPG-KEYSERVER", "BASH-LITERAL", "ABS-URL-HA-POOL"],
         ["SC-GPG", "SC-GPG-KEYSERVER", "BASH-LITERAL", "ABS-URL-POOL"]
     ]
-    
+
     *** original ***
     RUN ***
         && gpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys "$GPG_KEY"
@@ -63,3 +63,34 @@
 
 ## APT-GET INSTALL
 ![apt-get install](https://github.com/aoimaru/2022-research-ver0.0.0/blob/main/data/chart/tmp/APT-GET_INSTALL_ver0.0.0/size/recall_and_precision.png)
+
+## テストケース サンプル
+```bash
+
+{
+    "requires": [
+        "SC-APT-GET-INSTALL",
+        "SC-APT-GET-F-NO-INSTALL-RECOMMENDS",
+        "SC-RM",
+        "SC-APT-GET-UPDATE",
+        "SC-APT-GET-F-YES",
+        "SC-RM-F-RECURSIVE",
+        "SC-RM-F-FORCE",
+        "SC-APT-GET-PACKAGES"
+    ],
+    "cases": [
+        ["SC-APT-GET-UPDATE"],
+        ["SC-APT-GET-INSTALL", "SC-APT-GET-F-YES"],
+        ["SC-APT-GET-INSTALL", "SC-APT-GET-F-NO-INSTALL-RECOMMENDS"],
+        ["SC-APT-GET-INSTALL", "SC-APT-GET-PACKAGES", "SC-APT-GET-PACKAGE:TK-DEV"],
+        ["SC-RM", "SC-RM-F-RECURSIVE"],
+        ["SC-RM", "SC-RM-F-FORCE"],
+        ["SC-RM", "SC-RM-PATHS", "SC-RM-PATH", "BASH-CONCAT", "BASH-LITERAL", "ABS-MAYBE-PATH"],
+        ["SC-RM", "SC-RM-PATHS", "SC-RM-PATH", "BASH-CONCAT", "BASH-LITERAL", "ABS-APT-LISTS"],
+        ["SC-RM", "SC-RM-PATHS", "SC-RM-PATH", "BASH-CONCAT", "BASH-LITERAL", "ABS-PATH-VAR"],
+        ["SC-RM", "SC-RM-PATHS", "SC-RM-PATH", "BASH-CONCAT", "BASH-LITERAL", "ABS-PATH-ABSOLUTE"],
+        ["SC-RM", "SC-RM-PATHS", "SC-RM-PATH", "BASH-CONCAT", "BASH-GLOB", "ABS-GLOB-STAR"]
+    ]
+}
+
+```
