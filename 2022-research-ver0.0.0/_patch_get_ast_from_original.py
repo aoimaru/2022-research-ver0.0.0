@@ -97,6 +97,11 @@ def main():
     #     "install",
     #     "--no-cache-dir"
     # ]
+    words = [
+        "for",
+        "mkdir",
+        "chown"
+    ]
     reference_original(search_words=words)
 
 
