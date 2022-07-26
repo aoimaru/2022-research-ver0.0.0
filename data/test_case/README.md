@@ -111,4 +111,63 @@
 }
 
 
+{
+    "requires": [
+        "SC-APK-ADD",
+        "SC-APK-F-NO-CACHE",
+        "SC-APK-PACKAGES",
+        "SC-APK-DEL"
+    ],
+    "cases": [
+        ["SC-APK-ADD", "SC-APK-F-NO-CACHE"],
+        ["SC-APK-ADD", "SC-APK-VIRTUAL:.build-deps"],
+        ["BASH-AND-IF",
+        "BASH-AND-MEM",
+        "SC-APK-ADD",
+        "SC-APK-PACKAGES",
+        "SC-APK-PACKAGE:COREUTILS"],
+        ["BASH-AND-IF",
+        "BASH-AND-MEM",
+        "SC-APK-ADD",
+        "SC-APK-PACKAGES",
+        "SC-APK-PACKAGE:FREETYPE-DEV"],
+        ["BASH-AND-IF",
+        "BASH-AND-MEM",
+        "SC-APK-ADD",
+        "SC-APK-PACKAGES",
+        "SC-APK-PACKAGE:LIBJPEG-TURBO-DEV"],
+        ["BASH-AND-IF",
+        "BASH-AND-MEM",
+        "SC-APK-ADD",
+        "SC-APK-PACKAGES",
+        "SC-APK-PACKAGE:LIBPNG-DEV"],
+        ["BASH-AND-IF",
+        "BASH-AND-MEM",
+        "SC-APK-ADD",
+        "SC-APK-PACKAGES",
+        "SC-APK-PACKAGE:LIBZIP-DEV"],
+        ["BASH-AND-IF",
+        "BASH-AND-MEM",
+        "SC-APK-ADD",
+        "SC-APK-PACKAGES",
+        "SC-APK-PACKAGE:POSTGRESQL-DEV"],
+        ["BASH-AND-IF",
+        "BASH-AND-MEM",
+        "SC-APK-ADD",
+        "SC-APK-VIRTUAL:.drupal-phpexts-rundeps"],
+        ["BASH-AND-IF",
+        "BASH-AND-MEM",
+        "SC-APK-ADD",
+        "SC-APK-PACKAGES",
+        "SC-APK-PACKAGE:RUNDEPS"],
+        ["BASH-AND-IF",
+        "BASH-AND-MEM",
+        "SC-APK-DEL",
+        "SC-APK-PACKAGES",
+        "SC-APK-VIRTUAL:.build-deps"]
+    ]
+}
+
+
+
 ```
