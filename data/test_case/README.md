@@ -25,7 +25,7 @@
 ```
 
 ```bash
-    "cases": [
+    "cases ***NG***": [
         ["SC-APT-GET-UPDATE"],
         ["SC-APT-GET-INSTALL", "SC-APT-GET-F-YES"],
         ["SC-APT-GET-INSTALL", "SC-APT-GET-F-NO-INSTALL-RECOMMENDS"],
@@ -37,6 +37,26 @@
         ["SC-RM", "SC-RM-PATHS", "SC-RM-PATH", "BASH-CONCAT", "BASH-LITERAL", "ABS-PATH-VAR"],
         ["SC-RM", "SC-RM-PATHS", "SC-RM-PATH", "BASH-CONCAT", "BASH-LITERAL", "ABS-PATH-ABSOLUTE"],
         ["SC-RM", "SC-RM-PATHS", "SC-RM-PATH", "BASH-CONCAT", "BASH-GLOB", "ABS-GLOB-STAR"]
+    ]
+
+
+    "cases ***OK***": [
+        ["SC-APT-GET-UPDATE"],
+        -> このブロックでベクトル化
+
+        ["SC-APT-GET-INSTALL", "SC-APT-GET-F-YES"],
+        ["SC-APT-GET-INSTALL", "SC-APT-GET-F-NO-INSTALL-RECOMMENDS"],
+        ["SC-APT-GET-INSTALL", "SC-APT-GET-PACKAGES", "SC-APT-GET-PACKAGE:TK-DEV"],
+        -> このブロックでベクトル化
+
+        ["SC-RM", "SC-RM-F-RECURSIVE"],
+        ["SC-RM", "SC-RM-F-FORCE"],
+        ["SC-RM", "SC-RM-PATHS", "SC-RM-PATH", "BASH-CONCAT", "BASH-LITERAL", "ABS-MAYBE-PATH"],
+        ["SC-RM", "SC-RM-PATHS", "SC-RM-PATH", "BASH-CONCAT", "BASH-LITERAL", "ABS-APT-LISTS"],
+        ["SC-RM", "SC-RM-PATHS", "SC-RM-PATH", "BASH-CONCAT", "BASH-LITERAL", "ABS-PATH-VAR"],
+        ["SC-RM", "SC-RM-PATHS", "SC-RM-PATH", "BASH-CONCAT", "BASH-LITERAL", "ABS-PATH-ABSOLUTE"],
+        ["SC-RM", "SC-RM-PATHS", "SC-RM-PATH", "BASH-CONCAT", "BASH-GLOB", "ABS-GLOB-STAR"]
+        -> このブロックでベクトル化
     ]
 
     *** original ***
